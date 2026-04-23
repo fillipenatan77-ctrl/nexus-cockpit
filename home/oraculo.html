@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Oráculo</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);display:flex;flex-direction:column;min-height:100vh}
+  .container{max-width:560px;width:100%;margin:auto;padding:24px 24px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 26px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1;text-align:center;margin-bottom:8px}
+  .sublead{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.6;font-style:italic;text-align:center;margin-bottom:40px}
+
+  .pergunta{
+    font-family:Georgia,serif;
+    font-size:28px;
+    color:var(--bone);
+    line-height:1.4;
+    font-weight:400;
+    text-align:center;
+    padding:32px 24px;
+    border-top:1px solid var(--gold-soft);
+    border-bottom:1px solid var(--gold-soft);
+    margin:30px 0;
+    min-height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:fadeIn 0.8s ease-out;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  .rodape{
+    text-align:center;
+    font-family:Georgia,serif;
+    font-size:14px;
+    color:var(--bone);
+    opacity:0.55;
+    font-style:italic;
+    line-height:1.5;
+    padding:0 20px;
+  }
+  .actions{display:flex;gap:10px;margin-top:30px}
+  .btn{flex:1;padding:16px;background:rgba(184,147,90,0.08);border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;text-align:center;text-decoration:none}
+  .btn:active{background:var(--gold);color:var(--ink)}
+  .meta{text-align:center;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.5;letter-spacing:0.25em;text-transform:uppercase;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html" class="current">oráculo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./biblioteca.html">biblioteca</a>
+  </div>
+
+  <div class="eyebrow">§ oráculo</div>
+  <h1>Pergunta do dia</h1>
+  <div class="sublead" id="sublead">uma pergunta por vez · sente, responde, segue</div>
+
+  <div class="pergunta" id="pergunta">carregando…</div>
+
+  <div class="rodape" id="rodape"></div>
+
+  <div class="actions">
+    <a class="btn" href="#" onclick="loadPergunta();return false;">↻ outra</a>
+    <a class="btn" href="https://claude.ai" target="_blank">elaborar no cortex ↗</a>
+  </div>
+
+  <div class="meta" id="meta"></div>
+</div>
+
+<script>
+// Banco de perguntas curadas - operando offline caso API falhe
+const PERGUNTAS = [
+  { q: 'O que você faria hoje se soubesse que ninguém julgaria o processo — apenas o resultado?', r: 'Aurélio inverte: e se só o processo importasse?', tag: 'estoica' },
+  { q: 'O que você sabe sobre si e se recusa a nomear em voz alta?', r: 'Recalque não é o que você não sabe — é o que você sabe e resiste em saber que sabe.', tag: 'psicanálise' },
+  { q: 'Na sua última conversa difícil, qual das 3 foi a verdadeira: fato, afeto ou identidade?', r: 'E qual delas você negociou? Stone/Heen, Difficult Conversations.', tag: 'comunicação' },
+  { q: 'Qual conceito apareceu em 2+ conversas suas esta semana?', r: 'Recorrência é convite à profundidade. Candidato nº1 pra uma /grade10 dedicada.', tag: 'NEXUS' },
+  { q: 'Nas 3 decisões mais importantes do seu último mês, quem foi realmente decisivo?', r: 'Se não sabe, está jogando cego. Mapear antes de pleitear.', tag: 'poder' },
+  { q: 'Em qual das 18 estações do Palácio você ainda não colocou imagem viva?', r: 'O Palácio só funciona quando tem carne. Cícero sabia.', tag: 'memória' },
+  { q: 'Você consegue descrever os 3 argumentos contrários mais fortes à sua última decisão importante?', r: 'Se não: era Sistema 1 vestido de terno (Kahneman).', tag: 'julgamento' },
+  { q: 'Do que te incomoda agora, o que depende exclusivamente de você? E o que depende do acaso ou do outro?', r: 'Dicotomia do controle · Epicteto. Se não separa, não age — só sofre.', tag: 'estoica' },
+  { q: 'Qual foi, nas últimas 72h, o seu desejo mais seu — versus o que você achou que o outro queria de você?', r: 'Desejo é desejo do Outro — até você reconhecer (Lacan).', tag: 'psicanálise' },
+  { q: 'Qual comportamento recorrente em você, que você não gosta, ainda assim te salvou em algum momento?', r: 'O sintoma também sustenta. Antes de destruir, entender função.', tag: 'psicanálise' },
+  { q: 'Agora: qual emoção principal habita seu corpo? Qual secundária? Qual terceira?', r: 'Responder só 1 é simplificação. Emoção vem em camadas.', tag: 'IE' },
+  { q: 'Pense em 1 decisão recente que você tomou achando que era racional. Que sensação física precedeu a escolha?', r: 'Damásio: marcador somático decide antes, razão depois justifica.', tag: 'neurociência' },
+  { q: 'Qual formulação sua queimou em conversa recente? O que ela tinha de errado — linguagem, timing ou intenção?', r: 'Queimada registrada é alavanca. Apagada é reincidência garantida.', tag: 'comunicação' },
+  { q: 'O que você faria diferente se o resultado desta semana fosse público em 30 dias?', r: 'A transparência antecipada é um filtro de consistência.', tag: 'poder' },
+  { q: 'Qual autoridade você finge ter mas ainda não habitou plenamente?', r: 'A autoridade que se prova já está em queda (Greene). Quem chegou conduz sem lembrar.', tag: 'poder' },
+  { q: 'O que, hoje, te custou mais energia: o trabalho em si ou a aparência dele?', r: 'Se a aparência custou mais, há algo estrutural pra revisar.', tag: 'IE' },
+  { q: 'Qual pergunta você se recusa a fazer porque teme a resposta?', r: 'A pergunta reprimida opera como se tivesse sido respondida — mal.', tag: 'psicanálise' },
+  { q: 'O que, em você, age como se todo mundo estivesse olhando — e o que age como se ninguém estivesse?', r: 'A distância entre os dois é o seu grau de inteireza.', tag: 'presença' },
+  { q: 'Qual conversa você vem adiando? E o que o adiamento está protegendo?', r: 'Adiar nunca é neutro — é escolha com custo composto.', tag: 'comunicação' },
+  { q: 'Onde, nos últimos 7 dias, você ajustou uma opinião por informação nova?', r: 'Bom julgamento não é acertar — é corrigir rápido (Likierman).', tag: 'julgamento' },
+  { q: 'Qual obra do acervo você abriu e fechou sem ler de verdade?', r: 'Provavelmente é a mais necessária agora.', tag: 'NEXUS' },
+  { q: 'Se hoje fosse o último dia antes de uma pausa de 30 dias, o que você FECHARIA antes?', r: 'Fechamento voluntário · treino de discernimento.', tag: 'estoica' },
+  { q: 'Quem, na sua semana, operou por trás da cortina e influenciou resultado sem aparecer?', r: 'Mapa de influência começa por quem você não notou.', tag: 'poder' },
+  { q: 'Qual elogio que você recebeu ultimamente você não acreditou — e por quê?', r: 'O que você recusa ouvir sobre si é pista do que falta reconhecer.', tag: 'IE' },
+];
+
+const EXEC = 'https://script.google.com/macros/s/AKfycbz1YYHZuy4qCr2JyqOvVZmXY5vZYIZ9l0yg6-SBOxlxlgsxxOSYiPIlDuwbJ7-EFYDK/exec';
+
+function loadPergunta() {
+  const pergEl = document.getElementById('pergunta');
+  const rodEl = document.getElementById('rodape');
+  const metaEl = document.getElementById('meta');
+
+  // Animação: fade out + fade in
+  pergEl.style.opacity = '0';
+  setTimeout(() => {
+    const p = PERGUNTAS[Math.floor(Math.random() * PERGUNTAS.length)];
+    pergEl.textContent = p.q;
+    rodEl.textContent = p.r;
+    metaEl.textContent = 'NEXUS · lente ' + p.tag + ' · ' + PERGUNTAS.length + ' perguntas no banco';
+    pergEl.style.opacity = '1';
+  }, 220);
+}
+
+// Carrega cicle info no sublead
+async function loadContexto() {
+  try {
+    const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('sublead').textContent = 'dia ' + d.cycle.day + '/272 · lente ' + d.cycle.lente + ' · estação ' + d.cycle.estacao;
+    }
+  } catch (e) {}
+}
+
+loadPergunta();
+loadContexto();
+</script>
+</body>
+</html>

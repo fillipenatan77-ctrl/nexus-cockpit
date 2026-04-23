@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Citação do Dia</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh}
+  .container{max-width:560px;width:100%;padding:24px 24px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 26px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .card{
+    border:1px solid var(--gold-soft);
+    border-radius:18px;
+    padding:38px 30px 32px;
+    background:linear-gradient(155deg, rgba(184,147,90,0.07) 0%, rgba(15,14,23,0.8) 100%);
+    position:relative;
+    min-height:440px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    opacity:0;
+    animation:fadeIn 0.8s ease-out forwards;
+  }
+  @keyframes fadeIn{to{opacity:1}}
+
+  .glifo{
+    font-family:Georgia,serif;
+    font-size:58px;
+    color:var(--gold);
+    opacity:0.75;
+    line-height:1;
+    margin-bottom:14px;
+    font-style:italic;
+  }
+  .titulo{
+    font-family:Georgia,serif;
+    font-size:17px;
+    color:var(--gold);
+    letter-spacing:0.04em;
+    font-weight:500;
+    margin-bottom:4px;
+  }
+  .tag{
+    font-family:'SF Mono',monospace;
+    font-size:10px;
+    color:var(--gold);
+    opacity:0.7;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+    display:inline-block;
+    padding:2px 10px;
+    border:1px solid var(--gold-soft);
+    border-radius:999px;
+  }
+  .texto{
+    font-family:Georgia,serif;
+    font-size:24px;
+    color:var(--bone);
+    line-height:1.45;
+    font-weight:400;
+    margin:10px 0 24px;
+  }
+  .rodape{
+    font-family:Georgia,serif;
+    font-size:14px;
+    color:var(--bone);
+    opacity:0.65;
+    font-style:italic;
+    line-height:1.5;
+    padding-top:18px;
+    border-top:1px solid var(--gold-faint);
+  }
+  .meta{
+    font-family:'SF Mono',monospace;
+    font-size:10px;
+    color:var(--gold);
+    opacity:0.5;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    margin-top:20px;
+    text-align:center;
+  }
+
+  .actions{display:flex;gap:10px;margin-top:20px}
+  .btn{flex:1;padding:14px;background:rgba(184,147,90,0.08);border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;text-align:center;text-decoration:none}
+  .btn:active{background:var(--gold);color:var(--ink)}
+
+  .loading{padding:40px;text-align:center;font-family:Georgia,serif;font-style:italic;color:var(--bone);opacity:0.55}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./citacao.html" class="current">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./biblioteca.html">biblioteca</a>
+  </div>
+
+  <div id="container-card">
+    <div class="loading">§ escolhendo citação do pool…</div>
+  </div>
+</div>
+
+<script>
+const EXEC = 'https://script.google.com/macros/s/AKfycbz1YYHZuy4qCr2JyqOvVZmXY5vZYIZ9l0yg6-SBOxlxlgsxxOSYiPIlDuwbJ7-EFYDK/exec';
+const GLIFOS = ['§', '✦', '◉', '⊛', '✧', '❦', '♛', '⟶', '◊', '※'];
+
+async function loadCitacao() {
+  try {
+    // Tenta surprise_preview - retorna sample de 3. Vamos pegar 1 random
+    const r = await fetch(EXEC + '?action=surprise_preview', { cache: 'no-store' });
+    const d = await r.json();
+    if (!d.ok || !d.sample || !d.sample.length) throw new Error('pool vazio');
+    const item = d.sample[Math.floor(Math.random() * d.sample.length)];
+    render(item, d.pool_size);
+  } catch (e) {
+    document.getElementById('container-card').innerHTML = '<div class="loading">Sem conexão com o servidor NEXUS agora.<br>Tente novamente em alguns segundos.</div>';
+  }
+}
+
+function render(item, pool_size) {
+  const glifo = GLIFOS[Math.floor(Math.random() * GLIFOS.length)];
+  const html = `
+    <div class="card">
+      <div>
+        <div class="glifo">${glifo}</div>
+        <div class="tag">${item.tipo || 'citação'} · ${item.lente || '—'}</div>
+        <div class="titulo">${escapeHtml(item.titulo || '')}</div>
+        <div class="texto">${escapeHtml(item.texto || '')}</div>
+      </div>
+      <div>
+        <div class="rodape">— ${escapeHtml(item.rodape || '')}</div>
+        <div class="meta">NEXUS · ${item.peso || 'aplicável'} · ${item.id}</div>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="#" onclick="loadCitacao();return false;">↻ outra</a>
+      <a class="btn" href="javascript:void(0)" onclick="compartilhar(${JSON.stringify(item).replace(/"/g,'&quot;')})">compartilhar</a>
+    </div>
+  `;
+  document.getElementById('container-card').innerHTML = html;
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+function compartilhar(item) {
+  const text = item.titulo + '\n\n' + item.texto + '\n\n— ' + (item.rodape || '') + '\n\nNEXUS · pool ' + item.id;
+  if (navigator.share) {
+    navigator.share({ title: 'NEXUS · ' + item.titulo, text: text }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(text);
+    alert('Copiado pra área de transferência');
+  }
+}
+
+loadCitacao();
+</script>
+</body>
+</html>

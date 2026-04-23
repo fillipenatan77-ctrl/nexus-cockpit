@@ -226,6 +226,30 @@
       </div>
     </a>
 
+    <a class="tile" href="./citacao.html">
+      <div class="glyph">✦</div>
+      <div>
+        <div class="title">Citação</div>
+        <div class="sub">Do pool · 60 itens</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./oraculo.html">
+      <div class="glyph">⊛</div>
+      <div>
+        <div class="title">Oráculo</div>
+        <div class="sub">Pergunta do dia</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./estacoes.html">
+      <div class="glyph">◈</div>
+      <div>
+        <div class="title">Palácio</div>
+        <div class="sub" id="sub-palacio">18 estações</div>
+      </div>
+    </a>
+
     <a class="tile" href="./biblioteca.html">
       <div class="glyph">❦</div>
       <div>
@@ -289,14 +313,6 @@
         <div class="sub">GitHub</div>
       </div>
     </a>
-
-    <a class="tile" href="#" id="tile-estacao">
-      <div class="glyph">◈</div>
-      <div>
-        <div class="title">Estação</div>
-        <div class="sub" id="sub-estacao">do Palácio</div>
-      </div>
-    </a>
   </div>
 
   <div class="snapshot">
@@ -328,7 +344,7 @@
 </div>
 
 <script>
-const EXEC = 'https://script.google.com/macros/s/AKfycbzt6Flr56Ki8HNOgjlJZTWb3kG7F9fETtNifE6Cb7EY_bvA-H9t39u7eYEyklwEBcI/exec';
+const EXEC = 'https://script.google.com/macros/s/AKfycbz1YYHZuy4qCr2JyqOvVZmXY5vZYIZ9l0yg6-SBOxlxlgsxxOSYiPIlDuwbJ7-EFYDK/exec';
 const ESTACOES = ['Fundação','Liminaridade','Fogo Interior','Reflexão Estratégica','Ágora','Forja','Lapidário','Coroa Tríplice','Espelho','Bússola Inversa','Templo do Eixo','Vau','Tessitura','Selo Quaternário','Acrópole','Catedra','Convergência','Selo Final'];
 const LENTES = ['Síntese','Liderança (Jung+Sun Tzu)','PNL (Bandler/Erickson)','Estoica (Aurélio/Sêneca)','Psicanálise (Freud/Lacan)','Memorização (Yates/Palácio)','Motivacional (Shakespeare)'];
 
@@ -350,7 +366,8 @@ async function loadSnapshot() {
     document.getElementById('snap-server').textContent = 'Apps Script ' + (d.bootstrapVersion || 'v15');
     document.getElementById('tagline').textContent = 'Dia ' + d.cycle.day + '/272 · ' + d.cycle.estacao + ' · lente ' + d.cycle.lente;
     document.getElementById('sub-surprise').textContent = d.surprise.last_sent_at ? 'última: ' + new Date(d.surprise.last_sent_at).toLocaleDateString('pt-BR', {day:'2-digit', month:'short'}) : 'do dia';
-    document.getElementById('sub-estacao').textContent = d.cycle.estacao;
+    const subP = document.getElementById('sub-palacio');
+    if (subP) subP.textContent = d.cycle.estacao;
     document.getElementById('sub-status').textContent = 'v' + (d.bootstrapVersion || '15').split('-')[0].replace('v','');
   } catch (e) {
     // Fallback: calcula localmente
@@ -364,7 +381,8 @@ async function loadSnapshot() {
     document.getElementById('snap-surprise').textContent = '— (offline)';
     document.getElementById('snap-server').textContent = '— (offline)';
     document.getElementById('tagline').textContent = 'Dia ' + d + '/272 · ' + est + ' · lente ' + lente;
-    document.getElementById('sub-estacao').textContent = est;
+    const subP2 = document.getElementById('sub-palacio');
+    if (subP2) subP2.textContent = est;
     document.getElementById('pill').textContent = 'offline';
   }
 }
@@ -411,14 +429,13 @@ document.getElementById('tile-status').addEventListener('click', async (e) => {
   }
 });
 
-document.getElementById('tile-estacao').addEventListener('click', (e) => {
-  e.preventDefault();
+// Atualizar sub do tile Palácio com estação atual
+try {
   const d = cycleDay();
   const est = ESTACOES[(d - 1) % 18];
-  const idx = (d - 1) % 18;
-  const progresso = Math.floor(((d - 1) % 18 + 1) / 18 * 100);
-  openModal('§ palácio', 'Estação ' + (idx + 1) + '/18 · ' + est, 'Dia ' + d + '/272 do ciclo PRIMORDIA.\n\nAs 18 estações em ordem:\n' + ESTACOES.map((n, i) => (i === idx ? '▸ ' : '  ') + (i + 1).toString().padStart(2, '0') + '  ' + n).join('\n'), 'próxima troca em ' + (18 - ((d - 1) % 18)) + ' dias');
-});
+  const subP = document.getElementById('sub-palacio');
+  if (subP) subP.textContent = est;
+} catch(e) {}
 
 // Service worker para offline mínimo
 if ('serviceWorker' in navigator) {

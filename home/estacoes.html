@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Palácio</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:24px 20px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 22px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{text-align:center;padding:4px 4px 20px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .sublead{margin-top:12px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5;padding:0 10px}
+
+  .progresso{margin:24px 0 10px}
+  .progresso .bar{height:4px;background:var(--gold-faint);border-radius:2px;overflow:hidden}
+  .progresso .fill{height:100%;background:var(--gold);border-radius:2px;box-shadow:0 0 10px var(--gold);transition:width 0.8s ease-out}
+  .progresso .labels{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.7;letter-spacing:0.15em;margin-top:8px}
+
+  .estacao{
+    margin:10px 0;
+    padding:16px 18px;
+    border:1px solid var(--gold-faint);
+    border-radius:12px;
+    background:rgba(184,147,90,0.02);
+    display:flex;
+    gap:16px;
+    align-items:center;
+    position:relative;
+    transition:all 0.2s ease;
+  }
+  .estacao.current{
+    border-color:var(--gold);
+    background:linear-gradient(145deg, rgba(184,147,90,0.12) 0%, rgba(15,14,23,0.6) 100%);
+    box-shadow:0 0 30px rgba(184,147,90,0.15);
+  }
+  .estacao.past{opacity:0.5}
+  .estacao .num{
+    font-family:Georgia,serif;
+    font-size:28px;
+    color:var(--gold);
+    width:50px;
+    text-align:center;
+    opacity:0.7;
+    flex-shrink:0;
+  }
+  .estacao.current .num{opacity:1;font-size:32px}
+  .estacao .info{flex:1;min-width:0}
+  .estacao .nome{
+    font-family:Georgia,serif;
+    font-size:19px;
+    color:var(--bone);
+    line-height:1.2;
+  }
+  .estacao .meta{
+    font-family:'SF Mono',monospace;
+    font-size:10px;
+    color:var(--gold);
+    opacity:0.7;
+    letter-spacing:0.15em;
+    margin-top:4px;
+    text-transform:uppercase;
+  }
+  .estacao.current::before{
+    content:'▸';
+    position:absolute;
+    left:-14px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--gold);
+    font-size:18px;
+  }
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+    <a href="./estacoes.html" class="current">palácio</a>
+    <a href="./biblioteca.html">biblioteca</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ palácio da memória</div>
+    <h1>18 Estações</h1>
+    <div class="sublead">Ciclo PRIMORDIA · 272 dias · cada estação ~15 dias · arte da memória de Yates aplicada ao método NEXUS.</div>
+  </header>
+
+  <div class="progresso">
+    <div class="bar"><div class="fill" id="progFill" style="width:0%"></div></div>
+    <div class="labels">
+      <span id="progStart">dia 1</span>
+      <span id="progCurrent">dia ? / 272</span>
+      <span>dia 272</span>
+    </div>
+  </div>
+
+  <div id="estacoes-list"></div>
+
+  <footer>NEXUS v15.J · 18 estações canônicas</footer>
+</div>
+
+<script>
+const ESTACOES = [
+  { nome: 'Fundação', descricao: 'base · pilares' },
+  { nome: 'Liminaridade', descricao: 'soleira · transição' },
+  { nome: 'Fogo Interior', descricao: 'centro incandescente' },
+  { nome: 'Reflexão Estratégica', descricao: 'distância · perspectiva' },
+  { nome: 'Ágora', descricao: 'praça pública · diálogo' },
+  { nome: 'Forja', descricao: 'transformação sob pressão' },
+  { nome: 'Lapidário', descricao: 'refinamento detalhado' },
+  { nome: 'Coroa Tríplice', descricao: 'sabe · ouve · decide · assume' },
+  { nome: 'Espelho', descricao: 'auto-observação' },
+  { nome: 'Bússola Inversa', descricao: 'orientação por oposição' },
+  { nome: 'Templo do Eixo', descricao: 'centro fixo · referência' },
+  { nome: 'Vau', descricao: 'travessia · rio' },
+  { nome: 'Tessitura', descricao: 'trama · tecido de relações' },
+  { nome: 'Selo Quaternário', descricao: 'quatro faces integradas' },
+  { nome: 'Acrópole', descricao: 'altura · supervisão' },
+  { nome: 'Catedra', descricao: 'autoridade legítima' },
+  { nome: 'Convergência', descricao: 'confluência · síntese' },
+  { nome: 'Selo Final', descricao: 'fechamento · selo sobre o ciclo' }
+];
+
+function cycleDay() {
+  const start = new Date('2026-04-02T00:00:00-03:00');
+  return Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+}
+
+function render() {
+  const dia = cycleDay();
+  const total = 272;
+  const idx = (dia - 1) % 18;  // estação atual (0-indexed)
+  const pct = Math.min(100, (dia / total) * 100);
+
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progCurrent').textContent = 'dia ' + dia + ' / ' + total;
+
+  const list = document.getElementById('estacoes-list');
+  list.innerHTML = '';
+  ESTACOES.forEach((est, i) => {
+    const num = String(i + 1).padStart(2, '0');
+    const cls = i === idx ? 'current' : (i < idx ? 'past' : '');
+    const estDiv = document.createElement('div');
+    estDiv.className = 'estacao ' + cls;
+    estDiv.innerHTML = `
+      <div class="num">${num}</div>
+      <div class="info">
+        <div class="nome">${est.nome}</div>
+        <div class="meta">${est.descricao}</div>
+      </div>
+    `;
+    list.appendChild(estDiv);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
