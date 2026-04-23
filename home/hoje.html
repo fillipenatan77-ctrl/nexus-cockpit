@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Hoje</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:620px;margin:0 auto;padding:20px 20px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 20px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 0 24px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+  .greeting{font-family:Georgia,serif;font-size:28px;font-weight:400;letter-spacing:0.02em;line-height:1.2}
+  .greeting .date{color:var(--gold);font-style:italic;font-size:22px;display:block;margin-top:6px}
+
+  .bloco{margin-top:16px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:20px}
+  .bloco .rotulo{
+    font-family:'SF Mono',monospace;
+    font-size:10px;
+    color:var(--gold);
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .bloco .rotulo .glif{font-family:Georgia,serif;font-size:18px;font-style:italic;letter-spacing:0;opacity:0.85}
+  .bloco h2{font-family:Georgia,serif;font-size:22px;font-weight:400;color:var(--bone);line-height:1.25;letter-spacing:0.01em}
+  .bloco .corpo{font-family:Georgia,serif;font-size:16px;color:var(--bone);opacity:0.85;line-height:1.55;margin-top:10px}
+  .bloco .rodape{font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.55;font-style:italic;margin-top:12px;padding-top:12px;border-top:1px solid var(--gold-faint);line-height:1.45}
+
+  /* Bloco identidade · ciclo/lente/estação */
+  .bloco.ciclo{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;padding:0;overflow:hidden}
+  .bloco.ciclo .celula{padding:18px 14px;text-align:center;border-right:1px solid var(--gold-faint)}
+  .bloco.ciclo .celula:last-child{border-right:none}
+  .bloco.ciclo .k{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;opacity:0.75}
+  .bloco.ciclo .v{font-family:Georgia,serif;font-size:20px;color:var(--bone);margin-top:6px;line-height:1.1}
+
+  .btn-pill{display:inline-block;margin-top:12px;padding:7px 13px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;text-decoration:none}
+  .btn-pill:active{background:var(--gold);color:var(--ink)}
+
+  footer{margin-top:28px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html" class="current">hoje</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ briefing do dia</div>
+    <div class="greeting" id="greeting">Hoje<span class="date" id="date">—</span></div>
+  </header>
+
+  <!-- Ciclo -->
+  <div class="bloco ciclo">
+    <div class="celula"><div class="k">Dia</div><div class="v" id="c-dia">—</div></div>
+    <div class="celula"><div class="k">Estação</div><div class="v" id="c-estacao">—</div></div>
+    <div class="celula"><div class="k">Lente</div><div class="v" id="c-lente">—</div></div>
+  </div>
+
+  <!-- Citação -->
+  <div class="bloco" id="bloco-citacao" style="display:none">
+    <div class="rotulo"><span>citação</span><span class="glif">§</span></div>
+    <h2 id="cit-titulo"></h2>
+    <div class="corpo" id="cit-texto"></div>
+    <div class="rodape" id="cit-rodape"></div>
+    <a href="./citacao.html" class="btn-pill">⟶ outra do pool</a>
+  </div>
+
+  <!-- Oráculo -->
+  <div class="bloco" id="bloco-oraculo">
+    <div class="rotulo"><span>pergunta reflexiva</span><span class="glif">⊛</span></div>
+    <h2 id="or-pergunta">—</h2>
+    <div class="rodape" id="or-rodape"></div>
+    <a href="./oraculo.html" class="btn-pill">⟶ outras</a>
+  </div>
+
+  <!-- Próximo passo NEXUS -->
+  <div class="bloco">
+    <div class="rotulo"><span>próximo passo</span><span class="glif">⟶</span></div>
+    <div class="corpo" id="proximo">Identifique 1 situação das últimas 72h que pede <strong style="color:var(--gold)">/grade10</strong> — e leve para o Cortex.</div>
+    <a href="https://claude.ai/projects" target="_blank" class="btn-pill">⟶ abrir cortex</a>
+  </div>
+
+  <!-- Estado do sistema (resumido) -->
+  <div class="bloco">
+    <div class="rotulo"><span>sistema</span><span class="glif">◉</span></div>
+    <div class="corpo" style="font-family:'SF Mono',monospace;font-size:12px;line-height:1.8">
+      <span id="sys-version">NEXUS vXX</span><br>
+      <span id="sys-triggers">triggers XX/20</span> · <span id="sys-surprise">surprise —</span><br>
+      <span id="sys-server">server —</span>
+    </div>
+  </div>
+
+  <footer>NEXUS v15.K · hoje é onde o NEXUS acontece</footer>
+</div>
+
+<script>
+const EXEC = 'https://script.google.com/macros/s/AKfycbz1YYHZuy4qCr2JyqOvVZmXY5vZYIZ9l0yg6-SBOxlxlgsxxOSYiPIlDuwbJ7-EFYDK/exec';
+
+const PERGUNTAS = [
+  { q: 'O que você sabe sobre si e se recusa a nomear em voz alta?', r: 'Recalque não é o que você não sabe — é o que você resiste em reconhecer.' },
+  { q: 'Qual conversa difícil você vem adiando, e o que o adiamento protege?', r: 'Adiar nunca é neutro — é escolha com custo composto.' },
+  { q: 'Nas 3 decisões mais importantes do seu último mês, quem foi decisivo?', r: 'Se não sabe, está jogando cego. Mapear antes de pleitear.' },
+  { q: 'Qual conceito apareceu em 2+ conversas suas esta semana?', r: 'Recorrência é convite à profundidade.' },
+  { q: 'Em qual estação do Palácio você ainda não colocou imagem viva?', r: 'O Palácio só funciona com carne.' },
+  { q: 'Qual elogio recente você recusou acreditar — e por quê?', r: 'O que você não aceita sobre si é pista do que falta integrar.' },
+  { q: 'O que, em você, age como se todo mundo estivesse olhando — e o que age como se ninguém estivesse?', r: 'A distância entre os dois é o seu grau de inteireza.' },
+  { q: 'Do que te incomoda agora, o que depende só de você?', r: 'Dicotomia do controle — Epicteto.' },
+  { q: 'Qual formulação sua queimou em conversa recente?', r: 'Queimada registrada é alavanca. Apagada é reincidência.' },
+];
+
+function updateGreeting() {
+  const d = new Date();
+  const h = d.getHours();
+  let saud;
+  if (h < 5) saud = 'Madrugada';
+  else if (h < 12) saud = 'Bom dia';
+  else if (h < 18) saud = 'Boa tarde';
+  else saud = 'Boa noite';
+  document.getElementById('greeting').childNodes[0].textContent = saud;
+  const diasSemana = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+  const meses = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  document.getElementById('date').textContent = diasSemana[d.getDay()] + ', ' + d.getDate() + ' de ' + meses[d.getMonth()];
+}
+
+async function loadCiclo() {
+  try {
+    const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
+    const d = await r.json();
+    document.getElementById('c-dia').textContent = d.cycle.day + '/272';
+    document.getElementById('c-estacao').textContent = d.cycle.estacao;
+    document.getElementById('c-lente').textContent = d.cycle.lente;
+    document.getElementById('sys-version').textContent = 'NEXUS ' + (d.bootstrapVersion || 'v15');
+    document.getElementById('sys-triggers').textContent = 'triggers ' + d.triggers.total + '/' + d.triggers.limit;
+    document.getElementById('sys-surprise').textContent = 'surprise ' + (d.surprise.enabled ? 'ativo (' + d.surprise.pool_size + ' itens)' : 'pausado');
+    document.getElementById('sys-server').textContent = 'última atualização: ' + new Date(d.serverTime).toLocaleTimeString('pt-BR');
+  } catch (e) {
+    const start = new Date('2026-04-02T00:00:00-03:00');
+    const dia = Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+    const est = ['Fundação','Liminaridade','Fogo Interior','Reflexão Estratégica','Ágora','Forja','Lapidário','Coroa Tríplice','Espelho','Bússola Inversa','Templo do Eixo','Vau','Tessitura','Selo Quaternário','Acrópole','Catedra','Convergência','Selo Final'][(dia - 1) % 18];
+    const lentes = ['Síntese','Liderança','PNL','Estoica','Psicanálise','Memorização','Motivacional'];
+    document.getElementById('c-dia').textContent = dia + '/272';
+    document.getElementById('c-estacao').textContent = est;
+    document.getElementById('c-lente').textContent = lentes[new Date().getDay()];
+  }
+}
+
+async function loadCitacao() {
+  try {
+    const r = await fetch(EXEC + '?action=surprise_preview', { cache: 'no-store' });
+    const d = await r.json();
+    if (!d.ok || !d.sample) throw new Error();
+    const item = d.sample[Math.floor(Math.random() * d.sample.length)];
+    document.getElementById('cit-titulo').textContent = item.titulo;
+    document.getElementById('cit-texto').textContent = item.texto;
+    document.getElementById('cit-rodape').textContent = item.rodape;
+    document.getElementById('bloco-citacao').style.display = 'block';
+  } catch (e) {}
+}
+
+function loadOraculo() {
+  const p = PERGUNTAS[Math.floor(Math.random() * PERGUNTAS.length)];
+  document.getElementById('or-pergunta').textContent = p.q;
+  document.getElementById('or-rodape').textContent = p.r;
+}
+
+updateGreeting();
+loadCiclo();
+loadCitacao();
+loadOraculo();
+</script>
+</body>
+</html>

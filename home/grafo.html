@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Grafo Conceitual</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 20px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{text-align:center;padding:4px 4px 14px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5;padding:0 10px}
+
+  .grafo-wrap{
+    margin:20px -16px 14px;
+    padding:10px;
+    background:rgba(184,147,90,0.03);
+    border-top:1px solid var(--gold-faint);
+    border-bottom:1px solid var(--gold-faint);
+    overflow:hidden;
+  }
+  svg{display:block;margin:auto;width:100%;max-width:680px;height:auto}
+
+  .legenda{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:20px;
+    padding:0 4px;
+  }
+  @media (min-width: 480px) { .legenda{grid-template-columns:repeat(3,1fr)} }
+  .legenda .item{
+    font-family:'SF Mono',monospace;
+    font-size:10px;
+    letter-spacing:0.12em;
+    color:var(--bone);
+    opacity:0.8;
+    padding:8px 10px;
+    border:1px solid var(--gold-faint);
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .legenda .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+  .conexoes{
+    margin-top:24px;
+    padding:20px;
+    border:1px solid var(--gold-soft);
+    border-radius:14px;
+    background:rgba(184,147,90,0.03);
+  }
+  .conexoes h3{font-family:Georgia,serif;font-size:16px;font-weight:400;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px}
+  .conexoes .rel{padding:10px 0;border-bottom:1px solid var(--gold-faint);font-family:Georgia,serif;font-size:15px;line-height:1.5}
+  .conexoes .rel:last-child{border-bottom:none}
+  .conexoes .rel .a{color:var(--bone);font-weight:500}
+  .conexoes .rel .op{color:var(--gold);margin:0 6px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.2em}
+  .conexoes .rel .b{color:var(--bone);font-weight:500}
+  .conexoes .rel .why{display:block;margin-top:4px;color:var(--bone);opacity:0.7;font-size:13px;font-style:italic}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./grafo.html" class="current">grafo</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ grafo conceitual</div>
+    <h1>Autores e Conexões</h1>
+    <div class="sublead">16 nós nucleares em 5 clusters · linhas ouro = diálogo direto · toque num autor para detalhes.</div>
+  </header>
+
+  <div class="grafo-wrap">
+    <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" id="grafo">
+      <!-- Clusters (fundos sutis) -->
+      <g id="clusters" opacity="0.08">
+        <circle cx="200" cy="210" r="130" fill="#B8935A"/>  <!-- psi -->
+        <circle cx="500" cy="210" r="130" fill="#B8935A"/>  <!-- neuro/ie -->
+        <circle cx="200" cy="490" r="130" fill="#B8935A"/>  <!-- pnl/comm -->
+        <circle cx="500" cy="490" r="130" fill="#B8935A"/>  <!-- poder/julg -->
+        <circle cx="350" cy="350" r="75" fill="#B8935A"/>   <!-- classicos -->
+      </g>
+
+      <!-- Arestas -->
+      <g id="edges" stroke="#B8935A" stroke-width="1.2" fill="none">
+        <!-- Psicanálise -->
+        <line x1="160" y1="180" x2="220" y2="240" stroke-opacity="0.7"/>  <!-- Freud-Ferenczi -->
+        <line x1="220" y1="240" x2="170" y2="260" stroke-opacity="0.5"/>  <!-- Ferenczi-Winnicott -->
+        <line x1="160" y1="180" x2="250" y2="180" stroke-opacity="0.7"/>  <!-- Freud-Lacan -->
+        <line x1="170" y1="260" x2="250" y2="180" stroke-opacity="0.4" stroke-dasharray="3,3"/>  <!-- Winnicott-Lacan -->
+        <!-- IE/Neuro -->
+        <line x1="480" y1="170" x2="540" y2="210" stroke-opacity="0.7"/>  <!-- LeDoux-Damásio -->
+        <line x1="540" y1="210" x2="490" y2="260" stroke-opacity="0.6"/>  <!-- Damásio-Panksepp -->
+        <line x1="480" y1="170" x2="470" y2="260" stroke-opacity="0.5"/>  <!-- LeDoux-Goleman -->
+        <line x1="470" y1="260" x2="490" y2="260" stroke-opacity="0.4"/>  <!-- Goleman-Panksepp -->
+        <!-- PNL/Comm -->
+        <line x1="160" y1="460" x2="220" y2="460" stroke-opacity="0.7"/>  <!-- Bandler-Erickson -->
+        <line x1="160" y1="460" x2="180" y2="530" stroke-opacity="0.6"/>  <!-- Bandler-Satir -->
+        <line x1="220" y1="460" x2="260" y2="530" stroke-opacity="0.4" stroke-dasharray="3,3"/>  <!-- Erickson-Stone/Heen -->
+        <!-- Poder/Julg -->
+        <line x1="470" y1="460" x2="530" y2="460" stroke-opacity="0.7"/>  <!-- Cialdini-Greene -->
+        <line x1="530" y1="460" x2="480" y2="530" stroke-opacity="0.5"/>  <!-- Greene-Sun Tzu -->
+        <line x1="470" y1="460" x2="550" y2="540" stroke-opacity="0.4"/>  <!-- Cialdini-Kahneman -->
+        <!-- Clássicos centrais -->
+        <line x1="340" y1="330" x2="375" y2="330" stroke-opacity="0.6"/>  <!-- Aurélio-Shakespeare -->
+        <line x1="340" y1="330" x2="360" y2="375" stroke-opacity="0.6"/>  <!-- Aurélio-Yates -->
+        <!-- Cruzamentos entre clusters -->
+        <line x1="250" y1="180" x2="350" y2="340" stroke-opacity="0.3" stroke-dasharray="2,4"/>  <!-- Lacan-Shakespeare -->
+        <line x1="470" y1="260" x2="220" y2="460" stroke-opacity="0.3" stroke-dasharray="2,4"/>  <!-- Goleman-Erickson -->
+        <line x1="540" y1="210" x2="350" y2="340" stroke-opacity="0.3" stroke-dasharray="2,4"/>  <!-- Damásio-Aurélio -->
+      </g>
+
+      <!-- Nós (círculos + labels) -->
+      <g id="nodes" font-family="Georgia, serif" font-size="13" fill="#F0EAE4" text-anchor="middle">
+        <!-- PSI (200, 210) -->
+        <g data-id="freud"><circle cx="160" cy="180" r="16" fill="#0F0E17" stroke="#B8935A" stroke-width="1.5"/><text x="160" y="164" font-size="12">Freud</text></g>
+        <g data-id="ferenczi"><circle cx="220" cy="240" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="220" y="267" font-size="11">Ferenczi</text></g>
+        <g data-id="winnicott"><circle cx="170" cy="260" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="170" y="286" font-size="11">Winnicott</text></g>
+        <g data-id="lacan"><circle cx="250" cy="180" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="250" y="165" font-size="12">Lacan</text></g>
+
+        <!-- IE/NEURO (500, 210) -->
+        <g data-id="ledoux"><circle cx="480" cy="170" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="480" y="155" font-size="12">LeDoux</text></g>
+        <g data-id="damasio"><circle cx="540" cy="210" r="16" fill="#0F0E17" stroke="#B8935A" stroke-width="1.5"/><text x="540" y="194" font-size="12">Damásio</text></g>
+        <g data-id="panksepp"><circle cx="490" cy="260" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="490" y="286" font-size="11">Panksepp</text></g>
+        <g data-id="goleman"><circle cx="470" cy="260" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="435" y="277" font-size="11">Goleman</text></g>
+
+        <!-- PNL/COMM (200, 490) -->
+        <g data-id="bandler"><circle cx="160" cy="460" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="160" y="444" font-size="12">Bandler</text></g>
+        <g data-id="erickson"><circle cx="220" cy="460" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="220" y="444" font-size="12">Erickson</text></g>
+        <g data-id="satir"><circle cx="180" cy="530" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="180" y="557" font-size="11">Satir</text></g>
+        <g data-id="stone"><circle cx="260" cy="530" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="260" y="557" font-size="11">Stone/Heen</text></g>
+
+        <!-- PODER/JULG (500, 490) -->
+        <g data-id="cialdini"><circle cx="470" cy="460" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="470" y="444" font-size="12">Cialdini</text></g>
+        <g data-id="greene"><circle cx="530" cy="460" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="530" y="444" font-size="12">Greene</text></g>
+        <g data-id="suntzu"><circle cx="480" cy="530" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="480" y="557" font-size="11">Sun Tzu</text></g>
+        <g data-id="kahneman"><circle cx="550" cy="540" r="14" fill="#0F0E17" stroke="#B8935A" stroke-width="1.3"/><text x="550" y="567" font-size="11">Kahneman</text></g>
+
+        <!-- CLÁSSICOS (centro 350, 350) -->
+        <g data-id="aurelio"><circle cx="340" cy="330" r="15" fill="#0F0E17" stroke="#B8935A" stroke-width="1.5"/><text x="340" y="313" font-size="12">Aurélio</text></g>
+        <g data-id="shakespeare"><circle cx="375" cy="330" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="380" y="313" font-size="11">Shakespeare</text></g>
+        <g data-id="yates"><circle cx="360" cy="375" r="13" fill="#0F0E17" stroke="#B8935A" stroke-width="1.2"/><text x="360" y="402" font-size="11">Yates</text></g>
+      </g>
+
+      <!-- Label clusters -->
+      <g font-family="'SF Mono', monospace" font-size="9" fill="#B8935A" fill-opacity="0.5" text-anchor="middle" letter-spacing="2">
+        <text x="200" y="105">§ PSICANÁLISE</text>
+        <text x="500" y="105">§ IE · NEURO</text>
+        <text x="200" y="615">§ PNL · COMM</text>
+        <text x="500" y="615">§ PODER · JULG</text>
+        <text x="350" y="445">§ CLÁSSICOS</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="legenda">
+    <div class="item"><span class="dot" style="background:rgba(184,147,90,0.7)"></span>linha sólida = diálogo direto</div>
+    <div class="item"><span class="dot" style="background:rgba(184,147,90,0.3)"></span>linha tracejada = eco cruzado</div>
+    <div class="item"><span class="dot" style="background:rgba(184,147,90,1)"></span>círculo maior = nó fundador</div>
+  </div>
+
+  <div class="conexoes">
+    <h3>⟶ conexões nucleares</h3>
+    <div class="rel">
+      <span class="a">Freud</span><span class="op">gera</span><span class="b">Ferenczi · Lacan · Winnicott</span>
+      <span class="why">fundador; os três dissidentes-herdeiros que estruturam a clínica contemporânea.</span>
+    </div>
+    <div class="rel">
+      <span class="a">LeDoux + Damásio</span><span class="op">ancora</span><span class="b">Goleman</span>
+      <span class="why">IE de Goleman só se sustenta porque LeDoux mostrou a amígdala e Damásio mostrou o marcador somático.</span>
+    </div>
+    <div class="rel">
+      <span class="a">Bandler/Grinder</span><span class="op">modela</span><span class="b">Erickson · Satir</span>
+      <span class="why">PNL nasce como modelagem dos dois — hipnose indireta (Erickson) e posições familiares (Satir).</span>
+    </div>
+    <div class="rel">
+      <span class="a">Cialdini</span><span class="op">&rarr;</span><span class="b">Greene &rarr; Sun Tzu</span>
+      <span class="why">persuasão individual → leis do poder institucional → estratégia macro; escala crescente de abstração.</span>
+    </div>
+    <div class="rel">
+      <span class="a">Aurélio</span><span class="op">ressoa</span><span class="b">Shakespeare · Hamlet</span>
+      <span class="why">Hamlet é estoico em crise: "nada é bom nem ruim senão o pensamento o faz" — Epicteto anterior à palavra.</span>
+    </div>
+    <div class="rel">
+      <span class="a">Kahneman</span><span class="op">alimenta</span><span class="b">Cialdini · Greene</span>
+      <span class="why">Sistema 1/2 explica por que os 7 princípios funcionam: exploram o Sistema 1 antes do 2 entrar.</span>
+    </div>
+    <div class="rel">
+      <span class="a">Lacan</span><span class="op">atravessa</span><span class="b">Shakespeare</span>
+      <span class="why">Seminário sobre Hamlet — o desejo do Outro encarnado no príncipe paralítico.</span>
+    </div>
+    <div class="rel">
+      <span class="a">Yates</span><span class="op">funda</span><span class="b">Palácio NEXUS</span>
+      <span class="why">as 18 estações do PRIMORDIA são aplicação direta da arte da memória clássica.</span>
+    </div>
+  </div>
+
+  <footer>NEXUS v15.K · grafo 16 nós · 5 clusters</footer>
+</div>
+</body>
+</html>

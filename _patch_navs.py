@@ -1,0 +1,58 @@
+"""Atualiza navs das páginas do home com hoje + grafo."""
+import re
+from pathlib import Path
+
+HOME = Path(r"C:\NEXUS\90_REPOS\nexus-cockpit\home")
+
+# Nova nav padrão (sem current — marcamos depois)
+def build_nav(current):
+    items = [
+        ('./', '§ home', 'home'),
+        ('./hoje.html', 'hoje', 'hoje'),
+        ('./citacao.html', 'citação', 'citacao'),
+        ('./oraculo.html', 'oráculo', 'oraculo'),
+        ('./estacoes.html', 'palácio', 'estacoes'),
+        ('./grafo.html', 'grafo', 'grafo'),
+        ('./biblioteca.html', 'biblioteca', 'biblioteca'),
+        ('./trilhas.html', 'trilhas', 'trilhas'),
+        ('./protocolos.html', 'protocolos', 'protocolos'),
+    ]
+    lines = ['  <div class="nav">']
+    for href, label, key in items:
+        cls = ' class="current"' if key == current else ''
+        lines.append(f'    <a href="{href}"{cls}>{label}</a>')
+    lines.append('  </div>')
+    return '\n'.join(lines)
+
+CURRENT_MAP = {
+    'index.html': 'home',
+    'hoje.html': 'hoje',
+    'citacao.html': 'citacao',
+    'oraculo.html': 'oraculo',
+    'estacoes.html': 'estacoes',
+    'grafo.html': 'grafo',
+    'biblioteca.html': 'biblioteca',
+    'trilhas.html': 'trilhas',
+    'protocolos.html': 'protocolos',
+}
+
+# Regex pra capturar a nav atual (tudo entre <div class="nav"> ... </div>, com conteúdo específico)
+pattern = re.compile(r'  <div class="nav">.*?</div>', re.DOTALL)
+
+for fname, current in CURRENT_MAP.items():
+    path = HOME / fname
+    if not path.exists():
+        print(f"SKIP {fname} (nao existe)")
+        continue
+    content = path.read_text(encoding='utf-8')
+    if 'class="nav"' not in content:
+        print(f"SKIP {fname} (sem nav)")
+        continue
+    new_nav = build_nav(current)
+    # Substituir primeira ocorrência de div.nav ... </div>
+    new_content = pattern.sub(new_nav, content, count=1)
+    if new_content != content:
+        path.write_text(new_content, encoding='utf-8')
+        print(f"ok   {fname} -> nav atualizada (current={current})")
+    else:
+        print(f"n/a  {fname} sem mudanca")
