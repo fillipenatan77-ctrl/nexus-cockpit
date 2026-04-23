@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Biblioteca</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:24px 20px 40px}
+
+  .nav{display:flex;gap:8px;padding:14px 0 6px;flex-wrap:wrap}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:18px 4px 24px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .lead{margin-top:12px;font-family:Georgia,serif;font-size:16px;color:var(--bone);opacity:0.75;line-height:1.5;font-style:italic}
+
+  .bloco{margin-top:30px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);overflow:hidden}
+  .bloco .head{padding:18px 20px;border-bottom:1px solid var(--gold-faint);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+  .bloco .head h2{font-family:Georgia,serif;font-size:22px;font-weight:400}
+  .bloco .head .code{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.15em}
+  .bloco .body{padding:16px 20px 20px}
+  .autor{padding:12px 0;border-bottom:1px solid var(--gold-faint)}
+  .autor:last-child{border-bottom:none}
+  .autor .nome{font-family:Georgia,serif;font-size:17px;color:var(--bone);font-weight:500}
+  .autor .obra{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.65;font-style:italic;margin-top:2px}
+  .autor .tag{display:inline-block;font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;background:rgba(184,147,90,0.1);padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:middle}
+
+  footer{margin-top:40px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./biblioteca.html" class="current">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ biblioteca viva</div>
+    <h1>Acervo NEXUS</h1>
+    <div class="lead">8 blocos cognitivos + complementares · 95+ obras indexadas · curadoria canônica PNL + IE + psicanálise + filosofia + literatura.</div>
+  </header>
+
+  <!-- B01 -->
+  <div class="bloco">
+    <div class="head"><h2>Estrutura e Modelagem</h2><div class="code">B01</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Richard Bandler & John Grinder <span class="tag">fundador</span></div><div class="obra">A Estrutura da Magia I e II</div></div>
+      <div class="autor"><div class="nome">Virginia Satir</div><div class="obra">Terapia do Grupo Familiar · 5 posições</div></div>
+      <div class="autor"><div class="nome">Gregory Bateson</div><div class="obra">Mente e Natureza · níveis lógicos</div></div>
+    </div>
+  </div>
+
+  <!-- B02 -->
+  <div class="bloco">
+    <div class="head"><h2>Manuais e Aplicação</h2><div class="code">B02</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Joseph O'Connor</div><div class="obra">NLP Workbook · manual técnico</div></div>
+      <div class="autor"><div class="nome">Sue Knight</div><div class="obra">NLP at Work (2025, 5ª ed)</div></div>
+      <div class="autor"><div class="nome">Anthony Robbins</div><div class="obra">Unlimited Power · aplicação em desempenho</div></div>
+    </div>
+  </div>
+
+  <!-- B03 -->
+  <div class="bloco">
+    <div class="head"><h2>Linguagem, Reframing, Hipnose</h2><div class="code">B03</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Milton Erickson</div><div class="obra">Teachings · linguagem indireta</div></div>
+      <div class="autor"><div class="nome">Sidney Rosen</div><div class="obra">Minha Voz Irá Contigo</div></div>
+      <div class="autor"><div class="nome">Bandler & Grinder</div><div class="obra">Reframing · mudança de contexto</div></div>
+    </div>
+  </div>
+
+  <!-- B04 -->
+  <div class="bloco">
+    <div class="head"><h2>IE + Neurociência</h2><div class="code">B04</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Daniel Goleman <span class="tag">canônico</span></div><div class="obra">Inteligência Emocional</div></div>
+      <div class="autor"><div class="nome">Joseph LeDoux</div><div class="obra">The Emotional Brain · amígdala</div></div>
+      <div class="autor"><div class="nome">António Damásio</div><div class="obra">O Erro de Descartes · marcador somático</div></div>
+      <div class="autor"><div class="nome">Jaak Panksepp</div><div class="obra">Affective Neuroscience · 7 sistemas</div></div>
+      <div class="autor"><div class="nome">Matthew Lieberman</div><div class="obra">Social · labeling reduz emoção</div></div>
+    </div>
+  </div>
+
+  <!-- B05 -->
+  <div class="bloco">
+    <div class="head"><h2>Persuasão, Influência, Poder</h2><div class="code">B05</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Robert Cialdini</div><div class="obra">Influence (2021, expandido) · 7 princípios</div></div>
+      <div class="autor"><div class="nome">Robert Greene</div><div class="obra">48 Leis do Poder · Arte da Sedução</div></div>
+      <div class="autor"><div class="nome">Sandra Matz</div><div class="obra">Mindmasters (2024) · targeting psicológico</div></div>
+      <div class="autor"><div class="nome">Sun Tzu</div><div class="obra">Arte da Guerra</div></div>
+    </div>
+  </div>
+
+  <!-- B06 -->
+  <div class="bloco">
+    <div class="head"><h2>Comunicação e Conversas Difíceis</h2><div class="code">B06</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Stone · Patton · Heen <span class="tag">chave</span></div><div class="obra">Difficult Conversations · 3 conversas</div></div>
+      <div class="autor"><div class="nome">Charles Duhigg</div><div class="obra">Supercommunicators (2024) · matching+looping</div></div>
+      <div class="autor"><div class="nome">Marshall Rosenberg</div><div class="obra">Comunicação Não-Violenta</div></div>
+    </div>
+  </div>
+
+  <!-- B07 -->
+  <div class="bloco">
+    <div class="head"><h2>Feedback e Motivação</h2><div class="code">B07</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">William Miller & Stephen Rollnick</div><div class="obra">Motivational Interviewing (4ª ed)</div></div>
+      <div class="autor"><div class="nome">Kim Scott</div><div class="obra">Radical Candor · feedback íntegro</div></div>
+    </div>
+  </div>
+
+  <!-- B08 -->
+  <div class="bloco">
+    <div class="head"><h2>Julgamento, Decisão, Presença</h2><div class="code">B08</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Daniel Kahneman</div><div class="obra">Thinking Fast and Slow · Sistema 1/2</div></div>
+      <div class="autor"><div class="nome">Andrew Likierman</div><div class="obra">Judgement at Work (2025)</div></div>
+      <div class="autor"><div class="nome">Amy Edmondson</div><div class="obra">The Fearless Organization · segurança psicológica</div></div>
+    </div>
+  </div>
+
+  <!-- Complementares · Psicanálise -->
+  <div class="bloco">
+    <div class="head"><h2>Psicanálise</h2><div class="code">COMPL</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Sigmund Freud <span class="tag">canônico</span></div><div class="obra">Obras Completas · Novas Conferências · Introdução 1934</div></div>
+      <div class="autor"><div class="nome">Sándor Ferenczi</div><div class="obra">Obras Completas 4v · Diário Clínico 1932</div></div>
+      <div class="autor"><div class="nome">Donald Winnicott</div><div class="obra">O Brincar e a Realidade · falso self</div></div>
+      <div class="autor"><div class="nome">Jacques Lacan</div><div class="obra">Seminários · o desejo é desejo do Outro</div></div>
+      <div class="autor"><div class="nome">Roudinesco & Plon</div><div class="obra">Dicionário de Psicanálise (1998)</div></div>
+    </div>
+  </div>
+
+  <!-- Memorização -->
+  <div class="bloco">
+    <div class="head"><h2>Memorização</h2><div class="code">COMPL</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Frances Yates <span class="tag">canônico</span></div><div class="obra">A Arte da Memória (1966)</div></div>
+      <div class="autor"><div class="nome">Dominic O'Brien</div><div class="obra">How to Develop a Perfect Memory</div></div>
+      <div class="autor"><div class="nome">Joshua Foer</div><div class="obra">Moonwalking with Einstein</div></div>
+    </div>
+  </div>
+
+  <!-- Literatura -->
+  <div class="bloco">
+    <div class="head"><h2>Literatura e Filosofia</h2><div class="code">COMPL</div></div>
+    <div class="body">
+      <div class="autor"><div class="nome">Shakespeare <span class="tag">pt-BR</span></div><div class="obra">5 tragédias + Rei João · trad. Heliodora/Nunes/Millôr</div></div>
+      <div class="autor"><div class="nome">Marco Aurélio</div><div class="obra">Meditações</div></div>
+      <div class="autor"><div class="nome">Sêneca</div><div class="obra">Epístolas · De Brevitate Vitae</div></div>
+      <div class="autor"><div class="nome">Epicteto</div><div class="obra">Enchirídion · Diatribes</div></div>
+      <div class="autor"><div class="nome">Montaigne</div><div class="obra">Ensaios · 3 volumes</div></div>
+      <div class="autor"><div class="nome">Heráclito · Parmênides</div><div class="obra">Fragmentos pré-socráticos</div></div>
+    </div>
+  </div>
+
+  <footer>NEXUS v15.I · biblioteca viva</footer>
+</div>
+</body>
+</html>

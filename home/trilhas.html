@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Trilhas</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:24px 20px 40px}
+
+  .nav{display:flex;gap:8px;padding:14px 0 6px;flex-wrap:wrap}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:18px 4px 24px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .lead{margin-top:12px;font-family:Georgia,serif;font-size:16px;color:var(--bone);opacity:0.75;line-height:1.5;font-style:italic}
+
+  .trilha{margin-top:24px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:20px 22px;position:relative}
+  .trilha .num{position:absolute;top:16px;right:20px;font-family:Georgia,serif;font-size:38px;color:var(--gold);opacity:0.35;line-height:1}
+  .trilha h2{font-family:Georgia,serif;font-size:22px;font-weight:400;padding-right:48px;letter-spacing:0.02em}
+  .trilha .subtitle{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.6;font-style:italic;margin-top:4px}
+  .trilha .body{font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.85;line-height:1.55;margin-top:14px}
+  .trilha .seq{margin-top:14px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.1em;opacity:0.85}
+
+  .progress{margin:20px 0 6px;height:3px;background:var(--gold-faint);border-radius:2px;overflow:hidden}
+  .progress .bar{height:100%;background:var(--gold);border-radius:2px}
+
+  footer{margin-top:40px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html" class="current">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ pedagogia NEXUS</div>
+    <h1>8 Trilhas</h1>
+    <div class="lead">Método CAIR · progressão canônica do projeto · cada trilha atravessa 3-6 obras com ancoragem no Palácio e integração no Grafo Conceitual.</div>
+  </header>
+
+  <div class="trilha">
+    <div class="num">01</div>
+    <h2>Fundação PNL</h2>
+    <div class="subtitle">Bandler/Grinder → Satir → O'Connor</div>
+    <div class="body">Entender o que a PNL é de fato: modelagem estrutural de excelência, não "truques". Começar pela Estrutura da Magia I, passar pelas 5 posições de Satir, fechar com manual de O'Connor.</div>
+    <div class="seq">Magia I → Magia II → Satir · 5 posições → O'Connor Workbook</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">02</div>
+    <h2>Hipnose Ericksoniana</h2>
+    <div class="subtitle">Erickson → Rosen → Reframing</div>
+    <div class="body">Linguagem indireta, metáforas, pressupostos, alternativa ilusória. A arte do Erickson é sugerir sem impor — adaptável a qualquer liderança.</div>
+    <div class="seq">Teachings of Erickson → Minha Voz Irá Contigo → Reframing (Bandler/Grinder)</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">03</div>
+    <h2>IE + Neurociência afetiva</h2>
+    <div class="subtitle">Goleman → LeDoux → Damásio → Panksepp</div>
+    <div class="body">Do popular Goleman ao mapa neuroanatômico das emoções. Chega-se aos 7 sistemas de Panksepp e aos marcadores somáticos de Damásio — ponto onde razão e emoção deixam de ser opostos.</div>
+    <div class="seq">Goleman → Emotional Brain → Erro de Descartes → Affective Neuroscience</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">04</div>
+    <h2>Persuasão e Leitura Institucional</h2>
+    <div class="subtitle">Cialdini → Greene → Matz → Sun Tzu</div>
+    <div class="body">Os 7 princípios de Cialdini como chão. As 48 Leis como mapa crítico (não receita). Matz como atualização de targeting. Sun Tzu como estratégia. Juntos formam a leitura do jogo institucional.</div>
+    <div class="seq">Influence 2021 → 48 Leis → Mindmasters → Arte da Guerra</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">05</div>
+    <h2>Conversas Difíceis</h2>
+    <div class="subtitle">Stone/Heen → Duhigg → Miller/Rollnick</div>
+    <div class="body">Toda conversa difícil são 3 conversas (fato/afeto/identidade). Duhigg adiciona matching + looping como técnica operante. Miller/Rollnick trabalham a ambivalência. Protocolo Conversa Difícil v2 deriva daqui.</div>
+    <div class="seq">Difficult Conversations → Supercommunicators → Motivational Interviewing</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">06</div>
+    <h2>Psicanálise clínica</h2>
+    <div class="subtitle">Freud → Ferenczi → Winnicott → Lacan</div>
+    <div class="body">Do fundador ao filho-dissidente (Ferenczi) à clínica do cuidado (Winnicott) ao retorno estrutural (Lacan). Não é academia — é instrumento clínico aplicado à leitura de si e do outro.</div>
+    <div class="seq">Freud Intro 1934 → Ferenczi Diário Clínico → Winnicott Brincar → Lacan Sem 11</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">07</div>
+    <h2>Arte da Memória</h2>
+    <div class="subtitle">Yates → O'Brien → Foer</div>
+    <div class="body">Yates recupera o método clássico (loci/Palácio) e mostra que memorizar é pensar. O'Brien e Foer traduzem para o contemporâneo. O Palácio de 18 estações do NEXUS nasce desta linhagem.</div>
+    <div class="seq">Arte da Memória (Yates) → Perfect Memory → Moonwalking with Einstein</div>
+  </div>
+
+  <div class="trilha">
+    <div class="num">08</div>
+    <h2>Julgamento e Presença</h2>
+    <div class="subtitle">Kahneman → Likierman → Edmondson</div>
+    <div class="body">Kahneman mostra o mecanismo dos erros (Sistema 1/2). Likierman define os componentes do julgamento. Edmondson cria o contexto onde julgamento pode operar (segurança psicológica). Formam o eixo de decisão consciente.</div>
+    <div class="seq">Thinking Fast and Slow → Judgement at Work 2025 → Fearless Organization</div>
+  </div>
+
+  <div class="progress"><div class="bar" style="width:25%"></div></div>
+
+  <footer>NEXUS v15.I · trilhas progressivas</footer>
+</div>
+</body>
+</html>

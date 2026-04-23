@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Protocolos</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:24px 20px 40px}
+
+  .nav{display:flex;gap:8px;padding:14px 0 6px;flex-wrap:wrap}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:18px 4px 24px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .lead{margin-top:12px;font-family:Georgia,serif;font-size:16px;color:var(--bone);opacity:0.75;line-height:1.5;font-style:italic}
+
+  .protocolo{margin-top:26px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:22px 22px 20px}
+  .protocolo h2{font-family:Georgia,serif;font-size:24px;font-weight:400;letter-spacing:0.02em;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+  .protocolo h2 .cmd{font-family:'SF Mono',monospace;font-size:13px;color:var(--gold);letter-spacing:0.15em;opacity:0.9}
+  .protocolo .intro{font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.85;line-height:1.55;margin-top:10px;font-style:italic}
+  .protocolo ol{margin:18px 0 0;padding-left:0;list-style:none;counter-reset:step}
+  .protocolo ol li{counter-increment:step;padding:10px 0 10px 36px;position:relative;font-family:Georgia,serif;font-size:15px;line-height:1.5;border-bottom:1px solid var(--gold-faint)}
+  .protocolo ol li:last-child{border-bottom:none}
+  .protocolo ol li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:10px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.1em}
+  .protocolo ol li strong{color:var(--gold);font-weight:500}
+
+  footer{margin-top:40px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html" class="current">protocolos</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ os cinco</div>
+    <h1>Protocolos</h1>
+    <div class="lead">Cinco esqueletos operacionais. Quando aplicados no Cortex, o Opus gera cards verticais estruturados a partir de uma situação real — grave, aplicável, discreto.</div>
+  </header>
+
+  <!-- /grade10 -->
+  <div class="protocolo">
+    <h2>Grade 10 Pontos <span class="cmd">/grade10</span></h2>
+    <div class="intro">Anatomia completa de uma situação. Default para qualquer caso sem protocolo nomeado.</div>
+    <ol>
+      <li><strong>Fato</strong> — descrição crua, sem adjetivo nem narrativa.</li>
+      <li><strong>Emoção</strong> — suas + as do(s) outro(s) · camadas, não rótulo único.</li>
+      <li><strong>Estrutura subjetiva</strong> — V/A/K + as 5 posições de Satir.</li>
+      <li><strong>Jogo de linguagem</strong> — verbos, pressupostos, implicações.</li>
+      <li><strong>Jogo de poder</strong> — quem tem legitimidade real, quem age como se tivesse.</li>
+      <li><strong>Resistência</strong> — onde travou, o que o travamento protege.</li>
+      <li><strong>Motivação</strong> — sua, deles · explícita e velada.</li>
+      <li><strong>Metaprograma</strong> — direção (rumo/evitar), tamanho (global/detalhe), referência (interna/externa).</li>
+      <li><strong>Formulação</strong> — versão curta · elegante · firme (três).</li>
+      <li><strong>Proteção</strong> — imagem institucional · legalidade · dignidade · eficácia. Se falha em 1, recomeça.</li>
+    </ol>
+  </div>
+
+  <!-- /conversa -->
+  <div class="protocolo">
+    <h2>Conversa Difícil v2 <span class="cmd">/conversa</span></h2>
+    <div class="intro">Sete passos para conduzir conversa de alta tensão sem queimar vínculo nem recuar.</div>
+    <ol>
+      <li><strong>Prepare</strong> — saiba qual das 3 conversas (fato/afeto/identidade) é a verdadeira.</li>
+      <li><strong>Regulate</strong> — chegue regulado · respiração + nomeação interna da emoção.</li>
+      <li><strong>Third Story</strong> — abra com a versão neutra que ambos reconheceriam.</li>
+      <li><strong>Matching + Looping</strong> — espelhe ritmo/postura · resuma antes de replicar.</li>
+      <li><strong>Contribution</strong> — pergunta curta sobre contribuição mútua, não culpa.</li>
+      <li><strong>Interests + Triad</strong> — interesses reais de ambos + qual triangulação externa evitar.</li>
+      <li><strong>Commitment + Opção Dupla Real</strong> — 2 alternativas concretas, ambas aceitáveis, ambas realistas.</li>
+    </ol>
+  </div>
+
+  <!-- /crise -->
+  <div class="protocolo">
+    <h2>Crise 15 min <span class="cmd">/crise</span></h2>
+    <div class="intro">Quando pega fogo. Quatro fases curtas, timing rigoroso.</div>
+    <ol>
+      <li><strong>LER (0-2min)</strong> — clarear o que aconteceu sem adjetivo · identificar o real.</li>
+      <li><strong>REGULATE (2-5min)</strong> — regulação fisiológica + emocional antes de qualquer decisão.</li>
+      <li><strong>CONDUZIR (5-10min)</strong> — 1 a 3 ações necessárias agora · nada mais.</li>
+      <li><strong>FECHAR (10-15min)</strong> — enquadrar externamente + internamente · proteger escala.</li>
+    </ol>
+  </div>
+
+  <!-- /investigacao -->
+  <div class="protocolo">
+    <h2>Investigação <span class="cmd">/investigacao</span></h2>
+    <div class="intro">Colher informação relevante respeitando rigor técnico e lei. Protocolo policial adaptado à leitura institucional.</div>
+    <ol>
+      <li><strong>LER</strong> — contexto, histórico, relações · antes de falar.</li>
+      <li><strong>ABRIR</strong> — rapport, pergunta larga, espaço narrativo.</li>
+      <li><strong>EXTRAIR</strong> — perguntas estruturadas · passagem do global ao específico.</li>
+      <li><strong>FECHAR</strong> — sínteses · commit sobre próximos passos · respeito institucional.</li>
+    </ol>
+  </div>
+
+  <!-- /mapa -->
+  <div class="protocolo">
+    <h2>Mapa de Influência <span class="cmd">/mapa</span></h2>
+    <div class="intro">Ficha de 8 campos sobre uma pessoa com quem você opera repetidamente. Atualizada em cada interação relevante.</div>
+    <ol>
+      <li><strong>Metaprograma</strong> dominante — rumo/evitar · global/detalhe · interna/externa.</li>
+      <li><strong>Cialdini</strong> — qual dos 7 princípios tem mais tração nessa pessoa.</li>
+      <li><strong>V/A/K</strong> — preferência de canal sensorial.</li>
+      <li><strong>Satir</strong> — qual das 5 posições ela adota sob pressão.</li>
+      <li><strong>Gatilhos de identidade</strong> — temas que ativam defesa imediata.</li>
+      <li><strong>Formulação eficaz</strong> × formulação que queimou — registrar ambas.</li>
+      <li><strong>Estratégia por cenário</strong> — 3 situações arquetípicas e sua abordagem.</li>
+      <li><strong>Observações</strong> — padrões temporais, ciclos, variáveis exógenas.</li>
+    </ol>
+  </div>
+
+  <footer>NEXUS v15.I · 5 protocolos canônicos</footer>
+</div>
+</body>
+</html>
