@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="NEXUS" />
+<meta name="theme-color" content="#0F0E17" />
+<title>NEXUS · Cockpit</title>
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="data.js"></script>
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ink: '#0F0E17',
+          'ink-2': '#14131E',
+          'ink-3': '#1E1C29',
+          bone: '#F0EAE4',
+          'bone-2': '#D9D0C5',
+          gold: '#B8935A',
+          'gold-dim': '#8A6E42',
+          moss: '#7F8F7F',
+          wine: '#6B2C3C',
+          rust: '#C2462E',
+          dust: '#5C5566'
+        },
+        fontFamily: {
+          serif: ['"Crimson Pro"', 'Georgia', 'serif'],
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        },
+        boxShadow: {
+          'card': '0 1px 0 rgba(240,234,228,0.04) inset, 0 20px 40px -20px rgba(0,0,0,0.8)',
+          'gold-sm': '0 0 0 1px rgba(184,147,90,0.3)'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  html,body { background:#0F0E17; color:#F0EAE4; -webkit-font-smoothing:antialiased; overscroll-behavior:none; }
+  body { font-family:'Inter',system-ui,sans-serif; }
+  .font-display { font-family:'Crimson Pro',Georgia,serif; letter-spacing:-0.01em; }
+  .ornament { font-family:'Crimson Pro',Georgia,serif; font-style:italic; color:#B8935A; }
+  .card-border { border:1px solid rgba(240,234,228,0.06); }
+  .card-hover { transition: transform .25s cubic-bezier(.2,.7,.2,1), border-color .25s; }
+  .card-hover:hover { transform: translateY(-2px); border-color: rgba(184,147,90,0.35); }
+  .gold-divider { background: linear-gradient(90deg, transparent, #B8935A, transparent); height:1px; opacity:.3; }
+  .vignette { background: radial-gradient(circle at 50% 0%, rgba(184,147,90,0.08), transparent 50%); }
+  .chip { padding:2px 10px; border-radius:999px; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; font-weight:500; }
+  .fade-in { animation: fade-in .5s ease-out both; }
+  @keyframes fade-in { from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .pulse-gold { animation: pulse-gold 2.2s ease-in-out infinite; }
+  @keyframes pulse-gold { 0%,100%{ box-shadow: 0 0 0 0 rgba(184,147,90,0.5);} 50%{ box-shadow:0 0 0 8px rgba(184,147,90,0);} }
+  /* iPhone safe areas */
+  .safe-top { padding-top: env(safe-area-inset-top, 0); }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+  /* Bottom nav iOS-like */
+  .bottom-nav { backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); background:rgba(15,14,23,0.82); border-top:1px solid rgba(240,234,228,0.06); }
+  .tab-active { color:#B8935A; }
+  .tab-active .tab-dot { opacity:1; }
+  .tab-dot { opacity:0; width:3px; height:3px; border-radius:999px; background:#B8935A; transition: opacity .25s; }
+  /* Scroll smooth + hide scrollbar mobile */
+  ::-webkit-scrollbar { width:6px; height:6px; }
+  ::-webkit-scrollbar-thumb { background: rgba(184,147,90,0.2); border-radius:3px; }
+  @media (max-width: 768px) { ::-webkit-scrollbar { display:none; } }
+  /* Glow on cycle badge */
+  .cycle-badge { background: linear-gradient(135deg, #14131E, #1E1C29); border:1px solid rgba(184,147,90,0.35); }
+  /* Card types */
+  .card-morning { background: linear-gradient(135deg, #1E1C29 0%, #14131E 100%); }
+  .card-oracle { background: linear-gradient(135deg, #14131E 0%, #1E1C29 80%); }
+  .card-night { background: linear-gradient(160deg, #0F0E17 0%, #14131E 100%); }
+  /* Sidebar desktop */
+  @media (min-width: 1024px) {
+    .desktop-layout { grid-template-columns: 280px 1fr; }
+    .bottom-nav { display:none; }
+  }
+</style>
+</head>
+<body x-data="nexusApp()" x-cloak class="min-h-screen vignette safe-top safe-bottom">
+
+<!-- DESKTOP SIDEBAR + MOBILE HEADER -->
+<div class="lg:grid desktop-layout min-h-screen">
+
+  <!-- SIDEBAR (desktop) -->
+  <aside class="hidden lg:block bg-ink-2 border-r border-white/5 px-6 py-8">
+    <div class="flex items-center gap-3 mb-10">
+      <div class="w-10 h-10 rounded-full cycle-badge grid place-items-center">
+        <span class="font-display text-gold text-xl">N</span>
+      </div>
+      <div>
+        <div class="font-display text-xl">NEXUS</div>
+        <div class="text-xs text-bone-2/50 mono">cockpit · v15.E</div>
+      </div>
+    </div>
+    <nav class="space-y-1">
+      <template x-for="(t, i) in tabs" :key="t.id">
+        <button @click="active=t.id" :class="active===t.id ? 'bg-white/5 text-gold' : 'text-bone-2/70 hover:text-bone'" class="w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-3 transition-colors">
+          <span x-text="t.icon" class="text-lg"></span>
+          <span class="text-sm font-medium" x-text="t.label"></span>
+        </button>
+      </template>
+    </nav>
+    <div class="mt-10 pt-6 border-t border-white/5">
+      <div class="text-[10px] uppercase tracking-widest text-bone-2/40 mb-3">Hoje</div>
+      <div class="font-display text-2xl text-bone" x-text="'Dia ' + state.cycleDay + '/272'"></div>
+      <div class="text-sm text-gold mt-1" x-text="state.estacao"></div>
+      <div class="text-xs text-bone-2/60 mt-0.5" x-text="state.lente"></div>
+    </div>
+    <div class="mt-6 text-xs text-bone-2/40 leading-relaxed italic font-display">
+      "O Notion respira. O cockpit é voz."
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="pb-24 lg:pb-8">
+
+    <!-- MOBILE HEADER -->
+    <header class="lg:hidden px-5 pt-4 pb-2 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-full cycle-badge grid place-items-center">
+          <span class="font-display text-gold text-sm">N</span>
+        </div>
+        <div>
+          <div class="font-display text-lg leading-none">NEXUS</div>
+          <div class="text-[10px] text-bone-2/40 mono" x-text="'dia ' + state.cycleDay + '/272 · ' + state.estacao"></div>
+        </div>
+      </div>
+      <a href="install.html" class="text-bone-2/60 text-xs border border-white/10 px-3 py-1.5 rounded-full hover:border-gold/40 hover:text-gold transition">instalar</a>
+    </header>
+
+    <!-- ========= COCKPIT ========= -->
+    <section x-show="active==='cockpit'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <!-- Hero: dia atual -->
+      <div class="mt-4 lg:mt-0 mb-6">
+        <div class="flex items-baseline gap-3 flex-wrap">
+          <div class="font-display text-4xl lg:text-5xl tracking-tight" x-text="state.estacao"></div>
+          <span class="chip bg-gold/15 text-gold" x-text="state.lenteShort"></span>
+        </div>
+        <p class="text-bone-2/70 mt-2 text-sm lg:text-base font-display italic" x-text="state.abertura"></p>
+      </div>
+
+      <div class="gold-divider mb-6"></div>
+
+      <!-- 3 cards do dia -->
+      <div class="grid lg:grid-cols-3 gap-4 mb-8">
+        <template x-for="card in cardsDoDia" :key="card.slot">
+          <article :class="card.bg" class="card-border card-hover rounded-2xl p-5 shadow-card cursor-pointer" @click="openCard(card)">
+            <div class="flex items-center justify-between mb-3">
+              <span class="chip border border-gold/30 text-gold/80" x-text="card.slot"></span>
+              <span class="text-xs text-bone-2/40 mono" x-text="card.hora"></span>
+            </div>
+            <h3 class="font-display text-xl leading-tight mb-2" x-text="card.titulo"></h3>
+            <p class="text-sm text-bone-2/80 leading-relaxed line-clamp-3" x-text="card.preview"></p>
+            <div class="mt-4 flex items-center justify-between text-[11px] text-bone-2/40">
+              <span x-text="card.autor"></span>
+              <span x-text="card.bloco"></span>
+            </div>
+          </article>
+        </template>
+      </div>
+
+      <!-- Insights rápidos + Alertas -->
+      <div class="grid lg:grid-cols-3 gap-4 mb-8">
+        <div class="col-span-2 bg-ink-2 card-border rounded-2xl p-5">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="ornament text-lg">§</span>
+            <h4 class="font-display text-lg">Insights rápidos</h4>
+          </div>
+          <ul class="space-y-3">
+            <template x-for="ins in insights" :key="ins.id">
+              <li class="flex gap-3 text-sm">
+                <span class="text-gold/60 mt-0.5" x-text="ins.icon"></span>
+                <span class="text-bone-2/80 leading-relaxed" x-text="ins.texto"></span>
+              </li>
+            </template>
+          </ul>
+        </div>
+        <div class="bg-ink-2 card-border rounded-2xl p-5">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="ornament text-lg">⚠</span>
+            <h4 class="font-display text-lg">Atenção</h4>
+          </div>
+          <template x-if="alertas.length===0">
+            <p class="text-sm text-bone-2/50">Tudo em ordem. Respire.</p>
+          </template>
+          <ul class="space-y-2">
+            <template x-for="a in alertas" :key="a.id">
+              <li class="text-sm">
+                <span class="text-rust font-medium" x-text="a.titulo"></span>
+                <p class="text-xs text-bone-2/60 mt-1" x-text="a.detalhe"></p>
+              </li>
+            </template>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Trilha prioritária -->
+      <div class="bg-ink-2 card-border rounded-2xl p-6 mb-8">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <div class="text-xs uppercase tracking-widest text-bone-2/40">Trilha prioritária</div>
+            <h4 class="font-display text-2xl mt-1" x-text="trilhaAtual.nome"></h4>
+          </div>
+          <button class="text-gold text-sm hover:underline" @click="active='trilhas'">ir para trilhas →</button>
+        </div>
+        <div class="flex items-center gap-4 mt-2">
+          <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-gold-dim to-gold" :style="'width:'+trilhaAtual.progresso+'%'"></div>
+          </div>
+          <span class="mono text-xs text-bone-2/60" x-text="trilhaAtual.progresso+'%'"></span>
+        </div>
+        <p class="mt-4 text-sm text-bone-2/75 leading-relaxed" x-text="trilhaAtual.foco"></p>
+      </div>
+    </section>
+
+    <!-- ========= TRILHAS ========= -->
+    <section x-show="active==='trilhas'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6">
+        <h2 class="font-display text-4xl">Trilhas</h2>
+        <p class="text-bone-2/60 text-sm mt-1">8 frentes progressivas · método CAIR</p>
+      </div>
+      <div class="gold-divider mb-6"></div>
+      <div class="grid lg:grid-cols-2 gap-4">
+        <template x-for="t in trilhas" :key="t.id">
+          <article class="bg-ink-2 card-border card-hover rounded-2xl p-5 cursor-pointer">
+            <div class="flex items-start justify-between mb-2">
+              <div>
+                <div class="text-[10px] uppercase tracking-widest text-gold/70 mb-1" x-text="'Trilha ' + t.n"></div>
+                <h3 class="font-display text-xl leading-tight" x-text="t.nome"></h3>
+              </div>
+              <span class="chip bg-ink-3 text-bone-2/70" x-text="t.duracao"></span>
+            </div>
+            <p class="text-sm text-bone-2/70 my-3 leading-relaxed" x-text="t.autores"></p>
+            <div class="flex items-center gap-3 mt-4">
+              <div class="flex-1 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div class="h-full bg-gold" :style="'width:'+t.progresso+'%'"></div>
+              </div>
+              <span class="mono text-xs text-bone-2/50" x-text="t.progresso+'%'"></span>
+            </div>
+            <div class="mt-3 text-xs text-bone-2/50 italic" x-text="t.fase_atual"></div>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ========= BIBLIOTECA ========= -->
+    <section x-show="active==='biblioteca'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6 flex items-end justify-between">
+        <div>
+          <h2 class="font-display text-4xl">Biblioteca</h2>
+          <p class="text-bone-2/60 text-sm mt-1" x-text="state.bancoTotal+' citações · '+obras.length+' obras canônicas'"></p>
+        </div>
+        <div class="hidden lg:flex gap-2">
+          <template x-for="f in ['todas','shakespeare','psicanalise','neurociência','memória','persuasão']" :key="f">
+            <button @click="filtroBib=f" :class="filtroBib===f?'bg-gold/15 text-gold':'text-bone-2/50'" class="text-xs px-3 py-1.5 rounded-full transition" x-text="f"></button>
+          </template>
+        </div>
+      </div>
+      <div class="gold-divider mb-6"></div>
+
+            <div class="mb-6">
+        <input x-model="buscaBib" type="search" placeholder="buscar obra, autor, bloco..." class="w-full bg-ink-2 card-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-gold/40">
+      </div>
+      <!-- citação em destaque -->
+      <blockquote class="bg-gradient-to-br from-ink-3 to-ink-2 rounded-3xl p-8 mb-8 card-border relative overflow-hidden">
+        <span class="ornament absolute top-4 left-6 text-6xl opacity-20">"</span>
+        <p class="font-display text-2xl lg:text-3xl leading-snug italic relative z-10" x-text="citacaoDestaque.frase"></p>
+        <footer class="mt-5 flex items-baseline justify-between relative z-10">
+          <div>
+            <div class="font-display text-gold" x-text="citacaoDestaque.autor"></div>
+            <div class="text-xs text-bone-2/50 mt-0.5" x-text="citacaoDestaque.obra"></div>
+          </div>
+          <span class="chip border border-gold/20 text-gold/70" x-text="citacaoDestaque.lente"></span>
+        </footer>
+      </blockquote>
+
+      <!-- obras canônicas grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <template x-for="obra in obrasFiltradas" :key="obra.id">
+          <article class="bg-ink-2 card-border card-hover rounded-xl p-4 cursor-pointer">
+            <div class="text-[10px] uppercase tracking-widest text-gold/60 mb-2" x-text="obra.bloco"></div>
+            <h4 class="font-display text-base leading-tight mb-1" x-text="obra.titulo"></h4>
+            <p class="text-xs text-bone-2/60" x-text="obra.autor"></p>
+            <div class="mt-3 flex items-center justify-between">
+              <span class="text-[10px] mono text-bone-2/40" x-text="obra.paginas + 'p'"></span>
+              <span class="text-[10px] chip bg-ink-3 text-bone-2/60" x-text="obra.status"></span>
+            </div>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ========= HUMOR / REENQUADRAMENTO ========= -->
+    <section x-show="active==='humor'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6">
+        <h2 class="font-display text-4xl">Reenquadramento</h2>
+        <p class="text-bone-2/60 text-sm mt-1">Provocações finas · ironia cuidada · reancoragem rápida</p>
+      </div>
+      <div class="gold-divider mb-6"></div>
+
+      <!-- mensagem do dia grande -->
+      <div class="bg-gradient-to-br from-wine/20 to-ink-3 rounded-3xl p-8 lg:p-12 mb-8 card-border relative">
+        <div class="ornament text-sm mb-4">mensagem do dia ·</div>
+        <p class="font-display text-3xl lg:text-4xl leading-tight" x-text="mensagemDoDia.texto"></p>
+        <p class="mt-6 text-sm text-bone-2/60 italic" x-text="mensagemDoDia.nota"></p>
+        <button @click="proximaMensagem()" class="absolute top-6 right-6 text-xs text-gold hover:underline">outra →</button>
+      </div>
+
+      <!-- feed de reenquadramentos -->
+      <div class="space-y-3">
+        <template x-for="r in reenquadramentos" :key="r.id">
+          <div class="bg-ink-2 card-border rounded-2xl p-5 card-hover">
+            <div class="flex items-start gap-4">
+              <span class="ornament text-2xl" x-text="r.glifo"></span>
+              <div class="flex-1">
+                <p class="text-bone leading-relaxed" x-text="r.texto"></p>
+                <div class="mt-2 flex items-center gap-2 text-[11px] text-bone-2/40">
+                  <span x-text="r.tipo"></span>
+                  <span>·</span>
+                  <span x-text="r.ref"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    
+    <!-- ========= PROTOCOLOS ========= -->
+    <section x-show="active==='protocolos'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6">
+        <h2 class="font-display text-4xl">Protocolos</h2>
+        <p class="text-bone-2/60 text-sm mt-1">5 protocolos canônicos · aplicação imediata</p>
+      </div>
+      <div class="gold-divider mb-6"></div>
+      <div class="space-y-4">
+        <template x-for="p in protocolos" :key="p.id">
+          <article class="bg-ink-2 card-border rounded-2xl p-6 card-hover">
+            <div class="flex items-start justify-between mb-3">
+              <div>
+                <h3 class="font-display text-2xl" x-text="p.nome"></h3>
+                <div class="text-xs text-bone-2/50 mt-1"><span x-text="p.bloco"></span> · <span class="text-gold" x-text="p.meta"></span></div>
+              </div>
+            </div>
+            <p class="text-sm text-bone-2/70 italic mb-4" x-text="'Quando: ' + p.quando"></p>
+            <ol class="space-y-2 list-decimal list-inside text-sm text-bone-2/85 leading-relaxed">
+              <template x-for="(passo, i) in p.passos" :key="i"><li x-text="passo"></li></template>
+            </ol>
+          </article>
+        </template>
+      </div>
+    </section>
+
+    <!-- ========= GRAFO ========= -->
+    <section x-show="active==='grafo'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6">
+        <h2 class="font-display text-4xl">Grafo Conceitual</h2>
+        <p class="text-bone-2/60 text-sm mt-1" x-text="grafo.length + ' relações · ' + blocos.length + ' blocos · ' + lacunas.length + ' lacunas'"></p>
+      </div>
+      <div class="gold-divider mb-6"></div>
+
+      <!-- Blocos B01-B08 -->
+      <h3 class="font-display text-xl mb-3">Blocos cognitivos</h3>
+      <div class="grid lg:grid-cols-2 gap-3 mb-8">
+        <template x-for="b in blocos" :key="b.id">
+          <div class="bg-ink-2 card-border rounded-xl p-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="chip bg-gold/15 text-gold font-mono" x-text="b.id"></span>
+              <h4 class="font-display text-lg" x-text="b.nome"></h4>
+            </div>
+            <div class="text-xs text-bone-2/50 italic mb-2" x-text="b.autores"></div>
+            <div class="text-xs text-bone-2/75 leading-relaxed">
+              <template x-for="(c, i) in b.conceitos" :key="i">
+                <span class="inline-block bg-ink-3 px-2 py-1 rounded mr-1 mb-1" x-text="c"></span>
+              </template>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Relações -->
+      <h3 class="font-display text-xl mb-3">Relações entre autores</h3>
+      <div class="space-y-2 mb-8">
+        <template x-for="g in grafo" :key="g.a + g.b">
+          <div class="bg-ink-2 card-border rounded-lg p-3 flex items-center gap-3 text-sm">
+            <span class="font-display text-bone" x-text="g.a"></span>
+            <span class="text-gold font-mono text-xs" x-text="g.rel"></span>
+            <span class="font-display text-bone" x-text="g.b"></span>
+            <span class="text-bone-2/50 text-xs flex-1 text-right italic" x-text="g.nota"></span>
+          </div>
+        </template>
+      </div>
+
+      <!-- Lacunas -->
+      <h3 class="font-display text-xl mb-3">Lacunas a preencher</h3>
+      <div class="space-y-2">
+        <template x-for="l in lacunas" :key="l.obra">
+          <div class="bg-ink-2 card-border rounded-lg p-3 flex items-center gap-3 text-sm">
+            <span class="chip" :class="l.prio===1?'bg-rust/20 text-rust':l.prio===2?'bg-gold/15 text-gold':'bg-ink-3 text-bone-2/60'" x-text="'P' + l.prio"></span>
+            <span class="font-display" x-text="l.obra"></span>
+            <span class="text-bone-2/50 text-xs" x-text="'· ' + l.autor"></span>
+            <span class="text-bone-2/40 text-xs flex-1 text-right italic" x-text="l.bloco"></span>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- ========= ENTRADAS ========= -->
+    <section x-show="active==='entradas'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6">
+        <h2 class="font-display text-4xl">Entradas</h2>
+        <p class="text-bone-2/60 text-sm mt-1">Captura rápida · fila · e-mails priorizados</p>
+      </div>
+      <div class="gold-divider mb-6"></div>
+
+      <!-- Captura rápida -->
+      <div class="bg-ink-2 card-border rounded-2xl p-5 mb-6">
+        <div class="text-xs uppercase tracking-widest text-bone-2/40 mb-3">Captura rápida</div>
+        <textarea x-model="novaEntrada" rows="3" placeholder="o que você quer registrar antes que escape?" class="w-full bg-ink-3 rounded-xl p-3 text-sm resize-none focus:outline-none focus:ring-1 focus:ring-gold/40 font-sans"></textarea>
+        <div class="mt-3 flex items-center justify-between">
+          <div class="flex gap-2">
+            <template x-for="tag in ['ideia','leitura','situação','insight']" :key="tag">
+              <button @click="tagSelecionada=tag" :class="tagSelecionada===tag?'bg-gold/20 text-gold':'bg-ink-3 text-bone-2/50'" class="text-xs px-3 py-1 rounded-full transition" x-text="tag"></button>
+            </template>
+          </div>
+          <button @click="salvarEntrada()" :disabled="!novaEntrada" class="text-xs bg-gold text-ink px-4 py-2 rounded-lg font-medium disabled:opacity-30 disabled:cursor-not-allowed">registrar</button>
+        </div>
+      </div>
+
+      <!-- Fila pendente -->
+      <div class="mb-6">
+        <h3 class="font-display text-xl mb-3">Fila de processamento</h3>
+        <div class="space-y-2">
+          <template x-for="item in fila" :key="item.id">
+            <div class="bg-ink-2 card-border rounded-xl p-4 flex items-start gap-3">
+              <span class="text-gold/60 mt-0.5 text-xs mono" x-text="item.tag"></span>
+              <div class="flex-1">
+                <p class="text-sm" x-text="item.texto"></p>
+                <div class="text-[10px] text-bone-2/40 mt-1 mono" x-text="item.quando"></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- E-mails priorizados (mock) -->
+      <div>
+        <h3 class="font-display text-xl mb-3">E-mails priorizados</h3>
+        <div class="space-y-2">
+          <template x-for="e in emails" :key="e.id">
+            <div class="bg-ink-2 card-border rounded-xl p-4 card-hover">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex-1">
+                  <div class="text-sm font-medium text-bone" x-text="e.assunto"></div>
+                  <div class="text-xs text-bone-2/60 mt-0.5" x-text="e.de"></div>
+                </div>
+                <span class="chip" :class="e.prio==='alta'?'bg-rust/20 text-rust':'bg-ink-3 text-bone-2/50'" x-text="e.prio"></span>
+              </div>
+              <p class="text-xs text-bone-2/60 mt-2 line-clamp-2" x-text="e.preview"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========= OPS ========= -->
+    <section x-show="active==='ops'" class="fade-in px-5 lg:px-10 lg:py-6">
+      <div class="mt-4 lg:mt-0 mb-6 flex items-end justify-between">
+        <div>
+          <h2 class="font-display text-4xl">Operações</h2>
+          <p class="text-bone-2/60 text-sm mt-1" x-text="'Deploy v15.E @'+state.deployNum+' · uazapi 200'"></p>
+        </div>
+        <button @click="atualizarStatus()" class="text-xs text-gold hover:underline">atualizar ↻</button>
+      </div>
+      <div class="gold-divider mb-6"></div>
+
+      <!-- KPIs -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+        <div class="bg-ink-2 card-border rounded-2xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-bone-2/40">Triggers</div>
+          <div class="font-display text-3xl text-bone mt-1" x-text="ops.triggers"></div>
+          <div class="text-xs text-moss mt-0.5">0 duplicados</div>
+        </div>
+        <div class="bg-ink-2 card-border rounded-2xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-bone-2/40">Backups</div>
+          <div class="font-display text-3xl mt-1" :class="ops.backupsPct<50?'text-rust':'text-moss'" x-text="ops.backupsPct+'%'"></div>
+          <div class="text-xs text-bone-2/50 mt-0.5" x-text="ops.backupsDetail"></div>
+        </div>
+        <div class="bg-ink-2 card-border rounded-2xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-bone-2/40">Gmail</div>
+          <div class="font-display text-3xl text-moss mt-1">✓</div>
+          <div class="text-xs text-bone-2/50 mt-0.5">3 envios hoje</div>
+        </div>
+        <div class="bg-ink-2 card-border rounded-2xl p-4">
+          <div class="text-[10px] uppercase tracking-widest text-bone-2/40">WhatsApp</div>
+          <div class="font-display text-3xl text-moss mt-1">200</div>
+          <div class="text-xs text-bone-2/50 mt-0.5">uazapi conectado</div>
+        </div>
+      </div>
+
+      <!-- Últimas execuções -->
+      <div class="bg-ink-2 card-border rounded-2xl p-5">
+        <h3 class="font-display text-xl mb-4">Últimas execuções</h3>
+        <ul class="space-y-2">
+          <template x-for="e in ops.execs" :key="e.id">
+            <li class="flex items-center gap-3 text-sm py-2 border-b border-white/5 last:border-0">
+              <span :class="e.status==='ok'?'text-moss':'text-rust'" class="text-xs">●</span>
+              <span class="flex-1" x-text="e.evento"></span>
+              <span class="text-xs text-bone-2/40 mono" x-text="e.quando"></span>
+            </li>
+          </template>
+        </ul>
+      </div>
+
+      <!-- Rodapé técnico -->
+      <div class="mt-6 text-[11px] text-bone-2/30 mono text-center space-y-1">
+        <div>NEXUS cockpit · <span x-text="'build '+state.buildDate"></span></div>
+        <div>dados: Apps Script /exec · Notion · Gmail · Calendar</div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- BOTTOM NAV (mobile only) -->
+<nav class="bottom-nav lg:hidden fixed bottom-0 left-0 right-0 safe-bottom z-40">
+  <div class="flex justify-around pt-2 pb-2">
+    <template x-for="t in tabs" :key="t.id">
+      <button @click="active=t.id" :class="active===t.id?'tab-active':'text-bone-2/50'" class="flex flex-col items-center gap-1 px-3 py-1">
+        <span class="text-lg" x-text="t.icon"></span>
+        <span class="text-[10px] font-medium" x-text="t.label"></span>
+        <span class="tab-dot"></span>
+      </button>
+    </template>
+  </div>
+</nav>
+
+<script>
+function nexusApp() {
+  return {
+    active: 'cockpit',
+    showMenu: false,
+    filtroBib: 'todas',
+    novaEntrada: '',
+    tagSelecionada: 'ideia',
+    tabs: [
+      { id:'cockpit',    label:'Cockpit',    icon:'◎' },
+      { id:'trilhas',    label:'Trilhas',    icon:'⟶' },
+      { id:'biblioteca', label:'Biblioteca', icon:'❦' },
+      { id:'humor',      label:'Humor',      icon:'§' },
+      { id:'protocolos', label:'Protocolos', icon:'⚒' },
+      { id:'grafo',      label:'Grafo',      icon:'※' },
+      { id:'entradas',   label:'Entradas',   icon:'✎' },
+      { id:'ops',        label:'Ops',        icon:'⚙' }
+    ],
+    state: {
+      cycleDay: 22,
+      estacao: 'Reflexão Estratégica',
+      lente: 'Psicanálise · Freud + Lacan',
+      lenteShort: 'Quinta · Psicanálise',
+      abertura: 'O inconsciente é estruturado como uma linguagem — e hoje você escuta a sua.',
+      bancoTotal: 95,
+      deployNum: 92,
+      buildDate: '2026-04-23'
+    },
+    cardsDoDia: [
+      {
+        slot:'matinal', hora:'07:05', bg:'card-morning',
+        titulo:'Reflexão Estratégica abre o dia.',
+        preview:'A estação exige suspender o reflexo. Antes de agir três vezes, pense uma. Freud chamaria isso de contenção — você, de maturidade cognitiva.',
+        autor:'Freud · 1915', bloco:'B04 · IE'
+      },
+      {
+        slot:'oráculo', hora:'18:30', bg:'card-oracle',
+        titulo:'Uma pergunta que ainda não respondeu.',
+        preview:'Qual emoção você nomeou hoje sem torcer? Se alguma passou incógnita, ela volta amanhã com juros.',
+        autor:'Lacan (adaptado)', bloco:'Lente Psicanálise'
+      },
+      {
+        slot:'noite', hora:'21:00', bg:'card-night',
+        titulo:'O dia pede uma despedida digna.',
+        preview:'Três perguntas do diário: o que me atravessou, o que recusei ver, o que preciso carregar. Sem moralismo. Com precisão.',
+        autor:'Ferenczi (eco)', bloco:'Diário NEXUS'
+      }
+    ],
+    insights: [
+      { id:1, icon:'§', texto:'Na quinta, a lente de Freud/Lacan — toda observação do dia ganha espessura se você passar pela pergunta "o que isso queria dizer antes de eu ter palavras?".' },
+      { id:2, icon:'§', texto:'Estação Reflexão Estratégica: não é indecisão, é preparação. Ação sem ensaio vira reflexo; ação ensaiada vira autoria.' },
+      { id:3, icon:'§', texto:'Banco de citações em 95. Meta em 6 meses: 500. Hoje, só uma entrada boa já inclina a curva.' }
+    ],
+    alertas: [
+      { id:1, titulo:'Backups Drive em 0/4', detalhe:'source/snapshot/diary/props não rodaram. Rodar v99_driveIncrementalBackup manualmente no Apps Script editor.' }
+    ],
+    trilhaAtual: {
+      nome: 'Trilha 3 · Memorização — Yates',
+      progresso: 12,
+      foco: 'Iniciar pela obra Arte da Memória (Yates, 1966). Primeiros 3 capítulos: Simônides, Cícero, Quintiliano. Ancorar cada loci a uma das 18 estações.'
+    },
+    trilhas: [
+      { n:1, id:'psicanalise', nome:'Psicanálise', autores:'Freud → Ferenczi → Lacan → Roudinesco', duracao:'12-18 meses', progresso:8, fase_atual:'Fase 1 · Fundamentos' },
+      { n:2, id:'neuro', nome:'Neurociência + IE', autores:'Amthor → LeDoux → Goleman → Panksepp', duracao:'6-9 meses', progresso:4, fase_atual:'Fase 1 · Panorama' },
+      { n:3, id:'memoria', nome:'Memorização', autores:'Yates → O\'Brien → Palácio NEXUS', duracao:'4-6 meses', progresso:12, fase_atual:'Fase 1 · Fundamentos Yates' },
+      { n:4, id:'julgamento', nome:'Julgamento · Kahneman', autores:'Kahneman → Likierman', duracao:'4-6 meses', progresso:0, fase_atual:'aguardando início' },
+      { n:5, id:'shakespeare', nome:'Shakespeare + Psicanálise', autores:'5 tragédias + Rei João · lente Freud/Lacan', duracao:'6 meses', progresso:5, fase_atual:'Romeu e Julieta (preparação)' },
+      { n:6, id:'pnl', nome:'PNL + Comunicação', autores:'Bandler/Grinder → O\'Connor → Erickson → Cialdini → Duhigg', duracao:'8-12 meses', progresso:45, fase_atual:'C2 em andamento' },
+      { n:7, id:'persuasao', nome:'Persuasão e Poder', autores:'Cialdini → Greene → Matz', duracao:'4-6 meses', progresso:15, fase_atual:'Cialdini 2021 · Parte I' },
+      { n:8, id:'presenca', nome:'Presença e Autodomínio', autores:'síntese transversal · Sêneca + Jung + Goleman + Lacan', duracao:'contínua', progresso:20, fase_atual:'B08 cards aplicados' }
+    ],
+
+
+
+    get citacaoDestaque() {
+      const cits = (window.NEXUS_DATA && NEXUS_DATA.citacoes) || [];
+      if (!cits.length) return { frase:'(banco vazio)', autor:'', obra:'', lente:'' };
+      // determinismo por dia para nao mudar a cada render
+      const seed = this.state.cycleDay;
+      const c = cits[seed % cits.length];
+      return { frase: c.frase, autor: c.autor, obra: c.obra + (c.ano ? ', ' + c.ano : ''), lente: c.lente };
+    },
+    obras: (window.NEXUS_DATA && NEXUS_DATA.obras) || [],
+    mensagens: ((window.NEXUS_DATA && NEXUS_DATA.reenquadramentos) || []).slice(0, 5).map(r => ({ texto: r.texto, nota: r.tipo + ' · ' + r.ref })),
+    reenquadramentos: (window.NEXUS_DATA && NEXUS_DATA.reenquadramentos) || [],
+    protocolos: (window.NEXUS_DATA && NEXUS_DATA.protocolos) || [],
+    blocos: (window.NEXUS_DATA && NEXUS_DATA.blocos) || [],
+    estacoes: (window.NEXUS_DATA && NEXUS_DATA.estacoes) || [],
+    lacunas: (window.NEXUS_DATA && NEXUS_DATA.lacunas) || [],
+    grafo: (window.NEXUS_DATA && NEXUS_DATA.grafo) || [],
+    buscaBib: '',
+    favoritos: JSON.parse(localStorage.getItem('nexus_fav') || '[]'),
+    toggleFav(id) {
+      const i = this.favoritos.indexOf(id);
+      if (i >= 0) this.favoritos.splice(i, 1); else this.favoritos.push(id);
+      localStorage.setItem('nexus_fav', JSON.stringify(this.favoritos));
+    },
+    isFav(id) { return this.favoritos.includes(id); },
+    get obrasFiltradas() {
+      if (!this.buscaBib) return this.obras;
+      const q = this.buscaBib.toLowerCase();
+      return this.obras.filter(o => (o.titulo + ' ' + o.autor + ' ' + o.bloco).toLowerCase().includes(q));
+    },
+    mensagemIndex: 0,
+    get mensagemDoDia() { return this.mensagens[this.mensagemIndex]; },
+    proximaMensagem() { this.mensagemIndex = (this.mensagemIndex + 1) % this.mensagens.length; },
+
+    fila: [
+      { id:1, tag:'ideia', texto:'Integrar o banco de citações com rotação determinística por hash — reduz repetição no WhatsApp.', quando:'há 2h' },
+      { id:2, tag:'leitura', texto:'Yates cap. 3 (Cícero, Ad Herennium) — extrair 5 citações para o banco.', quando:'hoje' },
+      { id:3, tag:'situação', texto:'Reunião Cel. X quarta — aplicar mapa-influencia antes.', quando:'ontem' }
+    ],
+    emails: [
+      { id:1, assunto:'SEDS · nova diretriz de correições', de:'gabinete@pmmg.mg.gov.br', prio:'alta', preview:'Prezados, segue anexo da nova diretriz sobre procedimentos correicionais envolvendo...' },
+      { id:2, assunto:'Dra. Larissa — agenda 28/04', de:'dra.larissa.arenales@gmail.com', prio:'média', preview:'Confirmando sessão dia 28 de abril às 19h. Qualquer alteração me avise.' },
+      { id:3, assunto:'[Anthropic] API usage — semana', de:'noreply@anthropic.com', prio:'baixa', preview:'Resumo semanal de uso da sua conta Anthropic API. 3.2M tokens processados.' }
+    ],
+    ops: {
+      triggers: 19,
+      backupsPct: 100,
+      backupsDetail: 'Drive sync + 2/4 apps',
+      execs: [
+        { id:1, evento:'autonomousMorningEmail', quando:'07:05', status:'ok' },
+        { id:2, evento:'v99_driveIncrementalBackup', quando:'23:15', status:'erro' },
+        { id:3, evento:'autonomousAfternoonEmail', quando:'13:05', status:'ok' },
+        { id:4, evento:'autonomousNightEmail', quando:'20:05', status:'ok' },
+        { id:5, evento:'cards morning', quando:'06:45', status:'ok' }
+      ]
+    },
+    salvarEntrada() {
+      if (!this.novaEntrada.trim()) return;
+      this.fila.unshift({
+        id: Date.now(),
+        tag: this.tagSelecionada,
+        texto: this.novaEntrada.trim(),
+        quando: 'agora'
+      });
+      this.novaEntrada = '';
+    },
+    openCard(c) { console.log('open card', c); /* placeholder para futuro drawer/modal */ },
+    atualizarStatus() {
+      // placeholder: no futuro, fetch real para /exec?action=health_full
+      alert('placeholder: vai consumir /exec?action=health_full do Apps Script @92');
+    }
+  }
+}
+
+// Service Worker (PWA)
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

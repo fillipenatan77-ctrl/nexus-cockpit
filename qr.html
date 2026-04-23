@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXUS · Parear iPhone</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#0F0E17;color:#F0EAE4;font-family:system-ui,-apple-system,sans-serif;min-height:100vh}
+  body{display:flex;align-items:center;justify-content:center;padding:2rem}
+  .card{max-width:520px;text-align:center;background:#14131E;border:1px solid rgba(240,234,228,.06);border-radius:28px;padding:2.5rem;box-shadow:0 30px 60px -20px #000}
+  h1{font-family:Georgia,serif;font-size:2rem;margin-bottom:.25rem}
+  .sub{color:rgba(240,234,228,.5);font-size:.9rem;margin-bottom:2rem;letter-spacing:.02em}
+  #qr{background:#F0EAE4;padding:1.5rem;border-radius:24px;display:inline-block;box-shadow:0 0 0 4px rgba(184,147,90,.2)}
+  .url{margin-top:1.5rem;font-family:'SF Mono',Consolas,monospace;font-size:.95rem;color:#B8935A;word-break:break-all}
+  ol{text-align:left;margin-top:2rem;padding-left:1.5rem;font-size:.95rem;line-height:1.8;color:rgba(240,234,228,.8)}
+  ol li::marker{color:#B8935A;font-weight:700}
+  .gold{color:#B8935A;font-weight:500}
+  footer{margin-top:2rem;font-size:.75rem;color:rgba(240,234,228,.3);font-style:italic;font-family:Georgia,serif}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Parear o <span style="color:#B8935A">iPhone</span></h1>
+    <div class="sub">escanear ou digitar · mesma rede Wi-Fi</div>
+    <div id="qr"></div>
+    <div class="url" id="url">http://192.168.15.10:8080</div>
+    <ol>
+      <li>Abrir a <span class="gold">Câmera</span> do iPhone e apontar para o QR</li>
+      <li>Tocar a notificação que aparece em cima</li>
+      <li>Abre no Safari · botão <span class="gold">Compartilhar</span> ⎋</li>
+      <li>Rolar e tocar em <span class="gold">"Adicionar à Tela de Início"</span></li>
+      <li>Confirma — vira app fullscreen com ícone <span class="gold">N</span></li>
+    </ol>
+    <footer>NEXUS cockpit · v15.E · pareamento local</footer>
+  </div>
+  <script>
+    const url = 'http://192.168.15.10:8080';
+    document.getElementById('url').textContent = url;
+    QRCode.toCanvas(document.getElementById('qr'), url, {
+      width: 280,
+      margin: 1,
+      color: { dark: '#0F0E17', light: '#F0EAE4' }
+    }, function(err) {
+      if (err) document.getElementById('qr').textContent = '(erro ao gerar QR — abrir ' + url + ' direto)';
+    });
+  </script>
+</body>
+</html>
