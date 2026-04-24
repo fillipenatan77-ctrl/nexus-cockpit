@@ -305,20 +305,13 @@
     <div class="head" onclick="toggleNovidades()">
       <div>
         <div class="t">§ novidades</div>
-        <div class="ver" id="ver-pill">v15.AA · 24 abr 2026</div>
+        <div class="ver" id="ver-pill">carregando…</div>
       </div>
       <div class="toggle">›</div>
     </div>
     <div class="body">
       <div class="inner" id="novidades-body">
-        <div class="entry"><span class="tag">novo</span><strong>Modo Diálogo Avançado / Coaching</strong> · respostas em 8 camadas · 12 comandos (/grade10 · /corrige · /treino · /espelho · /cruzamento · /voz etc) · modo voz otimizado para trânsito · conecta com acervo.</div>
-        <div class="entry"><span class="tag">novo</span><strong>Setup iPhone</strong> · guia completo para configurar Claude iOS + ditação pt-BR + AirPods · 5 cenários reais · troubleshooting.</div>
-        <div class="entry"><span class="tag">novo</span><strong>Roteiro 7 dias</strong> · integrado ao hub como subpágina · cada dia alinhado com lente canônica · teste estruturado do Cortex v5.</div>
-        <div class="entry"><span class="tag">arquitetura</span><strong>Minimalismo assumido v15.W</strong> · 2 pilares (Cortex + PWA) + 2 lastros (Apps Script + GitHub/Drive). Notion suprimido. 5 checkpoints antes de adicionar ferramenta nova.</div>
-        <div class="entry"><span class="tag">backup</span><strong>Backup 3-2-1 consolidado</strong> · espelho Drive 2h · snapshots LIGHT semanal + FULL mensal (primeiro de 2.8 GB concluído) · chroma mirror 6h.</div>
-        <div class="entry"><span class="tag">conteúdo</span><strong>Acervo +49 obras</strong> · curadas · renomeadas · organizadas em 30_CONTEUDOS · 10 em OCR background.</div>
-        <div class="entry"><span class="tag">regra</span><strong>URL única como frente</strong> · este hub é o único ponto de entrada público. Subpáginas acessíveis pela nav. Sem mais links semanais novos.</div>
-        <a class="link-changelog" href="./changelog.html">⟶ changelog completo</a>
+        <div style="padding:14px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.5;font-style:italic">Carregando novidades do hub…</div>
       </div>
     </div>
   </div>
@@ -688,24 +681,55 @@ if ('serviceWorker' in navigator) {
 loadSnapshot();
 setInterval(loadSnapshot, 5 * 60 * 1000); // refresh a cada 5min
 
-// Novidades toggle
+// Novidades · leitura dinâmica do novidades.json
 function toggleNovidades() {
   const el = document.getElementById('novidades');
   el.classList.toggle('open');
-  // Persiste preferência
   try { localStorage.setItem('nexus_novidades_open', el.classList.contains('open') ? '1' : '0'); } catch(e) {}
 }
-// Restaurar preferência (default: aberto na primeira visita após mudança)
-try {
-  const key = localStorage.getItem('nexus_novidades_seen_v15AA');
-  if (!key) {
-    document.getElementById('novidades').classList.add('open');
-    localStorage.setItem('nexus_novidades_seen_v15AA', '1');
-  } else {
-    const open = localStorage.getItem('nexus_novidades_open');
-    if (open === '1') document.getElementById('novidades').classList.add('open');
+
+async function carregarNovidades() {
+  try {
+    const r = await fetch('./novidades.json?_=' + Date.now(), { cache: 'no-store' });
+    const d = await r.json();
+    const body = document.getElementById('novidades-body');
+    const verPill = document.getElementById('ver-pill');
+
+    // Atualiza pill de versão
+    const dt = new Date(d.ultima_atualizacao || Date.now());
+    const dtStr = dt.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+    verPill.textContent = (d.versao_atual || '?') + ' · ' + dtStr;
+
+    // Renderiza entradas (máx 7 mais recentes)
+    const entries = (d.entradas || []).slice(0, 7);
+    let html = '';
+    for (const e of entries) {
+      const tagSafe = (e.tag || 'novo').replace(/[<>]/g, '');
+      const tituloSafe = String(e.titulo || '').replace(/[<>]/g, '');
+      const resumoSafe = String(e.resumo || '').replace(/[<>]/g, '');
+      html += `<div class="entry"><span class="tag">${tagSafe}</span><strong>${tituloSafe}</strong> · ${resumoSafe}</div>`;
+    }
+    html += '<a class="link-changelog" href="./changelog.html">⟶ changelog completo</a>';
+    body.innerHTML = html;
+
+    // Detecta se há versão nova desde última visita
+    const lastSeen = localStorage.getItem('nexus_novidades_versao_vista');
+    if (lastSeen !== d.versao_atual) {
+      // Abre automaticamente
+      document.getElementById('novidades').classList.add('open');
+      localStorage.setItem('nexus_novidades_versao_vista', d.versao_atual);
+    } else {
+      // Respeita preferência do usuário
+      const open = localStorage.getItem('nexus_novidades_open');
+      if (open === '1') document.getElementById('novidades').classList.add('open');
+    }
+  } catch (e) {
+    document.getElementById('novidades-body').innerHTML = '<div style="padding:14px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.6">Sem conexão · novidades offline</div>';
+    document.getElementById('ver-pill').textContent = 'offline';
   }
-} catch(e) {}
+}
+
+carregarNovidades();
 </script>
 </body>
 </html>

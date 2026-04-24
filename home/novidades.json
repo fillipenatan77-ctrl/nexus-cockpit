@@ -1,0 +1,59 @@
+{
+  "versao_atual": "v15.AB",
+  "ultima_atualizacao": "2026-04-24T13:30:00-03:00",
+  "url_hub": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
+  "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
+  "entradas": [
+    {
+      "v": "v15.AB",
+      "data": "2026-04-24",
+      "tag": "integracao-ios",
+      "titulo": "Interatividade iOS profunda",
+      "resumo": "novidades.json dinâmico · health.json · iCal PRIMORDIA subscribível no Calendar do iPhone · Shortcuts templates · Web Push documentado · subpágina /notificacoes.html unificada.",
+      "destaque": true
+    },
+    {
+      "v": "v15.AA",
+      "data": "2026-04-24",
+      "tag": "arquitetura",
+      "titulo": "Hub único assumido · regra permanente",
+      "resumo": "Bloco Novidades no index · changelog visual · CHANGELOG.md técnico · regra 'URL única' documentada em CLAUDE.md e INPUTS_DO_PROJETO.md."
+    },
+    {
+      "v": "v15.Z",
+      "data": "2026-04-24",
+      "tag": "coaching",
+      "titulo": "Roteiro 7 dias Cortex v5",
+      "resumo": "Subpágina primeira-semana com 1 teste/dia alinhado com lente canônica. Cada dia: comando + prompt literal + expectativa."
+    },
+    {
+      "v": "v15.Y",
+      "data": "2026-04-24",
+      "tag": "iphone",
+      "titulo": "Setup iPhone completo + v5 copiável pelo celular",
+      "resumo": "iphone-setup.html com 8 seções · system-prompt.html com mega-button copiar · ditação pt-BR documentada."
+    },
+    {
+      "v": "v15.X",
+      "data": "2026-04-24",
+      "tag": "coaching",
+      "titulo": "Modo Diálogo Avançado / Coaching",
+      "resumo": "System Prompt v5 com 8 camadas de resposta · 5 comandos novos (/treino /espelho /corrige /cruzamento /voz) · modo voz hands-free."
+    },
+    {
+      "v": "v15.W",
+      "data": "2026-04-24",
+      "tag": "arquitetura",
+      "titulo": "Minimalismo assumido · Notion suprimido",
+      "resumo": "2 pilares (Cortex + PWA) + 2 lastros (Apps Script + GitHub/Drive). 5 checkpoints antes de adicionar ferramenta nova."
+    },
+    {
+      "v": "v15.V",
+      "data": "2026-04-24",
+      "tag": "backup",
+      "titulo": "Backup Chroma dedicado · fix tar.gz",
+      "resumo": "Snapshot FULL com bsdtar nativo (2.8 GB no Drive) · Chroma mirror 6h · detecção de concorrência."
+    }
+  ],
+  "hook_cortex": "Quando Fillipe abrir conversa após v15.AB, mencione que o hub tem: iCal do PRIMORDIA (subscrever pelo Calendar do iPhone), Shortcuts templates, e notificacoes.html com 3 caminhos de push."
+}

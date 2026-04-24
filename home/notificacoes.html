@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Notificações iOS</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 14px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.78;font-style:italic;line-height:1.55}
+
+  .caminho{margin:22px 0;padding:20px 22px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.04);position:relative}
+  .caminho.recomendado{border-color:var(--gold);background:linear-gradient(145deg, rgba(184,147,90,0.1) 0%, rgba(15,14,23,0.5) 100%)}
+  .caminho .badge{display:inline-block;font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);background:rgba(184,147,90,0.14);padding:3px 10px;border-radius:999px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px}
+  .caminho.recomendado .badge{background:var(--gold);color:var(--ink);font-weight:700}
+  .caminho h2{font-family:Georgia,serif;font-size:22px;font-weight:400;letter-spacing:0.02em;margin-bottom:6px}
+  .caminho .sub-t{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.85;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px}
+  .caminho .desc{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.9;line-height:1.6;margin-bottom:14px}
+
+  .passos{margin-top:10px}
+  .passos .p{padding:10px 12px;margin-bottom:6px;border:1px solid var(--gold-faint);border-radius:8px;background:rgba(184,147,90,0.02);font-family:Georgia,serif;font-size:14px;color:var(--bone);line-height:1.5}
+  .passos .p strong{color:var(--gold)}
+  .passos .p code{background:rgba(184,147,90,0.12);padding:2px 7px;border-radius:4px;color:var(--gold);font-family:'SF Mono',monospace;font-size:12px}
+
+  .link-acao{display:inline-block;margin:10px 6px 4px 0;padding:12px 20px;background:var(--gold);color:var(--ink);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:700}
+  .link-acao.outline{background:none;color:var(--gold);border:1px solid var(--gold-soft)}
+  .link-acao.primary{background:var(--gold);color:var(--ink)}
+
+  .matriz{margin:24px 0;border:1px solid var(--gold-faint);border-radius:12px;overflow:hidden}
+  .matriz .row{display:grid;grid-template-columns:1.3fr 1fr 1fr;padding:12px 14px;border-bottom:1px solid var(--gold-faint);gap:8px;align-items:center}
+  .matriz .row.head{background:rgba(184,147,90,0.08);font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase}
+  .matriz .row:last-child{border-bottom:none}
+  .matriz .row .cel{font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.88;line-height:1.45}
+  .matriz .row .cel.n{font-weight:500;color:var(--bone);opacity:1}
+  .dot-sim{color:#D4A15C}
+  .dot-nao{color:#666}
+
+  .ideias{margin:26px 0;padding:20px;border:1px dashed var(--gold-soft);border-radius:12px;background:rgba(184,147,90,0.02)}
+  .ideias h3{font-family:Georgia,serif;font-size:18px;color:var(--bone);margin-bottom:12px;font-weight:500}
+  .ideias ul{list-style:none;padding:0}
+  .ideias li{padding:8px 0;padding-left:22px;position:relative;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.88;line-height:1.55}
+  .ideias li::before{content:'§';position:absolute;left:0;color:var(--gold);opacity:0.7;font-style:italic}
+  .ideias li strong{color:var(--gold);font-weight:500}
+
+  footer{margin-top:36px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./notificacoes.html" class="current">notificações</a>
+    <a href="./iphone-setup.html">iphone</a>
+    <a href="./coaching.html">coaching</a>
+    <a href="./system-prompt.html">prompt v5</a>
+    <a href="./stats.html">stats</a>
+    <a href="./changelog.html">changelog</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ interatividade iOS profunda</div>
+    <h1>Notificações & Integrações</h1>
+    <div class="sublead">Três caminhos complementares para o NEXUS chegar até você no iPhone · escolha qual(is) ativar de acordo com seu perfil · combine para cobrir todos os cenários.</div>
+  </header>
+
+  <!-- Matriz comparativa -->
+  <div class="matriz">
+    <div class="row head">
+      <div class="cel">§ recurso</div>
+      <div class="cel">§ esforço</div>
+      <div class="cel">§ o que entrega</div>
+    </div>
+    <div class="row">
+      <div class="cel n">iCal PRIMORDIA</div>
+      <div class="cel">1 toque</div>
+      <div class="cel">98 eventos no Calendar · 18 estações · todo domingo /revisao</div>
+    </div>
+    <div class="row">
+      <div class="cel n">Apple Shortcuts</div>
+      <div class="cel">5 minutos</div>
+      <div class="cel">Siri hands-free · 1 comando de voz abre qualquer aba</div>
+    </div>
+    <div class="row">
+      <div class="cel n">Web Push PWA</div>
+      <div class="cel">10 minutos</div>
+      <div class="cel">Push nativo iOS · só funciona com PWA standalone</div>
+    </div>
+    <div class="row">
+      <div class="cel n">WhatsApp + Gmail</div>
+      <div class="cel">0 esforço</div>
+      <div class="cel">Já ativo · 4 surprises/semana via Apps Script</div>
+    </div>
+  </div>
+
+  <!-- CAMINHO 1 · iCal -->
+  <div class="caminho recomendado">
+    <div class="badge">⟡ recomendado · comece por aqui</div>
+    <h2>1 · Calendário PRIMORDIA no iPhone</h2>
+    <div class="sub-t">iCal subscribível · zero manutenção · lembretes automáticos</div>
+    <div class="desc">Gerei um calendário com <strong>98 eventos</strong> cobrindo todo o ciclo PRIMORDIA: início e fim, as 18 estações do Palácio em sequência, lembrete semanal de <code style="color:var(--gold);background:rgba(184,147,90,0.12);padding:2px 7px;border-radius:4px;font-family:'SF Mono',monospace;font-size:12px">/revisao</code> aos domingos, e da lente Memorização às sextas. Subscreva uma vez · atualiza sozinho.</div>
+
+    <div class="passos">
+      <div class="p"><strong>1.1</strong> No iPhone, abra o Safari e vá em: <code>fillipenatan77-ctrl.github.io/nexus-cockpit/home/nexus-primordia.ics</code></div>
+      <div class="p"><strong>1.2</strong> iOS pergunta: "Abrir no Calendário?" → toque em <strong>Abrir</strong></div>
+      <div class="p"><strong>1.3</strong> Toque em <strong>Adicionar Todos</strong> ou <strong>Inscrever</strong> (se oferecido)</div>
+      <div class="p"><strong>1.4</strong> Escolha o calendário: crie um novo "<strong>NEXUS</strong>" com cor dourada para separar dos demais</div>
+      <div class="p"><strong>1.5</strong> Em Configurações → Calendário → Contas → Assinaturas: confirme que está atualizando</div>
+    </div>
+
+    <a href="./nexus-primordia.ics" class="link-acao primary">⟶ baixar/subscrever calendário</a>
+    <div class="desc" style="margin-top:12px;font-style:italic;opacity:0.7">Dica · ative <strong>"Alertar"</strong> em Configurações do calendário NEXUS para 1h antes de cada evento diurno — você recebe notificação lembrando da estação atual e do ritual semanal.</div>
+  </div>
+
+  <!-- CAMINHO 2 · Shortcuts -->
+  <div class="caminho">
+    <div class="badge">§ hands-free</div>
+    <h2>2 · Apple Shortcuts · Siri integrada</h2>
+    <div class="sub-t">comandos de voz · acesso instantâneo sem abrir app</div>
+    <div class="desc">Crie atalhos simples que abrem páginas do hub · consultam o Apps Script · disparam uma surpresa. Depois é só dizer <em>"E aí Siri, NEXUS hoje"</em> e aparece o briefing do dia.</div>
+
+    <div class="passos">
+      <div class="p"><strong>2.1 · "NEXUS Hoje"</strong><br>Abra <code>app Atalhos</code> → <code>+</code> → <strong>Ação: Abrir URL</strong> → cole <code>fillipenatan77-ctrl.github.io/nexus-cockpit/home/hoje.html</code> → nomeie <em>"NEXUS hoje"</em> · ative "Adicionar à Siri"</div>
+
+      <div class="p"><strong>2.2 · "NEXUS Surpresa"</strong> (dispara surprise no Apps Script)<br>Novo atalho → <strong>Obter Conteúdo de URL</strong> → cole <code>script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec?action=surprise_now</code> → <strong>Mostrar Alerta</strong> com o texto da resposta · nomeie <em>"NEXUS me surpreenda"</em></div>
+
+      <div class="p"><strong>2.3 · "NEXUS Status"</strong> (ciclo do dia falado)<br>Novo atalho → <strong>Obter URL</strong> → <code>...?action=retomada_status</code> → <strong>Obter Valor de Dicionário</strong> (chave: <code>cycle</code>) → <strong>Falar Texto</strong> → <em>"Siri, NEXUS status"</em> · ela fala o dia/estação/lente em áudio</div>
+
+      <div class="p"><strong>2.4 · "NEXUS Busca"</strong> (RAG via voz)<br>Atalho → <strong>Ditar Texto</strong> → <strong>Obter URL</strong> → <code>broader-hang-alto-subcommittee.trycloudflare.com/ask</code> com body <code>{"q": [texto ditado]}</code> → <strong>Mostrar Resultado</strong></div>
+    </div>
+
+    <div class="desc" style="margin-top:10px;font-style:italic;opacity:0.85">Ao adicionar à Siri, grave a frase de ativação em português · funciona no trânsito sem tocar no telefone.</div>
+  </div>
+
+  <!-- CAMINHO 3 · Web Push -->
+  <div class="caminho">
+    <div class="badge">⚡ push nativo</div>
+    <h2>3 · Web Push · notificação real no Lock Screen</h2>
+    <div class="sub-t">iOS 16.4+ · requer PWA instalada via "Add to Home Screen"</div>
+    <div class="desc">Notificações reais iOS chegam via Apple Push Notification Service. Pré-requisito: a PWA NEXUS precisa estar instalada (Safari → compartilhar → Adicionar à Tela de Início). Depois é autorizar a permissão uma vez · e passa a receber pushes quando o sistema envia.</div>
+
+    <div class="passos">
+      <div class="p"><strong>3.1</strong> Instale a PWA (se ainda não): abra o hub no Safari → botão compartilhar → <strong>Adicionar à Tela de Início</strong></div>
+      <div class="p"><strong>3.2</strong> Abra a PWA instalada (não pelo Safari · tem que ser pelo ícone na tela inicial)</div>
+      <div class="p"><strong>3.3</strong> Toque no botão abaixo · iOS pergunta "Permitir Notificações?" → <strong>Permitir</strong></div>
+      <div class="p"><strong>3.4</strong> Pronto · o service worker fica registrado · quando o Apps Script enviar push, aparece no Lock Screen mesmo com app fechado</div>
+
+      <button id="btnPush" onclick="ativarPush()" style="padding:16px 24px;background:var(--gold);color:var(--ink);border:none;border-radius:12px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;cursor:pointer;margin-top:12px;width:100%">⟶ ativar notificações</button>
+      <div id="pushStatus" style="margin-top:10px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);opacity:0.85;letter-spacing:0.1em;text-align:center"></div>
+    </div>
+
+    <div class="desc" style="margin-top:14px;opacity:0.8"><strong style="color:var(--gold)">Limitações honestas:</strong> iOS Web Push funciona só em PWA standalone (não no Safari normal) · exige iOS 16.4 ou superior · pode precisar de app server VAPID configurado no Apps Script (fase seguinte).</div>
+  </div>
+
+  <!-- OUTRAS IDEIAS INSPIRADORAS -->
+  <div class="ideias">
+    <h3>§ outras possibilidades · próximas ondas</h3>
+    <ul>
+      <li><strong>Widget na tela inicial via Scriptable</strong> — app gratuito que lê JSON de URL e mostra widget ao lado dos apps nativos. Podemos expor <code>health.json</code> e ter dia/estação/lente vivos na tela inicial sem abrir nada.</li>
+      <li><strong>Tag NFC</strong> — cole uma tag NFC barata no painel do carro / mesa de trabalho. Ao tocar o iPhone, abre direto <code>/hoje</code>. Integração zero-clique.</li>
+      <li><strong>Live Activities (iOS 16+)</strong> — timer Pomodoro do hub ficaria visível no Lock Screen com progresso ativo · requer app nativo mas há frameworks PWA experimentais.</li>
+      <li><strong>Focus Mode "NEXUS"</strong> — crie em Configurações → Foco → filtra apenas Claude + WhatsApp (surprises) + Mensagens. Ative ao ler/estudar para silenciar o resto.</li>
+      <li><strong>Share Sheet Extension</strong> — bookmark JavaScript que envia texto selecionado de qualquer app pro Cortex · útil para reflexão sobre notícia/artigo.</li>
+      <li><strong>Apple Watch</strong> (se tiver) — complicação custom mostrando dia do ciclo · toca para ver estação atual.</li>
+      <li><strong>RSS privado</strong> — feed de surpresas + novidades para leitores como Feedly · roda no fundo.</li>
+      <li><strong>Email newsletter dominical</strong> — Apps Script envia todo domingo 20h com resumo da semana + citação destacada + próximos eventos PRIMORDIA.</li>
+      <li><strong>NFC + Voz combinados</strong> — tag NFC no carro → abre Shortcut que ativa modo voz Claude direto. Um toque, zero dedos.</li>
+    </ul>
+  </div>
+
+  <!-- Para o Cortex -->
+  <div class="caminho" style="border-color:var(--gold-faint);background:rgba(15,14,23,0.5)">
+    <div class="badge">§ referência técnica</div>
+    <h2>Para o Cortex e futuros agentes</h2>
+    <div class="sub-t">endpoints JSON que o Claude pode ler em conversas</div>
+
+    <div class="passos">
+      <div class="p"><strong>novidades.json</strong> — Cortex lê em conversas e menciona ("desde a última vez você ganhou X"). URL: <code>home/novidades.json</code></div>
+      <div class="p"><strong>health.json</strong> — status consolidado (ciclo + infra + endpoints + rotinas). URL: <code>home/health.json</code></div>
+      <div class="p"><strong>nexus-primordia.ics</strong> — calendário iCal para subscrição. URL: <code>home/nexus-primordia.ics</code></div>
+      <div class="p"><strong>Apps Script /exec</strong> — status vivo · surprise_now · triggers_audit · retomada_status. Deploy @99.</div>
+      <div class="p"><strong>RAG /ask + /health</strong> — via tunnel Cloudflare · 12k+ chunks.</div>
+    </div>
+  </div>
+
+  <footer>NEXUS v15.AB · integrações iOS · tudo dentro do hub único</footer>
+</div>
+
+<script>
+async function ativarPush() {
+  const s = document.getElementById('pushStatus');
+  const btn = document.getElementById('btnPush');
+
+  if (!('serviceWorker' in navigator)) {
+    s.textContent = '✗ Este navegador não suporta Service Worker';
+    return;
+  }
+  if (!('Notification' in window)) {
+    s.textContent = '✗ Este navegador não suporta Notifications API';
+    return;
+  }
+
+  // Verifica se está em modo standalone (PWA instalada)
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  if (!isStandalone) {
+    s.textContent = '⚠ Abra este link pela PWA instalada (ícone NEXUS na tela inicial) · não pelo Safari';
+    return;
+  }
+
+  try {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      const reg = await navigator.serviceWorker.ready;
+      s.textContent = '✓ Permissão concedida · SW registrado · aguardando push';
+      btn.textContent = '✓ ATIVO';
+      btn.style.background = '#2a8f4f';
+      btn.style.color = '#fff';
+
+      // Notificação local de teste
+      reg.showNotification('NEXUS ativo', {
+        body: 'Push autorizado. Próximas notificações chegam aqui.',
+        icon: './icons/icon-192.png',
+        badge: './icons/icon-192.png',
+        tag: 'nexus-test',
+        vibrate: [200, 80, 200]
+      });
+    } else {
+      s.textContent = '✗ Permissão negada · habilite em Ajustes → Notificações → NEXUS';
+    }
+  } catch (e) {
+    s.textContent = '✗ Erro: ' + e.message;
+  }
+}
+</script>
+</body>
+</html>
