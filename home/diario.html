@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Diário</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .nova{margin:20px 0;padding:18px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.04)}
+  .nova .row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .nova .tag-btn{padding:6px 12px;background:rgba(184,147,90,0.06);border:1px solid var(--gold-faint);border-radius:999px;color:var(--bone);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;opacity:0.7}
+  .nova .tag-btn.active{background:var(--gold);color:var(--ink);opacity:1;border-color:var(--gold)}
+  .nova textarea{width:100%;min-height:120px;padding:14px;background:rgba(15,14,23,0.8);border:1px solid var(--gold-faint);border-radius:10px;color:var(--bone);font-family:Georgia,serif;font-size:16px;line-height:1.55;outline:none;resize:vertical;-webkit-appearance:none}
+  .nova textarea:focus{border-color:var(--gold)}
+  .nova textarea::placeholder{color:var(--gold);opacity:0.5;font-style:italic}
+  .nova .actions{display:flex;gap:10px;margin-top:10px}
+  .nova .salvar{flex:1;padding:12px;background:var(--gold);color:var(--ink);border:none;border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;font-weight:700}
+  .nova .limpar{padding:12px 16px;background:none;color:var(--gold);border:1px solid var(--gold-soft);border-radius:10px;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer}
+
+  .entry{margin-top:14px;padding:16px 18px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,0.02)}
+  .entry .meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:10px}
+  .entry .date{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.75;letter-spacing:0.15em;text-transform:uppercase}
+  .entry .tag{font-family:'SF Mono',monospace;font-size:9px;color:var(--ink);background:var(--gold);padding:2px 8px;border-radius:999px;letter-spacing:0.2em;text-transform:uppercase;opacity:0.85}
+  .entry .body{font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.88;line-height:1.55;white-space:pre-wrap}
+  .entry .del{background:none;border:none;color:var(--gold);opacity:0.4;cursor:pointer;font-size:12px;font-family:'SF Mono',monospace;letter-spacing:0.1em;margin-top:10px;text-transform:uppercase}
+  .entry .del:hover{opacity:0.8}
+
+  .vazio{text-align:center;padding:30px;font-family:Georgia,serif;font-style:italic;color:var(--bone);opacity:0.5;line-height:1.6}
+
+  .stats{margin-top:20px;padding:14px 16px;border-top:1px solid var(--gold-faint);font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.7;letter-spacing:0.15em;text-align:center;text-transform:uppercase}
+
+  .export-bar{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .export-bar button{padding:8px 14px;background:rgba(184,147,90,0.05);border:1px solid var(--gold-soft);border-radius:999px;color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html" class="current">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ diário NEXUS</div>
+    <h1>Registros</h1>
+    <div class="sublead">Insight · observação · situação · citação que marcou · progresso em trilha · o que for. Persiste no seu iPhone. Exporta em markdown quando precisar.</div>
+  </header>
+
+  <div class="nova">
+    <div class="row" id="tags-row">
+      <button class="tag-btn active" data-tag="insight">insight</button>
+      <button class="tag-btn" data-tag="observacao">observação</button>
+      <button class="tag-btn" data-tag="situacao">situação</button>
+      <button class="tag-btn" data-tag="citacao">citação</button>
+      <button class="tag-btn" data-tag="trilha">trilha</button>
+      <button class="tag-btn" data-tag="crise">crise</button>
+      <button class="tag-btn" data-tag="livre">livre</button>
+    </div>
+    <textarea id="texto" placeholder="o que vale registrar agora · 1-3 frases densas · nada de performance, só o que é vivo"></textarea>
+    <div class="actions">
+      <button class="salvar" onclick="salvar()">⟶ registrar</button>
+      <button class="limpar" onclick="limpar()">limpar</button>
+    </div>
+  </div>
+
+  <div id="entries"></div>
+
+  <div class="stats" id="stats"></div>
+  <div class="export-bar">
+    <button onclick="exportar()">baixar markdown</button>
+    <button onclick="compartilhar()">compartilhar</button>
+    <button onclick="limparTudo()" style="color:#B8935A;opacity:0.55">apagar tudo</button>
+  </div>
+
+  <footer>NEXUS v15.N · diário local · localStorage</footer>
+</div>
+
+<script>
+const KEY = 'nexus_diario_v1';
+let currentTag = 'insight';
+
+function getEntries() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+}
+function setEntries(arr) {
+  localStorage.setItem(KEY, JSON.stringify(arr));
+}
+
+function cycleDay() {
+  const start = new Date('2026-04-02T00:00:00-03:00');
+  return Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+}
+
+function salvar() {
+  const texto = document.getElementById('texto').value.trim();
+  if (!texto) return;
+  const entries = getEntries();
+  entries.unshift({
+    id: Date.now(),
+    tag: currentTag,
+    texto: texto,
+    ts: new Date().toISOString(),
+    dia: cycleDay()
+  });
+  setEntries(entries);
+  document.getElementById('texto').value = '';
+  render();
+}
+function limpar() { document.getElementById('texto').value = ''; }
+
+function apagar(id) {
+  const entries = getEntries().filter(e => e.id !== id);
+  setEntries(entries);
+  render();
+}
+
+function limparTudo() {
+  if (confirm('Apagar TODAS as entradas do diário? Essa ação não tem volta.')) {
+    localStorage.removeItem(KEY);
+    render();
+  }
+}
+
+function render() {
+  const entries = getEntries();
+  const container = document.getElementById('entries');
+  if (!entries.length) {
+    container.innerHTML = '<div class="vazio">O diário está vazio.<br>Primeiro registro acima.</div>';
+  } else {
+    container.innerHTML = entries.map(e => {
+      const d = new Date(e.ts);
+      const diasSem = ['dom','seg','ter','qua','qui','sex','sáb'];
+      const mesesAbrev = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      const horaMin = d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+      const dataStr = diasSem[d.getDay()] + ' ' + d.getDate() + ' ' + mesesAbrev[d.getMonth()] + ' · ' + horaMin + ' · dia ' + (e.dia || '?');
+      return `
+        <div class="entry">
+          <div class="meta">
+            <div class="date">${dataStr}</div>
+            <div class="tag">${e.tag || 'livre'}</div>
+          </div>
+          <div class="body">${escapeHtml(e.texto)}</div>
+          <button class="del" onclick="apagar(${e.id})">apagar</button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Stats
+  const total = entries.length;
+  const porTag = {};
+  entries.forEach(e => { porTag[e.tag] = (porTag[e.tag]||0)+1; });
+  const tagsList = Object.entries(porTag).map(([k,v]) => k + ':' + v).join(' · ');
+  document.getElementById('stats').textContent = total ? (total + ' entradas · ' + tagsList) : '';
+}
+
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function exportar() {
+  const entries = getEntries();
+  if (!entries.length) return alert('Diário vazio.');
+  const md = '# NEXUS · Diário\n\n' +
+    '**Exportado:** ' + new Date().toLocaleString('pt-BR') + '\n' +
+    '**Total de entradas:** ' + entries.length + '\n\n---\n\n' +
+    entries.map(e => {
+      const d = new Date(e.ts);
+      return '## ' + d.toLocaleDateString('pt-BR') + ' · ' + d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}) + ' · §' + (e.tag||'livre') + '\n\n' +
+        '*dia ' + (e.dia||'?') + '/272*\n\n' +
+        e.texto + '\n\n---\n\n';
+    }).join('');
+  const blob = new Blob([md], {type:'text/markdown'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'nexus-diario-' + new Date().toISOString().slice(0,10) + '.md';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); document.body.removeChild(a); }, 100);
+}
+
+async function compartilhar() {
+  const entries = getEntries();
+  if (!entries.length) return alert('Diário vazio.');
+  const texto = entries.slice(0, 10).map(e => {
+    const d = new Date(e.ts);
+    return '§ ' + (e.tag||'livre') + ' · ' + d.toLocaleDateString('pt-BR') + '\n' + e.texto;
+  }).join('\n\n---\n\n');
+  const title = 'NEXUS · Diário (' + entries.length + ' entradas)';
+  if (navigator.share) {
+    try { await navigator.share({ title: title, text: texto }); } catch (e) {}
+  } else {
+    try { await navigator.clipboard.writeText(texto); alert('Copiado!'); } catch (e) {}
+  }
+}
+
+// Tag selector
+document.querySelectorAll('.tag-btn').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.tag-btn').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    currentTag = b.dataset.tag;
+  };
+});
+
+render();
+</script>
+</body>
+</html>

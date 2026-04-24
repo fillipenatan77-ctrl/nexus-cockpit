@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Busca no Acervo</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 18px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .search-box{margin:20px 0 16px;position:relative}
+  .search-box input{width:100%;padding:18px 54px 18px 20px;background:rgba(184,147,90,0.06);border:1px solid var(--gold-soft);border-radius:14px;color:var(--bone);font-family:Georgia,serif;font-size:17px;outline:none;-webkit-appearance:none}
+  .search-box input::placeholder{color:var(--gold);opacity:0.55;font-style:italic}
+  .search-box input:focus{border-color:var(--gold);background:rgba(184,147,90,0.10)}
+  .search-box button{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:var(--gold);color:var(--ink);border:none;padding:10px 14px;border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.1em;cursor:pointer;font-weight:700}
+
+  .info{margin-bottom:14px;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.7;letter-spacing:0.15em;text-align:center}
+  .info .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);vertical-align:middle;margin-right:6px;box-shadow:0 0 10px var(--gold)}
+
+  .suggest{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+  .suggest .chip{padding:5px 11px;border:1px solid var(--gold-faint);border-radius:999px;font-family:Georgia,serif;font-size:12px;color:var(--bone);opacity:0.75;cursor:pointer;font-style:italic}
+  .suggest .chip:active{background:var(--gold);color:var(--ink);opacity:1}
+
+  .resultado{margin-top:18px;padding:20px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03)}
+  .resultado .eyebrow-r{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+  .resultado .answer{font-family:Georgia,serif;font-size:16px;line-height:1.6;color:var(--bone)}
+  .resultado .answer p{margin-bottom:10px}
+  .resultado .sources{margin-top:18px;padding-top:14px;border-top:1px solid var(--gold-faint)}
+  .resultado .sources .tit{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:8px}
+  .resultado .sources ul{list-style:none}
+  .resultado .sources li{padding:4px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.75;line-height:1.4}
+  .resultado .sources li::before{content:'§  ';color:var(--gold);opacity:0.7}
+
+  .loading{text-align:center;padding:40px 20px;color:var(--bone);opacity:0.7;font-family:Georgia,serif;font-style:italic}
+  .loading .spinner{display:inline-block;width:32px;height:32px;border:2px solid var(--gold-faint);border-top-color:var(--gold);border-radius:50%;animation:spin 0.8s linear infinite;margin-bottom:12px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .erro{padding:16px;background:rgba(184,147,90,0.05);border:1px solid var(--gold-soft);border-radius:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;font-style:italic}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+
+  .history{margin-top:28px}
+  .history h3{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;opacity:0.75}
+  .history ul{list-style:none}
+  .history li{padding:8px 12px;margin-bottom:6px;background:rgba(184,147,90,0.03);border:1px solid var(--gold-faint);border-radius:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .history li:active{background:rgba(184,147,90,0.1)}
+  .history li .q{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .history li .x{background:none;border:none;color:var(--gold);opacity:0.55;cursor:pointer;font-size:14px;padding:4px 8px}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./busca.html" class="current">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ busca no acervo · RAG local</div>
+    <h1>Buscar</h1>
+    <div class="sublead">Pergunte em linguagem natural · o NEXUS busca nos 9500+ chunks do acervo e responde citando as fontes.</div>
+  </header>
+
+  <div class="info"><span class="dot" id="status-dot"></span><span id="status-txt">conectando…</span></div>
+
+  <div class="search-box">
+    <input type="search" id="q" placeholder="o que Freud diz sobre o inconsciente?" autocomplete="off" enterkeyhint="search">
+    <button onclick="doSearch()">›</button>
+  </div>
+
+  <div class="suggest" id="suggest">
+    <span class="chip" onclick="setQ('o que Freud diz sobre o inconsciente?')">Freud · inconsciente</span>
+    <span class="chip" onclick="setQ('como Lacan define o desejo?')">Lacan · desejo</span>
+    <span class="chip" onclick="setQ('explique o marcador somático de Damásio')">Damásio · marcador somático</span>
+    <span class="chip" onclick="setQ('Sistema 1 e Sistema 2 de Kahneman')">Kahneman · S1/S2</span>
+    <span class="chip" onclick="setQ('os 7 princípios de Cialdini')">Cialdini · 7 princípios</span>
+    <span class="chip" onclick="setQ('o que é uma conversa difícil?')">conversa difícil</span>
+    <span class="chip" onclick="setQ('calibração em PNL')">PNL · calibração</span>
+    <span class="chip" onclick="setQ('arte da memória de Yates')">Yates · memória</span>
+  </div>
+
+  <div id="resultado"></div>
+
+  <div class="history" id="history-box" style="display:none">
+    <h3>§ buscas recentes</h3>
+    <ul id="history"></ul>
+  </div>
+
+  <footer>NEXUS v15.N · busca no acervo via RAG</footer>
+</div>
+
+<script>
+const RAG_URL = 'https://broader-hang-alto-subcommittee.trycloudflare.com';
+const HIST_KEY = 'nexus_busca_hist';
+
+async function checkStatus() {
+  try {
+    const r = await fetch(RAG_URL + '/health', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.ok) {
+      document.getElementById('status-txt').textContent = 'RAG ativo · ' + d.chroma_docs + ' chunks';
+      document.getElementById('status-dot').style.background = '#B8935A';
+    } else throw new Error();
+  } catch (e) {
+    document.getElementById('status-txt').textContent = 'RAG offline · servidor indisponível';
+    document.getElementById('status-dot').style.background = '#666';
+  }
+}
+
+function setQ(q) {
+  document.getElementById('q').value = q;
+  doSearch();
+}
+
+async function doSearch() {
+  const q = document.getElementById('q').value.trim();
+  if (!q) return;
+  const res = document.getElementById('resultado');
+  res.innerHTML = '<div class="loading"><div class="spinner"></div><br>procurando no acervo · gerando síntese…<br><small style="opacity:0.6">pode levar 20-60s · qwen2.5 local</small></div>';
+
+  try {
+    const ctrl = new AbortController();
+    const to = setTimeout(() => ctrl.abort(), 180000);
+    const r = await fetch(RAG_URL + '/ask', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ q: q, top_k: 5 }),
+      signal: ctrl.signal
+    });
+    clearTimeout(to);
+    if (!r.ok) {
+      if (r.status === 404) {
+        res.innerHTML = '<div class="erro">Acervo ainda sem chunks relevantes. Rodar ingest primeiro ou reformular a pergunta.</div>';
+        return;
+      }
+      throw new Error('HTTP ' + r.status);
+    }
+    const d = await r.json();
+    render(q, d);
+    addHist(q);
+  } catch (e) {
+    if (e.name === 'AbortError') {
+      res.innerHTML = '<div class="erro">A resposta demorou mais de 3min — provavelmente o modelo local está ocupado. Tenta de novo em alguns segundos.</div>';
+    } else {
+      res.innerHTML = '<div class="erro">Erro: ' + e.message + '. Se o tunnel caiu, aguarda uns minutos (auto-restart 30min).</div>';
+    }
+  }
+}
+
+function render(q, d) {
+  const srcsHtml = (d.sources || []).map(s => `<li>${escapeHtml(s.source)} · chunk ${s.chunk_idx}</li>`).join('');
+  const paras = (d.answer || '').split(/\n\n+/).map(p => '<p>' + escapeHtml(p) + '</p>').join('');
+  document.getElementById('resultado').innerHTML = `
+    <div class="resultado">
+      <div class="eyebrow-r"><span>§ síntese NEXUS</span><span>${d.ms}ms · ${d.model}</span></div>
+      <div class="answer">${paras}</div>
+      <div class="sources">
+        <div class="tit">fontes do acervo (${(d.sources||[]).length})</div>
+        <ul>${srcsHtml}</ul>
+      </div>
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function addHist(q) {
+  let h = [];
+  try { h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch {}
+  h = h.filter(x => x !== q);
+  h.unshift(q);
+  h = h.slice(0, 8);
+  localStorage.setItem(HIST_KEY, JSON.stringify(h));
+  renderHist();
+}
+function renderHist() {
+  let h = [];
+  try { h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch {}
+  const box = document.getElementById('history-box');
+  const ul = document.getElementById('history');
+  if (!h.length) { box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  ul.innerHTML = h.map((q,i) => `<li><span class="q" onclick="setQ('${escapeJs(q)}')">${escapeHtml(q)}</span><button class="x" onclick="delHist(${i})">×</button></li>`).join('');
+}
+function escapeJs(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+function delHist(i) {
+  let h = [];
+  try { h = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); } catch {}
+  h.splice(i, 1);
+  localStorage.setItem(HIST_KEY, JSON.stringify(h));
+  renderHist();
+}
+
+document.getElementById('q').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { e.preventDefault(); doSearch(); }
+});
+
+checkStatus();
+renderHist();
+</script>
+</body>
+</html>
