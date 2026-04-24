@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Primeira Semana</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.78;font-style:italic;line-height:1.55}
+
+  .intro{margin:18px 0;padding:16px 20px;border:1px solid var(--gold);border-radius:14px;background:rgba(184,147,90,0.06);font-family:Georgia,serif;font-size:14px;color:var(--bone);line-height:1.55}
+  .intro strong{color:var(--gold)}
+
+  .dia{margin:20px 0;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:22px;position:relative;overflow:hidden}
+  .dia .n{position:absolute;top:0;right:0;font-family:Georgia,serif;font-size:88px;color:var(--gold);opacity:0.08;line-height:1;padding:12px 20px;font-style:italic}
+  .dia .head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .dia .head .dia-nome{font-family:Georgia,serif;font-size:22px;color:var(--bone);font-weight:500;letter-spacing:0.02em}
+  .dia .head .lente{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+  .dia .head .glifo{font-family:Georgia,serif;font-size:28px;color:var(--gold);opacity:0.8;font-style:italic;line-height:1}
+
+  .bloco-teste{margin-top:14px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(184,147,90,0.05);border-radius:0 10px 10px 0}
+  .bloco-teste .label{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+  .bloco-teste .txt{font-family:Georgia,serif;font-size:15px;color:var(--bone);line-height:1.6}
+  .bloco-teste .cmd{display:inline-block;background:var(--gold);color:var(--ink);font-family:'SF Mono',monospace;font-size:12px;padding:3px 10px;border-radius:4px;font-weight:700;margin:2px}
+  .bloco-teste .prompt{margin-top:8px;padding:12px 14px;background:var(--ink-soft);border:1px dashed var(--gold-soft);border-radius:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);font-style:italic;opacity:0.92;line-height:1.55}
+
+  .esperado{margin-top:12px;padding:10px 14px;border:1px solid var(--gold-faint);border-radius:8px;background:rgba(184,147,90,0.02);font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.78;line-height:1.55}
+  .esperado strong{color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+
+  .tempo{display:inline-block;padding:2px 10px;border-radius:999px;background:rgba(184,147,90,0.1);font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:8px}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+
+  .fim-card{margin-top:24px;padding:20px 22px;border:2px solid var(--gold);border-radius:14px;background:linear-gradient(135deg, rgba(184,147,90,0.1) 0%, rgba(15,14,23,0.8) 100%);text-align:center}
+  .fim-card h3{font-family:Georgia,serif;font-size:20px;color:var(--bone);margin-bottom:10px}
+  .fim-card p{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./coaching.html">coaching</a>
+    <a href="./primeira-semana.html" class="current">primeira semana</a>
+    <a href="./iphone-setup.html">iphone</a>
+    <a href="./system-prompt.html">prompt v5</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./recomendacoes.html">recomendações</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ roteiro de 7 dias</div>
+    <h1>Primeira Semana</h1>
+    <div class="sublead">Depois de colar o v5, use este roteiro. 1 teste por dia alinhado com a lente canônica. Em 7 dias você terá experimentado os comandos centrais e formado hábito.</div>
+  </header>
+
+  <div class="intro">
+    <strong>Como usar:</strong> cada dia tem <strong>1 teste principal</strong> (essencial), <strong>1 comando v5</strong> (explora uma função) e <strong>1 observação esperada</strong> (para você calibrar se o Cortex está operando bem). Faça no iPhone, por voz ou texto. Total: 10-20 min por dia.
+  </div>
+
+  <!-- DOMINGO -->
+  <div class="dia">
+    <div class="n">1</div>
+    <div class="head">
+      <span class="glifo">◈</span>
+      <span class="dia-nome">Domingo</span>
+      <span class="lente">§ lente síntese</span>
+    </div>
+
+    <div class="tempo">~15 min · tarde ou noite</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Peça ao Cortex uma <strong>visão geral do momento atual do ciclo PRIMORDIA</strong> + o que pode ser integrado da semana anterior.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/revisao</span> · varredura proativa das últimas conversas</div>
+      <div class="prompt">"Cortex, faz uma /revisao das nossas últimas conversas. Quais 3 padrões emergiram? E 1 pergunta que ficou aberta?"</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Resposta em 3 observações + 1 pergunta. Cada observação deve citar conversa específica. Se vier genérico, reforce: "quero específico · cite situação concreta".
+    </div>
+  </div>
+
+  <!-- SEGUNDA -->
+  <div class="dia">
+    <div class="n">2</div>
+    <div class="head">
+      <span class="glifo">♛</span>
+      <span class="dia-nome">Segunda</span>
+      <span class="lente">§ lente liderança</span>
+    </div>
+
+    <div class="tempo">~10 min · carro ou caminhada</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Descreva <strong>1 situação institucional real</strong> desta semana que exige leitura estratégica.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/mapa</span> (se é sobre pessoa específica) ou <span class="cmd">/grade10</span> (se é situação complexa)</div>
+      <div class="prompt">"Situação real: [descreve em 3-4 frases]. Aplica /mapa sobre [nome/iniciais] · ou /grade10 se fizer mais sentido."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Resposta estruturada nos 8 ou 10 pontos (conforme o comando). Cortex deve citar Sun Tzu, Greene ou Cialdini ao menos 1 vez. Formulação em 3 versões (curta/elegante/firme) no ponto 9 se for Grade 10.
+    </div>
+  </div>
+
+  <!-- TERÇA -->
+  <div class="dia">
+    <div class="n">3</div>
+    <div class="head">
+      <span class="glifo">⊛</span>
+      <span class="dia-nome">Terça</span>
+      <span class="lente">§ lente PNL</span>
+    </div>
+
+    <div class="tempo">~10 min · qualquer momento</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Pegue <strong>uma formulação escrita sua recente</strong> (email, mensagem, relatório) · peça refinamento.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/corrige</span> · devolve 3 versões + explicação</div>
+      <div class="prompt">"/corrige esta frase: [cola ou fala a frase]. Quero saber o que está frouxo e como fica mais firme."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      3 versões devolvidas (curta · elegante · firme) + diagnóstico do que mudou em cada. Deve apontar padrões de linguagem (nominalizações, atenuadores, verbos fracos) baseado em Bandler/Grinder ou Erickson.
+    </div>
+  </div>
+
+  <!-- QUARTA -->
+  <div class="dia">
+    <div class="n">4</div>
+    <div class="head">
+      <span class="glifo">✢</span>
+      <span class="dia-nome">Quarta</span>
+      <span class="lente">§ lente estoica</span>
+    </div>
+
+    <div class="tempo">~15 min · manhã preferencialmente</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Identifique <strong>1 situação que te incomoda esta semana</strong> e teste a dicotomia do controle estoica.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/cruzamento</span> · síntese de 3 autores sobre o tema</div>
+      <div class="prompt">"Cortex, tenho [situação]. Faz um /cruzamento entre Epicteto, Sêneca e Aurélio sobre: o que depende de mim, o que não depende, e o que fazer com essa distinção agora."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Síntese densa em 150-250 palavras integrando os 3 estoicos. Cada um citado uma vez com aplicação específica ao seu caso. Deve terminar com 1 exercício para as próximas 24h.
+    </div>
+  </div>
+
+  <!-- QUINTA -->
+  <div class="dia">
+    <div class="n">5</div>
+    <div class="head">
+      <span class="glifo">§</span>
+      <span class="dia-nome">Quinta</span>
+      <span class="lente">§ lente psicanálise</span>
+    </div>
+
+    <div class="tempo">~20 min · noite · reflexivo</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Traga <strong>um padrão recorrente seu</strong> que te custa caro mas você ainda não quebrou.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/espelho</span> · Cortex devolve padrões observados</div>
+      <div class="prompt">"Cortex, tenho notado que repito [padrão] em situações do tipo [contexto]. Faz um /espelho · me devolve o que você nota nos nossos diálogos sobre isso + qual ganho silencioso esse padrão pode me dar, à luz de Freud ou Ferenczi."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Reflexão em 200-300 palavras. Cita Freud (compulsão à repetição) ou Lacan (sinthoma) ou Ferenczi (contratransferência). Devolve o padrão SEM julgamento moralista. Pergunta final reflexiva, não diretiva.
+    </div>
+  </div>
+
+  <!-- SEXTA -->
+  <div class="dia">
+    <div class="n">6</div>
+    <div class="head">
+      <span class="glifo">❦</span>
+      <span class="dia-nome">Sexta</span>
+      <span class="lente">§ lente memorização</span>
+    </div>
+
+    <div class="tempo">~15 min · antes de dormir</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt">Pegue <strong>1 conceito novo</strong> que apareceu nas conversas desta semana e ancore no Palácio.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/treino</span> · monta 7 dias de exercícios</div>
+      <div class="prompt">"Cortex, o conceito [nome] apareceu muito esta semana. Monta um /treino de 7 dias pra ancorar no Palácio · 1 exercício por dia · com imagem vívida e lugar. Sugere em qual das 18 estações colocar."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Lista numerada 1-7 dias. Cada dia 1 exercício de 3-5 minutos. Referência a Yates (loci) ou O'Brien (imagem improvável). Sugestão específica de estação do Palácio (ex: "Bússola Inversa · dia 10/272") alinhada ao conceito.
+    </div>
+  </div>
+
+  <!-- SÁBADO -->
+  <div class="dia">
+    <div class="n">7</div>
+    <div class="head">
+      <span class="glifo">♛</span>
+      <span class="dia-nome">Sábado</span>
+      <span class="lente">§ lente motivacional</span>
+    </div>
+
+    <div class="tempo">~20 min · fim de tarde</div>
+
+    <div class="bloco-teste">
+      <div class="label">§ teste do dia</div>
+      <div class="txt"><strong>Teste do modo voz.</strong> Ative o modo voz e tenha conversa de 15 min sobre sua semana · sem digitar.</div>
+    </div>
+
+    <div class="bloco-teste">
+      <div class="label">§ comando</div>
+      <div class="txt"><span class="cmd">/insight</span> · parágrafo denso · 2+ autores divergentes</div>
+      <div class="prompt">"Cortex, conversa por voz agora. Quero um /insight sobre o momento desta semana · cruzando Shakespeare com 1 autor estoico · aplicado ao que vivi. Pode falar comigo."</div>
+    </div>
+
+    <div class="esperado">
+      <strong>o que esperar</strong><br>
+      Resposta por áudio em 180-250 palavras. Estrutura oral (sem bullets), 1 exemplo concreto no meio, síntese em 1 frase final. Se a voz ficou clara, pt-BR preservado, você pode conversar dirigindo a partir de agora. Se houve falhas, reveja o item 6 do setup iPhone.
+    </div>
+  </div>
+
+  <!-- FIM -->
+  <div class="fim-card">
+    <h3>⟡ Após os 7 dias</h3>
+    <p>Você terá experimentado os 5 comandos novos do v5, conversado por voz, recebido análise em 8 camadas, ancorado conceitos no Palácio e identificado padrões próprios. A partir daí, o uso vira natural · você não precisa mais de roteiro.</p>
+    <p style="margin-top:10px;font-style:italic;opacity:0.85">A cada domingo: <strong>/revisao</strong> para consolidar a semana. É o único ritual fixo.</p>
+  </div>
+
+  <footer>NEXUS v15.Z · 7 dias de prática · pt-BR</footer>
+</div>
+</body>
+</html>
