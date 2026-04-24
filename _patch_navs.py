@@ -9,6 +9,7 @@ def build_nav(current):
     items = [
         ('./', '§ home', 'home'),
         ('./hoje.html', 'hoje', 'hoje'),
+        ('./leitura.html', 'leitura', 'leitura'),
         ('./fichas.html', 'fichas', 'fichas'),
         ('./busca.html', 'busca', 'busca'),
         ('./diario.html', 'diário', 'diario'),
@@ -34,6 +35,7 @@ def build_nav(current):
 CURRENT_MAP = {
     'index.html': 'home',
     'hoje.html': 'hoje',
+    'leitura.html': 'leitura',
     'fichas.html': 'fichas',
     'busca.html': 'busca',
     'diario.html': 'diario',

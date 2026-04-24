@@ -74,6 +74,7 @@
   <div class="nav">
     <a href="./">§ home</a>
     <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html">leitura</a>
     <a href="./fichas.html">fichas</a>
     <a href="./busca.html">busca</a>
     <a href="./diario.html">diário</a>
@@ -93,7 +94,7 @@
   <header>
     <div class="eyebrow">§ cards verticais</div>
     <h1>Galeria</h1>
-    <div class="sublead">24 cards SVG em 4 categorias · toque para expandir · compartilhe no WhatsApp ou salve na galeria.</div>
+    <div class="sublead">40 cards SVG em 4 categorias · toque para expandir · compartilhe no WhatsApp ou salve na galeria.</div>
   </header>
 
   <div class="filters">
@@ -107,7 +108,7 @@
   <div class="count" id="count"></div>
   <div class="grid" id="grid"></div>
 
-  <footer>NEXUS v15.L · cards canônicos</footer>
+  <footer>NEXUS v15.P · 40 cards canônicos</footer>
 </div>
 
 <!-- Modal -->
@@ -300,6 +301,111 @@ const CARDS = [
     obra:'De Oratore (c. 55 a.C.)',
     comentario:'Simônides no banquete inventou\no método de loci.\nFundamento da retórica clássica.',
     estacao:'memória' },
+
+  // ============ EXPANSÃO v15.P · +16 cards ============
+  // Citações extras (4)
+  { id:'c07', cat:'citacao', tag:'Sêneca', glifo:'♛',
+    texto:'Ninguém te tira tempo.\nVocê dá —\nfrequentemente\na quem nem pede.',
+    autor:'SÊNECA',
+    obra:'De Brevitate Vitae',
+    comentario:'A lista dos ladrões\ncomeça em você.',
+    estacao:'estoica' },
+  { id:'c08', cat:'citacao', tag:'Nietzsche', glifo:'♛',
+    texto:'O que não se faz\nconsciente manifesta-se\nem nossas vidas\ncomo destino.',
+    autor:'JUNG',
+    obra:'Obras Completas, 9.ii',
+    comentario:'Destino não é imposição —\né inconsciente agindo à revelia.',
+    estacao:'psicanálise' },
+  { id:'c09', cat:'citacao', tag:'Epicteto', glifo:'✢',
+    texto:'Temos dois ouvidos\ne uma boca\npara ouvir o dobro\ndo que falamos.',
+    autor:'ZENÃO DE CÍTIO',
+    obra:'fundador do estoicismo',
+    comentario:'2400 anos de antecedência\nsobre escuta ativa.',
+    estacao:'estoica' },
+  { id:'c10', cat:'citacao', tag:'Heráclito', glifo:'§',
+    texto:'Não se entra\nduas vezes\nno mesmo rio.',
+    autor:'HERÁCLITO',
+    obra:'Fragmento 12',
+    comentario:'Nem você é o mesmo,\nnem o rio é o mesmo.\nA arrogância é achar que sim.',
+    estacao:'filosofia' },
+
+  // Conceitos extras (4)
+  { id:'n09', cat:'conceito', tag:'Falso Self', glifo:'⊛',
+    texto:'Falso self protege.\nCusta caro.',
+    autor:'WINNICOTT',
+    obra:'O Brincar e a Realidade',
+    comentario:'A saída não é destruí-lo.\nÉ ampliar o espaço\ndo gesto espontâneo.',
+    estacao:'psicanálise' },
+  { id:'n10', cat:'conceito', tag:'Rapport', glifo:'⟶',
+    texto:'Matching + Looping.',
+    autor:'DUHIGG · BANDLER',
+    obra:'Supercommunicators 2024',
+    comentario:'Espelhe sutilmente postura + ritmo.\nAntes de replicar, resuma e pergunte\nse captou certo.',
+    estacao:'comunicação' },
+  { id:'n11', cat:'conceito', tag:'Sequestro Amigdaliano', glifo:'✦',
+    texto:'Sob estresse agudo,\na amígdala sequestra\no córtex.',
+    autor:'GOLEMAN · LEDOUX',
+    obra:'IE + Emotional Brain',
+    comentario:'Explica 95% dos\n"por que eu disse isso?!"\nNomear devolve o córtex online.',
+    estacao:'neurociência' },
+  { id:'n12', cat:'conceito', tag:'Segurança Psicológica', glifo:'◉',
+    texto:'Antes da performance:\nsegurança\npara trazer ideia\nmeia formada.',
+    autor:'AMY EDMONDSON',
+    obra:'The Fearless Organization',
+    comentario:'Sem isso você não tem time,\ntem formação protocolar.',
+    estacao:'julgamento' },
+
+  // Motivacionais extras (4)
+  { id:'m07', cat:'motivacional', tag:'Jung', glifo:'♛',
+    texto:'O que não se faz consciente\nmanifesta-se\ncomo destino.',
+    autor:'CARL JUNG',
+    obra:'Coletânea · individuação',
+    comentario:'Integrar a sombra\nnão é caridade consigo —\né autoria sobre o futuro.',
+    estacao:'psicanálise' },
+  { id:'m08', cat:'motivacional', tag:'Amor Fati', glifo:'✢',
+    texto:'Amor fati.\nAmar o destino.',
+    autor:'NIETZSCHE · AURÉLIO',
+    obra:'convergência estoica-dionisíaca',
+    comentario:'Se tudo que aconteceu foi necessário\npara você estar aqui agora,\no que você agradece inclusive\nao que doeu?',
+    estacao:'filosofia' },
+  { id:'m09', cat:'motivacional', tag:'Frankl', glifo:'§',
+    texto:'Entre o estímulo\ne a resposta\nhá um espaço.\nNesse espaço mora\nnosso poder de escolha.',
+    autor:'VIKTOR FRANKL',
+    obra:'Em Busca de Sentido',
+    comentario:'Campo de concentração.\nTestado nos limites.\nPassou.',
+    estacao:'motivacional' },
+  { id:'m10', cat:'motivacional', tag:'Aurélio · coisa certa', glifo:'♛',
+    texto:'Não desperdice o que resta\nde sua vida\nem pensamentos sobre os outros.',
+    autor:'MARCO AURÉLIO',
+    obra:'Meditações, III.4',
+    comentario:'Economia de atenção\ncomo disciplina estoica.\nPensar no outro roubado do si.',
+    estacao:'estoica' },
+
+  // Memorização extras (4)
+  { id:'y05', cat:'memoria', tag:'Simônides', glifo:'❦',
+    texto:'O banquete\ndesabou.\nSimônides reconheceu\nos mortos\npelos lugares.',
+    autor:'CÍCERO · cita Simônides',
+    obra:'De Oratore II',
+    comentario:'Mito fundador da arte\nda memória.\nLugar organiza o conteúdo.',
+    estacao:'memória' },
+  { id:'y06', cat:'memoria', tag:'Foer · prática', glifo:'✧',
+    texto:'A diferença entre\nmediano e extraordinário\nna memória\né prática deliberada.',
+    autor:'JOSHUA FOER',
+    obra:'Moonwalking with Einstein',
+    comentario:'Ensaísta mediano virou\ncampeão em 1 ano.\nNinguém nasce com Palácio pronto.',
+    estacao:'memória' },
+  { id:'y07', cat:'memoria', tag:'18 Estações', glifo:'◈',
+    texto:'PRIMORDIA.\n272 dias.\n18 estações.\n~15 dias cada.',
+    autor:'NEXUS · ciclo canônico',
+    obra:'Palácio das Estações',
+    comentario:'Início 2026-04-02 · fim 2026-12-29.\nO Palácio organiza o ciclo —\no ciclo dá tempo ao Palácio.',
+    estacao:'memória' },
+  { id:'y08', cat:'memoria', tag:'Ars Memoriae', glifo:'❦',
+    texto:'Imagem vívida\n+ lugar conhecido\n= memória que fica.',
+    autor:'Tradição clássica',
+    obra:'Cícero → Yates → O\'Brien',
+    comentario:'Não é truque medieval.\nÉ fisiologia do hipocampo\nusando arquitetura.',
+    estacao:'memória' },
 ];
 
 // ====================================================
@@ -481,31 +587,4 @@ async function compartilhar() {
       canvas.toBlob(async (blob) => {
         const file = new File([blob], 'nexus-' + currentCard.id + '.png', { type: 'image/png' });
         try {
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({ title: title, text: text, files: [file] });
-          } else if (navigator.share) {
-            await navigator.share({ title: title, text: text });
-          } else {
-            await navigator.clipboard.writeText(text);
-            alert('Copiado pra área de transferência');
-          }
-        } catch (e) { /* user cancelled */ }
-        URL.revokeObjectURL(svgUrl);
-      }, 'image/png');
-    };
-    img.src = svgUrl;
-  } catch (e) {
-    if (navigator.share) {
-      try { await navigator.share({ title: title, text: text }); } catch (er) {}
-    } else {
-      await navigator.clipboard.writeText(text);
-      alert('Copiado pra área de transferência');
-    }
-  }
-}
-
-// Inicializar
-renderGrid();
-</script>
-</body>
-</html>
+          if (navigator.canShare

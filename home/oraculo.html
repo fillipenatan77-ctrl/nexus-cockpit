@@ -64,6 +64,7 @@
   <div class="nav">
     <a href="./">§ home</a>
     <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html">leitura</a>
     <a href="./fichas.html">fichas</a>
     <a href="./busca.html">busca</a>
     <a href="./diario.html">diário</a>
@@ -123,6 +124,33 @@ const PERGUNTAS = [
   { q: 'Se hoje fosse o último dia antes de uma pausa de 30 dias, o que você FECHARIA antes?', r: 'Fechamento voluntário · treino de discernimento.', tag: 'estoica' },
   { q: 'Quem, na sua semana, operou por trás da cortina e influenciou resultado sem aparecer?', r: 'Mapa de influência começa por quem você não notou.', tag: 'poder' },
   { q: 'Qual elogio que você recebeu ultimamente você não acreditou — e por quê?', r: 'O que você recusa ouvir sobre si é pista do que falta reconhecer.', tag: 'IE' },
+  // ============ Expansão v15.P · +26 ============
+  { q: 'Se você tivesse que explicar sua decisão mais importante do mês para alguém estranho, que argumento você usaria? E qual você esconde de si mesmo?', r: 'A narrativa pública e a íntima raramente coincidem. A diferença é onde mora o que ainda não foi integrado.', tag: 'psicanálise' },
+  { q: 'Qual conversa da última semana terminou antes de terminar de verdade? O que ficou por dizer?', r: 'O não-dito opera como se tivesse sido dito — só que mal. Reabrir não é franqueza; é higiene.', tag: 'comunicação' },
+  { q: 'O que você protege com sua agenda cheia?', r: 'Agenda é anteparo. Pergunta não é "como ter mais tempo" — é "o que o não-tempo me poupa de enfrentar?"', tag: 'estoica' },
+  { q: 'Em qual contexto recente você se sentiu mais você mesmo? Em qual se sentiu mais personagem?', r: 'A distância entre os dois é diagnóstico. Trabalho sustentável acontece no primeiro, não no segundo.', tag: 'presença' },
+  { q: 'Qual conselho você dá aos outros e não segue?', r: 'Quase sempre é o conselho que mais precisaria ouvir de volta. Dar serve à própria ausência de coragem.', tag: 'IE' },
+  { q: 'Qual pessoa, nas últimas 48h, te fez mudar de opinião sobre algo importante? Se nenhuma — você está lendo vozes muito parecidas com a sua.', r: 'Bolha é confortável e pobre. Discordância qualificada é o combustível raro.', tag: 'julgamento' },
+  { q: 'O que você vem lendo/ouvindo que não tem coragem de citar em voz alta?', r: 'O que você consome em segredo é mais verdadeiro sobre seus interesses do que o que compartilha. Reconhecer.', tag: 'presença' },
+  { q: 'Qual relação importante sua tem muito "sim" e pouco "e agora?"', r: 'Concordância ilimitada é sinal de lugar vazio esperando o primeiro "não" pra virar tensão. Introduzir fricção antes.', tag: 'comunicação' },
+  { q: 'Qual coisa você não faz porque ainda espera autorização que nunca vai vir?', r: 'A autorização que você espera já é sua — só não foi reconhecida. O outro raramente a concederá; você precisa tomá-la.', tag: 'poder' },
+  { q: 'Qual erro recente você ainda está processando? O que vai permitir encerrar?', r: 'Erro não digerido volta a aparecer em outra roupagem. Encerrar pede 3 passos: reconhecer + nomear a lição + arquivar.', tag: 'julgamento' },
+  { q: 'Qual sua hipótese mais confortável sobre alguém que te incomoda — e qual seria a hipótese mais generosa?', r: 'A hipótese confortável geralmente é preguiçosa. A generosa exige trabalho e protege a leitura.', tag: 'IE' },
+  { q: 'Qual livro do seu acervo você abriu e fechou sem ler, 3 vezes?', r: 'Provavelmente é o mais necessário agora. A resistência a ele é sinal, não julgamento da qualidade.', tag: 'NEXUS' },
+  { q: 'Em qual ambiente você baixa a voz sem perceber? Por quê?', r: 'Baixar a voz é retração corporal diante de autoridade percebida — real ou herdada. Mapear é primeiro passo para soltar.', tag: 'presença' },
+  { q: 'Qual decisão você vem adiando porque não tem a garantia de estar certo?', r: 'Decisão garantida não é decisão — é execução. Decidir na incerteza é o único tipo real. Kierkegaard sabia.', tag: 'filosofia' },
+  { q: 'Qual medo seu é antigo? Qual é presente? Qual é futuro imaginado?', r: 'Os três operam juntos e pesam como se fossem um. Separar alivia 40%.', tag: 'neurociência' },
+  { q: 'Qual foi a última vez que você mudou de opinião de verdade — e não só por cortesia?', r: 'Se está demorando pra lembrar, você tem um problema de rigidez cognitiva disfarçada de coerência.', tag: 'julgamento' },
+  { q: 'Qual conversa você vem ensaiando mentalmente? O ensaio já foi mais longo que a conversa real seria?', r: 'Ensaio infinito é forma sofisticada de evitação. Marca data e age.', tag: 'comunicação' },
+  { q: 'Qual seu ritual de fechamento do dia? Se não há, o dia não fecha — só acumula.', r: 'Ritual curto é melhor que ausência. 2 linhas no diário + 3 respirações + água. Barato e estruturante.', tag: 'estoica' },
+  { q: 'O que você vem dizendo "vou fazer" há mais de 30 dias e ainda não fez?', r: 'A frase ainda não foi promessa real — é expressão de intenção. Virar promessa exige data, testemunha e consequência.', tag: 'NEXUS' },
+  { q: 'Qual situação atual sua já aconteceu antes? Em que ano? Com quem? O que você sabe agora que não sabia lá?', r: 'Repetição não é azar — é padrão. Reconhecê-lo abre a saída que não existia antes.', tag: 'psicanálise' },
+  { q: 'Qual gesto seu — físico, verbal, postura — você herdou sem escolher?', r: 'Herança inconsciente vira personagem. Notar é o primeiro ato de autoria sobre o próprio corpo.', tag: 'presença' },
+  { q: 'Qual pergunta você faz aos outros que você nunca fez a si mesmo?', r: 'Quem pergunta o que não se pergunta está usando a pergunta como defesa. Inverter.', tag: 'IE' },
+  { q: 'Qual padrão de autoridade seu é legítimo? Qual é herdado de quem você não escolheu?', r: 'Autoridade herdada sem crítica reproduz quem a delegou. Autoridade autoral exige reescrever os termos.', tag: 'poder' },
+  { q: 'O que você sabe que seu colega/aliado não está dizendo — e não pergunta porque seria inconveniente?', r: 'O não-dito institucional é quase sempre o que define o jogo. Perguntar desconforta, mas protege.', tag: 'poder' },
+  { q: 'Qual conceito/palavra você usa sem saber bem o que significa? Vale fichar antes da próxima vez que ele aparecer.', r: 'Linguagem difusa = pensamento difuso. Um termo por semana é maratona reescrita.', tag: 'NEXUS' },
+  { q: 'Qual imagem da sua infância/adolescência voltou recentemente? Por que agora?', r: 'Retorno tem contexto — algo presente está ativando. A imagem não é nostalgia; é chave.', tag: 'psicanálise' },
 ];
 
 const EXEC = 'https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec';
@@ -138,24 +166,4 @@ function loadPergunta() {
     const p = PERGUNTAS[Math.floor(Math.random() * PERGUNTAS.length)];
     pergEl.textContent = p.q;
     rodEl.textContent = p.r;
-    metaEl.textContent = 'NEXUS · lente ' + p.tag + ' · ' + PERGUNTAS.length + ' perguntas no banco';
-    pergEl.style.opacity = '1';
-  }, 220);
-}
-
-// Carrega cicle info no sublead
-async function loadContexto() {
-  try {
-    const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
-    const d = await r.json();
-    if (d.ok) {
-      document.getElementById('sublead').textContent = 'dia ' + d.cycle.day + '/272 · lente ' + d.cycle.lente + ' · estação ' + d.cycle.estacao;
-    }
-  } catch (e) {}
-}
-
-loadPergunta();
-loadContexto();
-</script>
-</body>
-</html>
+    me

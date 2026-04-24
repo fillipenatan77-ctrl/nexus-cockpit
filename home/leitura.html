@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Leitura do Dia</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 10px;text-align:center}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .date-line{margin-top:10px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.7;font-style:italic}
+
+  .lente-pill{display:inline-block;margin-top:14px;padding:7px 16px;border:1px solid var(--gold);border-radius:999px;background:rgba(184,147,90,0.08);font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase}
+
+  .bloco{margin-top:22px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:22px}
+  .bloco .rotulo{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+  .bloco .rotulo .glif{font-family:Georgia,serif;font-size:18px;font-style:italic;letter-spacing:0;opacity:0.85}
+  .bloco h2{font-family:Georgia,serif;font-size:26px;font-weight:400;letter-spacing:0.02em;line-height:1.2}
+  .bloco .sub{margin-top:4px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.65;font-style:italic}
+  .bloco .corpo{margin-top:14px;font-family:Georgia,serif;font-size:16px;color:var(--bone);opacity:0.88;line-height:1.6}
+  .bloco .citacao{margin-top:18px;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(184,147,90,0.05);font-family:Georgia,serif;font-size:17px;font-style:italic;line-height:1.55;color:var(--bone)}
+  .bloco .citacao .fonte{display:block;margin-top:8px;font-style:normal;font-size:12px;color:var(--gold);opacity:0.8;font-family:'SF Mono',monospace;letter-spacing:0.1em}
+  .bloco .aplicacao{margin-top:18px;padding-top:16px;border-top:1px solid var(--gold-faint);font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.82;line-height:1.55;font-style:italic}
+  .bloco .aplicacao strong{color:var(--gold);font-style:normal;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;display:block;margin-bottom:6px}
+
+  .semana-strip{margin-top:22px;display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .semana-strip .day{padding:8px 4px;text-align:center;border:1px solid var(--gold-faint);border-radius:8px;font-family:'SF Mono',monospace;font-size:10px;color:var(--bone);opacity:0.5;cursor:pointer}
+  .semana-strip .day.today{background:var(--gold);color:var(--ink);border-color:var(--gold);opacity:1;font-weight:700}
+  .semana-strip .day .n{display:block;font-family:Georgia,serif;font-size:13px;margin-top:2px}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html" class="current">leitura</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ leitura do dia</div>
+    <h1 id="greeting">Leitura</h1>
+    <div class="date-line" id="date-line">—</div>
+    <div class="lente-pill" id="lente-pill">—</div>
+  </header>
+
+  <div class="semana-strip" id="semana"></div>
+
+  <div id="content"></div>
+
+  <footer>NEXUS v15.P · leitura orientada por lente do dia</footer>
+</div>
+
+<script>
+// 7 lentes · cada dia da semana tem uma obra focal + citação-guia + aplicação
+const LEITURAS = {
+  0: { // domingo
+    lente: 'Síntese',
+    icon: '◈',
+    obra: 'Montaigne · Ensaios · "Sobre a Experiência" (III.13)',
+    autorTit: 'Michel de Montaigne',
+    contexto: 'O ensaio final do terceiro livro é a síntese da obra inteira de Montaigne. Antes de morrer, ele ensina a ler a própria vida como fonte de saber.',
+    citacao: '"Cada homem carrega em si a forma inteira da condição humana."',
+    fonte: 'Ensaios, III.2 (Do Arrependimento)',
+    aplicacao: 'Domingo é fechamento · abertura. Pergunta: o que esta semana me ensinou sobre mim que vale registrar antes de entrar na próxima?'
+  },
+  1: { // segunda
+    lente: 'Liderança',
+    icon: '♛',
+    obra: 'Sun Tzu · Arte da Guerra · caps. 1 e 3',
+    autorTit: 'Sun Tzu + Jung (dupla canônica)',
+    contexto: 'Jung disse que o líder precisa integrar a sombra. Sun Tzu disse que a suprema arte é vencer sem lutar. Segunda de semana operacional começa integrando os dois.',
+    citacao: '"A suprema arte da guerra é subjugar o inimigo sem lutar."',
+    fonte: 'Sun Tzu, Arte da Guerra, III',
+    aplicacao: 'Mapear 1 batalha desta semana que pode ser vencida por reposicionamento — não por confronto direto. Onde a escolha é não entrar em combate?'
+  },
+  2: { // terça
+    lente: 'PNL',
+    icon: '⊛',
+    obra: 'Bandler/Grinder · Estrutura da Magia I · metamodelo',
+    autorTit: 'Bandler & Grinder · Erickson',
+    contexto: 'Terça da semana é dia de calibração técnica. Metamodelo = 12 padrões linguísticos que revelam mapa mental do outro. Ouvir com precisão cirúrgica.',
+    citacao: '"O mapa não é o território. Mas ele é o que o cliente tem."',
+    fonte: 'Estrutura da Magia I',
+    aplicacao: 'Próxima conversa densa: ouça procurando generalizações ("nunca", "sempre"), distorções ("deve", "precisa") e nominalizações (substantivo que esconde verbo). Pergunte pela exceção.'
+  },
+  3: { // quarta
+    lente: 'Estoica',
+    icon: '✢',
+    obra: 'Marco Aurélio · Meditações · Livro II',
+    autorTit: 'Marco Aurélio + Epicteto + Sêneca',
+    contexto: 'Meio da semana. Momento de recentrar. Livro II das Meditações foi escrito em acampamento militar na fronteira do Danúbio — 12 aforismos curtos sobre autodomínio.',
+    citacao: '"Ao amanhecer, quando tiveres dificuldade em te levantar, tem esse pensamento à mão: estou levantando para fazer o trabalho de um ser humano."',
+    fonte: 'Meditações, V.1',
+    aplicacao: 'Antes de começar o próximo ato da semana, diga em voz interna: "vou fazer o trabalho de um ser humano." Observe como isso recalibra a tarefa.'
+  },
+  4: { // quinta
+    lente: 'Psicanálise',
+    icon: '§',
+    obra: 'Freud · Novas Conferências · XXXI (Dissecação da Personalidade Psíquica)',
+    autorTit: 'Freud · Ferenczi · Lacan',
+    contexto: '1933. Freud reexamina toda a teoria à luz de 30 anos de clínica. Conferência XXXI é o texto mais claro sobre a estrutura do aparelho psíquico — e termina com a frase-farol: "Wo Es war, soll Ich werden."',
+    citacao: '"Onde isso era, eu devo advir."',
+    fonte: 'Freud, Novas Conferências, XXXI (1933)',
+    aplicacao: 'Observe hoje um momento em que você reagiu antes de entender. Anote (pode ser no /diário). O que em você operou sem ter sido reconhecido?'
+  },
+  5: { // sexta
+    lente: 'Memorização',
+    icon: '❦',
+    obra: 'Yates · A Arte da Memória · caps. 1-2 (Simônides, Cícero)',
+    autorTit: 'Yates · O\'Brien · Foer',
+    contexto: 'Sexta-feira é dia de consolidação — o Palácio precisa de revisão pra não ruir. Yates cap. 1 conta o mito fundador: Simônides num banquete identifica os mortos pelos lugares onde estavam sentados.',
+    citacao: '"A arte da memória é a arte do pensamento."',
+    fonte: 'Yates, A Arte da Memória (1966), prefácio',
+    aplicacao: 'Antes de dormir: caminhe mentalmente por 3 das 18 estações do Palácio. Em qual delas não há imagem viva? Essa é a estação que precisa de carne nesta semana.'
+  },
+  6: { // sábado
+    lente: 'Motivacional',
+    icon: '♛',
+    obra: 'Shakespeare · Rei Lear · Ato I · cena 1',
+    autorTit: 'Shakespeare + estoicos',
+    contexto: 'A cena fundadora da tragédia: Lear exige declaração de amor em troca de herança. Cordélia se recusa a encenar. Em 50 linhas, toda a obra já está posta. Sábado é dia de leitura alta.',
+    citacao: '"Nada virá do nada — fala outra vez."',
+    fonte: 'Rei Lear, I.1 (trad. Heliodora)',
+    aplicacao: 'Sábado exige clareza: qual relação seu precisa de Cordélia (quem recusa o jogo falso)? Qual precisa de Goneril (quem encena pelo que quer)? A leitura protege.'
+  }
+};
+
+const DIAS_SEMANA = ['dom','seg','ter','qua','qui','sex','sáb'];
+const MESES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+function renderDia(d) {
+  const item = LEITURAS[d];
+  const now = new Date();
+  document.getElementById('content').innerHTML = `
+    <div class="bloco">
+      <div class="rotulo"><span>obra focal</span><span class="glif">${item.icon}</span></div>
+      <h2>${escapeHtml(item.obra)}</h2>
+      <div class="sub">${escapeHtml(item.autorTit)}</div>
+      <div class="corpo">${escapeHtml(item.contexto)}</div>
+      <div class="citacao">
+        ${escapeHtml(item.citacao)}
+        <span class="fonte">— ${escapeHtml(item.fonte)}</span>
+      </div>
+      <div class="aplicacao"><strong>aplicação do dia</strong>${escapeHtml(item.aplicacao)}</div>
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function cycleDay() {
+  const start = new Date('2026-04-02T00:00:00-03:00');
+  return Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+}
+
+function init() {
+  const now = new Date();
+  const diaSemana = now.getDay();
+  const item = LEITURAS[diaSemana];
+
+  const h = now.getHours();
+  const saud = h < 12 ? 'Boa manhã' : (h < 18 ? 'Boa tarde' : 'Boa noite');
+  document.getElementById('greeting').textContent = saud;
+  document.getElementById('date-line').textContent = DIAS_SEMANA[diaSemana] + ', ' + now.getDate() + ' de ' + MESES[now.getMonth()] + ' · dia ' + cycleDay() + '/272';
+  document.getElementById('lente-pill').textContent = '§ lente ' + item.lente;
+
+  // Semana strip
+  const strip = document.getElementById('semana');
+  strip.innerHTML = '';
+  for (let i = 0; i < 7; i++) {
+    const div = document.createElement('div');
+    div.className = 'day' + (i === diaSemana ? ' today' : '');
+    const abrev = DIAS_SEMANA[i];
+    div.innerHTML = abrev + '<span class="n">' + LEITURAS[i].icon + '</span>';
+    div.onclick = () => renderDia(i);
+    strip.appendChild(div);
+  }
+
+  renderDia(diaSemana);
+}
+
+init();
+</script>
+</body>
+</html>
