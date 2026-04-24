@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Insights</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .filters{display:flex;gap:6px;margin:18px 0 18px;flex-wrap:wrap;justify-content:center}
+  .filter{padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px;background:none;color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+  .filter.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .insight{margin:16px 0;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:22px;position:relative}
+  .insight .num{position:absolute;top:18px;right:22px;font-family:Georgia,serif;font-size:30px;color:var(--gold);opacity:0.35;line-height:1}
+  .insight .autores-tag{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .insight .autores-tag span{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);background:rgba(184,147,90,0.08);padding:3px 8px;border-radius:999px;letter-spacing:0.15em;text-transform:uppercase}
+  .insight h2{font-family:Georgia,serif;font-size:22px;font-weight:400;letter-spacing:0.02em;line-height:1.25;padding-right:48px}
+  .insight .corpo{margin-top:14px;font-family:Georgia,serif;font-size:16px;line-height:1.65;color:var(--bone);opacity:0.88}
+  .insight .corpo p{margin-bottom:10px}
+  .insight .corpo p:last-child{margin-bottom:0}
+  .insight .corpo strong{color:var(--gold);font-weight:500;font-style:normal}
+  .insight .aplicacao{margin-top:18px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(184,147,90,0.05);font-family:Georgia,serif;font-size:14px;line-height:1.55;font-style:italic;color:var(--bone)}
+  .insight .aplicacao strong{display:block;color:var(--gold);font-style:normal;font-family:'SF Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html" class="current">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ insights · cruzamentos densos</div>
+    <h1>Sínteses</h1>
+    <div class="sublead">12 entradas onde 2+ autores convergem (ou divergem) sobre o mesmo problema · cada uma com aplicação imediata.</div>
+  </header>
+
+  <div class="filters">
+    <button class="filter active" data-cat="all">Todos</button>
+    <button class="filter" data-cat="psi">Psi</button>
+    <button class="filter" data-cat="neuro">Neuro/IE</button>
+    <button class="filter" data-cat="poder">Poder/Comm</button>
+    <button class="filter" data-cat="filosofia">Filosofia</button>
+  </div>
+
+  <div id="lista"></div>
+
+  <footer>NEXUS v15.Q · 12 cruzamentos canônicos</footer>
+</div>
+
+<script>
+const INSIGHTS = [
+  {
+    id: 1, cat: 'neuro',
+    autores: ['Damásio', 'LeDoux', 'Aurélio'],
+    titulo: 'Por que o corpo decide antes do córtex',
+    corpo: `<p>Damásio observou pacientes com lesão pré-frontal ventromedial: cognição preservada, mas decisões pioravam. Faltava o <strong>marcador somático</strong> — sinal corporal que pré-decide antes da razão entrar.</p>
+    <p>LeDoux mapeou a rota anatômica: tálamo → amígdala em ~40ms, antes que o sinal chegue ao córtex. Reação precede interpretação <em>sempre</em>.</p>
+    <p>Marco Aurélio antecipou esse mecanismo 1900 anos antes, sem ressonância: <em>"Tens poder sobre tua mente — não sobre os eventos externos."</em> Mas o "poder sobre a mente" é, em termos de Damásio, o trabalho de <strong>nomear</strong> o marcador antes de reagir. A janela estoica é a mesma janela neural — só que descrita por dentro.</p>`,
+    aplicacao: 'Próximo momento de afeto súbito (raiva, ansiedade, vergonha): pare 2s, descreva a sensação corporal em palavras antes de responder. O córtex volta online em ~90s. Treinar é ampliar a janela.'
+  },
+  {
+    id: 2, cat: 'psi',
+    autores: ['Freud', 'Lacan', 'Winnicott'],
+    titulo: 'O sintoma protege antes de ferir',
+    corpo: `<p>Freud descobriu que o sintoma não é só sofrimento — é compromisso entre o desejo recalcado e a defesa que o nega. Tem economia psíquica.</p>
+    <p>Lacan radicalizou: o sintoma é <strong>sinthoma</strong> — o que amarra o sujeito ao mundo. Sem ele, há fragmentação. Tirar sem substituir é tirar o piso.</p>
+    <p>Winnicott traduziu para a clínica do cuidado: o falso self protege quando o gesto espontâneo é punido. Custou caro mas <strong>permitiu sobreviver</strong>. Antes de "destruir" o falso, expandir o espaço onde o verdadeiro pode aparecer sem dano.</p>
+    <p>Os três convergem: <strong>nenhuma defesa é gratuita</strong>. Antes de querer remover, perguntar qual função ela cumpre.</p>`,
+    aplicacao: 'Identifique 1 padrão seu que te custa caro mas você ainda não quebrou. Pergunte: "qual ganho silencioso ele me dá?" — ganho social, ganho protetivo, ganho identitário. Sem essa resposta, qualquer mudança fracassa.'
+  },
+  {
+    id: 3, cat: 'poder',
+    autores: ['Stone/Heen', 'Duhigg', 'Rogers'],
+    titulo: 'A 3ª conversa é sempre a verdadeira',
+    corpo: `<p>Stone/Patton/Heen sistematizaram: toda conversa difícil são 3 — fato (o que aconteceu), afeto (o que sentimos), identidade (o que isso diz sobre quem eu sou). A 3ª é a mais difícil <em>e</em> a mais decisiva.</p>
+    <p>Duhigg (Supercommunicators 2024) confirma com dados: pessoas que identificam em tempo real qual conversa está rolando — e respondem à conversa certa — performam 3-4x melhor.</p>
+    <p>Carl Rogers já tinha ensinado a técnica em 1957: antes de replicar, repita o conteúdo, nomeie o sentimento, pergunte se captou. <strong>Looping</strong> é a técnica que abre a 3ª conversa sem ataque.</p>`,
+    aplicacao: 'Próxima conversa quente: antes de defender seu ponto, faça 1 pergunta sobre como o outro está se sentindo em relação ao que está sendo dito. Não ao tema — ao processo. Você acessa a identidade lateralmente.'
+  },
+  {
+    id: 4, cat: 'filosofia',
+    autores: ['Epicteto', 'Kahneman', 'Frankl'],
+    titulo: 'A janela entre estímulo e resposta',
+    corpo: `<p>Epicteto, escravo: <em>"Não são as coisas que perturbam os homens, mas os juízos que fazem delas."</em> 100 d.C. Sem fMRI.</p>
+    <p>Kahneman, 2011: Sistema 1 reage; Sistema 2 julga. A maioria dos erros é S1 agindo disfarçado de S2. A janela existe — só é estreita.</p>
+    <p>Viktor Frankl, sobrevivente de Auschwitz: <em>"Entre o estímulo e a resposta há um espaço. Nesse espaço mora nosso poder de escolha."</em> Testou nos limites. Sustentou.</p>
+    <p>Os três descrevem o mesmo dispositivo cognitivo: <strong>a interrupção é treinável</strong>. Filosofia, ciência, sobrevivência — mesmo mecanismo, três vocabulários.</p>`,
+    aplicacao: 'Por 7 dias, registre no diário 1 momento por dia onde você expandiu a janela (parou antes de reagir). Não importa o resultado da resposta — só importa ter parado. A frequência é o treino.'
+  },
+  {
+    id: 5, cat: 'neuro',
+    autores: ['Goleman', 'Lieberman', 'Panksepp'],
+    titulo: 'Nomear emoção reduz emoção',
+    corpo: `<p>Lieberman 2007 (UCLA): fMRI mostrou que rotular uma emoção em palavras (<strong>affect labeling</strong>) reduz pela metade a ativação amigdaliana — em segundos.</p>
+    <p>Goleman, na década anterior, já tinha proposto isso clinicamente: a 1ª competência da IE é <strong>autoconsciência</strong>, e ela exige vocabulário emocional fino. Quem só tem "bem/mal" como rótulos opera no escuro.</p>
+    <p>Panksepp adiciona o mapa: 7 sistemas afetivos primários (SEEKING, RAGE, FEAR, LUST, CARE, GRIEF, PLAY) — todos compartilhados com mamíferos. Saber em qual você está agora é diagnóstico anatômico, não sutileza.</p>`,
+    aplicacao: 'Substitua "estou estressado" pelo nome específico: tristeza? raiva por algo? medo de quê? frustração com quem? A precisão lexical é redução do afeto. Fluxo da IE.'
+  },
+  {
+    id: 6, cat: 'poder',
+    autores: ['Cialdini', 'Greene', 'Sun Tzu'],
+    titulo: 'Persuasão ↔ Poder ↔ Estratégia: três escalas',
+    corpo: `<p>Cialdini opera no nível da interação 1-a-1: 7 princípios cognitivos (reciprocidade, escassez, autoridade, coerência, consenso, afinidade, unidade) que exploram atalhos do Sistema 1 do interlocutor.</p>
+    <p>Greene escala para o jogo institucional: 48 leis observáveis em 5 séculos de história. Quem entende protege-se de manipulação e atua com consciência estratégica.</p>
+    <p>Sun Tzu opera no macro: <em>"A suprema arte da guerra é subjugar o inimigo sem lutar."</em> Estratégia genuína evita o confronto direto.</p>
+    <p>Os três formam uma <strong>escada de abstração</strong>: técnica de persuasão · arquitetura de poder · estratégia geral. Lê-los em sequência muda a leitura institucional.</p>`,
+    aplicacao: 'Mapeie sua próxima negociação importante nos 3 níveis: (1) qual princípio Cialdini tem mais tração na pessoa? (2) que dinâmica Greene está em jogo no contexto institucional? (3) qual posicionamento estratégico Sun Tzu sugeriria? Trine antes.'
+  },
+  {
+    id: 7, cat: 'psi',
+    autores: ['Ferenczi', 'Stone/Heen', 'NEXUS'],
+    titulo: 'Identity trigger é transferência sem divã',
+    corpo: `<p>Ferenczi descobriu que o paciente atualiza com o analista padrões antigos (<strong>transferência</strong>) — e o analista responde com sentimentos próprios (<strong>contratransferência</strong>). Antes vista como erro, ele a tornou bússola.</p>
+    <p>Stone/Heen, 60 anos depois, redescobrem o mesmo dispositivo no campo institucional: o <strong>identity trigger</strong> — quando uma palavra do outro toca uma ferida velha sua. A reação parece exagerada porque é eco, não resposta.</p>
+    <p>O ponto NEXUS: o que dispara em você diante do outro é informação sobre <strong>você</strong>, não sobre ele. Antes de reagir, perguntar: "que dor minha está sendo tocada agora?" — Ferenczi institucional aplicado.</p>`,
+    aplicacao: 'Quando alguém te ferir mais do que o esperado: pause e pergunte "qual eco em mim isso ativa?". A resposta quase nunca é sobre essa pessoa — é sobre uma ferida sua que precisa ser nomeada.'
+  },
+  {
+    id: 8, cat: 'filosofia',
+    autores: ['Heidegger', 'Aurélio', 'Frankl'],
+    titulo: 'A vida finita organiza a vida',
+    corpo: `<p>Heidegger: o "a gente" (<em>das Man</em>) faz escolhas pelo sujeito enquanto este finge que é livre. A virada autêntica começa quando se reconhece que <strong>a vida é finita, pessoal e intransferível</strong>.</p>
+    <p>Marco Aurélio, 1800 anos antes, trouxe o mesmo recurso à mão diariamente: <em>"Memento mori"</em> — lembra que vais morrer. Não é mórbido; é hierarquia.</p>
+    <p>Frankl, no campo de concentração, comprovou: quem tinha um <strong>porquê</strong> sustentado pela consciência de finitude sobrevivia. Quem operava em modo "depois eu vejo isso" desabava.</p>
+    <p>Os três: a finitude não paralisa — organiza. É bússola, não peso.</p>`,
+    aplicacao: 'Pergunta semanal: "se eu morresse em 30 dias, o que pararia de ser importante? E o que seria a única coisa importante?" Resposta repetida 4 semanas reorganiza ano inteiro.'
+  },
+  {
+    id: 9, cat: 'neuro',
+    autores: ['Porges', 'Damásio', 'Rogers'],
+    titulo: 'Regulação é fisiologia compartilhada',
+    corpo: `<p>Stephen Porges (teoria polivagal): o nervo vago ventral é o <strong>interruptor da segurança social</strong>. Quando você está regulado, o outro neurocepciona segurança e regula também. Quando desregulado, o oposto.</p>
+    <p>Damásio mostra a base: o estado interno do interlocutor é lido pelo seu sistema somatossensorial em milissegundos, antes de qualquer palavra.</p>
+    <p>Rogers, 70 anos atrás, formalizou clinicamente: a <strong>presença regulada do terapeuta</strong> é metade da terapia. As palavras vêm depois.</p>
+    <p>Conclusão: liderança real começa em <strong>chegar regulado</strong>. Não é técnica de retórica — é fisiologia exportada.</p>`,
+    aplicacao: 'Antes de qualquer reunião densa: 3 ciclos de respiração 4-7-8 (4 inspirar, 7 segurar, 8 expirar). Ativa vago ventral. Você chega como "ambiente seguro" antes de abrir a boca.'
+  },
+  {
+    id: 10, cat: 'psi',
+    autores: ['Jung', 'Greene', 'Shakespeare'],
+    titulo: 'A sombra integrada é alavanca',
+    corpo: `<p>Jung: a sombra é o que rejeitamos em nós e projetamos no outro. Não-integrada, ela age como destino — vê-se nos outros o que não se quer ver em si.</p>
+    <p>Greene aplica ao jogo institucional: quem não conhece a própria capacidade de manipulação, ambição, ressentimento, é facilmente manipulado por quem conhece a sua. Inocência é vulnerabilidade.</p>
+    <p>Shakespeare encena tudo: Iago em Otelo encaixa a manipulação no <strong>lugar vazio</strong> que Otelo recusa olhar em si. Macbeth não enfrenta a sombra; é devorado por ela.</p>
+    <p>Os três: <strong>integrar a sombra não é endossá-la — é desarmá-la</strong>.</p>`,
+    aplicacao: 'Pergunta: o que você critica frequentemente nos outros? Provavelmente é a sua sombra ali fora. Reconhecer não é converter-se ao oposto — é não ser pego desprevenido por ela em si mesmo.'
+  },
+  {
+    id: 11, cat: 'poder',
+    autores: ['Edmondson', 'Stone/Heen', 'Miller/Rollnick'],
+    titulo: 'Segurança psicológica é pré-requisito de tudo',
+    corpo: `<p>Amy Edmondson: equipes de alto desempenho têm <strong>segurança psicológica</strong> — pode-se trazer ideia meia-formada sem ridículo. Sem isso, há apenas formação protocolar fingindo ser time.</p>
+    <p>Stone/Heen: a 3ª conversa (identidade) só pode ser tida em ambiente psicologicamente seguro. Em ambientes inseguros, todos defendem identidade — ninguém pensa.</p>
+    <p>Miller/Rollnick: a entrevista motivacional só funciona se o paciente sente que o terapeuta não vai julgá-lo. Ambivalência só vira mudança em segurança.</p>
+    <p>Os três no mesmo eixo: <strong>antes de cobrar performance, garantir condição psicológica</strong>. Sem ela, performance é teatro caro.</p>`,
+    aplicacao: 'Próxima reunião: comece reconhecendo 1 ponto que sua equipe pode discordar de você sem consequência. A segurança não se declara — se demonstra com 1 gesto concreto.'
+  },
+  {
+    id: 12, cat: 'filosofia',
+    autores: ['Yates', 'Wittgenstein', 'Foer'],
+    titulo: 'Memorizar é pensar — vocabulário é mundo',
+    corpo: `<p>Frances Yates: a arte clássica da memória (Simônides, Cícero) <strong>não é depósito</strong> — é operação que reorganiza o que se sabe. Memorizar é dar lugar e imagem ao conceito, e isso muda o conceito.</p>
+    <p>Wittgenstein, ângulo paralelo: <em>"Os limites da minha linguagem são os limites do meu mundo."</em> Vocabulário não descreve o real — define o que pode ser pensado.</p>
+    <p>Joshua Foer (campeão de memória): o que separa mediano de extraordinário não é talento, é <strong>prática deliberada</strong>. Aplicado: ler com Palácio + nomear conceitos = expandir o pensável.</p>
+    <p>Os três no mesmo movimento: <strong>memória + linguagem = arquitetura cognitiva ativa</strong>. Não é "guardar" — é construir.</p>`,
+    aplicacao: 'Pegue 1 conceito-chave novo desta semana (do glossário ou de uma leitura). Coloque-o em uma das 18 estações do Palácio com imagem vívida. Em 30 dias, ele opera sem precisar buscar.'
+  },
+];
+
+let currentFilter = 'all';
+function render() {
+  const filtered = currentFilter === 'all' ? INSIGHTS : INSIGHTS.filter(i => i.cat === currentFilter);
+  const container = document.getElementById('lista');
+  container.innerHTML = filtered.map(i => `
+    <div class="insight">
+      <div class="num">${String(i.id).padStart(2,'0')}</div>
+      <div class="autores-tag">${i.autores.map(a => '<span>' + escapeHtml(a) + '</span>').join('')}</div>
+      <h2>${escapeHtml(i.titulo)}</h2>
+      <div class="corpo">${i.corpo}</div>
+      <div class="aplicacao"><strong>aplicação</strong>${escapeHtml(i.aplicacao)}</div>
+    </div>
+  `).join('');
+}
+function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+document.querySelectorAll('.filter').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+    b.classList.add('active');
+    currentFilter = b.dataset.cat;
+    render();
+  };
+});
+render();
+</script>
+</body>
+</html>

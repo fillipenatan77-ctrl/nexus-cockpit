@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Timer</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 14px;text-align:center}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:32px;font-weight:400;letter-spacing:0.03em}
+  .lente{margin-top:12px;font-family:Georgia,serif;font-size:14px;color:var(--gold);font-style:italic}
+
+  .ring-wrap{margin:32px auto 24px;width:280px;height:280px;position:relative;display:flex;align-items:center;justify-content:center}
+  svg.ring{transform:rotate(-90deg);width:280px;height:280px;position:absolute;inset:0}
+  svg.ring circle{fill:none;stroke-width:6}
+  svg.ring .bg{stroke:rgba(184,147,90,0.15)}
+  svg.ring .fg{stroke:var(--gold);stroke-linecap:round;transition:stroke-dashoffset 0.4s linear;filter:drop-shadow(0 0 12px rgba(184,147,90,0.6))}
+  .display{text-align:center;z-index:2}
+  .display .time{font-family:Georgia,serif;font-size:64px;color:var(--bone);font-weight:300;letter-spacing:-0.02em;line-height:1}
+  .display .phase{margin-top:8px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;opacity:0.85}
+  .display .ciclo{margin-top:4px;font-family:'SF Mono',monospace;font-size:10px;color:var(--bone);opacity:0.55;letter-spacing:0.18em}
+
+  .controls{display:flex;gap:10px;margin-top:8px}
+  .btn{flex:1;padding:16px;background:rgba(184,147,90,0.08);border:1px solid var(--gold-soft);border-radius:12px;color:var(--gold);font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;font-weight:600}
+  .btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+  .btn.icon{flex:0 0 60px}
+
+  .config{margin-top:20px;padding:16px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,0.02)}
+  .config-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:6px 0}
+  .config-row label{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;opacity:0.85}
+  .config-row .vals{display:flex;gap:6px}
+  .config-row .vals button{padding:6px 10px;background:none;border:1px solid var(--gold-faint);border-radius:6px;color:var(--bone);font-family:'SF Mono',monospace;font-size:11px;cursor:pointer;opacity:0.65}
+  .config-row .vals button.on{background:var(--gold);color:var(--ink);border-color:var(--gold);opacity:1}
+
+  .sugestao{margin-top:18px;padding:18px 20px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.04)}
+  .sugestao h3{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:10px;opacity:0.85}
+  .sugestao .corpo{font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.88;line-height:1.55}
+
+  .hist{margin-top:18px;padding:14px 16px;font-family:'SF Mono',monospace;font-size:10px;color:var(--bone);opacity:0.7;letter-spacing:0.15em;text-align:center;border-top:1px solid var(--gold-faint)}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html" class="current">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ pomodoro NEXUS</div>
+    <h1>Foco</h1>
+    <div class="lente" id="lente">—</div>
+  </header>
+
+  <div class="ring-wrap">
+    <svg class="ring" viewBox="0 0 280 280">
+      <circle class="bg" cx="140" cy="140" r="130"/>
+      <circle class="fg" id="ring-fg" cx="140" cy="140" r="130" stroke-dasharray="816.8" stroke-dashoffset="0"/>
+    </svg>
+    <div class="display">
+      <div class="time" id="time">25:00</div>
+      <div class="phase" id="phase">FOCO</div>
+      <div class="ciclo" id="ciclo">ciclo 1/4</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn primary" id="btnStart" onclick="toggle()">iniciar</button>
+    <button class="btn icon" onclick="reset()">↻</button>
+    <button class="btn icon" onclick="skip()">»</button>
+  </div>
+
+  <div class="config">
+    <div class="config-row">
+      <label>Foco</label>
+      <div class="vals">
+        <button onclick="setFoco(15)" data-f="15">15</button>
+        <button class="on" onclick="setFoco(25)" data-f="25">25</button>
+        <button onclick="setFoco(50)" data-f="50">50</button>
+      </div>
+    </div>
+    <div class="config-row">
+      <label>Pausa</label>
+      <div class="vals">
+        <button class="on" onclick="setPausa(5)" data-p="5">5</button>
+        <button onclick="setPausa(10)" data-p="10">10</button>
+        <button onclick="setPausa(15)" data-p="15">15</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="sugestao">
+    <h3>§ orientação · lente do dia</h3>
+    <div class="corpo" id="sug">—</div>
+  </div>
+
+  <div class="hist" id="hist">— ciclos completados hoje</div>
+  <footer>NEXUS v15.Q · pomodoro com lente do dia</footer>
+</div>
+
+<script>
+const STORE_HIST = 'nexus_pomodoro_hist';
+const STORE_CONFIG = 'nexus_pomodoro_cfg';
+
+const SUGESTOES = {
+  0: { lente: 'Síntese', txt: 'Foco para domingo: revisar 1 conceito da semana e amarrar com algo novo. Não inicie tema novo agora — feche o que estava aberto.' },
+  1: { lente: 'Liderança', txt: 'Foco para segunda: planejar 1 leitura institucional (Sun Tzu/Greene/Cialdini) que mudaria sua próxima decisão estratégica.' },
+  2: { lente: 'PNL', txt: 'Foco para terça: ler 5-10 páginas de Bandler/Erickson com calibração ativa. Marque 1 padrão linguístico para usar até sexta.' },
+  3: { lente: 'Estoica', txt: 'Foco para quarta: 1 livro das Meditações de Aurélio + 1 anotação no /diário sobre dicotomia do controle aplicada hoje.' },
+  4: { lente: 'Psicanálise', txt: 'Foco para quinta: ler conferência ou capítulo (Freud/Ferenczi/Lacan/Winnicott). Identifique 1 padrão repetitivo seu para a próxima.' },
+  5: { lente: 'Memorização', txt: 'Foco para sexta: revisar Palácio. Coloque 1 conceito novo em 1 estação. Reforce com imagem improvável (Yates/O\'Brien).' },
+  6: { lente: 'Motivacional', txt: 'Foco para sábado: 1 cena de Shakespeare em pt-BR (Heliodora) com calma. Anote 1 paralelo com situação atual sua.' }
+};
+
+let foco = 25, pausa = 5;
+let sec = foco * 60;
+let phase = 'FOCO'; // FOCO | PAUSA
+let cycle = 1; // 1..4
+let interval = null;
+let running = false;
+
+function loadCfg() {
+  try {
+    const c = JSON.parse(localStorage.getItem(STORE_CONFIG) || '{}');
+    if (c.foco) foco = c.foco;
+    if (c.pausa) pausa = c.pausa;
+    document.querySelectorAll('[data-f]').forEach(b => b.classList.toggle('on', +b.dataset.f === foco));
+    document.querySelectorAll('[data-p]').forEach(b => b.classList.toggle('on', +b.dataset.p === pausa));
+    sec = foco * 60;
+    update();
+  } catch(e) {}
+}
+function saveCfg() { localStorage.setItem(STORE_CONFIG, JSON.stringify({foco, pausa})); }
+
+function setFoco(n) {
+  foco = n; saveCfg();
+  document.querySelectorAll('[data-f]').forEach(b => b.classList.toggle('on', +b.dataset.f === n));
+  if (phase === 'FOCO' && !running) { sec = foco*60; update(); }
+}
+function setPausa(n) {
+  pausa = n; saveCfg();
+  document.querySelectorAll('[data-p]').forEach(b => b.classList.toggle('on', +b.dataset.p === n));
+  if (phase === 'PAUSA' && !running) { sec = pausa*60; update(); }
+}
+
+function fmt(s) {
+  const m = Math.floor(s/60), r = s%60;
+  return String(m).padStart(2,'0') + ':' + String(r).padStart(2,'0');
+}
+
+function update() {
+  document.getElementById('time').textContent = fmt(sec);
+  document.getElementById('phase').textContent = phase;
+  document.getElementById('ciclo').textContent = 'ciclo ' + cycle + '/4';
+  const total = (phase === 'FOCO' ? foco : pausa) * 60;
+  const ratio = sec / total;
+  const C = 2 * Math.PI * 130; // 816.8
+  document.getElementById('ring-fg').setAttribute('stroke-dashoffset', C * (1 - ratio));
+  document.getElementById('btnStart').textContent = running ? 'pausar' : 'iniciar';
+}
+
+function tick() {
+  if (sec > 0) {
+    sec--;
+    update();
+  } else {
+    advancePhase();
+  }
+}
+
+function advancePhase() {
+  if (phase === 'FOCO') {
+    incHist();
+    phase = 'PAUSA';
+    sec = pausa * 60;
+    notify('foco completo · pausa ' + pausa + 'min');
+  } else {
+    cycle++;
+    if (cycle > 4) { cycle = 1; notify('4 ciclos completos! considere parar.'); }
+    phase = 'FOCO';
+    sec = foco * 60;
+    notify('pausa completa · foco ' + foco + 'min');
+  }
+  update();
+}
+
+function notify(msg) {
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification('NEXUS Timer', { body: msg, icon: './icons/icon-192.png' });
+  }
+  // Vibração no iOS (se suportar)
+  if (navigator.vibrate) navigator.vibrate([200,80,200]);
+}
+
+function toggle() {
+  running = !running;
+  if (running) {
+    if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission();
+    interval = setInterval(tick, 1000);
+  } else {
+    clearInterval(interval);
+  }
+  update();
+}
+
+function reset() {
+  clearInterval(interval);
+  running = false;
+  phase = 'FOCO';
+  cycle = 1;
+  sec = foco * 60;
+  update();
+}
+
+function skip() {
+  clearInterval(interval);
+  running = false;
+  advancePhase();
+}
+
+function incHist() {
+  try {
+    const today = new Date().toISOString().slice(0,10);
+    const h = JSON.parse(localStorage.getItem(STORE_HIST) || '{}');
+    h[today] = (h[today] || 0) + 1;
+    localStorage.setItem(STORE_HIST, JSON.stringify(h));
+    showHist();
+  } catch(e) {}
+}
+function showHist() {
+  try {
+    const today = new Date().toISOString().slice(0,10);
+    const h = JSON.parse(localStorage.getItem(STORE_HIST) || '{}');
+    document.getElementById('hist').textContent = '— ' + (h[today]||0) + ' ciclos completos hoje';
+  } catch(e) {}
+}
+
+function initSugestao() {
+  const day = new Date().getDay();
+  const s = SUGESTOES[day];
+  document.getElementById('lente').textContent = '§ lente ' + s.lente;
+  document.getElementById('sug').textContent = s.txt;
+}
+
+loadCfg();
+initSugestao();
+showHist();
+update();
+</script>
+</body>
+</html>
