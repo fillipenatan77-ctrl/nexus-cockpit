@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Changelog</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:700px;margin:0 auto;padding:20px 16px 40px}
+
+  .voltar{display:inline-block;padding:8px 14px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.12em;margin-bottom:16px}
+
+  header{padding:0 4px 14px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.72;font-style:italic;line-height:1.55}
+
+  .versao{margin-top:22px;padding:18px 20px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03)}
+  .versao.atual{border-color:var(--gold);background:linear-gradient(145deg, rgba(184,147,90,0.08) 0%, rgba(15,14,23,0.6) 100%)}
+  .versao .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+  .versao .ver{font-family:'SF Mono',monospace;font-size:14px;color:var(--gold);letter-spacing:0.1em;font-weight:700}
+  .versao .data{font-family:'SF Mono',monospace;font-size:11px;color:var(--bone);opacity:0.6;letter-spacing:0.15em}
+  .versao h3{font-family:Georgia,serif;font-size:18px;color:var(--bone);font-weight:500;margin-bottom:10px;line-height:1.35}
+  .versao ul{list-style:none;padding:0}
+  .versao ul li{padding:6px 0;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;line-height:1.55;padding-left:20px;position:relative}
+  .versao ul li::before{content:'§';position:absolute;left:0;color:var(--gold);opacity:0.7;font-style:italic}
+  .versao ul li strong{color:var(--gold);font-weight:500}
+  .versao .tag{display:inline-block;font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);background:rgba(184,147,90,0.12);padding:2px 8px;border-radius:999px;letter-spacing:0.15em;text-transform:uppercase;margin-right:8px;vertical-align:2px}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="voltar" href="./">← voltar ao hub</a>
+
+  <header>
+    <div class="eyebrow">§ changelog</div>
+    <h1>Evolução do NEXUS</h1>
+    <div class="sublead">Versões consolidadas do hub. Toda mudança integra o index.html principal · esta página é o registro visual de cada marco.</div>
+  </header>
+
+  <!-- v15.AA -->
+  <div class="versao atual">
+    <div class="head"><div class="ver">v15.AA</div><div class="data">24 abr 2026 · atual</div></div>
+    <h3>Consolidação hub único · regra permanente</h3>
+    <ul>
+      <li><strong>Regra permanente assumida:</strong> URL única como frente (<code>/home/</code>). Subpáginas acessíveis pela nav. Sem mais links semanais novos.</li>
+      <li><strong>Bloco Novidades</strong> no index.html · colapsável · mostra últimas mudanças direto na home.</li>
+      <li><strong>Changelog visual</strong> (esta página) + <strong>CHANGELOG.md técnico</strong> em <code>00_HUB/</code></li>
+      <li><strong>Documentos canônicos</strong> (CLAUDE.md, INPUTS_DO_PROJETO.md) atualizados com regra de URL única.</li>
+    </ul>
+  </div>
+
+  <!-- v15.Z -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.Z</div><div class="data">24 abr 2026</div></div>
+    <h3>Primeira semana do v5 integrada</h3>
+    <ul>
+      <li>Subpágina <code>primeira-semana.html</code> com roteiro de 7 dias alinhado com lentes canônicas.</li>
+      <li>Cada dia: 1 teste + 1 comando v5 + prompt literal + o que esperar.</li>
+    </ul>
+  </div>
+
+  <!-- v15.Y -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.Y</div><div class="data">24 abr 2026</div></div>
+    <h3>Setup iPhone + v5 copiável pelo celular</h3>
+    <ul>
+      <li><code>iphone-setup.html</code>: 8 seções cobrindo aplicar v5 · configs Claude iOS · iPhone sistema · áudio · cenários · troubleshooting.</li>
+      <li><code>system-prompt.html</code>: v5 inline com botão mega "copiar prompt completo" · fallback iOS legacy.</li>
+      <li>Ditação pt-BR documentada como requisito de qualidade.</li>
+    </ul>
+  </div>
+
+  <!-- v15.X -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.X</div><div class="data">24 abr 2026</div></div>
+    <h3>Modo Diálogo Avançado · Coaching</h3>
+    <ul>
+      <li><strong>System Prompt v5</strong>: persona de coach denso · 8 camadas de resposta · modulação por input · pt-BR inviolável.</li>
+      <li><strong>5 comandos novos:</strong> <code>/treino</code> · <code>/espelho</code> · <code>/corrige</code> · <code>/cruzamento</code> · <code>/voz</code></li>
+      <li><code>coaching.html</code>: página dedicada ao modo.</li>
+      <li>Modo voz hands-free documentado para trânsito/caminhada.</li>
+    </ul>
+  </div>
+
+  <!-- v15.W -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.W</div><div class="data">24 abr 2026</div></div>
+    <h3>Minimalismo assumido · Notion suprimido</h3>
+    <ul>
+      <li>Arquitetura final: <strong>2 pilares</strong> (Cortex iOS + PWA Safari) + <strong>2 lastros</strong> (Apps Script + GitHub/Drive).</li>
+      <li><code>INPUTS_DO_PROJETO.md</code>: 5 checkpoints antes de adicionar ferramenta nova.</li>
+      <li>Notion: workspace preservado read-only, página hub única.</li>
+    </ul>
+  </div>
+
+  <!-- v15.V -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.V</div><div class="data">24 abr 2026</div></div>
+    <h3>Backup robusto · Chroma dedicado</h3>
+    <ul>
+      <li>Snapshot FULL com <strong>tar.gz nativo</strong> (bsdtar) · corrige falha silenciosa do Compress-Archive em 11 GB.</li>
+      <li>Script dedicado do Chroma: mirror 6h · zip mensal rotação 3.</li>
+      <li>Detecção de concorrência entre ingest/snapshot para evitar corrupção.</li>
+    </ul>
+  </div>
+
+  <!-- v15.U -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.U</div><div class="data">23-24 abr 2026</div></div>
+    <h3>Arquitetura de backup 3-2-1</h3>
+    <ul>
+      <li>3 scripts PowerShell · 3 Task Schedulers ativos (Mirror 2h · Weekly · FULL).</li>
+      <li>Drive organizado: <code>00_ESPELHO_LIVE</code> · <code>10_SNAPSHOTS</code> · <code>20_ACERVO</code> · <code>30_EXPORTS</code> · <code>40_CHROMA</code>.</li>
+      <li>54 arquivos legados v13/v14 arquivados para <code>_Arquivo_Historico</code>.</li>
+      <li>Documentação completa em <code>ARQUITETURA_BACKUP.md</code>.</li>
+    </ul>
+  </div>
+
+  <!-- v15.T -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.T</div><div class="data">23 abr 2026</div></div>
+    <h3>OCR automatizado</h3>
+    <ul>
+      <li>Stack instalada: Tesseract 5.5 + Ghostscript 10.05 + OCRmyPDF 17.4.</li>
+      <li><code>por+eng+osd</code> trained data em <code>C:\NEXUS\bin\tessdata</code>.</li>
+      <li>Script batch processa 10 scans automaticamente · preserva backup <code>.noocr.pdf</code>.</li>
+    </ul>
+  </div>
+
+  <!-- v15.S -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.S</div><div class="data">23 abr 2026</div></div>
+    <h3>Curadoria massiva · 49 obras</h3>
+    <ul>
+      <li>49 PDFs renomeados <code>AUTOR - TITULO (ano).pdf</code>, organizados por tema.</li>
+      <li><code>INVENTARIO_ACERVO.md</code> + JSON com metadata completo (pt-BR, peso P0/P1/P2, nota curatorial).</li>
+      <li>TIER4 ingest disparado · 47 PDFs indexados no RAG.</li>
+    </ul>
+  </div>
+
+  <!-- v15.R -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.R</div><div class="data">23 abr 2026</div></div>
+    <h3>Recomendações + status 3 frentes</h3>
+    <ul>
+      <li>Subpágina <code>recomendacoes.html</code>: 55 obras priorizadas (P0/P1/P2) com link direto pro Scribd.</li>
+      <li>Status franco do backup, Cortex Frente 2, Notion.</li>
+    </ul>
+  </div>
+
+  <!-- v15.Q-N condensado -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.Q a v15.N</div><div class="data">23 abr 2026</div></div>
+    <h3>Camadas de conteúdo · insights, stats, pomodoro, busca, diário</h3>
+    <ul>
+      <li><span class="tag">v15.Q</span>Insights (12 cruzamentos densos) · Stats (painel vivo) · Timer (Pomodoro).</li>
+      <li><span class="tag">v15.P</span>Leitura do dia · Oráculo 24→50 perguntas · Cards 24→40 · TIER3 canônicos.</li>
+      <li><span class="tag">v15.O</span>Autores 12→20 · Fichas preenchíveis · RAG monitor live.</li>
+      <li><span class="tag">v15.N</span>Busca RAG no iPhone · Diário localStorage · Pool 60→100 surpresas.</li>
+    </ul>
+  </div>
+
+  <!-- v15.M e anteriores condensado -->
+  <div class="versao">
+    <div class="head"><div class="ver">v15.M a v15.G</div><div class="data">22-23 abr 2026</div></div>
+    <h3>Fundação da PWA · 21 páginas</h3>
+    <ul>
+      <li><span class="tag">v15.M</span>Autores + Glossário 40 termos + RAG acelerado (paralelo 4 workers).</li>
+      <li><span class="tag">v15.L</span>Galeria 24 cards SVG verticais com download/share nativo iOS.</li>
+      <li><span class="tag">v15.K</span>Grafo conceitual + Briefing Hoje + Cards de autor.</li>
+      <li><span class="tag">v15.J</span>Oráculo · Citação · Palácio 18 estações.</li>
+      <li><span class="tag">v15.I</span>Arquitetura híbrida Safari + Cloud (System Prompt v4).</li>
+      <li><span class="tag">v15.H</span>Fix cards iOS (artifacts nativos, MCP visualize banido) · Home PWA iOS app-like.</li>
+      <li><span class="tag">v15.G</span>Módulo SURPRISE proativo · WhatsApp+Gmail · 20 triggers · pool 20.</li>
+    </ul>
+  </div>
+
+  <!-- Princípios -->
+  <div class="versao">
+    <div class="head"><div class="ver">§</div><div class="data">princípios</div></div>
+    <h3>Princípios operantes</h3>
+    <ul>
+      <li><strong>Hub único:</strong> <code>/home/</code> é a frente. Subpáginas pela nav. Sem novas URLs como destino.</li>
+      <li><strong>Menos superfície, mais eixo:</strong> 2 pilares + 2 lastros. Nada mais.</li>
+      <li><strong>pt-BR inviolável:</strong> interface, respostas, códigos, tudo.</li>
+      <li><strong>Atualização sem fragmentação:</strong> cada versão alimenta o index.html. Mudanças visíveis no bloco Novidades.</li>
+      <li><strong>Proatividade sem ruído:</strong> surpresas 4×/semana, mas sem spam.</li>
+    </ul>
+  </div>
+
+  <footer>NEXUS · changelog canônico · atualização sem fragmentação</footer>
+</div>
+</body>
+</html>

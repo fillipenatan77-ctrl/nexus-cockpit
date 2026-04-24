@@ -205,6 +205,90 @@
     text-transform: uppercase;
   }
   footer .sep { margin: 0 8px; }
+
+  /* Bloco Novidades */
+  .novidades {
+    margin: 26px 0 10px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 14px;
+    background: rgba(184,147,90,0.04);
+    overflow: hidden;
+  }
+  .novidades .head {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(184,147,90,0.06);
+  }
+  .novidades .head .t {
+    font-family: 'SF Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  .novidades .head .ver {
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.65;
+    letter-spacing: 0.15em;
+  }
+  .novidades .head .toggle {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+  .novidades.open .head .toggle { transform: rotate(90deg); }
+  .novidades .body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+  }
+  .novidades.open .body { max-height: 900px; }
+  .novidades .inner { padding: 4px 18px 16px; }
+  .novidades .entry {
+    padding: 12px 0;
+    border-top: 1px solid var(--gold-faint);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--bone);
+    opacity: 0.88;
+    line-height: 1.55;
+  }
+  .novidades .entry:first-child { border-top: none; }
+  .novidades .entry strong { color: var(--gold); font-weight: 500; }
+  .novidades .entry .tag {
+    display: inline-block;
+    font-family: 'SF Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+    background: rgba(184,147,90,0.1);
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  .novidades .link-changelog {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(184,147,90,0.08);
+    border: 1px dashed var(--gold-soft);
+    border-radius: 8px;
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -216,6 +300,28 @@
     <div class="tagline" id="tagline">carregando ciclo PRIMORDIA…</div>
     <div class="status-pill"><span class="dot"></span><span id="pill">sistema vivo</span></div>
   </header>
+
+  <div class="novidades" id="novidades">
+    <div class="head" onclick="toggleNovidades()">
+      <div>
+        <div class="t">§ novidades</div>
+        <div class="ver" id="ver-pill">v15.AA · 24 abr 2026</div>
+      </div>
+      <div class="toggle">›</div>
+    </div>
+    <div class="body">
+      <div class="inner" id="novidades-body">
+        <div class="entry"><span class="tag">novo</span><strong>Modo Diálogo Avançado / Coaching</strong> · respostas em 8 camadas · 12 comandos (/grade10 · /corrige · /treino · /espelho · /cruzamento · /voz etc) · modo voz otimizado para trânsito · conecta com acervo.</div>
+        <div class="entry"><span class="tag">novo</span><strong>Setup iPhone</strong> · guia completo para configurar Claude iOS + ditação pt-BR + AirPods · 5 cenários reais · troubleshooting.</div>
+        <div class="entry"><span class="tag">novo</span><strong>Roteiro 7 dias</strong> · integrado ao hub como subpágina · cada dia alinhado com lente canônica · teste estruturado do Cortex v5.</div>
+        <div class="entry"><span class="tag">arquitetura</span><strong>Minimalismo assumido v15.W</strong> · 2 pilares (Cortex + PWA) + 2 lastros (Apps Script + GitHub/Drive). Notion suprimido. 5 checkpoints antes de adicionar ferramenta nova.</div>
+        <div class="entry"><span class="tag">backup</span><strong>Backup 3-2-1 consolidado</strong> · espelho Drive 2h · snapshots LIGHT semanal + FULL mensal (primeiro de 2.8 GB concluído) · chroma mirror 6h.</div>
+        <div class="entry"><span class="tag">conteúdo</span><strong>Acervo +49 obras</strong> · curadas · renomeadas · organizadas em 30_CONTEUDOS · 10 em OCR background.</div>
+        <div class="entry"><span class="tag">regra</span><strong>URL única como frente</strong> · este hub é o único ponto de entrada público. Subpáginas acessíveis pela nav. Sem mais links semanais novos.</div>
+        <a class="link-changelog" href="./changelog.html">⟶ changelog completo</a>
+      </div>
+    </div>
+  </div>
 
   <div class="grid">
     <a class="tile primary" href="https://claude.ai/projects" target="_blank" rel="noopener">
@@ -242,13 +348,6 @@
       </div>
     </a>
 
-    <a class="tile primary" href="./primeira-semana.html">
-      <div class="glyph">⟡</div>
-      <div>
-        <div class="title">Primeira Semana</div>
-        <div class="sub">7 dias · roteiro do v5</div>
-      </div>
-    </a>
 
     <a class="tile" href="./iphone-setup.html">
       <div class="glyph">📱</div>
@@ -588,6 +687,25 @@ if ('serviceWorker' in navigator) {
 
 loadSnapshot();
 setInterval(loadSnapshot, 5 * 60 * 1000); // refresh a cada 5min
+
+// Novidades toggle
+function toggleNovidades() {
+  const el = document.getElementById('novidades');
+  el.classList.toggle('open');
+  // Persiste preferência
+  try { localStorage.setItem('nexus_novidades_open', el.classList.contains('open') ? '1' : '0'); } catch(e) {}
+}
+// Restaurar preferência (default: aberto na primeira visita após mudança)
+try {
+  const key = localStorage.getItem('nexus_novidades_seen_v15AA');
+  if (!key) {
+    document.getElementById('novidades').classList.add('open');
+    localStorage.setItem('nexus_novidades_seen_v15AA', '1');
+  } else {
+    const open = localStorage.getItem('nexus_novidades_open');
+    if (open === '1') document.getElementById('novidades').classList.add('open');
+  }
+} catch(e) {}
 </script>
 </body>
 </html>
