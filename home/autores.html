@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Autores</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 20px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{text-align:center;padding:4px 4px 20px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5;padding:0 10px}
+
+  .filters{display:flex;gap:8px;margin:20px 0 22px;flex-wrap:wrap;justify-content:center}
+  .filter{padding:7px 13px;border:1px solid var(--gold-soft);border-radius:999px;background:none;color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+  .filter.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .autor{margin:18px 0;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03);padding:22px;position:relative}
+  .autor .cat{position:absolute;top:16px;right:18px;font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);opacity:0.75;letter-spacing:0.2em;text-transform:uppercase}
+  .autor h2{font-family:Georgia,serif;font-size:26px;font-weight:400;letter-spacing:0.02em;line-height:1.1;padding-right:80px}
+  .autor .anos{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);opacity:0.8;letter-spacing:0.15em;margin-top:4px}
+  .autor .tese{margin-top:14px;font-family:Georgia,serif;font-size:17px;color:var(--bone);line-height:1.55;font-style:italic}
+  .autor .bio{margin-top:14px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.82;line-height:1.6}
+  .autor .obras{margin-top:18px;padding:14px 16px;background:rgba(184,147,90,0.04);border-radius:10px;border:1px solid var(--gold-faint)}
+  .autor .obras .tit{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+  .autor .obras ul{list-style:none}
+  .autor .obras li{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.88;line-height:1.55;padding:3px 0}
+  .autor .obras li::before{content:'·  ';color:var(--gold);font-weight:700}
+  .autor .citacao{margin-top:16px;padding:14px 16px;border-left:3px solid var(--gold);background:rgba(184,147,90,0.05);font-family:Georgia,serif;font-size:16px;font-style:italic;line-height:1.55;color:var(--bone)}
+  .autor .conexao{margin-top:14px;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.65;font-style:italic;padding-top:12px;border-top:1px solid var(--gold-faint)}
+  .autor .conexao strong{color:var(--gold);font-style:normal;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html" class="current">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ fichamentos canônicos</div>
+    <h1>12 Autores</h1>
+    <div class="sublead">Nomes nucleares do acervo NEXUS · biografia sintética · obras-chave · tese central · citação icônica · convite de leitura.</div>
+  </header>
+
+  <div class="filters">
+    <button class="filter active" data-cat="all">Todos</button>
+    <button class="filter" data-cat="psi">Psicanálise</button>
+    <button class="filter" data-cat="pnl">PNL</button>
+    <button class="filter" data-cat="neuro">Neuro/IE</button>
+    <button class="filter" data-cat="julg">Julgamento</button>
+    <button class="filter" data-cat="classico">Clássicos</button>
+  </div>
+
+  <div id="lista"></div>
+  <footer>NEXUS v15.M · 12 fichamentos densos</footer>
+</div>
+
+<script>
+const AUTORES = [
+  {
+    id:'freud', cat:'psi', nome:'Sigmund Freud', anos:'1856 · 1939 · Viena/Londres',
+    tese:'O inconsciente não é ausência de consciência — é outra consciência, estruturada, que fala por sintoma, sonho e lapso.',
+    bio:'Médico neurologista vienense que, ao tratar pacientes histéricas que a medicina do fim do século XIX tinha abandonado, descobre um território psíquico governado por leis próprias. Funda a psicanálise como método clínico (associação livre) e como teoria (aparelho psíquico, inconsciente, transferência). Transforma o cuidado da alma em técnica — e, ao fazê-lo, reescreve a antropologia ocidental. Morreu em Londres, fugido do nazismo, aos 83 anos.',
+    obras:['A Interpretação dos Sonhos (1900)','Três Ensaios sobre a Sexualidade (1905)','Novas Conferências — XXXI: A Dissecação da Personalidade Psíquica (1933)'],
+    citacao:'"Onde isso era, eu devo advir."',
+    conexao:'Para começar: Introdução à Psicanálise (1917). Para aprofundar: Novas Conferências (1933). Obra complementar essencial: Ferenczi, Diário Clínico.'
+  },
+  {
+    id:'ferenczi', cat:'psi', nome:'Sándor Ferenczi', anos:'1873 · 1933 · Budapeste',
+    tese:'A contratransferência não é erro técnico — é bússola. O que o analista sente é informação, desde que nomeada antes de reagir.',
+    bio:'Analista húngaro, amigo-discípulo-dissidente de Freud. Ousou o que Freud recuou: escutar a criança traumatizada por trás do sintoma adulto e reconhecer o papel do analista na cena clínica. Sua "confusão de línguas" (1932) descreve como o adulto confunde ternura infantil com paixão adulta quando não escuta. Morreu aos 60 anos, em parte por isolamento da comunidade analítica oficial — que só o reabilitou 50 anos depois.',
+    obras:['Confusão de Línguas entre os Adultos e a Criança (1932)','Diário Clínico (1932)','Thalassa — Ensaio sobre a Teoria da Genitalidade (1924)'],
+    citacao:'"A linguagem da ternura do adulto confunde-se com a linguagem da paixão quando o adulto não é capaz de escutar o pedido da criança."',
+    conexao:'Ler primeiro Confusão de Línguas (artigo curto). Depois, Diário Clínico — um dos documentos mais francos já escritos por um terapeuta sobre a própria prática.'
+  },
+  {
+    id:'winnicott', cat:'psi', nome:'Donald W. Winnicott', anos:'1896 · 1971 · Londres',
+    tese:'Há um falso self que protege e um gesto espontâneo que precisa de espaço. A clínica não destrói o falso — amplia o verdadeiro.',
+    bio:'Pediatra e analista inglês. Passou a vida escutando bebês, mães e crianças, e extraiu daí uma clínica do cuidado radicalmente atenta à dependência e ao brincar. Criou conceitos que atravessaram a psicanálise: holding, objeto transicional, mãe suficientemente boa, falso self. Sua obra permite pensar o adulto como criança que ainda precisa de espaço para o gesto espontâneo.',
+    obras:['O Brincar e a Realidade (1971)','A Família e o Desenvolvimento Individual','Natureza Humana'],
+    citacao:'"É no brincar, e talvez apenas no brincar, que a criança ou o adulto se sente livre para ser criativo."',
+    conexao:'Entrar por O Brincar e a Realidade, cap. 5 (Criatividade e suas Origens). Bibliografia complementar: Ferenczi e Klein — seus interlocutores teóricos.'
+  },
+  {
+    id:'lacan', cat:'psi', nome:'Jacques Lacan', anos:'1901 · 1981 · Paris',
+    tese:'O inconsciente é estruturado como linguagem. O desejo é sempre desejo do Outro — até que o sujeito o reconhece e o sustenta.',
+    bio:'Psiquiatra e psicanalista francês, figura central do "retorno a Freud" via estruturalismo e linguística. Retorceu a psicanálise com seminários anuais (1953-1980) que mudaram o campo inteiro. Difícil, polêmico, indispensável. Ensinou a ler o sintoma como mensagem cifrada — e o sujeito como efeito da linguagem, não como origem dela.',
+    obras:['Escritos (1966)','Seminário 11 — Os Quatro Conceitos Fundamentais (1964)','Seminário 23 — O Sinthoma (1975)'],
+    citacao:'"O desejo do homem é o desejo do Outro."',
+    conexao:'Começar pelo Seminário 11 (o mais acessível). Evitar os Escritos antes de ter base clínica. Lacan é para quem já leu Freud e Ferenczi.'
+  },
+  {
+    id:'bandler', cat:'pnl', nome:'Richard Bandler & John Grinder', anos:'PNL · Califórnia · anos 1970',
+    tese:'A excelência humana é modelável. Observe o que os melhores fazem (linguagem, postura, estratégia interna) — reproduza o padrão, não a pessoa.',
+    bio:'Bandler (matemático/psicólogo) e Grinder (linguista) estudaram três terapeutas extraordinários — Fritz Perls, Virginia Satir e Milton Erickson — e extraíram deles os padrões formais de intervenção. Dessa modelagem nasceu a PNL. Não é religião — é engenharia reversa. A Estrutura da Magia I-II fundou o campo; Reframing expandiu para contexto.',
+    obras:['A Estrutura da Magia I e II (1975/1976)','Reframing — Neuro-Linguistic Programming and the Transformation of Meaning (1982)','Frogs into Princes (1979)'],
+    citacao:'"O mapa não é o território."',
+    conexao:'Magia I primeiro (metamodelo). Depois Reframing para aplicar. Evitar "cursos de PNL" rasos — ir à fonte.'
+  },
+  {
+    id:'erickson', cat:'pnl', nome:'Milton H. Erickson', anos:'1901 · 1980 · Arizona',
+    tese:'O paciente tem os recursos. O trabalho é preparar o terreno onde possam emergir. Hipnose não é imposição — é sugestão indireta.',
+    bio:'Psiquiatra americano que sofreu pólio aos 17 anos e usou a recuperação para observar minúcias do comportamento humano — tornou-se o hipnotista mais inventivo do século. Sua técnica: linguagem ambígua, metáforas, pressupostos, duplos vínculos terapêuticos. Gênio clínico que Bandler/Grinder modelaram. Atendia confinado a cadeira de rodas nos últimos 20 anos da vida.',
+    obras:['Teachings of Milton H. Erickson (coletânea)','Minha Voz Irá Contigo — os Contos Didáticos (Rosen, 1982)','Hipnoterapia — Erickson & Rossi'],
+    citacao:'"Cada pessoa tem seu próprio ritmo de compreensão."',
+    conexao:'Começar por Minha Voz Irá Contigo (narrativo, acessível). Depois, Teachings para técnicas. Aplicado à liderança: pare de impor, construa contexto.'
+  },
+  {
+    id:'ledoux', cat:'neuro', nome:'Joseph LeDoux', anos:'n.1949 · Nova York',
+    tese:'A amígdala processa estímulos emocionais em ~40ms, antes que o córtex decida. Reação precede interpretação — sempre.',
+    bio:'Neurocientista americano, um dos maiores especialistas em medo e emoção do cérebro. Sua descoberta crucial: existe uma "rota rápida" (talâmo → amígdala) que processa perigo antes de a informação chegar ao córtex. Isso explica por que você reage antes de entender. Fundou a ciência do medo no cérebro e, mais recentemente, revisa o próprio modelo em obras sobre consciência.',
+    obras:['The Emotional Brain — The Mysterious Underpinnings of Emotional Life (1996)','Anxious — Using the Brain to Understand and Treat Fear and Anxiety (2015)','The Deep History of Ourselves (2019)'],
+    citacao:'"A amígdala pode responder antes mesmo que você saiba o que está respondendo."',
+    conexao:'The Emotional Brain como entrada (divulgação densa). Aplicado à IE: Goleman cita LeDoux em quase tudo que afirma sobre "sequestro amigdaliano".'
+  },
+  {
+    id:'damasio', cat:'neuro', nome:'António Damásio', anos:'n.1944 · Lisboa/EUA',
+    tese:'Decisões são mediadas por marcadores somáticos — sinais corporais associados a experiências passadas. Razão sem emoção decide pior, não melhor.',
+    bio:'Neurologista português radicado nos EUA (USC). Estudou pacientes com lesões no córtex pré-frontal ventromedial e descobriu que eles tinham dificuldade de decidir — não por falta de raciocínio, mas por desconexão emocional. Inverteu 400 anos de dualismo cartesiano: corpo, emoção e razão são um sistema. Autor contemporâneo indispensável.',
+    obras:['O Erro de Descartes — Emoção, Razão e o Cérebro Humano (1994)','O Mistério da Consciência (1999)','A Estranha Ordem das Coisas (2017)'],
+    citacao:'"Somos, e então pensamos — e só pensamos na medida em que somos."',
+    conexao:'O Erro de Descartes como entrada. Leia junto com LeDoux (complementares). Aplicado: quando Goleman fala em "IE", o marcador somático de Damásio é o mecanismo.'
+  },
+  {
+    id:'kahneman', cat:'julg', nome:'Daniel Kahneman', anos:'1934 · 2024 · Israel/EUA',
+    tese:'Duas operações mentais: Sistema 1 (rápido, intuitivo, automático) e Sistema 2 (lento, deliberado, custoso). A maioria dos erros acontece quando o 1 age disfarçado de 2.',
+    bio:'Psicólogo israelense-americano, Nobel de Economia em 2002 por inaugurar a economia comportamental junto com Amos Tversky. Seu trabalho redesenhou a compreensão do erro humano: não somos irracionais — somos racionais de um jeito sistemático e enviesado. Pensar Rápido e Devagar é um dos livros mais influentes do século XXI. Morreu em 2024, aos 90.',
+    obras:['Thinking, Fast and Slow (2011)','Noise — A Flaw in Human Judgment (2021, com Sibony e Sunstein)','Papers com Tversky (Prospect Theory, 1979)'],
+    citacao:'"Nada na vida é tão importante quanto você pensa que é enquanto está pensando nele."',
+    conexao:'Thinking Fast and Slow em leitura de 3 meses (é denso). Noise como continuação. Aplicado: 90% dos erros de julgamento do Fillipe são Sistema 1 disfarçado.'
+  },
+  {
+    id:'aurelio', cat:'classico', nome:'Marco Aurélio', anos:'121 · 180 d.C. · Roma',
+    tese:'Tens poder sobre tua mente — não sobre os eventos externos. Sabendo disso, encontrarás força.',
+    bio:'Último dos Cinco Bons Imperadores romanos, mas mais conhecido como filósofo estoico. Escreveu as Meditações em grego como diário pessoal, durante campanhas militares — nunca pensou que seriam publicadas. O livro sobreviveu 1800 anos. Lido por generais, monges, executivos e presos políticos. Manual do autodomínio sem moralismo.',
+    obras:['Meditações (c. 170 d.C.) — 12 livros curtos'],
+    citacao:'"O que não machuca a cidade não machuca o cidadão."',
+    conexao:'Livro II e IV como entrada. 5-10 min por dia funcionam melhor que maratona. Tradução: qualquer séria. Complementa Epicteto (Enchirídion) e Sêneca (Cartas a Lucílio).'
+  },
+  {
+    id:'shakespeare', cat:'classico', nome:'William Shakespeare', anos:'1564 · 1616 · Stratford/Londres',
+    tese:'O humano não tem essência fixa — se forma e se deforma pela linguagem, pelo poder, pela dúvida, pelo ciúme, pelo tempo. O palco espelha o mundo porque ambos são feitos da mesma matéria verbal.',
+    bio:'Dramaturgo e poeta inglês. Em 23 anos de produção ativa, escreveu 37 peças e 154 sonetos que se tornaram o mais amplo catálogo de condições humanas já produzido. Hamlet (indecisão), Lear (autoridade e declínio), Macbeth (ambição e culpa), Otelo (ciúme), Rei João (legitimidade). Freud admitiu dever-lhe metade do que sabia sobre a alma.',
+    obras:['Hamlet (c. 1600)','Rei Lear (c. 1606)','Macbeth (c. 1606)','Rei João (c. 1596)','Sonetos'],
+    citacao:'"Nada é bom nem ruim senão o pensamento o faz." — Hamlet II.2',
+    conexao:'Em pt-BR: traduções de Barbara Heliodora (melhor padrão), Millôr Fernandes (Hamlet, Rei João), Beatriz Viégas-Faria. Começar por Hamlet ou Macbeth. Rei João é a peça mais subestimada e mais atual.'
+  },
+  {
+    id:'yates', cat:'classico', nome:'Frances Yates', anos:'1899 · 1981 · Warburg Institute',
+    tese:'A arte da memória clássica é a arte do pensamento. Memorizar não é depositar — é operar sobre o que se sabe, dando-lhe lugar e imagem.',
+    bio:'Historiadora inglesa do Renascimento, do Instituto Warburg. Recuperou uma tradição perdida: o método de loci (lugares), inventado por Simônides de Ceos e transmitido por Cícero, Quintiliano e os renascentistas. Mostrou como a memória, antes da imprensa, era técnica refinada — e como seus princípios continuam válidos hoje. Base direta do Palácio das 18 Estações do NEXUS.',
+    obras:['A Arte da Memória (1966)','Giordano Bruno e a Tradição Hermética (1964)','Iluminismo Rosacruz (1972)'],
+    citacao:'"A arte da memória é a arte do pensamento."',
+    conexao:'A Arte da Memória, cap. 1-2 (Simônides, Cícero). Complementar moderno: Dominic O\'Brien (aplicado) e Joshua Foer (Moonwalking with Einstein, narrativo).'
+  },
+];
+
+let currentFilter = 'all';
+
+function render() {
+  const filtered = currentFilter === 'all' ? AUTORES : AUTORES.filter(a => a.cat === currentFilter);
+  const ordered = [...filtered].sort((a, b) => a.nome.localeCompare(b.nome));
+  const container = document.getElementById('lista');
+  container.innerHTML = '';
+  const catLabels = {psi:'psicanálise', pnl:'PNL', neuro:'neuro/IE', julg:'julgamento', classico:'clássico'};
+  ordered.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'autor';
+    div.innerHTML = `
+      <div class="cat">§ ${catLabels[a.cat] || a.cat}</div>
+      <h2>${escapeHtml(a.nome)}</h2>
+      <div class="anos">${escapeHtml(a.anos)}</div>
+      <div class="tese">${escapeHtml(a.tese)}</div>
+      <div class="bio">${escapeHtml(a.bio)}</div>
+      <div class="obras">
+        <div class="tit">obras-chave</div>
+        <ul>${a.obras.map(o => '<li>' + escapeHtml(o) + '</li>').join('')}</ul>
+      </div>
+      <div class="citacao">${escapeHtml(a.citacao)}</div>
+      <div class="conexao"><strong>convite:</strong> ${escapeHtml(a.conexao)}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+document.querySelectorAll('.filter').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+    b.classList.add('active');
+    currentFilter = b.dataset.cat;
+    render();
+  };
+});
+render();
+</script>
+</body>
+</html>

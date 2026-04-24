@@ -10,13 +10,15 @@ def build_nav(current):
         ('./', '§ home', 'home'),
         ('./hoje.html', 'hoje', 'hoje'),
         ('./cards.html', 'cards', 'cards'),
-        ('./citacao.html', 'citação', 'citacao'),
-        ('./oraculo.html', 'oráculo', 'oraculo'),
-        ('./estacoes.html', 'palácio', 'estacoes'),
-        ('./grafo.html', 'grafo', 'grafo'),
+        ('./autores.html', 'autores', 'autores'),
+        ('./glossario.html', 'glossário', 'glossario'),
         ('./biblioteca.html', 'biblioteca', 'biblioteca'),
         ('./trilhas.html', 'trilhas', 'trilhas'),
         ('./protocolos.html', 'protocolos', 'protocolos'),
+        ('./grafo.html', 'grafo', 'grafo'),
+        ('./estacoes.html', 'palácio', 'estacoes'),
+        ('./citacao.html', 'citação', 'citacao'),
+        ('./oraculo.html', 'oráculo', 'oraculo'),
     ]
     lines = ['  <div class="nav">']
     for href, label, key in items:
@@ -29,6 +31,8 @@ CURRENT_MAP = {
     'index.html': 'home',
     'hoje.html': 'hoje',
     'cards.html': 'cards',
+    'autores.html': 'autores',
+    'glossario.html': 'glossario',
     'citacao.html': 'citacao',
     'oraculo.html': 'oraculo',
     'estacoes.html': 'estacoes',
