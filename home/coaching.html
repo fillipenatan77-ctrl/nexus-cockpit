@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Modo Diálogo Avançado</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.78;font-style:italic;line-height:1.55}
+
+  .cta-box{margin:20px 0;padding:18px 20px;border:1px solid var(--gold);border-radius:14px;background:linear-gradient(145deg, rgba(184,147,90,0.12) 0%, rgba(15,14,23,0.6) 100%);display:flex;gap:12px;align-items:center}
+  .cta-box .icn{font-family:Georgia,serif;font-size:30px;color:var(--gold);line-height:1}
+  .cta-box .txt{flex:1;font-family:Georgia,serif;font-size:15px;line-height:1.45;color:var(--bone)}
+  .cta-box a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px dashed var(--gold)}
+
+  .secao{margin-top:28px}
+  .secao h2{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:12px;opacity:0.9}
+  .secao h3{font-family:Georgia,serif;font-size:22px;font-weight:400;margin-bottom:10px;color:var(--bone)}
+
+  .camada{padding:14px 16px;margin-bottom:10px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.03)}
+  .camada .num{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;margin-bottom:6px}
+  .camada .nome{font-family:Georgia,serif;font-size:17px;color:var(--bone);font-weight:500}
+  .camada .desc{margin-top:4px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.75;line-height:1.5}
+
+  .prompt-card{margin:10px 0;padding:14px 16px;border:1px solid var(--gold-soft);border-radius:10px;background:rgba(184,147,90,0.04)}
+  .prompt-card .cmd{font-family:'SF Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:0.1em;font-weight:700;margin-bottom:6px}
+  .prompt-card .desc{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;line-height:1.5}
+  .prompt-card button{margin-top:8px;padding:6px 12px;background:rgba(184,147,90,0.1);border:1px solid var(--gold-soft);border-radius:999px;color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.12em;cursor:pointer;text-transform:uppercase}
+  .prompt-card button:active{background:var(--gold);color:var(--ink)}
+
+  .passo{padding:16px 18px;margin:10px 0;border-left:3px solid var(--gold);background:rgba(184,147,90,0.05);border-radius:0 10px 10px 0}
+  .passo .n{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;margin-bottom:4px}
+  .passo .t{font-family:Georgia,serif;font-size:15px;color:var(--bone);line-height:1.55}
+
+  .link-btn{display:inline-block;padding:12px 20px;margin:6px 6px 6px 0;background:rgba(184,147,90,0.08);border:1px solid var(--gold-soft);border-radius:999px;color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase}
+  .link-btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+
+  .tool-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .tool-row > div{padding:14px 16px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.02)}
+  .tool-row .n{font-family:Georgia,serif;font-size:16px;color:var(--bone);margin-bottom:4px}
+  .tool-row .s{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.75;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+  .tool-row .d{font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.75;line-height:1.45}
+
+  footer{margin-top:36px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./coaching.html" class="current">coaching</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./recomendacoes.html">recomendações</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ modo diálogo avançado</div>
+    <h1>Coaching</h1>
+    <div class="sublead">Cada conversa no Cortex vira laboratório de raciocínio, treino de linguagem e coaching aplicado · pt-BR · denso · sem gordura.</div>
+  </header>
+
+  <div class="cta-box">
+    <div class="icn">⟶</div>
+    <div class="txt">Abrir no Claude iOS → <a href="https://claude.ai/projects" target="_blank">NEXUS Cortex Project</a> · use o System Prompt v5. Fala na situação real em texto ou <strong>modo voz</strong> (botão de microfone no app).</div>
+  </div>
+
+  <div class="secao">
+    <h2>§ as 8 camadas da resposta</h2>
+    <p style="font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.8;line-height:1.55;margin-bottom:14px">Cada resposta do Cortex passa por essas camadas mentalmente e ativa as que o caso exige. Não é checklist rígido · é estrutura viva.</p>
+
+    <div class="camada"><div class="num">01</div><div class="nome">Leitura do problema</div><div class="desc">Diagnóstico curto, 1-2 frases, sem adjetivo. O que está em jogo de verdade.</div></div>
+    <div class="camada"><div class="num">02</div><div class="nome">Conceito central</div><div class="desc">Qual o núcleo teórico/operacional que o caso mobiliza.</div></div>
+    <div class="camada"><div class="num">03</div><div class="nome">Aplicação prática imediata</div><div class="desc">O que fazer agora, hoje, concreto.</div></div>
+    <div class="camada"><div class="num">04</div><div class="nome">Conexão com conteúdo NEXUS</div><div class="desc">Card · autor · trilha do acervo que conversa com isso.</div></div>
+    <div class="camada"><div class="num">05</div><div class="nome">Referências cruzadas</div><div class="desc">2+ autores divergentes ou convergentes sobre o tema.</div></div>
+    <div class="camada"><div class="num">06</div><div class="nome">Correção de linguagem</div><div class="desc">Se houver traço de linguagem/raciocínio a ajustar · devolvido com respeito.</div></div>
+    <div class="camada"><div class="num">07</div><div class="nome">Proposta de treino</div><div class="desc">Algo testável em 24-72h, executável no fluxo real.</div></div>
+    <div class="camada"><div class="num">08</div><div class="nome">Síntese acionável</div><div class="desc">1-2 frases finais que condensem o essencial + próximo passo.</div></div>
+  </div>
+
+  <div class="secao">
+    <h2>§ comandos de coaching disponíveis</h2>
+
+    <div class="prompt-card">
+      <div class="cmd">/grade10</div>
+      <div class="desc">Aplica os 10 pontos canônicos à situação real (default quando nada é nomeado).</div>
+      <button onclick="copy('/grade10')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/conversa</div>
+      <div class="desc">Conversa Difícil v2 · 7 passos (Stone/Heen + Duhigg). Para conflito, feedback, negociação.</div>
+      <button onclick="copy('/conversa')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/mapa</div>
+      <div class="desc">Mapa de Influência sobre pessoa-chave · 8 campos (metaprograma · Cialdini · V/A/K · Satir · gatilhos · formulações · estratégia · observações).</div>
+      <button onclick="copy('/mapa')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/corrige</div>
+      <div class="desc">Cole sua formulação · Cortex devolve 3 versões (curta · elegante · firme) + o que mudou e por quê.</div>
+      <button onclick="copy('/corrige')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/treino</div>
+      <div class="desc">Monta treino de 7 dias · 1 exercício por dia sobre um tema específico.</div>
+      <button onclick="copy('/treino')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/espelho</div>
+      <div class="desc">Devolve padrões que o Cortex notou nas últimas conversas. Útil semanalmente.</div>
+      <button onclick="copy('/espelho')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/cruzamento</div>
+      <div class="desc">Dê um tema · recebe síntese de 3 autores NEXUS que o atravessam (ex: "poder na hierarquia").</div>
+      <button onclick="copy('/cruzamento')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/voz</div>
+      <div class="desc">Descreva um momento de fala real (reunião, apresentação) · análise prosódica conjectural + treino específico.</div>
+      <button onclick="copy('/voz')">copiar</button>
+    </div>
+    <div class="prompt-card">
+      <div class="cmd">/insight · /oraculo · /fichamento · /status · /revisao · /card</div>
+      <div class="desc">Protocolos v4 preservados.</div>
+    </div>
+  </div>
+
+  <div class="secao">
+    <h2>§ fluxo hands-free · dirigindo · caminhando</h2>
+
+    <div class="passo"><div class="n">passo 01</div><div class="t">Abra o <strong>Claude app no iPhone</strong>. Selecione o Project <strong>NEXUS Cortex</strong>.</div></div>
+    <div class="passo"><div class="n">passo 02</div><div class="t">Toque no ícone de <strong>microfone</strong> (canto inferior direito). Fale a situação real em voz natural · como se estivesse contando para um amigo denso.</div></div>
+    <div class="passo"><div class="n">passo 03</div><div class="t">O Cortex processa · responde em voz (mais curta, estrutura oral, 1 exemplo concreto · síntese final em 1 frase).</div></div>
+    <div class="passo"><div class="n">passo 04</div><div class="t">Você escuta dirigindo · responde falando · ciclo continua.</div></div>
+    <div class="passo"><div class="n">passo 05</div><div class="t">Quando algo canônico emergir, diga "persista isso em 00_HUB" · entra no sistema automático.</div></div>
+
+    <div style="margin-top:16px;padding:14px 18px;background:rgba(184,147,90,0.04);border-left:3px solid var(--gold);border-radius:0 10px 10px 0">
+      <div style="font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;margin-bottom:6px">⚠ regra de segurança</div>
+      <div style="font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;line-height:1.5">Dirigir exige atenção plena à pista. Use modo voz só quando for seguro · pare o carro para conversas densas que exigem seu silêncio pensante · nunca tome nota enquanto dirige.</div>
+    </div>
+  </div>
+
+  <div class="secao">
+    <h2>§ análise vocal prosódica · opções</h2>
+    <p style="font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.82;line-height:1.55;margin-bottom:14px">O Claude iOS não faz análise prosódica nativa (pitch, ritmo, pausas quantificadas). Para isso, há <strong>ferramentas dedicadas maduras</strong> que você pode integrar ao fluxo NEXUS.</p>
+
+    <div class="tool-row">
+      <div>
+        <div class="n">Yoodli</div>
+        <div class="s">recomendado · iOS/web · grátis</div>
+        <div class="d">Grava fala ou apresentação · retorna WPM, fillers ("éé"), variação tonal, pausas, palavras-muletas. Relatório visual. Link: <a href="https://yoodli.ai" target="_blank" style="color:var(--gold)">yoodli.ai</a></div>
+      </div>
+      <div>
+        <div class="n">Speeko</div>
+        <div class="s">iOS · alternativa</div>
+        <div class="d">Similar ao Yoodli · foco em ritmo e clareza. Feedback imediato. Mais voltado a oratória.</div>
+      </div>
+      <div>
+        <div class="n">Orai</div>
+        <div class="s">iOS/Android · pago</div>
+        <div class="d">Focado em apresentações corporativas. Usa IA para detectar pausas, energia, variação.</div>
+      </div>
+      <div>
+        <div class="n">Voice Memos + NEXUS</div>
+        <div class="s">manual · hackável</div>
+        <div class="d">Grava no iOS nativo · sobe pro Drive · script Python do NEXUS transcreve via Whisper + análise Librosa. Dá pra automatizar.</div>
+      </div>
+    </div>
+
+    <p style="margin-top:14px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.75;font-style:italic;line-height:1.55">Sugestão de fluxo: Yoodli como primeira camada (pragmática, pronta) · manual pelo comando <code style="background:rgba(184,147,90,0.08);padding:2px 6px;border-radius:4px;color:var(--gold)">/voz</code> no Cortex como camada reflexiva (descreve o momento · Cortex hipotetiza e propõe treino).</p>
+  </div>
+
+  <div class="secao">
+    <h2>§ como começar hoje</h2>
+    <div class="passo"><div class="n">01</div><div class="t">Abra o <a href="https://claude.ai/projects" target="_blank" style="color:var(--gold);font-weight:600">Claude Project</a> · cole o System Prompt v5 de <code style="background:rgba(184,147,90,0.1);padding:2px 6px;border-radius:4px;color:var(--gold);font-size:12px">C:\NEXUS\00_HUB\NEXUS_CORTEX_SYSTEM_PROMPT_v5.md</code> em Edit Custom Instructions (Ctrl+A · Ctrl+V · Save).</div></div>
+    <div class="passo"><div class="n">02</div><div class="t">Abra o app Claude no iPhone · selecione o Project · teste com uma situação real. Veja as 8 camadas na resposta.</div></div>
+    <div class="passo"><div class="n">03</div><div class="t">Experimente um comando novo: <code style="background:rgba(184,147,90,0.1);padding:2px 6px;border-radius:4px;color:var(--gold);font-size:12px">/corrige</code> + uma formulação que você escreveu recentemente.</div></div>
+    <div class="passo"><div class="n">04</div><div class="t">Teste o modo voz no próximo deslocamento · fale uma situação real · receba resposta estruturada em áudio.</div></div>
+    <div class="passo"><div class="n">05</div><div class="t">Se quiser análise prosódica completa · instale <a href="https://yoodli.ai" target="_blank" style="color:var(--gold)">Yoodli</a> no iPhone · grave 2min de fala sobre algo importante · compare com o que o Cortex infere.</div></div>
+  </div>
+
+  <div style="margin-top:34px;text-align:center">
+    <a href="https://claude.ai/projects" target="_blank" class="link-btn primary">⟶ Abrir Claude Project</a>
+    <a href="https://yoodli.ai" target="_blank" class="link-btn">⟶ Yoodli · análise vocal</a>
+  </div>
+
+  <footer>NEXUS v15.X · modo diálogo avançado · pt-BR</footer>
+</div>
+
+<script>
+function copy(cmd) {
+  navigator.clipboard.writeText(cmd).then(() => {
+    // feedback simples
+  });
+}
+</script>
+</body>
+</html>
