@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Recomendações</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); --p0:#D4A15C; --p1:#A68455; --p2:#6F5A44; }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 14px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .cta-box{margin:18px 0;padding:16px 18px;border:1px solid var(--gold);border-radius:12px;background:rgba(184,147,90,0.08);display:flex;gap:12px;align-items:center}
+  .cta-box .icn{font-family:Georgia,serif;font-size:28px;color:var(--gold)}
+  .cta-box .txt{flex:1;font-family:Georgia,serif;font-size:14px;line-height:1.45;color:var(--bone)}
+  .cta-box a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px dashed var(--gold)}
+
+  .filters{display:flex;gap:6px;margin:16px 0 18px;flex-wrap:wrap;justify-content:center}
+  .filter{padding:6px 11px;border:1px solid var(--gold-soft);border-radius:999px;background:none;color:var(--gold);font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
+  .filter.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  .secao{margin-top:24px}
+  .secao h2{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;margin-bottom:10px;padding-left:4px;opacity:0.9}
+
+  .livro{margin:10px 0;padding:14px 16px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,0.02);position:relative;display:flex;gap:14px;align-items:flex-start}
+  .livro .prio{flex:0 0 32px;text-align:center;font-family:'SF Mono',monospace;font-size:12px;font-weight:700;letter-spacing:0.1em;padding:6px 0;border-radius:6px;color:var(--ink)}
+  .livro .prio.p0{background:var(--p0)}
+  .livro .prio.p1{background:var(--p1)}
+  .livro .prio.p2{background:var(--p2);color:var(--bone)}
+  .livro .info{flex:1;min-width:0}
+  .livro .titulo{font-family:Georgia,serif;font-size:16px;color:var(--bone);font-weight:500;line-height:1.25}
+  .livro .autor{font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.7;margin-top:1px}
+  .livro .why{margin-top:6px;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.78;line-height:1.45;font-style:italic}
+  .livro .sbtn{margin-top:8px;display:inline-block;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);border:1px solid var(--gold-soft);padding:4px 10px;border-radius:999px;text-decoration:none;letter-spacing:0.15em;text-transform:uppercase}
+
+  .legenda{margin:18px 0;padding:12px 16px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.02);font-family:'SF Mono',monospace;font-size:10px;color:var(--bone);opacity:0.8;letter-spacing:0.1em;line-height:1.7}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./recomendacoes.html" class="current">recomendações</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ expansão do acervo · priorizada</div>
+    <h1>Recomendações</h1>
+    <div class="sublead">50+ obras selecionadas para preencher lacunas do acervo NEXUS · baixar no Scribd com 1 toque no botão.</div>
+  </header>
+
+  <div class="cta-box">
+    <div class="icn">↗</div>
+    <div class="txt">Toque no botão <strong>scribd ↗</strong> de cada obra — abre direto a busca no Scribd com o título já preenchido. Após baixar, colocar em <code>C:\NEXUS\50_BACKUPS\RAG_INGEST_TIER4\</code> para indexação automática.</div>
+  </div>
+
+  <div class="legenda">
+    <strong>P0</strong> — essencial · lacuna crítica &nbsp;&middot;&nbsp; <strong>P1</strong> — aprofunda tema existente &nbsp;&middot;&nbsp; <strong>P2</strong> — complementa horizonte
+  </div>
+
+  <div class="filters">
+    <button class="filter active" data-cat="all">Todos</button>
+    <button class="filter" data-cat="psi">Psicanálise</button>
+    <button class="filter" data-cat="neuro">Neuro/IE</button>
+    <button class="filter" data-cat="pnl">PNL/Erickson</button>
+    <button class="filter" data-cat="poder">Persuasão/Poder</button>
+    <button class="filter" data-cat="filo">Filosofia</button>
+    <button class="filter" data-cat="lit">Literatura</button>
+    <button class="filter" data-cat="humor">Humor fino</button>
+  </div>
+
+  <div id="lista"></div>
+
+  <footer>NEXUS v15.R · curadoria priorizada · expansível</footer>
+</div>
+
+<script>
+const OBRAS = [
+  // ===== PSICANÁLISE =====
+  { cat:'psi', p:'p0', t:'O Seminário, livro 11 · Os Quatro Conceitos Fundamentais da Psicanálise', a:'Jacques Lacan (1964)', why:'Obra MAIS acessível de Lacan. Entrada canônica para o pensamento lacaniano. Inconsciente, repetição, transferência, pulsão. Essencial pra aprofundar a trilha de Psicanálise.' },
+  { cat:'psi', p:'p0', t:'Escritos · seleção (Função e campo da fala · Instância da letra · Subversão do sujeito)', a:'Jacques Lacan (1966)', why:'Não ler tudo — esses 3 textos formam o núcleo. "Função e campo" é o manifesto inaugural.' },
+  { cat:'psi', p:'p0', t:'A Interpretação dos Sonhos', a:'Sigmund Freud (1900)', why:'Obra fundadora. Capítulo 7 é o tratado teórico. "Via régia para o inconsciente" — frase que resume o método.' },
+  { cat:'psi', p:'p0', t:'Mal-Estar na Civilização', a:'Sigmund Freud (1930)', why:'Tese central: civilização = repressão pulsional + culpa. 100 páginas. Leitura obrigatória pra entender como Freud lê o institucional.' },
+  { cat:'psi', p:'p1', t:'Além do Princípio do Prazer', a:'Sigmund Freud (1920)', why:'Introduz pulsão de morte. Reformula todo o aparelho psíquico. Curto, denso, reformador.' },
+  { cat:'psi', p:'p1', t:'O Brincar e a Realidade', a:'Donald Winnicott (1971)', why:'Já há referência no acervo, mas a obra completa tem cap. 5 (Criatividade e suas origens) que é canônico.' },
+  { cat:'psi', p:'p1', t:'Experiências com Grupos', a:'Wilfred Bion', why:'Análise de grupos sob tensão. Aplicável diretamente a leitura institucional (MPMG/PMMG). 3 pressupostos básicos: dependência, luta-fuga, acasalamento.' },
+  { cat:'psi', p:'p1', t:'Atenção e Interpretação', a:'Wilfred Bion (1970)', why:'"Sem memória, sem desejo" — postura clínica do Bion. Usável além da clínica: atenção pura como técnica.' },
+  { cat:'psi', p:'p1', t:'Inveja e Gratidão', a:'Melanie Klein (1957)', why:'Texto seminal sobre inveja como força estrutural. Lente crítica para leitura de relações institucionais.' },
+  { cat:'psi', p:'p2', t:'Totem e Tabu', a:'Sigmund Freud (1913)', why:'Freud lendo antropologia. Tese do pai da horda primeva. Estrutura mítica da autoridade.' },
+
+  // ===== NEUROCIÊNCIA/IE =====
+  { cat:'neuro', p:'p0', t:'Affective Neuroscience · The Foundations of Human and Animal Emotions', a:'Jaak Panksepp (1998)', why:'Tratado fundador. 7 sistemas afetivos primários (SEEKING, RAGE, FEAR, LUST, CARE, GRIEF, PLAY). Base neuroanatômica das emoções. Inglês — não há tradução completa.' },
+  { cat:'neuro', p:'p0', t:'The Polyvagal Theory', a:'Stephen Porges (2011)', why:'Nervo vago ventral como interruptor da segurança social. Fundamento fisiológico de rapport e regulação. Essencial pra quem lidera equipes sob tensão.' },
+  { cat:'neuro', p:'p0', t:'E o Cérebro Criou o Homem', a:'António Damásio (2010)', why:'Continuação do Erro de Descartes. Mapa do self (proto-self · self nuclear · self autobiográfico). Mais profundo que o primeiro.' },
+  { cat:'neuro', p:'p1', t:'Mindsight · A Nova Ciência da Transformação Pessoal', a:'Daniel Siegel (2010)', why:'Integração cerebral como saúde mental. 9 funções do córtex pré-frontal médio. Tradução pt-BR disponível.' },
+  { cat:'neuro', p:'p1', t:'À Procura da Memória', a:'Eric Kandel (2006)', why:'Nobel de Medicina 2000. História pessoal + ciência da memória em nível celular. Complementa Yates (sistema) com mecanismo (sinapse).' },
+  { cat:'neuro', p:'p1', t:'Foco · A Atenção e seu Papel Fundamental para o Êxito', a:'Daniel Goleman (2013)', why:'Complementa Inteligência Emocional. 3 focos: interno, outro, exterior. Modelo triádico de atenção.' },
+  { cat:'neuro', p:'p2', t:'Anxious · Using the Brain to Understand and Treat Fear and Anxiety', a:'Joseph LeDoux (2015)', why:'LeDoux revisa seu próprio modelo do medo. Distinção entre medo consciente e circuitos defensivos inconscientes.' },
+  { cat:'neuro', p:'p2', t:'Behave · The Biology of Humans at Our Best and Worst', a:'Robert Sapolsky (2017)', why:'Comportamento humano do neuronal ao evolucionário. 800 páginas, mas cada capítulo é autônomo. Aplicável ao operacional.' },
+
+  // ===== PNL/ERICKSON =====
+  { cat:'pnl', p:'p0', t:'Padrões Hipnóticos de Milton Erickson · Volume 1 e 2', a:'Bandler & Grinder (1975)', why:'Análise estrutural do trabalho de Erickson. O metamodelo invertido. Fundamental pra quem quer operar com linguagem indireta.' },
+  { cat:'pnl', p:'p0', t:'Seminários de Hipnose com Milton H. Erickson', a:'Jeffrey Zeig', why:'Ericksoniana aplicada. Transcrições de seminários com casos. Mais acessível que os Teachings originais.' },
+  { cat:'pnl', p:'p1', t:'Terapia do Grupo Familiar', a:'Virginia Satir', why:'A obra nuclear de Satir. 5 posições comunicacionais (aplacador, acusador, super-razoável, irrelevante, congruente). Aplicável além da família.' },
+  { cat:'pnl', p:'p1', t:'Frogs into Princes', a:'Bandler & Grinder (1979)', why:'Transcrição de seminários intensivos. Acessível. Ancoragem, reframing, submodalidades.' },
+  { cat:'pnl', p:'p2', t:'Ressignificando · Neuro-Linguistic Programming and the Transformation of Meaning', a:'Bandler & Grinder (1982)', why:'Reframing formalizado. 6 passos do reframing em 6 passos. Técnica central.' },
+
+  // ===== PERSUASÃO/PODER =====
+  { cat:'poder', p:'p0', t:'Pre-Suasion · A Revolutionary Way to Influence and Persuade', a:'Robert Cialdini (2016)', why:'Continuação de Influence. Tese: o que acontece ANTES da mensagem determina o sucesso dela. Privileged moments.' },
+  { cat:'poder', p:'p0', t:'As Leis da Natureza Humana', a:'Robert Greene (2018)', why:'Complementa 48 Leis. 18 leis psicológicas. Mais maduro, menos cru que 48 Leis.' },
+  { cat:'poder', p:'p1', t:'Maestria', a:'Robert Greene (2012)', why:'Caminho da maestria através de estudos de casos (Da Vinci, Darwin, Coltrane). Contrapeso ético às 48 Leis.' },
+  { cat:'poder', p:'p1', t:'Arte da Guerra · edição Denma', a:'Sun Tzu · trad. Thomas Cleary ou Denma', why:'Comentada. A leitura comentada muda tudo. Denma edition é a mais lida em círculos estratégicos americanos.' },
+  { cat:'poder', p:'p1', t:'O Príncipe · edição comentada', a:'Nicolau Maquiavel (1532)', why:'Ler sem comentário arrisca caricatura. A edição com notas (Quentin Skinner) contextualiza — Maquiavel é mais sutil que a fama.' },
+  { cat:'poder', p:'p2', t:'Thinking in Bets', a:'Annie Duke (2018)', why:'Ex-jogadora profissional de pôquer aplica decision theory ao dia a dia. Complementar ao Kahneman.' },
+  { cat:'poder', p:'p2', t:'Pensando Estrategicamente', a:'Avinash Dixit · Barry Nalebuff', why:'Teoria dos jogos aplicada a negociação e gestão. Denso mas utilizável.' },
+
+  // ===== FILOSOFIA =====
+  { cat:'filo', p:'p0', t:'Enchirídion · edição integral', a:'Epicteto (c. 125 d.C.) · trad. Aldo Dinucci', why:'Edição Dinucci é a melhor em pt-BR. 40 aforismos curtos. 1 por dia = 40 dias de filosofia aplicada.' },
+  { cat:'filo', p:'p0', t:'Cartas a Lucílio · 3 volumes', a:'Sêneca · trad. J. A. Segurado e Campos', why:'124 cartas filosóficas curtas. Sêneca conversando com amigo. Acessível, aplicável, denso.' },
+  { cat:'filo', p:'p0', t:'Meditações · trad. William Li', a:'Marco Aurélio (c. 170 d.C.)', why:'Tradução nova direto do grego. Melhor em pt-BR. 12 livros curtos. Manual de autodomínio.' },
+  { cat:'filo', p:'p0', t:'A Condição Humana', a:'Hannah Arendt (1958)', why:'Distinção entre labor/trabalho/ação. Aplicável a vida institucional. A ação é o único que faz sentido humano. Crítico.' },
+  { cat:'filo', p:'p1', t:'Ensaios · 3 volumes', a:'Michel de Montaigne · trad. Rosemary C. Abílio', why:'Edição Martins Fontes é a mais completa em pt-BR. Montaigne inventou o ensaio. Lê-se por fragmentos.' },
+  { cat:'filo', p:'p1', t:'Eichmann em Jerusalém · Um Relato sobre a Banalidade do Mal', a:'Hannah Arendt (1963)', why:'Observação clínica de como a maldade se instala na burocracia. Aplicável — infelizmente — a qualquer instituição.' },
+  { cat:'filo', p:'p1', t:'Sociedade do Cansaço', a:'Byung-Chul Han (2010)', why:'Curto (80pp) e preciso. Diagnóstico do adoecimento contemporâneo pelo excesso de positividade. Atual.' },
+  { cat:'filo', p:'p1', t:'Psicopolítica · Neoliberalismo e as Novas Técnicas de Poder', a:'Byung-Chul Han (2014)', why:'Complementa Sociedade do Cansaço. Como o poder hoje se exerce por sedução, não por repressão.' },
+  { cat:'filo', p:'p2', t:'Ser e Tempo', a:'Martin Heidegger (1927)', why:'Difícil. Ler com comentário (Dubois · ou Zuben). Mas a ideia do "a gente" (Das Man) é operacional.' },
+  { cat:'filo', p:'p2', t:'Tempo e Narrativa · volume 1', a:'Paul Ricoeur (1983)', why:'Narrativa como forma de conhecimento. Útil pra quem atua na instituição e precisa construir histórias coerentes.' },
+
+  // ===== LITERATURA =====
+  { cat:'lit', p:'p0', t:'Hamlet · Rei Lear · Macbeth · Otelo · Rei João — trad. Barbara Heliodora', a:'Shakespeare', why:'Heliodora é o padrão ouro em pt-BR. 5 tragédias canônicas + Rei João (subestimada). Volume único ou separados.' },
+  { cat:'lit', p:'p0', t:'Memórias Póstumas de Brás Cubas · Dom Casmurro · Quincas Borba', a:'Machado de Assis', why:'Machado = ironia estrutural brasileira. Manual de leitura social subtextual. "Ao verme que primeiro roeu as frias carnes..." abre a trilogia realista.' },
+  { cat:'lit', p:'p1', t:'Ficções · O Aleph', a:'Jorge Luis Borges', why:'Contos curtos, densos, estruturais. "A Biblioteca de Babel" cita-se sozinha. "O Aleph" é poesia matemática.' },
+  { cat:'lit', p:'p1', t:'Crime e Castigo', a:'Dostoiévski · trad. Paulo Bezerra (Editora 34)', why:'Edição 34 é a melhor em pt-BR. Romance psicológico antes da psicologia existir. Raskólnikov = teste cognitivo em formato de trama.' },
+  { cat:'lit', p:'p1', t:'Os Irmãos Karamázov', a:'Dostoiévski · trad. Paulo Bezerra', why:'Obra-prima. "O Grande Inquisidor" (livro V) é uma das páginas mais densas da literatura.' },
+  { cat:'lit', p:'p2', t:'Guerra e Paz', a:'Liev Tolstoi · trad. Rubens Figueiredo', why:'1500 páginas. Tolstoi lendo Napoleão e a sociedade russa. Monumento. Ler em 6 meses.' },
+  { cat:'lit', p:'p2', t:'Contos · A Igreja do Diabo · O Alienista · O Espelho', a:'Machado de Assis', why:'3 contos — menos de 100 páginas. Máquinas de ironia perfeitas. Releitura anual.' },
+  { cat:'lit', p:'p2', t:'O Processo · Carta ao Pai · A Metamorfose', a:'Franz Kafka', why:'Manual estrutural da burocracia como experiência existencial. Carta ao Pai é o texto mais autobiográfico (e mais útil psicanaliticamente).' },
+
+  // ===== HUMOR FINO =====
+  { cat:'humor', p:'p1', t:'O Retrato de Dorian Gray · + aforismos', a:'Oscar Wilde', why:'Wilde é humor-manifesto. Aforismos ("Posso resistir a tudo, exceto à tentação") são munição verbal aplicável.' },
+  { cat:'humor', p:'p1', t:'Cartas da Terra · ensaios', a:'Mark Twain', why:'Sátira mordaz disfarçada de teologia. "The War Prayer" é um dos 10 textos políticos mais devastadores já escritos.' },
+  { cat:'humor', p:'p2', t:'Ortodoxia', a:'G.K. Chesterton (1908)', why:'Humor inteligente com fundo religioso. Chesterton escreve o contrário do que se espera e chega onde não se imaginava. Paradoxo como método.' },
+  { cat:'humor', p:'p2', t:'As Novas Crônicas de Bustos Domecq', a:'Borges & Bioy Casares', why:'Borges fazendo pastiche acadêmico de escritores fictícios ridículos. Humor de letrado — mas aplicável a leitura de vaidades institucionais.' },
+  { cat:'humor', p:'p2', t:'Contos · O Homem que Tinha a Mania de Explicar', a:'Rubem Alves', why:'Crônicas brasileiras de humor reflexivo. Rubem Alves escreve filosofia em linguagem coloquial.' },
+];
+
+// Renderização
+let currentFilter = 'all';
+
+function render() {
+  const container = document.getElementById('lista');
+  const categorias = {
+    psi: 'Psicanálise',
+    neuro: 'Neurociência · IE',
+    pnl: 'PNL · Erickson',
+    poder: 'Persuasão · Poder',
+    filo: 'Filosofia',
+    lit: 'Literatura',
+    humor: 'Humor fino'
+  };
+  const filtered = currentFilter === 'all' ? OBRAS : OBRAS.filter(o => o.cat === currentFilter);
+  // Agrupa por categoria
+  const grouped = {};
+  filtered.forEach(o => { (grouped[o.cat] = grouped[o.cat] || []).push(o); });
+  // Ordena cada grupo por prioridade
+  Object.keys(grouped).forEach(k => {
+    grouped[k].sort((a,b) => a.p.localeCompare(b.p));
+  });
+
+  const order = ['psi','neuro','pnl','poder','filo','lit','humor'];
+  container.innerHTML = order.filter(k => grouped[k]).map(k => {
+    const items = grouped[k].map(o => `
+      <div class="livro">
+        <div class="prio ${o.p}">${o.p.toUpperCase()}</div>
+        <div class="info">
+          <div class="titulo">${escapeHtml(o.t)}</div>
+          <div class="autor">${escapeHtml(o.a)}</div>
+          <div class="why">${escapeHtml(o.why)}</div>
+          <a class="sbtn" href="https://pt.scribd.com/search?query=${encodeURIComponent(o.a + ' ' + o.t.split('·')[0])}" target="_blank" rel="noopener">scribd ↗</a>
+        </div>
+      </div>
+    `).join('');
+    return `<div class="secao"><h2>§ ${categorias[k]} (${grouped[k].length})</h2>${items}</div>`;
+  }).join('');
+}
+
+function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+document.querySelectorAll('.filter').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
+    b.classList.add('active');
+    currentFilter = b.dataset.cat;
+    render();
+  };
+});
+render();
+</script>
+</body>
+</html>
