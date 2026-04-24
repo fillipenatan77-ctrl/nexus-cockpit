@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Setup iPhone</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:0.78;font-style:italic;line-height:1.55}
+
+  .cta-box{margin:20px 0;padding:18px 20px;border:1px solid var(--gold);border-radius:14px;background:linear-gradient(145deg, rgba(184,147,90,0.12) 0%, rgba(15,14,23,0.6) 100%);display:flex;gap:12px;align-items:center}
+  .cta-box .icn{font-family:Georgia,serif;font-size:28px;color:var(--gold);line-height:1}
+  .cta-box .txt{flex:1;font-family:Georgia,serif;font-size:14px;line-height:1.5;color:var(--bone)}
+  .cta-box a{color:var(--gold);font-weight:600;text-decoration:none;border-bottom:1px dashed var(--gold)}
+
+  .secao{margin-top:28px}
+  .secao h2{font-family:Georgia,serif;font-size:24px;font-weight:400;letter-spacing:0.02em;margin-bottom:6px;color:var(--bone)}
+  .secao .sub{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;opacity:0.85}
+
+  .step{padding:14px 16px;margin:10px 0;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.03);position:relative}
+  .step .n{position:absolute;top:14px;right:16px;font-family:Georgia,serif;font-size:22px;color:var(--gold);opacity:0.35;line-height:1}
+  .step .t{font-family:Georgia,serif;font-size:15px;color:var(--bone);line-height:1.55;padding-right:32px}
+  .step .path{display:block;margin-top:6px;font-family:'SF Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:0.05em;background:rgba(184,147,90,0.08);padding:6px 10px;border-radius:6px}
+  .step .extra{display:block;margin-top:6px;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .cenario{margin:14px 0;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(184,147,90,0.04);border-radius:0 10px 10px 0}
+  .cenario h4{font-family:Georgia,serif;font-size:17px;color:var(--bone);margin-bottom:8px;font-weight:500}
+  .cenario .cenario-body{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.82;line-height:1.6}
+  .cenario .cenario-body ol{padding-left:18px;margin-top:6px}
+  .cenario .cenario-body li{padding:2px 0}
+
+  .tabela{margin-top:14px;border:1px solid var(--gold-faint);border-radius:10px;overflow:hidden}
+  .tabela .row{display:grid;grid-template-columns:1fr 2fr;padding:12px 14px;border-bottom:1px solid var(--gold-faint)}
+  .tabela .row:last-child{border-bottom:none}
+  .tabela .row:nth-child(even){background:rgba(184,147,90,0.02)}
+  .tabela .k{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase}
+  .tabela .v{font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.88;line-height:1.5}
+
+  .link-btn{display:inline-block;padding:14px 22px;margin:6px 6px 6px 0;background:var(--gold);color:var(--ink);border-radius:999px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-decoration:none;text-transform:uppercase;font-weight:700}
+  .link-btn.outline{background:none;color:var(--gold);border:1px solid var(--gold-soft)}
+
+  .alerta{margin:16px 0;padding:14px 18px;background:rgba(184,147,90,0.06);border:1px solid var(--gold-soft);border-radius:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);line-height:1.55}
+  .alerta strong{color:var(--gold)}
+
+  footer{margin-top:36px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./coaching.html">coaching</a>
+    <a href="./iphone-setup.html" class="current">iphone</a>
+    <a href="./system-prompt.html">prompt v5</a>
+    <a href="./leitura.html">leitura</a>
+    <a href="./insights.html">insights</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./timer.html">timer</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./recomendacoes.html">recomendações</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./stats.html">stats</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ setup completo · iPhone / iOS</div>
+    <h1>Claude iOS Otimizado</h1>
+    <div class="sublead">Configuração em camadas para transformar o app Claude no seu iPhone em motor de coaching por voz · português perfeito · áudio limpo · fluxo hands-free.</div>
+  </header>
+
+  <div class="cta-box">
+    <div class="icn">↗</div>
+    <div class="txt">Toda configuração aqui é feita no iPhone. Leve ~10 minutos na primeira vez. Depois é só usar.</div>
+  </div>
+
+  <!-- 1 · Aplicar v5 -->
+  <div class="secao">
+    <h2>1 · Aplicar o System Prompt v5</h2>
+    <div class="sub">§ base de tudo</div>
+    <div class="step"><div class="n">1.1</div><div class="t">Abra <a href="./system-prompt.html" style="color:var(--gold);font-weight:600">a página do Prompt v5</a> aqui mesmo · toque em <strong>COPIAR PROMPT COMPLETO</strong></div></div>
+    <div class="step"><div class="n">1.2</div><div class="t">Ainda no Safari, abra <code class="path">claude.ai/projects</code></div></div>
+    <div class="step"><div class="n">1.3</div><div class="t">Toque no Project <strong>NEXUS Cortex</strong> → <strong>Edit</strong> ou <strong>⋯</strong> → <strong>Custom Instructions</strong></div></div>
+    <div class="step"><div class="n">1.4</div><div class="t">Segure no campo de texto → <strong>Selecionar Tudo</strong> → <strong>Colar</strong> → <strong>Save</strong></div></div>
+    <div class="step"><div class="n">1.5</div><div class="t">Volte ao app Claude iOS · inicia nova conversa no Project. Está pronto.</div></div>
+
+    <a href="./system-prompt.html" class="link-btn">⟶ copiar o v5</a>
+  </div>
+
+  <!-- 2 · Claude iOS configs -->
+  <div class="secao">
+    <h2>2 · Ajustes no app Claude iOS</h2>
+    <div class="sub">§ aparência · voz · modelo</div>
+
+    <div class="step"><div class="n">2.1</div><div class="t"><strong>Modelo padrão</strong> → no Project selecione <strong>Claude Opus</strong> (mais denso) ou <strong>Sonnet</strong> (mais rápido). Para coaching denso, Opus. Para conversas rápidas dirigindo, Sonnet é mais ágil.</div></div>
+
+    <div class="step"><div class="n">2.2</div><div class="t"><strong>Aparência escura</strong> → toque no seu avatar (canto) → <strong>Appearance</strong> → <strong>Dark</strong><span class="extra">Combina com a identidade NEXUS · reduz cansaço visual noturno e dirigindo.</span></div></div>
+
+    <div class="step"><div class="n">2.3</div><div class="t"><strong>Modo Voz</strong> → na tela de conversa, toque no ícone de <strong>forma de onda</strong> (canto inferior direito). Abre o modo conversa por áudio.<span class="extra">Pode interromper tocando. Pode pausar. Transcreve automaticamente.</span></div></div>
+
+    <div class="step"><div class="n">2.4</div><div class="t"><strong>Voz do Claude</strong> → dentro do modo voz, antes de começar, toque em <strong>⋯</strong> ou <strong>Settings</strong> e escolha a voz. Voz mais clara para português brasileiro: testar <strong>Ember · Glow · Buoy</strong> (comparar qual funciona melhor com pt-BR).<span class="extra">Se não tiver voz pt-BR dedicada, a voz em inglês pronuncia palavras portuguesas com sotaque. Ainda assim funcional.</span></div></div>
+
+    <div class="step"><div class="n">2.5</div><div class="t"><strong>Memory</strong> → ative <strong>Project Memory</strong> nas configs. Cada conversa alimenta a memória cumulativa do Project NEXUS Cortex.</div></div>
+  </div>
+
+  <!-- 3 · iPhone sistema -->
+  <div class="secao">
+    <h2>3 · Ajustes no iPhone (sistema)</h2>
+    <div class="sub">§ ditação · teclado · acessibilidade</div>
+
+    <div class="alerta"><strong>Por quê isso importa:</strong> o Claude iOS pega a transcrição do iOS. Se a ditação do sistema não estiver bem configurada em pt-BR, ele ouve errado e você perde tempo corrigindo.</div>
+
+    <div class="step"><div class="n">3.1</div><div class="t"><strong>Ditação em Português Brasil</strong></div>
+      <div class="path">Ajustes → Geral → Teclado → Ditar → ATIVAR</div>
+      <div class="extra">E também: Ajustes → Geral → Idioma e Região → Adicionar Idioma → Português (Brasil) e mover para topo se ainda não estiver.</div>
+    </div>
+
+    <div class="step"><div class="n">3.2</div><div class="t"><strong>Teclado pt-BR</strong></div>
+      <div class="path">Ajustes → Geral → Teclado → Teclados → Adicionar Novo Teclado → Português (Brasil)</div>
+      <div class="extra">Defina como padrão. Sem isso a autocorreção atrapalha suas mensagens.</div>
+    </div>
+
+    <div class="step"><div class="n">3.3</div><div class="t"><strong>Siri em português</strong></div>
+      <div class="path">Ajustes → Siri e Busca → Idioma → Português (Brasil)</div>
+      <div class="extra">Não afeta o Claude diretamente, mas padroniza o ecossistema.</div>
+    </div>
+
+    <div class="step"><div class="n">3.4</div><div class="t"><strong>Atalho de ditação rápido</strong> → Ajustes → Acessibilidade → Toque Traseiro → Duplo Toque → Siri Ditação<span class="extra">Dois toques no trás do iPhone ativa ditação · útil quando dirige e precisa falar rápido uma nota sem abrir app.</span></div></div>
+  </div>
+
+  <!-- 4 · Áudio qualidade -->
+  <div class="secao">
+    <h2>4 · Áudio limpo · equipamento</h2>
+    <div class="sub">§ microfone · fone · carro</div>
+
+    <div class="tabela">
+      <div class="row"><div class="k">AirPods Pro</div><div class="v">Melhor opção. Cancelamento ativo + microfone direcional. Português bem transcrito mesmo em ambiente barulhento.</div></div>
+      <div class="row"><div class="k">AirPods básicos</div><div class="v">Boa opção. Microfone decente para fala normal. Evitar em vento.</div></div>
+      <div class="row"><div class="k">Fone com fio</div><div class="v">Funcional. Microfone limita ao ambiente silencioso. Latência zero é vantagem.</div></div>
+      <div class="row"><div class="k">CarPlay</div><div class="v">Integra Claude via Safari/voz. Microfone do carro captura bem. Ideal dirigindo.</div></div>
+      <div class="row"><div class="k">iPhone sozinho</div><div class="v">Aceitável. Falar a 20-40cm do iPhone. Evitar ruído de fundo.</div></div>
+    </div>
+
+    <div class="alerta" style="margin-top:14px"><strong>Dica de qualidade:</strong> antes de iniciar conversa séria no modo voz, teste uma frase do tipo "teste um dois três, estou falando em português do Brasil para o NEXUS Cortex" e verifique a transcrição. Se erros, ajuste ambiente/microfone antes.</div>
+  </div>
+
+  <!-- 5 · Cenários -->
+  <div class="secao">
+    <h2>5 · Cenários reais de uso</h2>
+    <div class="sub">§ como operar em cada contexto</div>
+
+    <div class="cenario">
+      <h4>🚗 Dirigindo</h4>
+      <div class="cenario-body">
+        <ol>
+          <li>AirPods conectados · volume médio</li>
+          <li>Antes de sair, abra o Claude Project no iPhone · ative <strong>Modo Voz</strong></li>
+          <li>Fale a situação real em voz natural (tom calmo · frases claras)</li>
+          <li>Claude responde em áudio · você escuta dirigindo · continua o diálogo por voz</li>
+          <li>Quando emergir algo canônico, diga <em>"persista isso em 00_HUB como nota-dirigindo-AAAA-MM-DD"</em></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="cenario">
+      <h4>🚶 Caminhando</h4>
+      <div class="cenario-body">
+        <ol>
+          <li>AirPods · caminhada solo (sem trânsito intenso)</li>
+          <li>Podem ser conversas mais densas · você tem atenção plena</li>
+          <li>Use comandos como <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/grade10</code> ou <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/cruzamento</code> falando o nome</li>
+          <li>Depois registre insights na aba <strong>Diário</strong> da PWA (parado)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="cenario">
+      <h4>🏠 Em casa · tarefa manual</h4>
+      <div class="cenario-body">
+        <ol>
+          <li>Cozinhando · arrumando · fazendo exercício</li>
+          <li>Modo voz hands-free · iPhone na bancada</li>
+          <li>Pode pedir <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/espelho</code> para revisão semanal enquanto faz outra coisa</li>
+          <li>Claude fala · você escuta · pode interromper e responder a qualquer momento</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="cenario">
+      <h4>💼 Antes de reunião difícil</h4>
+      <div class="cenario-body">
+        <ol>
+          <li>5-10 minutos no carro estacionado ou sala</li>
+          <li>Modo voz · descreve a reunião, as pessoas, o tema</li>
+          <li>Peça <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/conversa</code> se for conflito ou <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/mapa</code> se precisar ler pessoas</li>
+          <li>Claude devolve estrutura operacional · você entra preparado</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="cenario">
+      <h4>🌙 Noite · reflexão</h4>
+      <div class="cenario-body">
+        <ol>
+          <li>Sofá · iPhone na mão · modo texto (para pensar devagar)</li>
+          <li>Conta o dia · o que foi denso · o que ficou aberto</li>
+          <li>Peça <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/insight</code> ou <code style="background:rgba(184,147,90,0.1);padding:1px 6px;border-radius:4px;color:var(--gold);font-size:12px">/oraculo</code></li>
+          <li>Se algo virar card SVG, peça "gera um card visual disso"</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 · Troubleshooting -->
+  <div class="secao">
+    <h2>6 · Quando a transcrição falhar</h2>
+    <div class="sub">§ troubleshooting · correção rápida</div>
+
+    <div class="tabela">
+      <div class="row"><div class="k">Entendeu inglês</div><div class="v">Verifique se o teclado padrão é pt-BR (item 3.2). Reinicie o app Claude. Comece a conversa dizendo "responda em português brasileiro".</div></div>
+      <div class="row"><div class="k">Palavras cortadas</div><div class="v">Fale mais devagar. Pausas claras entre frases. Microfone a 20-40cm. Reduza ruído de fundo.</div></div>
+      <div class="row"><div class="k">Nome próprio errado</div><div class="v">Soletre se for crítico. Ou digite depois correção: "corrigindo: a pessoa é Fillipe, não Felipe".</div></div>
+      <div class="row"><div class="k">Resposta em inglês</div><div class="v">O v5 já previne isso. Se acontecer, diga: "responda sempre em português do Brasil". Não volta a acontecer na conversa.</div></div>
+      <div class="row"><div class="k">Voice mode trava</div><div class="v">Saia do modo voz · volte em 30s. Se persistir, feche e reabra o app. Problemas de rede costumam ser a causa.</div></div>
+    </div>
+  </div>
+
+  <!-- 7 · Atalhos úteis -->
+  <div class="secao">
+    <h2>7 · Atalhos e ganhos finos</h2>
+    <div class="sub">§ pequenos detalhes que mudam muito</div>
+
+    <div class="step"><div class="n">7.1</div><div class="t"><strong>Add Claude à Tela de Início</strong> → se ainda não, segure o ícone na tela anterior e arraste para primeira tela. Ao lado do NEXUS PWA.</div></div>
+
+    <div class="step"><div class="n">7.2</div><div class="t"><strong>Focus mode "NEXUS"</strong> → crie um Modo de Foco (Ajustes → Foco) que deixe passar só notificações do Claude e WhatsApp (para receber as surprises). Ative quando quiser concentração.</div></div>
+
+    <div class="step"><div class="n">7.3</div><div class="t"><strong>Shortcut ditado</strong> → abra Atalhos (app nativo) · crie atalho "Nova nota NEXUS" que abra Claude direto no Project · adicione à tela de início. 1 toque e já está pronto.</div></div>
+
+    <div class="step"><div class="n">7.4</div><div class="t"><strong>Sempre começar em pt-BR</strong> → primeira mensagem de uma conversa, mesmo que em texto, comece com palavra em português ("pergunta", "situação", "dúvida") antes do comando. Reforça o contexto linguístico.</div></div>
+
+    <div class="step"><div class="n">7.5</div><div class="t"><strong>Hora do dia importa</strong> → peça <code class="path">/hoje</code> ou <code class="path">/status</code> no início da manhã · Claude traz dia do ciclo + lente · contextualiza toda a conversa do dia.</div></div>
+  </div>
+
+  <!-- 8 · Teste inicial -->
+  <div class="secao">
+    <h2>8 · Teste de 5 minutos após setup</h2>
+    <div class="sub">§ valide que tudo funciona</div>
+
+    <div class="step"><div class="n">A</div><div class="t"><strong>Teste texto:</strong> no Claude iOS, abra o Project NEXUS Cortex · digite <em>"situação real: me peça uma /grade10 sobre dificuldade de delegar tarefas na minha equipe"</em> · verifique se a resposta vem em 8 camadas · em pt-BR · com próximo passo no fim.</div></div>
+
+    <div class="step"><div class="n">B</div><div class="t"><strong>Teste voz:</strong> ative modo voz · fale <em>"Cortex, me responda em português brasileiro. Pergunta rápida: o que diz Sêneca sobre tempo perdido?"</em> · verifique se responde em áudio · em pt-BR · com citação + aplicação.</div></div>
+
+    <div class="step"><div class="n">C</div><div class="t"><strong>Teste comando novo:</strong> em texto ou voz, peça <em>"/corrige: ah eu gostaria de falar com você sobre uma questão importante"</em> · verifique se devolve 3 versões (curta/elegante/firme) com explicação.</div></div>
+
+    <div class="step"><div class="n">D</div><div class="t"><strong>Teste memória:</strong> termine uma conversa dizendo <em>"persiste este insight em 00_HUB como teste-v5-setup"</em> · Cortex deve confirmar a intenção · (o arquivo real é criado pelo sistema automatizado depois).</div></div>
+  </div>
+
+  <!-- Fechamento -->
+  <div class="secao">
+    <h2>§ síntese</h2>
+    <div class="sublead" style="opacity:1">Depois desses 8 itens, o Claude no seu iPhone deixa de ser "assistente genérico" e vira <strong>coach pessoal denso em português brasileiro, operando com memória acumulada do NEXUS, respondendo por voz limpa, conectado ao acervo indexado</strong>. Uma ferramenta que você leva para todo lado.</div>
+  </div>
+
+  <div style="margin-top:26px;text-align:center">
+    <a href="./system-prompt.html" class="link-btn">⟶ copiar prompt v5</a>
+    <a href="./coaching.html" class="link-btn outline">⟶ modo coaching</a>
+  </div>
+
+  <footer>NEXUS v15.Y · setup iPhone otimizado · pt-BR</footer>
+</div>
+</body>
+</html>
