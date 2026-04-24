@@ -52,6 +52,7 @@
   <div class="nav">
     <a href="./">§ home</a>
     <a href="./hoje.html">hoje</a>
+    <a href="./fichas.html">fichas</a>
     <a href="./busca.html">busca</a>
     <a href="./diario.html">diário</a>
     <a href="./cards.html">cards</a>
@@ -62,13 +63,14 @@
     <a href="./protocolos.html">protocolos</a>
     <a href="./grafo.html">grafo</a>
     <a href="./estacoes.html">palácio</a>
+    <a href="./rag-status.html">rag</a>
     <a href="./citacao.html">citação</a>
     <a href="./oraculo.html">oráculo</a>
   </div>
 
   <header>
     <div class="eyebrow">§ fichamentos canônicos</div>
-    <h1>12 Autores</h1>
+    <h1>20 Autores</h1>
     <div class="sublead">Nomes nucleares do acervo NEXUS · biografia sintética · obras-chave · tese central · citação icônica · convite de leitura.</div>
   </header>
 
@@ -82,7 +84,7 @@
   </div>
 
   <div id="lista"></div>
-  <footer>NEXUS v15.M · 12 fichamentos densos</footer>
+  <footer>NEXUS v15.O · 20 fichamentos densos</footer>
 </div>
 
 <script>
@@ -183,6 +185,71 @@ const AUTORES = [
     citacao:'"A arte da memória é a arte do pensamento."',
     conexao:'A Arte da Memória, cap. 1-2 (Simônides, Cícero). Complementar moderno: Dominic O\'Brien (aplicado) e Joshua Foer (Moonwalking with Einstein, narrativo).'
   },
+  // ============ Expansão v15.O · 8 autores ============
+  {
+    id:'goleman', cat:'neuro', nome:'Daniel Goleman', anos:'n.1946 · Harvard/EUA',
+    tese:'Inteligência emocional (IE) é o conjunto de competências — autoconsciência, autorregulação, motivação, empatia, habilidade social — que prevê sucesso na vida mais do que QI.',
+    bio:'Psicólogo e jornalista científico americano. Seu livro de 1995 popularizou décadas de pesquisa em neurociência afetiva (LeDoux, Damásio, Panksepp) e transformou a noção de inteligência. Cunhou o termo "sequestro amigdaliano" para descrever como o cérebro emocional domina o racional sob estresse. A obra foi criticada por simplificar, mas sua tese central — emoções são educáveis — já é consenso na psicologia aplicada.',
+    obras:['Inteligência Emocional (1995)','Trabalhando com a Inteligência Emocional (1998)','Foco — a Atenção e seu Papel Fundamental para o Êxito (2013)'],
+    citacao:'"Entre o estímulo e a resposta há uma janela. IE é expandir essa janela."',
+    conexao:'Entrada: Inteligência Emocional cap. 1-5. Complementar essencial: LeDoux (Emotional Brain) e Damásio (Erro de Descartes) — a ciência por trás.'
+  },
+  {
+    id:'satir', cat:'pnl', nome:'Virginia Satir', anos:'1916 · 1988 · Califórnia',
+    tese:'Sob pressão, pessoas ocupam 5 posições comunicacionais: aplacador, acusador, super-razoável, irrelevante e congruente. Só a última é saudável — as outras protegem autoestima ameaçada.',
+    bio:'Terapeuta familiar americana, pioneira da terapia sistêmica. Observou milhares de famílias e destilou os padrões em modelos ensináveis. Bandler e Grinder a modelaram para compor a base da PNL. Sua contribuição vai além: a ideia de que comunicação congruente (palavra = tom = corpo) é sinal de integração do self. Sob estresse, a congruência quebra primeiro — e é isso que se lê.',
+    obras:['Terapia do Grupo Familiar (1964)','Peoplemaking — uma Relação Humana Radical (1972)','Seu Novo Encontro com uma Terceira Força (1988)'],
+    citacao:'"O problema não é o problema — o problema é como lidamos com ele."',
+    conexao:'Peoplemaking como entrada acessível. Para aplicação direta: mapear qual posição Satir o interlocutor ocupa sob pressão é passo 3 da Grade 10.'
+  },
+  {
+    id:'stoneheen', cat:'julg', nome:'Stone · Patton · Heen', anos:'Harvard Negotiation Project',
+    tese:'Toda conversa difícil é 3 conversas simultâneas: fato (o que aconteceu?), afeto (o que estamos sentindo?), identidade (o que isso diz sobre quem eu sou?). A maioria dos erros é responder a uma enquanto o outro opera em outra.',
+    bio:'Trio do Harvard Negotiation Project — Douglas Stone, Bruce Patton (também coautor do clássico Getting to Yes) e Sheila Heen. O livro-canônico (1999) sistematizou décadas de mediação de conflitos em um framework simples e utilizável por qualquer pessoa. Obra de cabeceira de qualquer líder, mediador ou clínico. Atualizada em 2010 e em edições subsequentes.',
+    obras:['Difficult Conversations — How to Discuss What Matters Most (1999/2010)','Thanks for the Feedback (2014) — Stone + Heen'],
+    citacao:'"Identity triggers are always the hardest — not because what\'s said, but because of what it might mean about us."',
+    conexao:'Capítulos 1-3 para o framework (3 conversas). Capítulo 8-9 para a conversa de identidade — a mais difícil e a mais transformadora.'
+  },
+  {
+    id:'cialdini', cat:'julg', nome:'Robert Cialdini', anos:'n.1945 · Arizona State',
+    tese:'Sete princípios governam a influência: reciprocidade, escassez, autoridade, coerência, consenso, afinidade, unidade. Não são truques — são atalhos cognitivos que o cérebro usa para decidir rápido. Entender os 7 é proteger-se e operar com ética.',
+    bio:'Psicólogo social americano, 35 anos estudando como pessoas são persuadidas. Trabalhou disfarçado em vendas, arrecadação e culto para observar as técnicas em ação. "Influence" (1984) é um dos livros mais vendidos da área e segue sendo referência. Edição expandida de 2021 adicionou o 7º princípio (Unidade) — baseado em dados de pandemia e identidade coletiva.',
+    obras:['Influence — The Psychology of Persuasion (1984, ed. expandida 2021)','Pre-Suasion (2016)','Yes! 50 Scientifically Proven Ways to Be Persuasive (2008)'],
+    citacao:'"People prefer to say yes to those they know and like — and like is more easily earned than it deserves to be."',
+    conexao:'Influence 2021 como entrada canônica. Aplicado: mapear qual dos 7 tem mais tração na pessoa com quem você negocia (ficha /mapa no NEXUS).'
+  },
+  {
+    id:'greene', cat:'julg', nome:'Robert Greene', anos:'n.1959 · Los Angeles',
+    tese:'O poder opera segundo leis — observáveis na história, da corte de Luís XIV à política corporativa. Conhecer essas leis não é endossar manipulação; é proteger-se dela e atuar com consciência estratégica.',
+    bio:'Escritor americano com formação em estudos clássicos. "As 48 Leis do Poder" (1998) virou clássico polêmico: lido por executivos, detentos, rappers, políticos e acadêmicos. Greene extraiu padrões de Sun Tzu, Maquiavel, Napoleão, Talleyrand. Obra densa, cruamente realista — não endossa, revela. Depois escreveu sobre sedução, maestria e natureza humana. Controverso pela franqueza, útil pela precisão.',
+    obras:['As 48 Leis do Poder (1998)','A Arte da Sedução (2001)','Maestria (2012)','As Leis da Natureza Humana (2018)'],
+    citacao:'"Nunca ofusque o mestre. Faça com que seus superiores se sintam confortavelmente superiores."',
+    conexao:'48 Leis lê-se melhor como mapa do jogo, não receita. Aplicado: Lei 1 (nunca ofusque o mestre), Lei 14 (amigo-espião), Lei 38 (pense como você quiser, aja como os outros). Complementar: Sun Tzu.'
+  },
+  {
+    id:'epicteto', cat:'classico', nome:'Epicteto', anos:'c.50 · c.135 d.C. · Grécia/Roma',
+    tese:'Não são as coisas que perturbam os homens, mas os juízos que fazem delas. A filosofia começa na distinção entre o que depende de nós (juízo, resposta) e o que não depende (evento, outro, acaso).',
+    bio:'Escravo estoico da Grécia, libertado, viveu em Roma e depois em Nicópolis. Nunca escreveu — seu discípulo Arriano transcreveu as aulas. O Enchirídion (manual) é a síntese; as Diatribes (4 livros) são as aulas completas. Foi lido por Marco Aurélio, Pascal, Kant, Thoreau, Viktor Frankl. Manual para quem precisa operar em ambiente hostil sem se perder.',
+    obras:['Enchirídion (Manual)','Diatribes (4 livros)','Fragmentos'],
+    citacao:'"Não são as coisas que perturbam os homens, mas os juízos que fazem delas."',
+    conexao:'Enchirídion primeiro (40 aforismos curtos, 1 por dia). Depois Diatribes para aprofundar. Complementa Aurélio (Meditações) e Sêneca (Cartas a Lucílio) formando o trio estoico canônico.'
+  },
+  {
+    id:'nietzsche', cat:'classico', nome:'Friedrich Nietzsche', anos:'1844 · 1900 · Alemanha',
+    tese:'Quem tem um porquê para viver pode suportar quase qualquer como. Os valores não são dados — são criados. A tarefa é transvalorar os valores herdados e sustentar o sentido por conta própria.',
+    bio:'Filósofo e filólogo alemão. Doente crônico, escreveu seus grandes livros em aforismos condensados, entre colapsos de saúde. Diagnosticou a "morte de Deus" (colapso dos valores herdados) e propôs a criação de sentido novo. Viktor Frankl, preso em Auschwitz, sobreviveu citando Nietzsche. Críticas posteriores sobre apropriação nazi são infundadas — ele próprio repudiava antissemitismo e nacionalismo.',
+    obras:['Assim Falou Zaratustra (1883-85)','Além do Bem e do Mal (1886)','Genealogia da Moral (1887)','Crepúsculo dos Ídolos (1889)'],
+    citacao:'"Quem tem um porquê para viver pode suportar quase qualquer como."',
+    conexao:'Entrar por Crepúsculo dos Ídolos (curto, cirúrgico). Depois Genealogia (3 dissertações densas). Zaratustra por último (é literário, não-linear). Evitar leituras simplistas — Nietzsche exige tempo.'
+  },
+  {
+    id:'panksepp', cat:'neuro', nome:'Jaak Panksepp', anos:'1943 · 2017 · Estônia/EUA',
+    tese:'Emoções não são construções culturais — têm bases neuroanatômicas evolutivas. Sete sistemas afetivos primários governam mamíferos: SEEKING, RAGE, FEAR, LUST, CARE, GRIEF, PLAY. Ignorá-los é fazer psicologia sem biologia.',
+    bio:'Neurocientista estoniano-americano, fundador da neurociência afetiva. Passou décadas estimulando regiões cerebrais em ratos e registrando resposta emocional — os ratos "riem" ao fazer cócegas (ultrasom). Descobriu os 7 sistemas afetivos subcorticais comuns a todos os mamíferos. Obra densa, técnica, indispensável para qualquer teoria séria da emoção. Complementar a Goleman (que é divulgação).',
+    obras:['Affective Neuroscience — The Foundations of Human and Animal Emotions (1998)','The Archaeology of Mind (2012, com Lucy Biven)'],
+    citacao:'"The seven primary emotional systems of mammals are evolutionarily conserved tools for survival — we share them with every other mammal."',
+    conexao:'Archaeology of Mind (2012) é mais acessível que o tratado de 1998. Aplicado: antes de julgar uma emoção, localize qual dos 7 sistemas acendeu — isso muda a intervenção.'
+  },
 ];
 
 let currentFilter = 'all';
@@ -207,23 +274,4 @@ function render() {
         <ul>${a.obras.map(o => '<li>' + escapeHtml(o) + '</li>').join('')}</ul>
       </div>
       <div class="citacao">${escapeHtml(a.citacao)}</div>
-      <div class="conexao"><strong>convite:</strong> ${escapeHtml(a.conexao)}</div>
-    `;
-    container.appendChild(div);
-  });
-}
-function escapeHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-document.querySelectorAll('.filter').forEach(b => {
-  b.onclick = () => {
-    document.querySelectorAll('.filter').forEach(f => f.classList.remove('active'));
-    b.classList.add('active');
-    currentFilter = b.dataset.cat;
-    render();
-  };
-});
-render();
-</script>
-</body>
-</html>
+      <div class="conexao"><strong>convite:</strong> ${escapeHtml(a.co

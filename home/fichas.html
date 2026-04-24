@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · Fichas</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 14px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .template-picker{display:flex;gap:10px;margin:22px 0 18px;flex-wrap:wrap}
+  .template-picker button{flex:1;min-width:120px;padding:16px 10px;background:rgba(184,147,90,0.05);border:1px solid var(--gold-soft);border-radius:12px;color:var(--bone);cursor:pointer;font-family:Georgia,serif;font-size:15px;line-height:1.25;letter-spacing:0.02em}
+  .template-picker button .code{display:block;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:4px;opacity:0.85}
+  .template-picker button.active{background:var(--gold);color:var(--ink)}
+  .template-picker button.active .code{color:var(--ink);opacity:1}
+
+  .ficha{margin-top:10px;padding:18px 18px 12px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03)}
+  .ficha h2{font-family:Georgia,serif;font-size:22px;font-weight:400;letter-spacing:0.02em;margin-bottom:10px}
+  .ficha .titleInput{width:100%;padding:10px 14px;background:rgba(15,14,23,0.75);border:1px solid var(--gold-faint);border-radius:10px;color:var(--bone);font-family:Georgia,serif;font-size:16px;outline:none;margin-bottom:4px}
+  .ficha .titleInput:focus{border-color:var(--gold)}
+
+  .campo{margin-top:16px}
+  .campo label{display:block;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:6px;opacity:0.9}
+  .campo label .n{color:var(--bone);opacity:0.5;margin-right:6px}
+  .campo label .hint{display:block;font-family:Georgia,serif;font-size:12px;color:var(--bone);opacity:0.6;font-style:italic;text-transform:none;letter-spacing:normal;margin-top:2px;line-height:1.4}
+  .campo textarea{width:100%;min-height:72px;padding:12px 14px;background:rgba(15,14,23,0.8);border:1px solid var(--gold-faint);border-radius:8px;color:var(--bone);font-family:Georgia,serif;font-size:15px;line-height:1.55;outline:none;resize:vertical;-webkit-appearance:none}
+  .campo textarea:focus{border-color:var(--gold)}
+  .campo textarea::placeholder{color:var(--gold);opacity:0.4;font-style:italic}
+
+  .ficha-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+  .btn{padding:12px 16px;border:1px solid var(--gold-soft);background:rgba(184,147,90,0.05);color:var(--gold);border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;flex:1;min-width:110px}
+  .btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+
+  .salvos{margin-top:24px}
+  .salvos h3{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px;opacity:0.8}
+  .salvo{padding:12px 14px;margin-bottom:8px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.02);display:flex;justify-content:space-between;gap:12px;align-items:center}
+  .salvo .info{flex:1;min-width:0;cursor:pointer}
+  .salvo .info .t{font-family:Georgia,serif;font-size:15px;color:var(--bone)}
+  .salvo .info .d{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;margin-top:2px;opacity:0.75}
+  .salvo .del{background:none;border:none;color:var(--gold);opacity:0.5;font-size:13px;cursor:pointer;padding:4px 8px}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./fichas.html" class="current">fichas</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./rag-status.html">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ fichas preenchíveis · situação real</div>
+    <h1>Protocolos Aplicados</h1>
+    <div class="sublead">Escolha o protocolo · preencha no momento da situação · salve no iPhone · exporte quando quiser levar pro Cortex.</div>
+  </header>
+
+  <div class="template-picker">
+    <button class="active" data-tpl="grade10"><span class="code">/grade10</span>Grade 10 Pontos</button>
+    <button data-tpl="conversa"><span class="code">/conversa</span>Conversa Difícil</button>
+    <button data-tpl="mapa"><span class="code">/mapa</span>Mapa de Influência</button>
+  </div>
+
+  <div id="formulario"></div>
+
+  <div class="salvos" id="salvos"></div>
+
+  <footer>NEXUS v15.O · fichas preenchíveis · localStorage</footer>
+</div>
+
+<script>
+const KEY = 'nexus_fichas_v1';
+
+const TEMPLATES = {
+  grade10: {
+    nome: 'Grade 10 Pontos',
+    titulo_placeholder: 'breve descrição da situação (ex: reunião com X sobre Y)',
+    campos: [
+      { k:'fato', label:'01 · Fato', hint:'Descrição crua, sem adjetivo nem narrativa. O que, onde, quando, com quem.', ph:'o fato, sem drama'},
+      { k:'emocao', label:'02 · Emoção', hint:'As suas + as do(s) outro(s). Em camadas (primária, secundária, terceira).', ph:'camadas emocionais'},
+      { k:'estrutura', label:'03 · Estrutura subjetiva', hint:'V/A/K do outro + posição Satir sob pressão (aplacador, acusador, super-razoável, irrelevante, congruente).', ph:'V·A·K + Satir'},
+      { k:'linguagem', label:'04 · Jogo de linguagem', hint:'Verbos, pressupostos, metaprogramas do outro. Que palavra foi chave?', ph:'o que os verbos dizem'},
+      { k:'poder', label:'05 · Jogo de poder', hint:'Quem tem legitimidade real, quem age como se tivesse. Mapa rápido.', ph:'quem decide de fato'},
+      { k:'resistencia', label:'06 · Resistência', hint:'Onde travou (em você, no outro). O que o travamento está protegendo?', ph:'função defensiva do impasse'},
+      { k:'motivacao', label:'07 · Motivação', hint:'Sua motivação explícita + velada. A dele também. O ganho silencioso.', ph:'motivação de superfície vs profunda'},
+      { k:'metaprograma', label:'08 · Metaprograma', hint:'Direção (rumo/evitar), tamanho (global/detalhe), referência (interna/externa), tempo.', ph:'metaprograma dominante'},
+      { k:'formulacao', label:'09 · Formulação', hint:'Três versões: curta (20 palavras) · elegante (metáfora/imagem) · firme (caso escale).', ph:'(curta) (elegante) (firme)'},
+      { k:'protecao', label:'10 · Proteção', hint:'Passa simultaneamente por: imagem · legalidade · dignidade · eficácia? Se falha em 1, recomeça.', ph:'passou os 4 filtros?'},
+    ]
+  },
+  conversa: {
+    nome: 'Conversa Difícil v2',
+    titulo_placeholder: 'com quem · sobre o quê · quando',
+    campos: [
+      { k:'prepare', label:'01 · Prepare', hint:'Qual das 3 conversas é a verdadeira? Fato · Afeto · Identidade. A maioria dos erros é responder à errada.', ph:'a conversa verdadeira é sobre…'},
+      { k:'regulate', label:'02 · Regulate', hint:'Estado fisiológico antes da conversa. Respiração 4-7-8. Nomear a própria emoção internamente.', ph:'como vou chegar regulado'},
+      { k:'third_story', label:'03 · Third Story', hint:'A versão que um observador imparcial contaria. Abertura sem acusação.', ph:'terceira versão da história'},
+      { k:'matching', label:'04 · Matching + Looping', hint:'Espelhar ritmo e postura · antes de replicar, resumir em 2 frases + "captei certo?"', ph:'pontos de sintonia + checkpoint'},
+      { k:'contribution', label:'05 · Contribution', hint:'Pergunta curta sobre contribuição mútua, não culpa. "O que cada um de nós pode ter contribuído?"', ph:'pergunta da contribuição'},
+      { k:'interests', label:'06 · Interests + Triad', hint:'Interesses reais de ambos (abaixo da posição declarada) + qual triangulação externa evitar.', ph:'interesses latentes'},
+      { k:'commitment', label:'07 · Commitment + Opção Dupla Real', hint:'Duas alternativas concretas, ambas aceitáveis, ambas realistas. Fechar com compromisso nominal.', ph:'A e B · o que ficou combinado'},
+    ]
+  },
+  mapa: {
+    nome: 'Mapa de Influência',
+    titulo_placeholder: 'nome/iniciais da pessoa · contexto',
+    campos: [
+      { k:'metaprograma', label:'01 · Metaprograma', hint:'Direção (rumo-evitar), tamanho (global-detalhe), referência (interna-externa), tempo.', ph:'metaprograma dominante'},
+      { k:'cialdini', label:'02 · Cialdini', hint:'Qual dos 7 tem mais tração? Reciprocidade · Escassez · Autoridade · Coerência · Consenso · Afinidade · Unidade.', ph:'princípio com mais alavanca'},
+      { k:'vak', label:'03 · V/A/K', hint:'Visual (quer ver), Auditivo (quer ouvir), Cinestésico (quer sentir/tocar).', ph:'canal preferencial'},
+      { k:'satir', label:'04 · Satir', hint:'Posição sob pressão: aplacador · acusador · super-razoável · irrelevante · congruente.', ph:'posição em tensão'},
+      { k:'gatilhos', label:'05 · Gatilhos de identidade', hint:'O que, se dito do jeito errado, ativa defesa imediata? (ex: competência, lealdade, pertencimento).', ph:'gatilhos a evitar'},
+      { k:'formulacoes', label:'06 · Formulação eficaz × queimada', hint:'O que funcionou no passado · o que queimou. Registrar ambas.', ph:'✓ eficaz / ✗ queimada'},
+      { k:'estrategia', label:'07 · Estratégia por cenário', hint:'3 situações arquetípicas típicas e sua abordagem em cada.', ph:'cenário A · B · C'},
+      { k:'observacoes', label:'08 · Observações', hint:'Padrões temporais, ciclos, variáveis exógenas (humor, contexto, dia/hora).', ph:'padrões notados'},
+    ]
+  },
+};
+
+let currentTpl = 'grade10';
+let currentId = null;
+
+function getAll() {
+  try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch { return []; }
+}
+function setAll(arr) { localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+function cycleDay() {
+  const start = new Date('2026-04-02T00:00:00-03:00');
+  return Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+}
+
+function renderForm() {
+  const tpl = TEMPLATES[currentTpl];
+  const container = document.getElementById('formulario');
+  const existing = currentId ? getAll().find(x => x.id === currentId) : null;
+
+  const camposHtml = tpl.campos.map(c => {
+    const val = existing ? (existing.dados[c.k] || '') : '';
+    return `
+      <div class="campo">
+        <label>${escapeHtml(c.label)}<span class="hint">${escapeHtml(c.hint)}</span></label>
+        <textarea data-k="${c.k}" placeholder="${escapeHtml(c.ph||'')}">${escapeHtml(val)}</textarea>
+      </div>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="ficha">
+      <h2>${escapeHtml(tpl.nome)}</h2>
+      <input type="text" class="titleInput" id="ficha-titulo" placeholder="${escapeHtml(tpl.titulo_placeholder)}" value="${escapeHtml(existing ? existing.titulo : '')}">
+      ${camposHtml}
+      <div class="ficha-actions">
+        <button class="btn primary" onclick="salvar()">${currentId ? 'atualizar' : 'salvar'}</button>
+        ${currentId ? '<button class="btn" onclick="novo()">nova</button>' : ''}
+        <button class="btn" onclick="exportar()">exportar md</button>
+        <button class="btn" onclick="compartilhar()">compartilhar</button>
+      </div>
+    </div>
+  `;
+}
+
+function selectTemplate(tpl) {
+  currentTpl = tpl;
+  currentId = null;
+  document.querySelectorAll('.template-picker button').forEach(b => b.classList.toggle('active', b.dataset.tpl === tpl));
+  renderForm();
+  renderSalvos();
+}
+
+function coletar() {
+  const tpl = TEMPLATES[currentTpl];
+  const dados = {};
+  document.querySelectorAll('[data-k]').forEach(ta => { dados[ta.dataset.k] = ta.value; });
+  return {
+    tpl: currentTpl,
+    titulo: document.getElementById('ficha-titulo').value.trim() || 'sem título',
+    dados: dados,
+    dia: cycleDay(),
+    ts: new Date().toISOString(),
+  };
+}
+
+function salvar() {
+  const data = coletar();
+  const all = getAll();
+  if (currentId) {
+    const idx = all.findIndex(x => x.id === currentId);
+    if (idx >= 0) all[idx] = { ...all[idx], ...data, id: currentId, ts_upd: new Date().toISOString() };
+  } else {
+    data.id = Date.now();
+    all.unshift(data);
+    currentId = data.id;
+  }
+  setAll(all);
+  renderForm();
+  renderSalvos();
+}
+
+function novo() {
+  currentId = null;
+  renderForm();
+}
+
+function carregar(id) {
+  const f = getAll().find(x => x.id === id);
+  if (!f) return;
+  currentTpl = f.tpl;
+  currentId = id;
+  document.querySelectorAll('.template-picker button').forEach(b => b.classList.toggle('active', b.dataset.tpl === f.tpl));
+  renderForm();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function apagar(id) {
+  if (!confirm('Apagar esta ficha?')) return;
+  const all = getAll().filter(x => x.id !== id);
+  setAll(all);
+  if (currentId === id) { currentId = null; renderForm(); }
+  renderSalvos();
+}
+
+function renderSalvos() {
+  const all = getAll();
+  const container = document.getElementById('salvos');
+  if (!all.length) { container.innerHTML = ''; return; }
+  const itens = all.map(f => {
+    const d = new Date(f.ts);
+    const tplNome = TEMPLATES[f.tpl] ? TEMPLATES[f.tpl].nome : f.tpl;
+    return `<div class="salvo">
+      <div class="info" onclick="carregar(${f.id})">
+        <div class="t">${escapeHtml(f.titulo)}</div>
+        <div class="d">§ ${escapeHtml(tplNome)} · ${d.toLocaleDateString('pt-BR')} · dia ${f.dia || '?'}</div>
+      </div>
+      <button class="del" onclick="apagar(${f.id})">apagar</button>
+    </div>`;
+  }).join('');
+  container.innerHTML = `<h3>§ fichas salvas (${all.length})</h3>${itens}`;
+}
+
+function gerarMd(f) {
+  const tpl = TEMPLATES[f.tpl];
+  const d = new Date(f.ts);
+  let md = `# ${tpl.nome} · ${f.titulo}\n\n`;
+  md += `**Data:** ${d.toLocaleDateString('pt-BR')} ${d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}\n`;
+  md += `**Dia do ciclo:** ${f.dia || '?'}/272\n\n---\n\n`;
+  tpl.campos.forEach(c => {
+    const val = (f.dados[c.k] || '').trim();
+    md += `### ${c.label}\n\n${val || '*(vazio)*'}\n\n`;
+  });
+  md += `\n---\n*gerado pelo NEXUS Safari PWA*\n`;
+  return md;
+}
+
+function exportar() {
+  const data = coletar();
+  if (currentId) {
+    const saved = getAll().find(x => x.id === currentId);
+    if (saved) data.dia = saved.dia, data.ts = saved.ts;
+  }
+  const md = gerarMd(data);
+  const blob = new Blob([md], {type:'text/markdown'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  const titleSlug = (data.titulo||'ficha').toLowerCase().replace(/[^a-z0-9]+/g,'-').slice(0,30);
+  a.download = 'nexus-' + data.tpl + '-' + titleSlug + '.md';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); document.body.removeChild(a); }, 100);
+}
+
+async function compartilhar() {
+  const data = coletar();
+  const md = gerarMd(data);
+  if (navigator.share) {
+    try { await navigator.share({ title:'NEXUS · '+data.titulo, text: md }); } catch(e) {}
+  } else {
+    try { await navigator.clipboard.writeText(md); alert('Copiado pro clipboard'); } catch(e) {}
+  }
+}
+
+function escapeHtml(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+document.querySelectorAll('.template-picker button').forEach(b => {
+  b.onclick = () => selectTemplate(b.dataset.tpl);
+});
+
+renderForm();
+renderSalvos();
+</script>
+</body>
+</html>

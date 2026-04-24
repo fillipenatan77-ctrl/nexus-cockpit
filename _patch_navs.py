@@ -9,6 +9,7 @@ def build_nav(current):
     items = [
         ('./', '§ home', 'home'),
         ('./hoje.html', 'hoje', 'hoje'),
+        ('./fichas.html', 'fichas', 'fichas'),
         ('./busca.html', 'busca', 'busca'),
         ('./diario.html', 'diário', 'diario'),
         ('./cards.html', 'cards', 'cards'),
@@ -19,6 +20,7 @@ def build_nav(current):
         ('./protocolos.html', 'protocolos', 'protocolos'),
         ('./grafo.html', 'grafo', 'grafo'),
         ('./estacoes.html', 'palácio', 'estacoes'),
+        ('./rag-status.html', 'rag', 'rag'),
         ('./citacao.html', 'citação', 'citacao'),
         ('./oraculo.html', 'oráculo', 'oraculo'),
     ]
@@ -32,6 +34,7 @@ def build_nav(current):
 CURRENT_MAP = {
     'index.html': 'home',
     'hoje.html': 'hoje',
+    'fichas.html': 'fichas',
     'busca.html': 'busca',
     'diario.html': 'diario',
     'cards.html': 'cards',
@@ -41,6 +44,7 @@ CURRENT_MAP = {
     'oraculo.html': 'oraculo',
     'estacoes.html': 'estacoes',
     'grafo.html': 'grafo',
+    'rag-status.html': 'rag',
     'biblioteca.html': 'biblioteca',
     'trilhas.html': 'trilhas',
     'protocolos.html': 'protocolos',

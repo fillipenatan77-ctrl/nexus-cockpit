@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NEXUS · RAG</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
+  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  .container{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+
+  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
+  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
+  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+  header{padding:0 4px 16px}
+  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
+  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+
+  .big-metric{padding:30px 20px;text-align:center;border:1px solid var(--gold-soft);border-radius:16px;background:radial-gradient(ellipse at top,rgba(184,147,90,0.12) 0%,rgba(15,14,23,0.5) 70%);margin-top:24px}
+  .big-metric .k{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;opacity:0.85;margin-bottom:10px}
+  .big-metric .v{font-family:Georgia,serif;font-size:62px;color:var(--bone);line-height:1;font-weight:400;letter-spacing:-0.02em}
+  .big-metric .u{margin-top:6px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.6;font-style:italic}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  .cell{padding:16px 14px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,0.03)}
+  .cell .k{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;opacity:0.85;margin-bottom:6px}
+  .cell .v{font-family:Georgia,serif;font-size:21px;color:var(--bone);line-height:1.1}
+  .cell .sub{font-family:'SF Mono',monospace;font-size:9px;color:var(--bone);opacity:0.5;margin-top:4px;letter-spacing:0.15em}
+
+  .status-line{display:flex;align-items:center;gap:10px;margin-top:18px;padding:14px 16px;border:1px solid var(--gold-soft);border-radius:10px;background:rgba(184,147,90,0.04)}
+  .status-line .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+  .status-line.off .dot{background:#555;box-shadow:none;animation:none}
+  .status-line .info{flex:1;min-width:0}
+  .status-line .t{font-family:Georgia,serif;font-size:15px;color:var(--bone)}
+  .status-line .d{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.15em;opacity:0.75;margin-top:2px}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+  .obras{margin-top:22px;padding:18px 18px 8px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,0.03)}
+  .obras h3{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:12px;opacity:0.85}
+  .obras .item{padding:8px 0;border-bottom:1px solid var(--gold-faint);font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.85;display:flex;justify-content:space-between;gap:10px}
+  .obras .item:last-child{border-bottom:none}
+  .obras .item .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .obras .item .c{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.7;letter-spacing:0.1em;flex-shrink:0}
+
+  .refresh{margin-top:20px;padding:12px;background:none;border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;width:100%}
+  .refresh:active{background:var(--gold);color:var(--ink)}
+
+  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="./">§ home</a>
+    <a href="./hoje.html">hoje</a>
+    <a href="./fichas.html">fichas</a>
+    <a href="./busca.html">busca</a>
+    <a href="./diario.html">diário</a>
+    <a href="./cards.html">cards</a>
+    <a href="./autores.html">autores</a>
+    <a href="./glossario.html">glossário</a>
+    <a href="./biblioteca.html">biblioteca</a>
+    <a href="./trilhas.html">trilhas</a>
+    <a href="./protocolos.html">protocolos</a>
+    <a href="./grafo.html">grafo</a>
+    <a href="./estacoes.html">palácio</a>
+    <a href="./rag-status.html" class="current">rag</a>
+    <a href="./citacao.html">citação</a>
+    <a href="./oraculo.html">oráculo</a>
+  </div>
+
+  <header>
+    <div class="eyebrow">§ monitor do acervo</div>
+    <h1>RAG</h1>
+    <div class="sublead">Estado em tempo real do motor de busca semântica · chunks indexados · modelos ativos · saúde do servidor.</div>
+  </header>
+
+  <div class="big-metric">
+    <div class="k">chunks indexados</div>
+    <div class="v" id="m-docs">—</div>
+    <div class="u" id="m-docs-sub">carregando…</div>
+  </div>
+
+  <div class="grid">
+    <div class="cell"><div class="k">Chroma</div><div class="v" id="m-chroma">—</div><div class="sub" id="m-chroma-sub"></div></div>
+    <div class="cell"><div class="k">Ollama</div><div class="v" id="m-ollama">—</div><div class="sub" id="m-ollama-sub"></div></div>
+    <div class="cell"><div class="k">Embed</div><div class="v" id="m-embed">—</div><div class="sub" id="m-embed-sub"></div></div>
+    <div class="cell"><div class="k">Chat</div><div class="v" id="m-chat">—</div><div class="sub" id="m-chat-sub"></div></div>
+  </div>
+
+  <div class="status-line" id="status">
+    <div class="dot"></div>
+    <div class="info">
+      <div class="t" id="status-t">conectando…</div>
+      <div class="d" id="status-d">checando tunnel + /health</div>
+    </div>
+  </div>
+
+  <div class="obras">
+    <h3>§ obras-chave indexadas</h3>
+    <div class="item"><span class="n">Bandler/Grinder · Reframing</span><span class="c">PNL</span></div>
+    <div class="item"><span class="n">Cialdini · Influence 2021</span><span class="c">poder</span></div>
+    <div class="item"><span class="n">Freud · Novas Conferências XXXI</span><span class="c">psicanálise</span></div>
+    <div class="item"><span class="n">Ferenczi · Obras Completas (4v)</span><span class="c">psicanálise</span></div>
+    <div class="item"><span class="n">Goleman · Inteligência Emocional</span><span class="c">IE</span></div>
+    <div class="item"><span class="n">Kahneman · Thinking Fast and Slow</span><span class="c">julgamento</span></div>
+    <div class="item"><span class="n">Stone/Heen · Difficult Conversations</span><span class="c">comunicação</span></div>
+    <div class="item"><span class="n">Shakespeare · 5 tragédias pt-BR</span><span class="c">literatura</span></div>
+    <div class="item"><span class="n">Yates · Arte da Memória</span><span class="c">memória</span></div>
+    <div class="item"><span class="n">Marco Aurélio · Meditações</span><span class="c">estoica</span></div>
+    <div class="item"><span class="n">Duhigg · Supercommunicators</span><span class="c">comunicação</span></div>
+    <div class="item"><span class="n">Damásio · O Erro de Descartes</span><span class="c">neurociência</span></div>
+    <div class="item"><span class="n">NEXUS · HUB canônico (MDs)</span><span class="c">projeto</span></div>
+  </div>
+
+  <button class="refresh" onclick="load()">↻ atualizar</button>
+
+  <footer>NEXUS v15.O · RAG monitor · auto-refresh 30s</footer>
+</div>
+
+<script>
+const RAG_URL = 'https://broader-hang-alto-subcommittee.trycloudflare.com';
+let lastDocs = null;
+
+async function load() {
+  try {
+    const r = await fetch(RAG_URL + '/health', { cache: 'no-store' });
+    const d = await r.json();
+    document.getElementById('m-docs').textContent = (d.chroma_docs ?? '—').toLocaleString('pt-BR');
+    document.getElementById('m-docs-sub').textContent = 'chunks na coleção nexus_acervo';
+    document.getElementById('m-chroma').textContent = d.chroma_ready ? 'ativo' : 'off';
+    document.getElementById('m-chroma-sub').textContent = d.chroma_ready ? 'HNSW pronto' : 'reconstrução';
+    document.getElementById('m-ollama').textContent = d.ollama_ready ? 'ativo' : 'off';
+    document.getElementById('m-ollama-sub').textContent = d.ollama_ready ? 'API /health OK' : '—';
+
+    // Pegar também o root para ver modelos
+    try {
+      const r2 = await fetch(RAG_URL + '/', { cache: 'no-store' });
+      const d2 = await r2.json();
+      document.getElementById('m-embed').textContent = (d2.model_embed || 'nomic').split(':')[0];
+      document.getElementById('m-embed-sub').textContent = '768 dim';
+      document.getElementById('m-chat').textContent = (d2.model_chat || 'qwen').split(':')[0].toUpperCase();
+      document.getElementById('m-chat-sub').textContent = d2.model_chat || '';
+    } catch (e) {}
+
+    document.getElementById('status').classList.remove('off');
+    document.getElementById('status-t').textContent = d.ingesting ? 'indexação em andamento' : 'RAG pronto para queries';
+    const delta = lastDocs !== null && d.chroma_docs !== lastDocs ? ' · +' + (d.chroma_docs - lastDocs) + ' desde último refresh' : '';
+    document.getElementById('status-d').textContent = 'tunnel ativo · ' + d.chroma_docs + ' chunks' + delta;
+    lastDocs = d.chroma_docs;
+  } catch (e) {
+    document.getElementById('m-docs').textContent = '—';
+    document.getElementById('m-docs-sub').textContent = 'servidor inacessível';
+    document.getElementById('status').classList.add('off');
+    document.getElementById('status-t').textContent = 'RAG offline';
+    document.getElementById('status-d').textContent = 'tunnel ou rag_api caídos · auto-restart 30min via healthcheck';
+  }
+}
+
+load();
+setInterval(load, 30 * 1000);
+</script>
+</body>
+</html>
