@@ -3,124 +3,105 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0F0E17">
 <title>NEXUS · Instalar no iPhone</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<link rel="manifest" href="home/manifest.json">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{background:#0F0E17;color:#F0EAE4;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
-  .wrap{max-width:640px;margin:0 auto;padding:2rem 1.5rem 6rem}
-  h1{font-family:'Crimson Pro',Georgia,serif;font-size:2.4rem;letter-spacing:-0.01em;margin-bottom:0.3rem}
-  .gold{color:#B8935A}
-  .sub{color:rgba(240,234,228,0.55);font-style:italic;font-family:'Crimson Pro',serif;font-size:1.1rem;margin-bottom:2.5rem}
-  .step{background:#14131E;border:1px solid rgba(240,234,228,0.06);border-radius:20px;padding:1.4rem 1.5rem;margin-bottom:1rem;display:flex;gap:1.2rem;align-items:flex-start}
-  .num{flex:0 0 36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#1E1C29,#14131E);border:1px solid rgba(184,147,90,0.3);display:grid;place-items:center;font-family:'Crimson Pro';font-size:1.3rem;color:#B8935A}
-  .step-body{flex:1;padding-top:4px}
-  .step-title{font-family:'Crimson Pro',serif;font-size:1.2rem;color:#F0EAE4;margin-bottom:0.4rem}
-  .step-detail{font-size:0.95rem;color:rgba(240,234,228,0.7);line-height:1.55}
-  code{background:#1E1C29;color:#B8935A;padding:2px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:0.85em}
-  .url-box{background:#14131E;border:1px dashed rgba(184,147,90,0.3);border-radius:12px;padding:0.9rem 1.1rem;text-align:center;margin:1.5rem 0}
-  .url-box code{background:transparent;font-size:1.1rem;letter-spacing:0.02em}
-  .chip{display:inline-block;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:rgba(184,147,90,0.15);color:#B8935A;margin-right:0.5rem}
-  .divider{height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,90,0.3),transparent);margin:2.5rem 0}
-  .faq{background:#14131E;border:1px solid rgba(240,234,228,0.06);border-radius:16px;padding:1.3rem;margin-top:1rem}
-  .faq h4{font-family:'Crimson Pro',serif;font-size:1.1rem;color:#B8935A;margin-bottom:0.5rem}
-  .faq p{font-size:0.9rem;color:rgba(240,234,228,0.75);line-height:1.5}
-  .back{display:inline-block;margin-top:2rem;color:#B8935A;text-decoration:none;font-size:0.95rem}
-  .back:hover{text-decoration:underline}
-  .icon-preview{width:80px;height:80px;border-radius:18px;background:linear-gradient(135deg,#14131E,#0F0E17);border:1px solid rgba(184,147,90,0.25);display:grid;place-items:center;font-family:'Crimson Pro';font-size:48px;color:#B8935A;margin:1rem auto;box-shadow:0 20px 40px -20px rgba(0,0,0,0.7)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0F0E17;color:#F0EAE4;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;line-height:1.6}
+body{padding:2rem 1rem;max-width:640px;margin:0 auto}
+header{text-align:center;margin-bottom:2rem}
+h1{font-family:Georgia,serif;font-size:2rem}
+h1 span{color:#B8935A}
+.sub{color:rgba(240,234,228,.5);font-size:.95rem;margin-top:.5rem;letter-spacing:.02em}
+.url-box{background:#14131E;border:1px solid rgba(184,147,90,.4);border-radius:18px;padding:1.5rem;margin:2rem 0;text-align:center}
+.url-box code{font-family:'SF Mono',Consolas,monospace;font-size:1.3rem;color:#B8935A;font-weight:600;letter-spacing:.02em}
+.cta{display:block;background:#B8935A;color:#0F0E17;text-decoration:none;text-align:center;padding:1rem;border-radius:14px;font-weight:600;margin:1rem 0;font-size:1.05rem}
+.step{display:flex;gap:1rem;margin-bottom:1.5rem;background:#14131E;border:1px solid rgba(240,234,228,.06);border-radius:18px;padding:1.25rem}
+.step-num{flex-shrink:0;width:36px;height:36px;border-radius:50%;background:#B8935A;color:#0F0E17;display:flex;align-items:center;justify-content:center;font-weight:700}
+.step-title{font-weight:600;font-size:1rem;margin-bottom:.3rem}
+.step-detail{font-size:.92rem;color:rgba(240,234,228,.75)}
+.gold{color:#B8935A;font-weight:500}
+.faq{margin-top:1rem;background:#14131E;border:1px solid rgba(240,234,228,.06);border-radius:14px;padding:1rem 1.25rem}
+.faq h4{font-size:.95rem;color:#B8935A;margin-bottom:.4rem}
+.faq p{font-size:.88rem;color:rgba(240,234,228,.7)}
+footer{text-align:center;margin-top:3rem;font-size:.75rem;color:rgba(240,234,228,.3);font-family:Georgia,serif;font-style:italic}
+.section-title{margin:2.5rem 0 1rem;font-family:Georgia,serif;font-size:1.2rem;color:#B8935A}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Instalar <span class="gold">NEXUS</span> no iPhone</h1>
-    <p class="sub">app instalável · funciona offline · ícone na tela inicial</p>
+  <header>
+    <h1>Instalar <span>NEXUS</span> no iPhone</h1>
+    <div class="sub">3 passos · funciona em qualquer rede · permanente</div>
+  </header>
 
-    <div class="url-box">
-      <code>http://192.168.15.10:8080</code>
-    </div>
-
-    <div class="step">
-      <div class="num">1</div>
-      <div class="step-body">
-        <div class="step-title">Mesma rede Wi-Fi</div>
-        <div class="step-detail">Confirmar que o iPhone está conectado na mesma rede do PC (hoje: <strong class="gold">Home</strong>). Sem isso, o endereço local não responde.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="num">2</div>
-      <div class="step-body">
-        <div class="step-title">Abrir no Safari</div>
-        <div class="step-detail">No iPhone, abrir o Safari e digitar <code>192.168.15.10:8080</code> na barra de endereço. Aguardar 3-5 segundos para o primeiro carregamento (o service worker cacheia tudo offline).</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="num">3</div>
-      <div class="step-body">
-        <div class="step-title">Botão Compartilhar</div>
-        <div class="step-detail">Na barra inferior do Safari, tocar no ícone de <strong>compartilhar</strong> (seta subindo de uma caixa).</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="num">4</div>
-      <div class="step-body">
-        <div class="step-title">Adicionar à Tela de Início</div>
-        <div class="step-detail">Rolar no menu compartilhar e tocar em <strong class="gold">"Adicionar à Tela de Início"</strong>. Se quiser, editar o nome para "NEXUS". Confirmar no topo direito.</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="num">5</div>
-      <div class="step-body">
-        <div class="step-title">Pronto — abrir pelo ícone</div>
-        <div class="step-detail">O ícone aparece na tela inicial. Ao abrir por ele (não pelo Safari), roda fullscreen sem barra do navegador.</div>
-      </div>
-    </div>
-
-    <div class="icon-preview">N</div>
-    <div style="text-align:center;color:rgba(240,234,228,0.4);font-size:0.85rem;font-style:italic;font-family:'Crimson Pro',serif">assim vai ficar na sua tela</div>
-
-    <div class="divider"></div>
-
-    <h2 style="font-family:'Crimson Pro',serif;font-size:1.6rem;margin-bottom:1rem">O que funciona <span class="gold">offline</span></h2>
-
-    <div class="step"><div class="num" style="color:#7F8F7F;border-color:rgba(127,143,127,0.4)">✓</div><div class="step-body"><div class="step-title">Cockpit · Trilhas · Biblioteca · Humor</div><div class="step-detail">Tudo renderiza offline após o primeiro carregamento. Dados, citações, obras canônicas, reenquadramentos — todos embutidos no app.</div></div></div>
-
-    <div class="step"><div class="num" style="color:#7F8F7F;border-color:rgba(127,143,127,0.4)">✓</div><div class="step-body"><div class="step-title">Entradas (captura)</div><div class="step-detail">Pode escrever novas entradas offline. Ficam na aba local até sincronizar com Notion (Fase 5 futura).</div></div></div>
-
-    <div class="step"><div class="num" style="color:#B8935A;border-color:rgba(184,147,90,0.4)">~</div><div class="step-body"><div class="step-title">Ops (status ao vivo)</div><div class="step-detail">KPIs e execuções mostram o estado do último acesso com rede. Para atualizar em tempo real, precisa conexão (chama <code>/exec?action=health_full</code>).</div></div></div>
-
-    <div class="divider"></div>
-
-    <h2 style="font-family:'Crimson Pro',serif;font-size:1.6rem;margin-bottom:1rem">Dúvidas comuns</h2>
-
-    <div class="faq">
-      <h4>Não carrega no iPhone — "página indisponível"</h4>
-      <p>Verificar: Wi-Fi no iPhone está em <strong>Home</strong>? Firewall do PC liberou porta 8080 (a regra foi criada, mas antivírus pode bloquear)? Servidor Python ainda rodando na janela PowerShell separada?</p>
-    </div>
-
-    <div class="faq">
-      <h4>Fora de casa não funciona</h4>
-      <p>Certo — endereço <code>192.168.15.10</code> é local da Wi-Fi da casa. Para acesso em 4G/5G, fazer deploy em Cloudflare Pages (grátis, privado) ou similar. Plano na <code>ARQUITETURA_OPERACIONAL_v2.md</code> seção 4.</p>
-    </div>
-
-    <div class="faq">
-      <h4>PC desligado — o app para?</h4>
-      <p>Só o servidor local para. O app instalado no iPhone continua funcionando <strong>offline</strong>, com os dados do último acesso. Quando o PC voltar a rodar, o app re-sincroniza automaticamente.</p>
-    </div>
-
-    <div class="faq">
-      <h4>Quero acesso remoto permanente</h4>
-      <p>Próximo passo é deploy em <strong>Cloudflare Pages</strong> (<code>npx wrangler pages deploy .</code>) — URL pública, CDN rápida, controle de acesso. 5 minutos para configurar.</p>
-    </div>
-
-    <a href="index.html" class="back">← voltar ao cockpit</a>
+  <div class="url-box">
+    <div style="font-size:.8rem;color:rgba(240,234,228,.5);margin-bottom:.5rem">URL canônica</div>
+    <code>nexuscaldeira.com</code>
   </div>
+
+  <a class="cta" href="https://nexuscaldeira.com">Abrir agora →</a>
+
+  <div class="section-title">Passo a passo</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <div class="step-title">Abrir no Safari</div>
+      <div class="step-detail">No iPhone, abrir o <span class="gold">Safari</span> (não Chrome — só Safari implementa PWA do iOS) e digitar <code>nexuscaldeira.com</code> na barra de endereço.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <div class="step-title">Botão Compartilhar</div>
+      <div class="step-detail">Tocar no botão <span class="gold">Compartilhar</span> (ícone quadrado com seta para cima, na barra inferior do Safari).</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <div class="step-title">Adicionar à Tela de Início</div>
+      <div class="step-detail">Rolar e tocar em <span class="gold">"Adicionar à Tela de Início"</span>. Confirmar nome <strong>NEXUS</strong> e tocar em <strong>Adicionar</strong>.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">✓</div>
+    <div>
+      <div class="step-title">Pronto</div>
+      <div class="step-detail">O ícone <span class="gold">NEXUS</span> aparece na tela inicial · ao tocar abre direto em modo full-screen, igual a um app.</div>
+    </div>
+  </div>
+
+  <div class="section-title">Perguntas frequentes</div>
+
+  <div class="faq">
+    <h4>Posso usar Chrome ou outro browser?</h4>
+    <p>Não para instalar o PWA. Só o <span class="gold">Safari</span> do iOS implementa "Adicionar à Tela de Início" como app full-screen. Outros browsers podem abrir o site, mas não criam o ícone-app.</p>
+  </div>
+
+  <div class="faq">
+    <h4>Funciona fora de casa, no 4G/5G?</h4>
+    <p>Sim. <code>nexuscaldeira.com</code> é domínio público com HTTPS — funciona em qualquer rede, em qualquer lugar do mundo, igual a qualquer site.</p>
+  </div>
+
+  <div class="faq">
+    <h4>Vi uma URL antiga <code>192.168.15.10:8080</code> em algum lugar — devo usar?</h4>
+    <p><strong>Não.</strong> Era uma versão antiga (servidor Python local). A URL oficial agora é <code>nexuscaldeira.com</code> · única · permanente · em qualquer rede. Apague qualquer atalho antigo.</p>
+  </div>
+
+  <div class="faq">
+    <h4>Funciona offline depois de instalado?</h4>
+    <p>O hub usa cache do navegador. Páginas já visitadas funcionam offline; navegação nova precisa de internet. Funcionalidades que dependem do RAG (busca semântica) sempre precisam de internet.</p>
+  </div>
+
+  <div class="faq">
+    <h4>Como atualizar o app?</h4>
+    <p>Não precisa. As páginas atualizam automaticamente toda vez que tu abre. O ícone na tela inicial sempre aponta para a versão mais recente em <code>nexuscaldeira.com</code>.</p>
+  </div>
+
+  <footer>NEXUS · v15.AY · domínio próprio · URL fixa permanente</footer>
 </body>
 </html>

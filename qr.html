@@ -23,20 +23,20 @@
 <body>
   <div class="card">
     <h1>Parear o <span style="color:#B8935A">iPhone</span></h1>
-    <div class="sub">escanear ou digitar · mesma rede Wi-Fi</div>
+    <div class="sub">escanear o QR · qualquer rede</div>
     <div id="qr"></div>
-    <div class="url" id="url">http://192.168.15.10:8080</div>
+    <div class="url" id="url">https://nexuscaldeira.com</div>
     <ol>
       <li>Abrir a <span class="gold">Câmera</span> do iPhone e apontar para o QR</li>
       <li>Tocar a notificação que aparece em cima</li>
       <li>Abre no Safari · botão <span class="gold">Compartilhar</span> ⎋</li>
       <li>Rolar e tocar em <span class="gold">"Adicionar à Tela de Início"</span></li>
-      <li>Confirma — vira app fullscreen com ícone <span class="gold">N</span></li>
+      <li>Confirma — vira app fullscreen com ícone <span class="gold">NEXUS</span></li>
     </ol>
-    <footer>NEXUS cockpit · v15.E · pareamento local</footer>
+    <footer>NEXUS · v15.AY · domínio próprio · funciona em qualquer rede</footer>
   </div>
   <script>
-    const url = 'http://192.168.15.10:8080';
+    const url = 'https://nexuscaldeira.com';
     document.getElementById('url').textContent = url;
     QRCode.toCanvas(document.getElementById('qr'), url, {
       width: 280,
