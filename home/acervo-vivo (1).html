@@ -88,23 +88,7 @@ h1{font-size:20px;margin:0;font-weight:600}
 </div>
 
 <script>
-// URL dinâmica do RAG · 3 níveis de fallback
-//   1. Apps Script /exec?action=rag_url (sempre fresca, atualizada pelo watchdog via set_prop)
-//   2. localStorage (cache de sessão anterior)
-//   3. health.json publicado (atualização lenta)
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
-const RAG_FALLBACK = "https://north-geometry-mae-restrictions.trycloudflare.com";
-let RAG = window.NEXUS_RAG_URL || localStorage.getItem("nexus_rag_url") || RAG_FALLBACK;
-// Tenta atualizar via Apps Script (mais fresco)
-fetch(`${APPS_SCRIPT_URL}?action=rag_url`, {cache:"no-store"})
-  .then(r=>r.json())
-  .then(j=>{ if(j && j.rag_url){ RAG = j.rag_url; localStorage.setItem("nexus_rag_url", RAG); } })
-  .catch(()=>{
-    // Fallback: health.json
-    fetch("./health.json", {cache:"no-store"}).then(r=>r.json()).then(j=>{
-      if(j && j.endpoints && j.endpoints.rag_url){ RAG = j.endpoints.rag_url; localStorage.setItem("nexus_rag_url", RAG); }
-    }).catch(()=>{});
-  });
+const RAG = (window.NEXUS_RAG_URL || "https://dolls-studies-wear-much.trycloudflare.com");
 
 async function loadHealth(){
   try{

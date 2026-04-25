@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<title>NEXUS</title>
+
+<!-- PWA + iOS app-like -->
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEXUS">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" sizes="167x167" href="./icons/apple-touch-icon-167.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./icons/apple-touch-icon-152.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./icons/apple-touch-icon-120.png">
+<link rel="apple-touch-startup-image" href="./splash/splash-1290x2796.png" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)">
+
+<style>
+  :root {
+    --ink: #0F0E17;
+    --ink-soft: #14131E;
+    --bone: #F0EAE4;
+    --gold: #B8935A;
+    --gold-soft: rgba(184, 147, 90, 0.3);
+    --gold-faint: rgba(184, 147, 90, 0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
+    min-height: 100vh;
+    overscroll-behavior: none;
+  }
+  body {
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    background: radial-gradient(ellipse at top, var(--ink-soft) 0%, var(--ink) 60%);
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 24px 20px 40px; }
+
+  /* Header */
+  header { padding: 24px 4px 32px; text-align: center; }
+  .eyebrow {
+    font-family: 'SF Mono', 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .wordmark {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--bone);
+    line-height: 1;
+  }
+  .wordmark .amp {
+    color: var(--gold);
+    font-style: italic;
+    display: inline-block;
+    transform: translateY(-4px);
+  }
+  .tagline {
+    margin-top: 14px;
+    font-family: Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--bone);
+    opacity: 0.55;
+    letter-spacing: 0.01em;
+  }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 6px 14px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 999px;
+    font-family: 'SF Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+  .status-pill .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+  /* Grid de tiles */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 30px;
+  }
+  @media (min-width: 540px) {
+    .grid { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 148px;
+    padding: 18px 16px 16px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(184,147,90,0.04) 0%, rgba(15,14,23,0.6) 100%);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .tile:active {
+    transform: scale(0.97);
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(184,147,90,0.12) 0%, rgba(15,14,23,0.6) 100%);
+  }
+  .tile .glyph {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: var(--gold);
+    opacity: 0.9;
+    line-height: 1;
+  }
+  .tile .title {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--bone);
+    line-height: 1.15;
+    margin-top: auto;
+  }
+  .tile .sub {
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    opacity: 0.7;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+  .tile.primary {
+    grid-column: span 2;
+    min-height: 118px;
+    background: linear-gradient(135deg, rgba(184,147,90,0.18) 0%, rgba(15,14,23,0.8) 100%);
+    border-color: var(--gold);
+  }
+  @media (min-width: 540px) {
+    .tile.primary { grid-column: span 3; }
+  }
+  .tile.primary .title { font-size: 26px; }
+
+  /* Snapshot strip */
+  .snapshot {
+    margin-top: 30px;
+    padding: 18px 16px;
+    border: 1px solid var(--gold-faint);
+    border-radius: 14px;
+    background: rgba(184, 147, 90, 0.02);
+  }
+  .snapshot h3 {
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .snapshot .row {
+    display: flex;
+    justify-content: space-between;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gold-faint);
+  }
+  .snapshot .row:last-child { border-bottom: none; }
+  .snapshot .row .k { color: var(--bone); opacity: 0.6; }
+  .snapshot .row .v { color: var(--bone); font-weight: 500; text-align: right; }
+  .snapshot .loading { opacity: 0.4; font-style: italic; }
+
+  /* Footer */
+  footer {
+    margin-top: 34px;
+    text-align: center;
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    opacity: 0.5;
+    text-transform: uppercase;
+  }
+  footer .sep { margin: 0 8px; }
+
+  /* Bloco Novidades */
+  .novidades {
+    margin: 26px 0 10px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 14px;
+    background: rgba(184,147,90,0.04);
+    overflow: hidden;
+  }
+  .novidades .head {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: rgba(184,147,90,0.06);
+  }
+  .novidades .head .t {
+    font-family: 'SF Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+  .novidades .head .ver {
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    opacity: 0.65;
+    letter-spacing: 0.15em;
+  }
+  .novidades .head .toggle {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: var(--gold);
+    transition: transform 0.2s;
+  }
+  .novidades.open .head .toggle { transform: rotate(90deg); }
+  .novidades .body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-out;
+  }
+  .novidades.open .body { max-height: 900px; }
+  .novidades .inner { padding: 4px 18px 16px; }
+  .novidades .entry {
+    padding: 12px 0;
+    border-top: 1px solid var(--gold-faint);
+    font-family: Georgia, serif;
+    font-size: 14px;
+    color: var(--bone);
+    opacity: 0.88;
+    line-height: 1.55;
+  }
+  .novidades .entry:first-child { border-top: none; }
+  .novidades .entry strong { color: var(--gold); font-weight: 500; }
+  .novidades .entry .tag {
+    display: inline-block;
+    font-family: 'SF Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+    background: rgba(184,147,90,0.1);
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-right: 6px;
+    vertical-align: 2px;
+  }
+  .novidades .link-changelog {
+    display: block;
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(184,147,90,0.08);
+    border: 1px dashed var(--gold-soft);
+    border-radius: 8px;
+    font-family: 'SF Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="eyebrow">§ cognição · ritmo · voz</div>
+    <h1 class="wordmark">NEXUS</h1>
+    <div class="tagline" id="tagline">carregando ciclo PRIMORDIA…</div>
+    <div class="status-pill"><span class="dot"></span><span id="pill">sistema vivo</span></div>
+  </header>
+
+  <div class="novidades" id="novidades">
+    <div class="head" onclick="toggleNovidades()">
+      <div>
+        <div class="t">§ novidades</div>
+        <div class="ver" id="ver-pill">carregando…</div>
+      </div>
+      <div class="toggle">›</div>
+    </div>
+    <div class="body">
+      <div class="inner" id="novidades-body">
+        <div style="padding:14px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.5;font-style:italic">Carregando novidades do hub…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <a class="tile primary" href="https://claude.ai/projects" target="_blank" rel="noopener">
+      <div class="glyph">◉</div>
+      <div>
+        <div class="title">Abrir Cortex</div>
+        <div class="sub">Claude Project · NEXUS</div>
+      </div>
+    </a>
+
+    <a class="tile primary" href="./mentalista.html">
+      <div class="glyph">🎩</div>
+      <div>
+        <div class="title">Mentalista</div>
+        <div class="sub">Patrick Jane stack · 15 obras</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./arsenal.html">
+      <div class="glyph">⚔</div>
+      <div>
+        <div class="title">Arsenal</div>
+        <div class="sub">30+ comandos WhatsApp</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./obras.html">
+      <div class="glyph">📚</div>
+      <div>
+        <div class="title">Obras</div>
+        <div class="sub">47+ fichas · resumos · cards</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./vocabulario.html">
+      <div class="glyph">🗣</div>
+      <div>
+        <div class="title">Vocabulário</div>
+        <div class="sub">196 frases · 14 categorias</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./memory-palace.html">
+      <div class="glyph">🏛</div>
+      <div>
+        <div class="title">Memory Palace</div>
+        <div class="sub">144 termos · 18 estações</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./trilhas-auto.html">
+      <div class="glyph">🧭</div>
+      <div>
+        <div class="title">Trilhas B01-B08</div>
+        <div class="sub">47 obras · 8 blocos</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./hoje.html">
+      <div class="glyph">☉</div>
+      <div>
+        <div class="title">Hoje</div>
+        <div class="sub">Briefing do dia</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./coaching.html">
+      <div class="glyph">✦</div>
+      <div>
+        <div class="title">Coaching</div>
+        <div class="sub">Diálogo avançado · voz</div>
+      </div>
+    </a>
+
+
+    <a class="tile" href="./iphone-setup.html">
+      <div class="glyph">📱</div>
+      <div>
+        <div class="title">iPhone</div>
+        <div class="sub">Setup completo · voz</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./system-prompt.html">
+      <div class="glyph">⚐</div>
+      <div>
+        <div class="title">Prompt v5</div>
+        <div class="sub">Copiar · aplicar</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./leitura.html">
+      <div class="glyph">☾</div>
+      <div>
+        <div class="title">Leitura</div>
+        <div class="sub">Obra do dia · lente</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./insights.html">
+      <div class="glyph">✧</div>
+      <div>
+        <div class="title">Insights</div>
+        <div class="sub">12 cruzamentos</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./timer.html">
+      <div class="glyph">◐</div>
+      <div>
+        <div class="title">Timer</div>
+        <div class="sub">Pomodoro · lente</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./stats.html">
+      <div class="glyph">▦</div>
+      <div>
+        <div class="title">Stats</div>
+        <div class="sub">Painel vivo</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./busca.html">
+      <div class="glyph">⌕</div>
+      <div>
+        <div class="title">Busca</div>
+        <div class="sub">RAG · 10k+ chunks</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./fichas.html">
+      <div class="glyph">⌇</div>
+      <div>
+        <div class="title">Fichas</div>
+        <div class="sub">Grade 10 · Conversa · Mapa</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./rag-status.html">
+      <div class="glyph">⚘</div>
+      <div>
+        <div class="title">RAG</div>
+        <div class="sub">Monitor live</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./diario.html">
+      <div class="glyph">✎</div>
+      <div>
+        <div class="title">Diário</div>
+        <div class="sub">Registros · local</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./cards.html">
+      <div class="glyph">▤</div>
+      <div>
+        <div class="title">Cards</div>
+        <div class="sub">24 · download · share</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./autores.html">
+      <div class="glyph">✒</div>
+      <div>
+        <div class="title">Autores</div>
+        <div class="sub">20 fichamentos</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./recomendacoes.html">
+      <div class="glyph">↗</div>
+      <div>
+        <div class="title">Recomendações</div>
+        <div class="sub">55 obras · Scribd</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./glossario.html">
+      <div class="glyph">⚓</div>
+      <div>
+        <div class="title">Glossário</div>
+        <div class="sub">40 termos</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./grafo.html">
+      <div class="glyph">⧗</div>
+      <div>
+        <div class="title">Grafo</div>
+        <div class="sub">Autores · conexões</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./citacao.html">
+      <div class="glyph">✦</div>
+      <div>
+        <div class="title">Citação</div>
+        <div class="sub">Do pool · 60 itens</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./oraculo.html">
+      <div class="glyph">⊛</div>
+      <div>
+        <div class="title">Oráculo</div>
+        <div class="sub">Pergunta do dia</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./estacoes.html">
+      <div class="glyph">◈</div>
+      <div>
+        <div class="title">Palácio</div>
+        <div class="sub" id="sub-palacio">18 estações</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./biblioteca.html">
+      <div class="glyph">❦</div>
+      <div>
+        <div class="title">Biblioteca</div>
+        <div class="sub">8 blocos · 95+ obras</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./trilhas.html">
+      <div class="glyph">⟶</div>
+      <div>
+        <div class="title">Trilhas</div>
+        <div class="sub">8 progressões CAIR</div>
+      </div>
+    </a>
+
+    <a class="tile" href="./protocolos.html">
+      <div class="glyph">◊</div>
+      <div>
+        <div class="title">Protocolos</div>
+        <div class="sub">Os 5 canônicos</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://fillipenatan77-ctrl.github.io/nexus-cockpit/" target="_blank" rel="noopener">
+      <div class="glyph">▣</div>
+      <div>
+        <div class="title">Cockpit</div>
+        <div class="sub">Dashboard live</div>
+      </div>
+    </a>
+
+    <a class="tile" href="#" id="tile-surprise">
+      <div class="glyph">✦</div>
+      <div>
+        <div class="title">Surpresa</div>
+        <div class="sub" id="sub-surprise">Do dia</div>
+      </div>
+    </a>
+
+    <a class="tile" href="#" id="tile-status">
+      <div class="glyph">§</div>
+      <div>
+        <div class="title">Status</div>
+        <div class="sub" id="sub-status">Ciclo · Infra</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://www.notion.so/" target="_blank" rel="noopener">
+      <div class="glyph">✒</div>
+      <div>
+        <div class="title">Diário</div>
+        <div class="sub">Notion</div>
+      </div>
+    </a>
+
+    <a class="tile" href="https://github.com/fillipenatan77-ctrl/NEXUS" target="_blank" rel="noopener">
+      <div class="glyph">⎔</div>
+      <div>
+        <div class="title">Repositório</div>
+        <div class="sub">GitHub</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="snapshot">
+    <h3>§ snapshot</h3>
+    <div class="row"><span class="k">Dia do ciclo</span><span class="v" id="snap-dia">—</span></div>
+    <div class="row"><span class="k">Estação</span><span class="v" id="snap-estacao">—</span></div>
+    <div class="row"><span class="k">Lente do dia</span><span class="v" id="snap-lente">—</span></div>
+    <div class="row"><span class="k">Triggers</span><span class="v" id="snap-triggers">—</span></div>
+    <div class="row"><span class="k">Surpresa enabled</span><span class="v" id="snap-surprise">—</span></div>
+    <div class="row"><span class="k">Servidor</span><span class="v" id="snap-server">—</span></div>
+  </div>
+
+  <footer>
+    NEXUS v15.H <span class="sep">·</span> PRIMORDIA 2026 <span class="sep">·</span> made with ✦ by you
+  </footer>
+</div>
+
+<!-- Modal simples de texto (para Surpresa/Status/Estação inline) -->
+<div id="modal" style="display:none;position:fixed;inset:0;background:rgba(15,14,23,0.94);backdrop-filter:blur(8px);z-index:100;padding:env(safe-area-inset-top) 20px env(safe-area-inset-bottom);overflow-y:auto" onclick="closeModal(event)">
+  <div style="max-width:640px;margin:60px auto;padding:28px 24px;border:1px solid var(--gold-soft);border-radius:16px;background:var(--ink-soft)" onclick="event.stopPropagation()">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div style="font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.2em;color:var(--gold);text-transform:uppercase" id="modal-eyebrow">§ item</div>
+      <button onclick="closeModal()" style="background:none;border:none;color:var(--gold);font-size:26px;cursor:pointer;padding:0;line-height:1">×</button>
+    </div>
+    <h2 id="modal-title" style="font-family:Georgia,serif;font-size:30px;color:var(--bone);font-weight:400;margin-bottom:16px"></h2>
+    <div id="modal-body" style="font-family:Georgia,serif;font-size:17px;color:var(--bone);opacity:0.85;line-height:1.55;white-space:pre-wrap"></div>
+    <div id="modal-footer" style="margin-top:24px;padding-top:16px;border-top:1px solid var(--gold-faint);font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);opacity:0.7;letter-spacing:0.1em"></div>
+  </div>
+</div>
+
+<script>
+const EXEC = 'https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec';
+const ESTACOES = ['Fundação','Liminaridade','Fogo Interior','Reflexão Estratégica','Ágora','Forja','Lapidário','Coroa Tríplice','Espelho','Bússola Inversa','Templo do Eixo','Vau','Tessitura','Selo Quaternário','Acrópole','Catedra','Convergência','Selo Final'];
+const LENTES = ['Síntese','Liderança (Jung+Sun Tzu)','PNL (Bandler/Erickson)','Estoica (Aurélio/Sêneca)','Psicanálise (Freud/Lacan)','Memorização (Yates/Palácio)','Motivacional (Shakespeare)'];
+
+function cycleDay() {
+  const start = new Date('2026-04-02T00:00:00-03:00');
+  return Math.floor((Date.now() - start.getTime()) / 86400000) + 1;
+}
+
+async function loadSnapshot() {
+  try {
+    const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
+    const d = await r.json();
+    if (!d.ok) throw new Error('status not ok');
+    document.getElementById('snap-dia').textContent = d.cycle.day + '/' + d.cycle.total;
+    document.getElementById('snap-estacao').textContent = d.cycle.estacao || '—';
+    document.getElementById('snap-lente').textContent = d.cycle.lente || '—';
+    document.getElementById('snap-triggers').textContent = d.triggers.total + '/' + d.triggers.limit;
+    document.getElementById('snap-surprise').textContent = d.surprise.enabled ? 'sim' : 'não';
+    document.getElementById('snap-server').textContent = 'Apps Script ' + (d.bootstrapVersion || 'v15');
+    document.getElementById('tagline').textContent = 'Dia ' + d.cycle.day + '/272 · ' + d.cycle.estacao + ' · lente ' + d.cycle.lente;
+    document.getElementById('sub-surprise').textContent = d.surprise.last_sent_at ? 'última: ' + new Date(d.surprise.last_sent_at).toLocaleDateString('pt-BR', {day:'2-digit', month:'short'}) : 'do dia';
+    const subP = document.getElementById('sub-palacio');
+    if (subP) subP.textContent = d.cycle.estacao;
+    document.getElementById('sub-status').textContent = 'v' + (d.bootstrapVersion || '15').split('-')[0].replace('v','');
+  } catch (e) {
+    // Fallback: calcula localmente
+    const d = cycleDay();
+    const est = ESTACOES[(d - 1) % 18];
+    const lente = LENTES[new Date().getDay()];
+    document.getElementById('snap-dia').textContent = d + '/272';
+    document.getElementById('snap-estacao').textContent = est;
+    document.getElementById('snap-lente').textContent = lente;
+    document.getElementById('snap-triggers').textContent = '— (offline)';
+    document.getElementById('snap-surprise').textContent = '— (offline)';
+    document.getElementById('snap-server').textContent = '— (offline)';
+    document.getElementById('tagline').textContent = 'Dia ' + d + '/272 · ' + est + ' · lente ' + lente;
+    const subP2 = document.getElementById('sub-palacio');
+    if (subP2) subP2.textContent = est;
+    document.getElementById('pill').textContent = 'offline';
+  }
+}
+
+function openModal(eyebrow, title, body, footer) {
+  document.getElementById('modal-eyebrow').textContent = eyebrow;
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').textContent = body;
+  document.getElementById('modal-footer').textContent = footer || '';
+  document.getElementById('modal').style.display = 'block';
+}
+function closeModal(e) {
+  if (e && e.target.id !== 'modal') return;
+  document.getElementById('modal').style.display = 'none';
+}
+
+document.getElementById('tile-surprise').addEventListener('click', async (e) => {
+  e.preventDefault();
+  openModal('§ surpresa', 'carregando…', '', '');
+  try {
+    const r = await fetch(EXEC + '?action=surprise_preview', { cache: 'no-store' });
+    const d = await r.json();
+    const item = (d.sample && d.sample[Math.floor(Math.random() * d.sample.length)]) || null;
+    if (item) {
+      openModal('§ ' + (item.tipo || 'surpresa'), item.titulo || 'Surpresa', item.texto + '\n\n— ' + (item.rodape || ''), 'pool: ' + d.pool_size + ' itens · lente ' + item.lente);
+    } else {
+      openModal('§ surpresa', 'sem item', 'O pool está vazio ou o endpoint não respondeu.', '');
+    }
+  } catch (err) {
+    openModal('§ surpresa', 'offline', 'Sem conexão com o servidor NEXUS agora. Tente de novo em alguns segundos.', '');
+  }
+});
+
+document.getElementById('tile-status').addEventListener('click', async (e) => {
+  e.preventDefault();
+  openModal('§ status', 'carregando…', '', '');
+  try {
+    const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
+    const d = await r.json();
+    const body = 'Dia: ' + d.cycle.day + '/272\nEstação: ' + d.cycle.estacao + '\nLente: ' + d.cycle.lente + '\n\nTriggers: ' + d.triggers.total + '/20\nSurprise: ' + (d.surprise.enabled ? 'ativo' : 'desativado') + '\nPool: ' + d.surprise.pool_size + ' itens\nÚltima surpresa: ' + (d.surprise.last_sent_at || '—') + '\n\nVersão: ' + d.bootstrapVersion + '\nAnthropic key: ' + (d.health.anthropic_key_set ? 'configurada' : '—');
+    openModal('§ status', 'NEXUS · saúde do sistema', body, 'servidor: ' + new Date(d.serverTime).toLocaleString('pt-BR'));
+  } catch (err) {
+    openModal('§ status', 'offline', 'Sem conexão com o servidor.', '');
+  }
+});
+
+// Atualizar sub do tile Palácio com estação atual
+try {
+  const d = cycleDay();
+  const est = ESTACOES[(d - 1) % 18];
+  const subP = document.getElementById('sub-palacio');
+  if (subP) subP.textContent = est;
+} catch(e) {}
+
+// Service worker para offline mínimo
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').catch(() => {});
+}
+
+loadSnapshot();
+setInterval(loadSnapshot, 5 * 60 * 1000); // refresh a cada 5min
+
+// Novidades · leitura dinâmica do novidades.json
+function toggleNovidades() {
+  const el = document.getElementById('novidades');
+  el.classList.toggle('open');
+  try { localStorage.setItem('nexus_novidades_open', el.classList.contains('open') ? '1' : '0'); } catch(e) {}
+}
+
+async function carregarNovidades() {
+  try {
+    const r = await fetch('./novidades.json?_=' + Date.now(), { cache: 'no-store' });
+    const d = await r.json();
+    const body = document.getElementById('novidades-body');
+    const verPill = document.getElementById('ver-pill');
+
+    // Atualiza pill de versão
+    const dt = new Date(d.ultima_atualizacao || Date.now());
+    const dtStr = dt.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
+    verPill.textContent = (d.versao_atual || '?') + ' · ' + dtStr;
+
+    // Renderiza entradas (máx 7 mais recentes)
+    const entries = (d.entradas || []).slice(0, 7);
+    let html = '';
+    for (const e of entries) {
+      const tagSafe = (e.tag || 'novo').replace(/[<>]/g, '');
+      const tituloSafe = String(e.titulo || '').replace(/[<>]/g, '');
+      const resumoSafe = String(e.resumo || '').replace(/[<>]/g, '');
+      html += `<div class="entry"><span class="tag">${tagSafe}</span><strong>${tituloSafe}</strong> · ${resumoSafe}</div>`;
+    }
+    html += '<a class="link-changelog" href="./changelog.html">⟶ changelog completo</a>';
+    body.innerHTML = html;
+
+    // Detecta se há versão nova desde última visita
+    const lastSeen = localStorage.getItem('nexus_novidades_versao_vista');
+    if (lastSeen !== d.versao_atual) {
+      // Abre automaticamente
+      document.getElementById('novidades').classList.add('open');
+      localStorage.setItem('nexus_novidades_versao_vista', d.versao_atual);
+    } else {
+      // Respeita preferência do usuário
+      const open = localStorage.getItem('nexus_novidades_open');
+      if (open === '1') document.getElementById('novidades').classList.add('open');
+    }
+  } catch (e) {
+    document.getElementById('novidades-body').innerHTML = '<div style="padding:14px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:0.6">Sem conexão · novidades offline</div>';
+    document.getElementById('ver-pill').textContent = 'offline';
+  }
+}
+
+carregarNovidades();
+</script>
+</body>
+</html>
