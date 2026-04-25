@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXUS · Acervo Vivo</title>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{--bg:#0b0d12;--fg:#e8edf6;--muted:#7d869c;--accent:#7df3a3;--green:#2ecc71;--yellow:#f1c40f;--red:#e74c3c;--card:#141821;--border:#1f2530}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,system-ui,Segoe UI,Roboto,sans-serif;line-height:1.5;padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:780px;margin:0 auto;padding:18px 16px 60px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+header a{color:var(--muted);text-decoration:none;font-size:14px}
+h1{font-size:20px;margin:0;font-weight:600}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}
+.health{display:flex;gap:10px;margin:14px 0 22px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:14px}
+.health div{flex:1;text-align:center}
+.health .num{font-size:24px;font-weight:600}
+.health .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.green{color:var(--green)}.yellow{color:var(--yellow)}.red{color:var(--red)}
+.search{position:sticky;top:0;background:var(--bg);padding:10px 0 8px;z-index:5}
+.search input{width:100%;padding:13px 14px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--fg);font-size:15px;outline:none}
+.search input:focus{border-color:var(--accent)}
+.bandeira{display:inline-block;font-size:13px;padding:2px 8px;border-radius:8px;margin-right:6px}
+.bd-green{background:rgba(46,204,113,.15);color:var(--green)}
+.bd-yellow{background:rgba(241,196,15,.15);color:var(--yellow)}
+.bd-red{background:rgba(231,76,60,.15);color:var(--red)}
+.obras{display:flex;flex-direction:column;gap:8px}
+.obra{padding:12px 14px;background:var(--card);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:.15s}
+.obra:hover{border-color:#2c3543}
+.obra .titulo{font-size:14px;font-weight:500;line-height:1.4}
+.obra .meta{font-size:12px;color:var(--muted);margin-top:4px;display:flex;justify-content:space-between}
+.results{margin-top:18px}
+.trecho{padding:14px;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:10px;margin-bottom:10px}
+.trecho .head{font-size:12px;color:var(--muted);margin-bottom:6px}
+.trecho .text{font-size:14px;line-height:1.55;font-style:italic;color:#cfd6e4}
+.trecho .src{font-size:11px;color:var(--muted);margin-top:6px}
+.empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
+.loading{text-align:center;padding:30px;color:var(--accent)}
+.tabs{display:flex;gap:6px;margin:18px 0 12px;background:var(--card);padding:4px;border-radius:10px}
+.tab{flex:1;padding:8px;text-align:center;font-size:13px;cursor:pointer;border-radius:7px;color:var(--muted)}
+.tab.active{background:var(--bg);color:var(--fg)}
+.about{font-size:13px;color:var(--muted);padding:10px 0;line-height:1.5}
+.about strong{color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="index.html">← hub</a>
+    <div>
+      <h1>📚 Acervo Vivo</h1>
+      <div class="sub">obras integralmente indexadas · busca semântica RAG</div>
+    </div>
+  </header>
+
+  <div class="health" id="health">
+    <div><div class="num green" id="h-chunks">—</div><div class="lbl">chunks</div></div>
+    <div><div class="num green" id="h-obras">—</div><div class="lbl">obras</div></div>
+    <div><div class="num green" id="h-integrais">—</div><div class="lbl">integrais</div></div>
+  </div>
+
+  <div class="about" id="about">
+    <strong>Bandeira de profundidade:</strong>
+    <span class="bandeira bd-green">🟢 RAG real</span>
+    <span class="bandeira bd-yellow">🟡 amostra/ficha</span>
+    <span class="bandeira bd-red">🔴 inferência</span>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="busca">Buscar conceito</div>
+    <div class="tab" data-tab="obras">Obras (A–Z)</div>
+  </div>
+
+  <div id="tab-busca">
+    <div class="search">
+      <input id="q" type="search" placeholder='ex: "retorno do recalcado", "marcador somático", "metaprograma"' autocomplete="off">
+    </div>
+    <div class="results" id="results">
+      <div class="empty">Digite uma pergunta ou conceito acima.<br>O RAG retorna trechos literais com autor e página.</div>
+    </div>
+  </div>
+
+  <div id="tab-obras" style="display:none">
+    <div class="obras" id="obras"></div>
+  </div>
+</div>
+
+<script>
+const RAG = (window.NEXUS_RAG_URL || "https://dolls-studies-wear-much.trycloudflare.com");
+
+async function loadHealth(){
+  try{
+    const r = await fetch(RAG+"/stats",{cache:"no-store"});
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    document.getElementById("h-chunks").textContent = j.chunks||0;
+    document.getElementById("h-obras").textContent = j.obras||0;
+    document.getElementById("h-integrais").textContent = j.obras_integrais||0;
+    if((j.obras_integrais||0) < 10){
+      document.getElementById("h-integrais").className = "num yellow";
+    }
+    renderObras(j.top_obras||[]);
+  }catch(e){
+    ["h-chunks","h-obras","h-integrais"].forEach(id=>{
+      document.getElementById(id).textContent="off";
+      document.getElementById(id).className="num red";
+    });
+  }
+}
+
+function renderObras(top){
+  const root = document.getElementById("obras");
+  if(!top.length){ root.innerHTML = '<div class="empty">RAG offline ou sem obras ainda.</div>'; return; }
+  root.innerHTML = top.map(([nome,n])=>{
+    const bd = n>=50?"bd-green":(n>=10?"bd-yellow":"bd-red");
+    const flag = n>=50?"🟢":(n>=10?"🟡":"🔴");
+    return `<div class="obra" onclick="askAbout('${nome.replace(/'/g,"\\'")}')">
+      <div class="titulo"><span class="bandeira ${bd}">${flag} ${n}</span>${nome}</div>
+    </div>`;
+  }).join("");
+}
+
+function askAbout(nome){
+  document.querySelector(".tab[data-tab='busca']").click();
+  const inp = document.getElementById("q");
+  inp.value = "principais conceitos da obra "+nome.replace(/\.pdf$/i,"");
+  inp.focus();
+  doSearch();
+}
+
+let timer;
+document.getElementById("q").addEventListener("input",e=>{
+  clearTimeout(timer);
+  timer = setTimeout(doSearch, 350);
+});
+
+async function doSearch(){
+  const q = document.getElementById("q").value.trim();
+  if(q.length<3){ document.getElementById("results").innerHTML='<div class="empty">Digite ao menos 3 caracteres.</div>'; return; }
+  document.getElementById("results").innerHTML = '<div class="loading">⏳ buscando…</div>';
+  try{
+    const r = await fetch(RAG+"/ask",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({q,top_k:6})});
+    if(!r.ok) throw 0;
+    const j = await r.json();
+    if(!j.results||!j.results.length){
+      document.getElementById("results").innerHTML='<div class="empty">Sem trechos para esta query no acervo atual.<br>Pode ser que a obra ainda não esteja integralmente indexada.</div>';
+      return;
+    }
+    document.getElementById("results").innerHTML = j.results.map(r=>{
+      const score = Math.round((r.score||0)*100);
+      const flag = score>=50?"🟢":(score>=30?"🟡":"🔴");
+      return `<div class="trecho">
+        <div class="head">${flag} ${r.autor||"?"} · <em>${r.titulo||"?"}</em> ${r.ano?"("+r.ano+")":""} · p.${r.page_start}-${r.page_end} · score ${score}</div>
+        <div class="text">"${(r.text||"").replace(/"/g,"&quot;")}"</div>
+        <div class="src">${r.obra}</div>
+      </div>`;
+    }).join("");
+  }catch(e){
+    document.getElementById("results").innerHTML = '<div class="empty">🔴 RAG offline ou erro de rede. Tente daqui a pouco.</div>';
+  }
+}
+
+document.querySelectorAll(".tab").forEach(t=>{
+  t.onclick = ()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    document.getElementById("tab-busca").style.display = t.dataset.tab==="busca"?"block":"none";
+    document.getElementById("tab-obras").style.display = t.dataset.tab==="obras"?"block":"none";
+  };
+});
+
+loadHealth();
+</script>
+</body>
+</html>
