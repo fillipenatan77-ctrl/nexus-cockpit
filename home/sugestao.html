@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Sugestão do Dia</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55;overscroll-behavior:none}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 60px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:680px;margin:0 auto;padding:18px 18px 30px}
+
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+
+.dia-pill{display:inline-block;margin:14px 0 8px;padding:6px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+
+h1{font-family:Georgia,serif;font-size:36px;font-weight:400;line-height:1.1;letter-spacing:.01em;margin:6px 0 4px;color:var(--bone)}
+.autor{font-family:Georgia,serif;font-size:16px;font-style:italic;color:var(--gold);opacity:.9;margin-bottom:16px}
+
+.bandeira{display:inline-block;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);background:rgba(184,147,90,.12);padding:4px 10px;border-radius:6px;text-transform:uppercase;margin-bottom:18px}
+
+.svg-card{margin:20px 0;border-radius:14px;overflow:hidden;background:var(--ink-soft);box-shadow:0 0 40px rgba(184,147,90,.18);max-width:380px;margin-left:auto;margin-right:auto}
+.svg-card svg{width:100%;height:auto;display:block}
+.svg-loading{aspect-ratio:1080/1350;display:flex;align-items:center;justify-content:center;color:var(--gold);opacity:.4;font-size:11px;font-family:'SF Mono',monospace;letter-spacing:.1em}
+
+.bloco{margin:22px 0;padding:18px 20px;border:1px solid var(--gold-faint);border-radius:14px;background:rgba(184,147,90,.03)}
+.bloco h3{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;font-weight:600}
+.bloco p{font-family:Georgia,serif;font-size:15px;color:var(--bone);opacity:.9;line-height:1.65}
+
+.citacao{margin:22px 0;padding:20px 22px;border-left:3px solid var(--gold);background:rgba(184,147,90,.04);border-radius:0 12px 12px 0}
+.citacao .marca{font-size:18px;color:var(--gold);margin-bottom:6px}
+.citacao blockquote{font-family:Georgia,serif;font-size:18px;font-style:italic;line-height:1.55;color:var(--bone)}
+.citacao .fonte{display:block;margin-top:12px;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:.75;letter-spacing:.1em}
+
+.tese-rapida{font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.7;line-height:1.55;margin:6px 0 14px;padding-left:14px;border-left:2px solid var(--gold-faint)}
+
+.acoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0}
+@media(max-width:480px){.acoes{grid-template-columns:1fr}}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:14px 16px;border-radius:10px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.08em;text-decoration:none;border:1px solid var(--gold-soft);background:rgba(184,147,90,.06);color:var(--gold);transition:.18s}
+.btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600}
+.btn:active{transform:scale(.97)}
+
+.comandos{margin:18px 0;padding:18px 20px;border:1px dashed var(--gold-soft);border-radius:12px;background:rgba(184,147,90,.02)}
+.comandos h3{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.comandos li{list-style:none;padding:6px 0 6px 24px;position:relative;font-family:Georgia,serif;font-size:14px;line-height:1.55}
+.comandos li::before{content:counter(item);counter-increment:item;position:absolute;left:0;color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;font-weight:600}
+.comandos ol{counter-reset:item;list-style:none;padding:0}
+.comandos code{font-family:'SF Mono',monospace;font-size:13px;background:rgba(184,147,90,.12);padding:2px 8px;border-radius:5px;color:var(--gold)}
+
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.45;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+
+.loading-state{padding:60px 20px;text-align:center;color:var(--gold);opacity:.6;font-family:'SF Mono',monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
+
+  <div id="content">
+    <div class="loading-state">carregando sugestão do dia…</div>
+  </div>
+
+  <div class="foot">
+    NEXUS v15.BI · <a href="./">cockpit</a> · <a href="./integrais.html">acervo</a> · <a href="../c/">cards</a>
+  </div>
+</div>
+
+<script>
+const EXEC = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
+const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
+
+async function load() {
+  let dados;
+  try {
+    const r = await fetch(EXEC + '?action=sugestao_today', { cache: 'no-store' });
+    dados = await r.json();
+  } catch (e) {
+    document.getElementById('content').innerHTML = `
+      <h1>Offline</h1>
+      <p>Não consegui contactar o servidor NEXUS agora. Tente daqui a alguns segundos.</p>
+      <a href="./" class="btn">⟶ voltar ao Cockpit</a>`;
+    return;
+  }
+
+  if (!dados.ok || !dados.obra) {
+    document.getElementById('content').innerHTML = `
+      <h1>Erro</h1>
+      <p>Resposta inesperada: ${JSON.stringify(dados).substring(0,200)}</p>`;
+    return;
+  }
+
+  const o = dados.obra;
+  const slug = o.slug;
+  const lente_nome = dados.lente.split('·')[0].trim();
+
+  // Render base
+  document.getElementById('content').innerHTML = `
+    <span class="dia-pill">dia ${dados.dia}/${dados.diaTotal} · ${dados.estacao} · lente ${lente_nome}</span>
+
+    <h1>${o.titulo}</h1>
+    <div class="autor">${o.autor}</div>
+
+    <span class="bandeira" id="bandeira">carregando citação…</span>
+
+    <div class="svg-card" id="svg-card">
+      <div class="svg-loading">carregando card…</div>
+    </div>
+
+    <div class="citacao" id="cit-bloco" style="display:none">
+      <div class="marca" id="cit-marca">✦</div>
+      <blockquote id="cit-text"></blockquote>
+      <span class="fonte" id="cit-fonte"></span>
+    </div>
+
+    <div class="bloco" id="bloco-tese" style="display:none">
+      <h3>§ tese central</h3>
+      <p id="tese-text"></p>
+    </div>
+
+    <div class="acoes">
+      <a class="btn primary" href="${o.url_card}" target="_blank">🎨 ver card SVG · /c/${slug}/</a>
+      <a class="btn" href="${o.url_ficha}">📖 ficha integral</a>
+    </div>
+
+    <div class="comandos">
+      <h3>§ 3 caminhos para mergulhar hoje</h3>
+      <ol>
+        <li>WhatsApp · <code>/aula ${slug.split('-')[0]}</code> → aula densa de 600 palavras</li>
+        <li>WhatsApp · <code>/capsula ${slug.split('-')[0]}</code> → cápsula 350 palavras (definição + mecânica + sinais + aplicação)</li>
+        <li>WhatsApp · <code>/ficha ${slug.split('-')[0]}</code> → ficha integral pelo telefone</li>
+      </ol>
+    </div>
+
+    <div class="bloco">
+      <h3>§ por que esta obra hoje</h3>
+      <p>O dia ${dados.dia}/${dados.diaTotal} cai em <strong style="color:var(--gold)">${dados.estacao}</strong> · lente do dia: <strong style="color:var(--gold)">${lente_nome}</strong>. A rotação NEXUS prioriza obras da categoria <em>${o.lente_obra}</em> nesse contexto · ${o.titulo} é a obra escolhida pelo rotador determinístico (sem repetir 2 dias seguidos).</p>
+    </div>
+  `;
+
+  // Carregar card SVG
+  fetch(`${GH_RAW}/cards/${encodeURIComponent(o.slug.replace('hamlet','Shakespeare_Hamlet_ptBR').replace('romeu-julieta','Shakespeare_Romeu_e_Julieta_ptBR').replace('rei-lear','Shakespeare_Rei_Lear_ptBR'))}.svg`).then(r => r.ok ? r.text() : null).then(svg => {
+    if (svg) document.getElementById('svg-card').innerHTML = svg;
+  }).catch(() => {});
+
+  // Tentar pegar ficha · extrair citação canônica + tese
+  try {
+    // Mapeamento slug → file (igual ao Apps Script)
+    const FILES = {
+      "freud-sonhos":"Freud_Interpretacao_Sonhos_menor",
+      "neves-freud":"NevesDaSilva_Citacoes_Pensamentos_Freud",
+      "suy-lacan":"Suy_Amor_e_Desejo_Dissertacao_UFPR",
+      "bandler-padroes":"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)",
+      "bandler-magia":"Bandler_Grinder_Estrutura_da_Magia_Vol_II",
+      "bandler-reframing":"Bandler_Grinder_Reframing",
+      "rosen-erickson":"Rosen_My_Voice_Will_Go_With_You",
+      "hamlet":"Shakespeare_Hamlet_ptBR",
+      "romeu-julieta":"Shakespeare_Romeu_e_Julieta_ptBR",
+      "rei-lear":"Shakespeare_Rei_Lear_ptBR",
+      "allen-persuasao":"Allen_Tecnicas_Proibidas_Persuasao",
+      "maquiavel-got":"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel",
+      "goleman-ie":"Goleman_Inteligencia_Emocional",
+      "obrien-memoria-v1":"OBrien_How_to_Develop_Perfect_Memory_v1_1MB",
+      "obrien-memoria-v2":"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB",
+      "obrien-memoria-v3":"OBrien_How_to_Develop_Perfect_Memory_v3_2MB"
+    };
+
+    const file = FILES[slug];
+    if (file) {
+      // Recarregar card com nome correto
+      fetch(`${GH_RAW}/cards/${encodeURIComponent(file)}.svg`).then(r => r.ok ? r.text() : null).then(svg => {
+        if (svg) document.getElementById('svg-card').innerHTML = svg;
+      });
+
+      const r = await fetch(`${GH_RAW}/fichas/${encodeURIComponent(file)}.md`, {cache: 'no-store'});
+      if (r.ok) {
+        const md = await r.text();
+        // Extrair citação canônica · linha começando com `> ✦` ou `> 🟢`
+        const citMatch = md.match(/^>\s*[✦🟢🟡]\s*\*"([^"]+)"\*/m);
+        if (citMatch) {
+          const citEl = document.getElementById('cit-bloco');
+          citEl.style.display = 'block';
+          // Detectar se é canônica (badge ✦) ou RAG (🟢)
+          const isCanonical = md.includes('Status:** ✦') || md.includes('CITAÇÃO CANÔNICA');
+          document.getElementById('cit-marca').textContent = isCanonical ? '✦' : '🟢';
+          document.getElementById('bandeira').textContent = isCanonical ? '✦ citação canônica clássica' : '🟢 citação literal · acervo RAG';
+          document.getElementById('cit-text').textContent = citMatch[1];
+
+          // Extrair fonte (linha _— ..._)
+          const fonteMatch = md.match(/_—\s*([^_]+)_/);
+          document.getElementById('cit-fonte').textContent = fonteMatch ? '— ' + fonteMatch[1].trim() : '';
+        }
+
+        // Extrair tese central (## Tese central · próximo parágrafo)
+        const teseMatch = md.match(/##\s*Tese central\s*\n([^\n#]+)/);
+        if (teseMatch) {
+          document.getElementById('bloco-tese').style.display = 'block';
+          document.getElementById('tese-text').textContent = teseMatch[1].trim();
+        }
+      }
+    }
+  } catch (e) {
+    console.error('ficha load error', e);
+  }
+}
+
+load();
+</script>
+</body>
+</html>

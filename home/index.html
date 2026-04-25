@@ -333,7 +333,7 @@
       </div>
     </a>
 
-    <a class="tile primary" id="tile-hoje" href="./integrais.html">
+    <a class="tile primary" id="tile-hoje" href="./sugestao.html">
       <div class="glyph">🌅</div>
       <div>
         <div class="title" id="hoje-title">Sugestão de Hoje</div>
@@ -761,7 +761,7 @@ if ('serviceWorker' in navigator) {
 loadSnapshot();
 setInterval(loadSnapshot, 5 * 60 * 1000); // refresh a cada 5min
 
-// v15.BG · Sugestão de hoje · obra do dia da rotação 7h
+// v15.BG · Sugestão de hoje · obra do dia da rotação 7h · linka pra sugestao.html
 async function loadSugestaoHoje() {
   try {
     const r = await fetch(EXEC + '?action=sugestao_today', { cache: 'no-store' });
@@ -769,10 +769,9 @@ async function loadSugestaoHoje() {
     if (d.ok && d.obra) {
       const t = document.getElementById('hoje-title');
       const s = document.getElementById('hoje-sub');
-      const a = document.getElementById('tile-hoje');
       if (t) t.textContent = d.obra.titulo;
       if (s) s.textContent = d.obra.autor + ' · lente ' + d.lente.split('·')[0].trim();
-      if (a) a.href = d.obra.url_card;
+      // tile aponta para a página completa /home/sugestao.html (não direto pro card)
     }
   } catch (e) { /* offline · mantém placeholder */ }
 }
