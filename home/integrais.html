@@ -121,8 +121,8 @@ h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:.02em
 </nav>
 
 <script>
-const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main";
-const GH_BLOB = "https://github.com/fillipenatan77-ctrl/NEXUS/blob/main";
+const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
+const GH_BLOB = "https://github.com/fillipenatan77-ctrl/nexus-cockpit/blob/main";
 
 // Catálogo curado das 16 obras integrais · slug = anchor link
 const OBRAS = [
@@ -223,7 +223,7 @@ function renderCards() {
   `).join('');
   // Lazy load SVGs
   OBRAS.forEach((o, i) => {
-    const url = `${GH_RAW}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg`;
+    const url = `${GH_RAW}/cards/${encodeURIComponent(o.file)}.svg`;
     fetch(url).then(r => r.ok ? r.text() : null).then(svg => {
       if (svg) {
         document.getElementById(`svg-${i}`).innerHTML = svg;
@@ -279,18 +279,18 @@ async function abrirFicha(i) {
   document.getElementById('modalBody').innerHTML = '<div class="loader">carregando ficha integral…</div>';
   document.getElementById('modal').classList.add('show');
   try {
-    const url = `${GH_RAW}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md`;
+    const url = `${GH_RAW}/fichas/${encodeURIComponent(o.file)}.md`;
     const r = await fetch(url, {cache: 'no-store'});
     if (!r.ok) throw 0;
     const md = await r.text();
     const html = renderMarkdown(md);
     const links = `<div class="links">
       <a href="https://rag.nexuscaldeira.com/ask" target="_blank">🔍 RAG /ask</a>
-      <a href="${GH_BLOB}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md" target="_blank">📂 GitHub raw</a>
+      <a href="${GH_BLOB}/fichas/${encodeURIComponent(o.file)}.md" target="_blank">📂 GitHub raw</a>
     </div>`;
     document.getElementById('modalBody').innerHTML = html + links;
   } catch (e) {
-    document.getElementById('modalBody').innerHTML = `<p>Erro ao carregar. <a href="${GH_BLOB}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md" target="_blank">Ver no GitHub</a></p>`;
+    document.getElementById('modalBody').innerHTML = `<p>Erro ao carregar. <a href="${GH_BLOB}/fichas/${encodeURIComponent(o.file)}.md" target="_blank">Ver no GitHub</a></p>`;
   }
 }
 
@@ -300,12 +300,12 @@ async function abrirCard(i) {
   document.getElementById('modalBody').innerHTML = '<div class="loader">carregando card SVG…</div>';
   document.getElementById('modal').classList.add('show');
   try {
-    const url = `${GH_RAW}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg`;
+    const url = `${GH_RAW}/cards/${encodeURIComponent(o.file)}.svg`;
     const r = await fetch(url, {cache: 'no-store'});
     if (!r.ok) throw 0;
     const svg = await r.text();
     const links = `<div class="links">
-      <a href="${GH_BLOB}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg" target="_blank">📂 GitHub</a>
+      <a href="${GH_BLOB}/cards/${encodeURIComponent(o.file)}.svg" target="_blank">📂 GitHub</a>
       <a href="${url}" download="${o.file}.svg">⬇ baixar SVG</a>
     </div>`;
     document.getElementById('modalBody').innerHTML = `<div class="svg-full">${svg}</div>${links}`;

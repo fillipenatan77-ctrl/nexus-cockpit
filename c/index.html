@@ -29,7 +29,7 @@ p{font-size:15px;opacity:.75;margin-bottom:18px;line-height:1.5}
 </div>
 
 <script>
-const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main";
+const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
 
 // Mapa slug → arquivo (mesmo de integrais.html)
 const MAP = {
@@ -69,8 +69,8 @@ async function abrir(slug) {
   const info = MAP[slug];
   if (!info) return false;
   const fileEnc = encodeURIComponent(info.f);
-  const svgUrl = `${GH_RAW}/45_CARDS/integrais/${fileEnc}.svg`;
-  const fichaUrl = `${GH_RAW}/30_CONTEUDOS/FICHAS_INTEGRAIS/${fileEnc}.md`;
+  const svgUrl = `${GH_RAW}/cards/${fileEnc}.svg`;
+  const fichaUrl = `${GH_RAW}/fichas/${fileEnc}.md`;
 
   document.getElementById('titulo').textContent = info.t;
   document.getElementById('content').innerHTML = '<p>carregando card…</p>';
