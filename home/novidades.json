@@ -1,9 +1,24 @@
 {
-  "versao_atual": "v15.BH",
-  "ultima_atualizacao": "2026-04-25T19:00:00-03:00",
+  "versao_atual": "v15.BJ",
+  "ultima_atualizacao": "2026-04-25T19:25:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BJ",
+      "data": "2026-04-25",
+      "tag": "ical-comando",
+      "titulo": "📅 iCal recorrente 7h + WhatsApp /sugestao on-demand",
+      "resumo": "iCal `nexus-primordia.ics` agora tem evento RRULE FREQ=DAILY às 07h00 BRT até 29/12/2026 com VALARM -PT5M (lembrete 5min antes). Subscreva no Calendar do iPhone uma vez · todo dia recebe notificação 'Sugestão NEXUS · obra do dia' com link para sugestao.html. Apps Script @165: comando WhatsApp `/sugestao` (ou `/sugestaodia`) retorna obra atual + estação + lente + 2 links + 3 comandos · útil para puxar manualmente quando quiser confirmar a obra ativa.",
+      "destaque": true
+    },
+    {
+      "v": "v15.BI",
+      "data": "2026-04-25",
+      "tag": "deep-dive",
+      "titulo": "🌅 /home/sugestao.html · página dedicada da obra do dia",
+      "resumo": "Tela completa da obra do dia: dia/272 · estação · lente · obra · autor · card SVG inline · citação canônica/RAG com bandeira ✦/🟢 · tese central · 3 comandos /aula /capsula /ficha · botões para card e ficha · bloco 'por que esta obra hoje'. Tile do hub agora aponta aqui (não mais direto pro card). Fetch dinâmico via ?action=sugestao_today + GitHub raw das fichas."
+    },
     {
       "v": "v15.BH",
       "data": "2026-04-25",
