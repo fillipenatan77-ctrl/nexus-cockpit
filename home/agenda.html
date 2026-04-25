@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Agenda · Próximos 7 dias</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 50px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:720px;margin:0 auto;padding:18px 18px 30px}
+
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+
+header{margin:14px 0 18px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:.02em;line-height:1.1;color:var(--bone)}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:15px;font-style:italic;color:var(--bone);opacity:.7;max-width:540px;margin-left:auto;margin-right:auto;line-height:1.55}
+
+.dia-row{display:flex;gap:14px;align-items:stretch;padding:14px 16px;margin-bottom:10px;border:1px solid var(--gold-faint);border-radius:14px;background:rgba(184,147,90,.03);text-decoration:none;color:inherit;transition:.18s}
+.dia-row:active{transform:scale(.99);border-color:var(--gold-soft);background:rgba(184,147,90,.07)}
+.dia-row.hoje{border-color:var(--gold);background:linear-gradient(135deg,rgba(184,147,90,.12) 0%,rgba(15,14,23,.6) 100%);box-shadow:0 0 30px rgba(184,147,90,.15)}
+.dia-row.hoje::before{content:'▸';position:absolute;left:-3px;color:var(--gold);font-size:24px;line-height:1;margin-top:14px}
+
+.dia-data{flex:0 0 64px;text-align:center;border-right:1px solid var(--gold-faint);padding-right:14px;display:flex;flex-direction:column;justify-content:center}
+.dia-row:last-child .dia-data{border-color:var(--gold-faint)}
+.dia-data .dia-num{font-family:Georgia,serif;font-size:26px;font-weight:500;color:var(--gold);line-height:1}
+.dia-data .dia-mes{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);opacity:.7;text-transform:uppercase;margin-top:4px}
+.dia-data .dia-sem{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--bone);opacity:.55;margin-top:4px;text-transform:uppercase}
+
+.dia-info{flex:1;min-width:0}
+.dia-info .lente-tag{display:inline-block;font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);background:rgba(184,147,90,.12);padding:2px 7px;border-radius:5px;text-transform:uppercase;margin-bottom:6px}
+.dia-info .titulo{font-family:Georgia,serif;font-size:16px;font-weight:500;line-height:1.2;color:var(--bone)}
+.dia-info .autor{font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);opacity:.6;margin-top:3px}
+.dia-info .estacao{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);opacity:.6;margin-top:6px;text-transform:uppercase}
+
+.dia-link{flex:0 0 auto;align-self:center;font-size:18px;color:var(--gold);opacity:.5}
+.dia-row:active .dia-link{opacity:1}
+
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--gold-faint);text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+
+.loading{padding:60px 20px;text-align:center;color:var(--gold);opacity:.6;font-family:'SF Mono',monospace;font-size:13px}
+
+.disclaimer{margin-top:24px;padding:14px 16px;border:1px dashed var(--gold-soft);border-radius:10px;background:rgba(184,147,90,.02);font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:.7;line-height:1.55}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
+
+  <header>
+    <div class="eyebrow">§ rotação por lente · 7 dias</div>
+    <h1>Agenda NEXUS</h1>
+    <p class="lead">Obras escolhidas pela rotação automática · WhatsApp 7h00 todo dia · clique para ir direto ao card.</p>
+  </header>
+
+  <div id="lista">
+    <div class="loading">carregando próximos 7 dias…</div>
+  </div>
+
+  <div class="disclaimer">
+    A escolha é determinística por (dia % obras_da_lente) · sem repetir 2 dias seguidos · pode variar se a sua última leitura mudar a posição do rotador. <a href="./sugestao.html" style="color:var(--gold);text-decoration:underline">→ deep dive da obra de hoje</a>
+  </div>
+
+  <div class="foot">
+    NEXUS v15.BM · <a href="./">cockpit</a> · <a href="./sugestao.html">hoje</a> · <a href="./integrais.html">acervo</a>
+  </div>
+</div>
+
+<script>
+const EXEC = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
+const MES = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+
+async function load() {
+  let dados;
+  try {
+    const r = await fetch(EXEC + '?action=sugestao_proximos&n=7', { cache: 'no-store' });
+    dados = await r.json();
+  } catch (e) {
+    document.getElementById('lista').innerHTML = '<div class="loading">offline · tente novamente em alguns segundos</div>';
+    return;
+  }
+
+  if (!dados.ok || !dados.dias) {
+    document.getElementById('lista').innerHTML = '<div class="loading">resposta inesperada</div>';
+    return;
+  }
+
+  const html = dados.dias.map((d, i) => {
+    const dt = new Date(d.data + 'T00:00:00-03:00');
+    const numDia = dt.getDate();
+    const mes = MES[dt.getMonth()];
+    const semCurta = d.diaSemana.substring(0,3);
+    const isHoje = d.offset === 0;
+    const isAmanha = d.offset === 1;
+    const labelDia = isHoje ? 'hoje' : (isAmanha ? 'amanhã' : semCurta);
+
+    return `
+      <a class="dia-row ${isHoje ? 'hoje' : ''}" href="${d.obra.url_card}">
+        <div class="dia-data">
+          <div class="dia-num">${numDia}</div>
+          <div class="dia-mes">${mes}</div>
+          <div class="dia-sem">${labelDia}</div>
+        </div>
+        <div class="dia-info">
+          <span class="lente-tag">${d.lente_curta}</span>
+          <div class="titulo">${d.obra.titulo}</div>
+          <div class="autor">${d.obra.autor}</div>
+          <div class="estacao">${d.estacao} · dia ${d.diaCiclo}/${d.diaTotal}</div>
+        </div>
+        <div class="dia-link">›</div>
+      </a>`;
+  }).join('');
+
+  document.getElementById('lista').innerHTML = html;
+}
+
+load();
+</script>
+</body>
+</html>

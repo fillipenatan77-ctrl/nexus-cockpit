@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <title>NEXUS · Stats</title>
 <meta name="theme-color" content="#0F0E17">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,221 +10,242 @@
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
 <link rel="manifest" href="./manifest.json">
 <style>
-  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
-  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-  .container{max-width:680px;margin:0 auto;padding:20px 16px 40px}
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3;--red:#ff8e8e}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 50px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px 18px 30px}
 
-  .nav{display:flex;gap:8px;padding:10px 0 18px;flex-wrap:wrap;justify-content:center}
-  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
-  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
 
-  header{padding:0 4px 14px}
-  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
-  h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:0.03em;line-height:1}
-  .sublead{margin-top:8px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5}
+header{margin:14px 0 20px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:.02em;line-height:1.1;color:var(--bone)}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.6}
 
-  .secao{margin-top:22px}
-  .secao h3{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:0.22em;text-transform:uppercase;opacity:0.85;margin-bottom:12px;padding-left:4px}
+/* Ciclo · barra de progresso */
+.ciclo-card{margin:24px 0;padding:22px 22px;border:1px solid var(--gold-soft);border-radius:16px;background:linear-gradient(135deg,rgba(184,147,90,.08) 0%,rgba(15,14,23,.5) 100%)}
+.ciclo-card .label{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85}
+.ciclo-card .num{font-family:Georgia,serif;font-size:46px;color:var(--bone);font-weight:500;line-height:1;margin:6px 0}
+.ciclo-card .num small{font-size:24px;opacity:.5;font-weight:400}
+.ciclo-card .meta{display:flex;gap:18px;margin-top:14px;font-size:12px;font-family:'SF Mono',monospace;letter-spacing:.08em;color:var(--bone);opacity:.85}
+.ciclo-card .meta strong{color:var(--gold);font-weight:600}
+.bar{height:6px;background:rgba(184,147,90,.12);border-radius:999px;overflow:hidden;margin-top:14px}
+.bar .fill{height:100%;background:linear-gradient(to right,var(--gold) 0%,var(--gold-soft) 100%);transition:width .8s ease}
 
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-  .cell{padding:14px 14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,0.03)}
-  .cell .k{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:0.18em;text-transform:uppercase;opacity:0.85}
-  .cell .v{font-family:Georgia,serif;font-size:24px;color:var(--bone);margin-top:6px;line-height:1.05;font-weight:400;letter-spacing:-0.01em}
-  .cell .sub{font-family:'SF Mono',monospace;font-size:9px;color:var(--bone);opacity:0.55;margin-top:4px;letter-spacing:0.12em}
+/* Grid KPIs */
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:20px 0}
+@media(min-width:540px){.kpis{grid-template-columns:repeat(4,1fr)}}
+.kpi{padding:14px 14px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,.03);text-align:center}
+.kpi .v{font-family:Georgia,serif;font-size:22px;font-weight:500;color:var(--bone);line-height:1.1}
+.kpi .v small{font-size:14px;opacity:.5}
+.kpi .l{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.85}
+.kpi .v.green{color:var(--green)}
+.kpi .v.red{color:var(--red)}
 
-  .progress{margin:10px 0}
-  .progress .bar{height:6px;background:var(--gold-faint);border-radius:3px;overflow:hidden}
-  .progress .fill{height:100%;background:var(--gold);border-radius:3px;box-shadow:0 0 8px var(--gold);transition:width 0.6s ease}
-  .progress .row{display:flex;justify-content:space-between;font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);opacity:0.75;letter-spacing:0.12em;margin-top:6px}
+/* Histórico de obras */
+.secao{margin:28px 0}
+.secao h2{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin-bottom:12px;padding-left:4px}
+.lista{border:1px solid var(--gold-faint);border-radius:12px;overflow:hidden}
+.linha{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--gold-faint);text-decoration:none;color:var(--bone);transition:.15s}
+.linha:last-child{border-bottom:none}
+.linha:active{background:rgba(184,147,90,.06)}
+.linha .data{flex:0 0 56px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);opacity:.8;letter-spacing:.05em}
+.linha .titulo{flex:1;font-family:Georgia,serif;font-size:14px;line-height:1.3;color:var(--bone);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linha .titulo small{display:block;font-size:11px;font-style:italic;color:var(--bone);opacity:.55}
+.linha .flag{flex:0 0 auto;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);background:rgba(184,147,90,.12);padding:2px 7px;border-radius:5px;letter-spacing:.05em}
 
-  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .pill{padding:5px 11px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em}
-  .pill.on{background:rgba(184,147,90,0.12)}
+/* Lentes da semana */
+.lentes-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:14px 0}
+.lente-cel{padding:10px 6px;text-align:center;background:rgba(184,147,90,.04);border:1px solid var(--gold-faint);border-radius:8px}
+.lente-cel.ativa{background:rgba(184,147,90,.18);border-color:var(--gold)}
+.lente-cel .d{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;opacity:.85}
+.lente-cel .l{font-family:Georgia,serif;font-size:11px;color:var(--bone);margin-top:6px;line-height:1.2}
 
-  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--gold-faint);text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
 
-  .refresh{margin-top:16px;padding:12px;background:none;border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;width:100%}
+.loading{padding:30px 20px;text-align:center;color:var(--gold);opacity:.5;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.1em}
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="nav">
-    <a href="./">§ home</a>
-    <a href="./hoje.html">hoje</a>
-    <a href="./coaching.html">coaching</a>
-    <a href="./primeira-semana.html">primeira semana</a>
-    <a href="./iphone-setup.html">iphone</a>
-    <a href="./system-prompt.html">prompt v5</a>
-    <a href="./leitura.html">leitura</a>
-    <a href="./insights.html">insights</a>
-    <a href="./fichas.html">fichas</a>
-    <a href="./timer.html">timer</a>
-    <a href="./busca.html">busca</a>
-    <a href="./diario.html">diário</a>
-    <a href="./cards.html">cards</a>
-    <a href="./autores.html">autores</a>
-    <a href="./glossario.html">glossário</a>
-    <a href="./recomendacoes.html">recomendações</a>
-    <a href="./biblioteca.html">biblioteca</a>
-    <a href="./trilhas.html">trilhas</a>
-    <a href="./protocolos.html">protocolos</a>
-    <a href="./grafo.html">grafo</a>
-    <a href="./estacoes.html">palácio</a>
-    <a href="./stats.html" class="current">stats</a>
-    <a href="./changelog.html">changelog</a>
-    <a href="./rag-status.html">rag</a>
-    <a href="./citacao.html">citação</a>
-    <a href="./oraculo.html">oráculo</a>
-  </div>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
 
   <header>
-    <div class="eyebrow">§ painel do sistema</div>
-    <h1>Stats</h1>
-    <div class="sublead">Estado vivo do ecossistema NEXUS · ciclo, infra, conteúdo, surpresas e atividade local.</div>
+    <div class="eyebrow">§ painel vivo · ciclo PRIMORDIA</div>
+    <h1>Stats NEXUS</h1>
+    <p class="lead">Tudo o que está rodando agora · ciclo, infra, histórico de obras enviadas, lentes da semana.</p>
   </header>
 
-  <!-- Ciclo PRIMORDIA -->
-  <div class="secao">
-    <h3>§ ciclo PRIMORDIA</h3>
-    <div class="grid-3">
-      <div class="cell"><div class="k">Dia</div><div class="v" id="s-dia">—</div><div class="sub" id="s-dia-sub">de 272</div></div>
-      <div class="cell"><div class="k">Estação</div><div class="v" id="s-estacao" style="font-size:18px">—</div><div class="sub" id="s-estacao-sub">do Palácio</div></div>
-      <div class="cell"><div class="k">Lente</div><div class="v" id="s-lente" style="font-size:18px">—</div><div class="sub" id="s-lente-sub">do dia</div></div>
+  <div class="ciclo-card">
+    <div class="label">DIA DO CICLO PRIMORDIA</div>
+    <div class="num"><span id="dia-atual">—</span><small>/272</small></div>
+    <div class="meta">
+      <span>📍 estação <strong id="estacao">—</strong></span>
+      <span>🔮 lente <strong id="lente">—</strong></span>
     </div>
-    <div class="progress">
-      <div class="bar"><div class="fill" id="s-progress" style="width:0%"></div></div>
-      <div class="row"><span id="s-progress-pct">0%</span><span id="s-progress-rem">— dias restantes</span></div>
-    </div>
-  </div>
-
-  <!-- Infra Apps Script -->
-  <div class="secao">
-    <h3>§ infra · Apps Script</h3>
-    <div class="grid-2">
-      <div class="cell"><div class="k">Versão</div><div class="v" id="s-versao" style="font-size:18px">—</div><div class="sub">deploy ativo</div></div>
-      <div class="cell"><div class="k">Triggers</div><div class="v" id="s-triggers">—</div><div class="sub">no limite Google = 20</div></div>
-      <div class="cell"><div class="k">Surpresa</div><div class="v" id="s-surprise" style="font-size:18px">—</div><div class="sub" id="s-surprise-sub"></div></div>
-      <div class="cell"><div class="k">Pool</div><div class="v" id="s-pool">—</div><div class="sub">itens curados</div></div>
+    <div class="bar"><div class="fill" id="bar-fill" style="width:0%"></div></div>
+    <div style="font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:.65;margin-top:8px;letter-spacing:.1em">
+      iniciado 02/04/2026 · termina 29/12/2026 · <span id="dias-restantes">—</span> dias restantes
     </div>
   </div>
 
-  <!-- RAG -->
-  <div class="secao">
-    <h3>§ RAG · acervo cognitivo</h3>
-    <div class="cell" style="margin-bottom:8px">
-      <div class="k">Chunks indexados</div>
-      <div class="v" id="s-rag" style="font-size:32px">—</div>
-      <div class="sub" id="s-rag-sub">na coleção nexus_acervo</div>
-    </div>
-    <div class="grid-2">
-      <div class="cell"><div class="k">Embed</div><div class="v" id="s-embed" style="font-size:18px">—</div><div class="sub">dimensão 768</div></div>
-      <div class="cell"><div class="k">Chat</div><div class="v" id="s-chat" style="font-size:18px">—</div><div class="sub">geração local</div></div>
-    </div>
-    <div class="pill-row" id="s-pills"></div>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="k-triggers">—</div><div class="l">triggers ativos</div></div>
+    <div class="kpi"><div class="v" id="k-pool">—</div><div class="l">pool surprises</div></div>
+    <div class="kpi"><div class="v" id="k-rag">—</div><div class="l">chunks RAG</div></div>
+    <div class="kpi"><div class="v" id="k-obras">—</div><div class="l">obras integrais</div></div>
   </div>
 
-  <!-- PWA local -->
   <div class="secao">
-    <h3>§ uso local · PWA</h3>
-    <div class="grid-2">
-      <div class="cell"><div class="k">Diário</div><div class="v" id="s-diario">—</div><div class="sub">entradas no iPhone</div></div>
-      <div class="cell"><div class="k">Fichas</div><div class="v" id="s-fichas">—</div><div class="sub">grades · conversas · mapas</div></div>
-      <div class="cell"><div class="k">Buscas</div><div class="v" id="s-buscas">—</div><div class="sub">no histórico recente</div></div>
-      <div class="cell"><div class="k">Páginas</div><div class="v">18</div><div class="sub">PWA navegáveis</div></div>
+    <h2>§ últimas sugestões enviadas (WhatsApp 7h)</h2>
+    <div class="lista" id="historico">
+      <div class="loading">carregando histórico…</div>
     </div>
   </div>
 
-  <!-- Conteúdo -->
   <div class="secao">
-    <h3>§ conteúdo curado</h3>
-    <div class="grid-3">
-      <div class="cell"><div class="k">Cards</div><div class="v">40</div><div class="sub">SVG verticais</div></div>
-      <div class="cell"><div class="k">Autores</div><div class="v">20</div><div class="sub">fichamentos</div></div>
-      <div class="cell"><div class="k">Termos</div><div class="v">40</div><div class="sub">no glossário</div></div>
-      <div class="cell"><div class="k">Trilhas</div><div class="v">8</div><div class="sub">CAIR</div></div>
-      <div class="cell"><div class="k">Protocolos</div><div class="v">5</div><div class="sub">canônicos</div></div>
-      <div class="cell"><div class="k">Insights</div><div class="v">12</div><div class="sub">cruzamentos</div></div>
+    <h2>§ rotação por lente · 7 dias</h2>
+    <div class="lentes-grid" id="lentes-grid">
+      <!-- preenchido via JS -->
     </div>
   </div>
 
-  <button class="refresh" onclick="load()">↻ atualizar</button>
+  <div class="secao">
+    <h2>§ infraestrutura</h2>
+    <div class="lista">
+      <a class="linha" href="https://rag.nexuscaldeira.com/health" target="_blank">
+        <div class="data">RAG</div>
+        <div class="titulo" id="info-rag">verificando…<small>rag.nexuscaldeira.com</small></div>
+        <span class="flag" id="flag-rag">—</span>
+      </a>
+      <a class="linha" href="./novidades.json" target="_blank">
+        <div class="data">HUB</div>
+        <div class="titulo" id="info-hub">verificando…<small>nexuscaldeira.com</small></div>
+        <span class="flag" id="flag-hub">—</span>
+      </a>
+      <a class="linha" href="https://script.google.com/" target="_blank">
+        <div class="data">APPS</div>
+        <div class="titulo" id="info-apps">verificando…<small>Apps Script @latest</small></div>
+        <span class="flag" id="flag-apps">—</span>
+      </a>
+    </div>
+  </div>
 
-  <footer>NEXUS v15.Q · stats live · refresh manual</footer>
+  <div class="foot">
+    NEXUS v15.BK · <a href="./">cockpit</a> · <a href="./sugestao.html">hoje</a> · <a href="./agenda.html">agenda</a> · <a href="./integrais.html">acervo</a>
+  </div>
 </div>
 
 <script>
-const EXEC = 'https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec';
-const RAG_URL = 'https://broader-hang-alto-subcommittee.trycloudflare.com';
+const EXEC = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
+const LENTES = ['Síntese','Liderança','PNL','Estoica','Psicanálise','Memorização','Shakespeare'];
+const DIA_NOMES = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
 
-function pct(n){ return n.toLocaleString('pt-BR'); }
-
-async function load() {
-  // 1. Apps Script
+async function loadStatus() {
   try {
     const r = await fetch(EXEC + '?action=retomada_status', { cache: 'no-store' });
     const d = await r.json();
     if (d.ok) {
-      const dia = d.cycle.day;
-      const remaining = 272 - dia;
-      const pctn = (dia/272*100).toFixed(1);
-      document.getElementById('s-dia').textContent = dia;
-      document.getElementById('s-dia-sub').textContent = pctn + '% do ciclo';
-      document.getElementById('s-estacao').textContent = d.cycle.estacao;
-      document.getElementById('s-estacao-sub').textContent = 'estação ' + (((dia-1)%18)+1) + '/18';
-      document.getElementById('s-lente').textContent = d.cycle.lente;
-      document.getElementById('s-lente-sub').textContent = 'lente do dia';
-      document.getElementById('s-progress').style.width = pctn + '%';
-      document.getElementById('s-progress-pct').textContent = pctn + '%';
-      document.getElementById('s-progress-rem').textContent = remaining + ' dias restantes';
-      document.getElementById('s-versao').textContent = (d.bootstrapVersion||'v15').split('-')[0];
-      document.getElementById('s-triggers').textContent = d.triggers.total + '/' + d.triggers.limit;
-      document.getElementById('s-surprise').textContent = d.surprise.enabled ? 'ativo' : 'pausa';
-      document.getElementById('s-surprise-sub').textContent = d.surprise.last_sent_at ? 'última: ' + new Date(d.surprise.last_sent_at).toLocaleDateString('pt-BR',{day:'2-digit',month:'short'}) : 'sem envio recente';
-      document.getElementById('s-pool').textContent = d.surprise.pool_size;
+      document.getElementById('dia-atual').textContent = d.cycle.day;
+      document.getElementById('estacao').textContent = d.cycle.estacao;
+      document.getElementById('lente').textContent = (d.cycle.lente || '').split('(')[0].trim();
+      const pct = Math.round((d.cycle.day / d.cycle.total) * 100);
+      document.getElementById('bar-fill').style.width = pct + '%';
+      document.getElementById('dias-restantes').textContent = d.cycle.total - d.cycle.day;
+
+      document.getElementById('k-triggers').innerHTML = d.triggers.total + '<small>/' + d.triggers.limit + '</small>';
+      document.getElementById('k-pool').innerHTML = d.surprise.pool_size || '—';
+      document.getElementById('info-apps').innerHTML = (d.bootstrapVersion || 'v15') + '<small>Apps Script @ativo</small>';
+      document.getElementById('flag-apps').textContent = '🟢 ok';
+      document.getElementById('flag-apps').style.color = 'var(--green)';
     }
-  } catch(e) {}
-
-  // 2. RAG
-  try {
-    const r = await fetch(RAG_URL + '/health', { cache: 'no-store' });
-    const d = await r.json();
-    document.getElementById('s-rag').textContent = pct(d.chroma_docs ?? 0);
-    document.getElementById('s-rag-sub').textContent = d.ingesting ? 'indexação em andamento…' : 'pronto para queries';
-
-    const r2 = await fetch(RAG_URL + '/', { cache: 'no-store' });
-    const d2 = await r2.json();
-    document.getElementById('s-embed').textContent = (d2.model_embed||'').split(':')[0];
-    document.getElementById('s-chat').textContent = (d2.model_chat||'').split(':')[0].toUpperCase();
-
-    const pills = document.getElementById('s-pills');
-    pills.innerHTML = '';
-    if (d.chroma_ready) pills.innerHTML += '<span class="pill on">chroma</span>';
-    if (d.ollama_ready) pills.innerHTML += '<span class="pill on">ollama</span>';
-    pills.innerHTML += '<span class="pill on">tunnel</span>';
   } catch(e) {
-    document.getElementById('s-rag').textContent = '—';
-    document.getElementById('s-rag-sub').textContent = 'servidor offline';
+    document.getElementById('flag-apps').textContent = '🔴 off';
   }
-
-  // 3. PWA local (localStorage)
-  try {
-    const dia = JSON.parse(localStorage.getItem('nexus_diario_v1') || '[]');
-    document.getElementById('s-diario').textContent = dia.length;
-  } catch(e) { document.getElementById('s-diario').textContent = '0'; }
-  try {
-    const fichas = JSON.parse(localStorage.getItem('nexus_fichas_v1') || '[]');
-    document.getElementById('s-fichas').textContent = fichas.length;
-  } catch(e) { document.getElementById('s-fichas').textContent = '0'; }
-  try {
-    const buscas = JSON.parse(localStorage.getItem('nexus_busca_hist') || '[]');
-    document.getElementById('s-buscas').textContent = buscas.length;
-  } catch(e) { document.getElementById('s-buscas').textContent = '0'; }
 }
 
-load();
+async function loadRag() {
+  try {
+    const r = await fetch('https://rag.nexuscaldeira.com/health', { cache: 'no-store' });
+    const d = await r.json();
+    document.getElementById('k-rag').textContent = (d.chunks||0).toLocaleString('pt-BR');
+    document.getElementById('info-rag').innerHTML = 'online · ' + d.collection + '<small>' + d.chunks + ' chunks · ' + d.version + '</small>';
+    document.getElementById('flag-rag').textContent = '🟢 ' + d.version;
+    document.getElementById('flag-rag').style.color = 'var(--green)';
+  } catch(e) {
+    document.getElementById('info-rag').innerHTML = 'offline · sandbox bloqueado<small>tente do iOS Safari</small>';
+    document.getElementById('flag-rag').textContent = '🔴';
+  }
+  try {
+    const r2 = await fetch('https://rag.nexuscaldeira.com/stats', { cache: 'no-store' });
+    const d2 = await r2.json();
+    document.getElementById('k-obras').textContent = d2.obras_integrais || '—';
+  } catch(e){}
+}
+
+async function loadHub() {
+  try {
+    const r = await fetch('./novidades.json', { cache: 'no-store' });
+    const d = await r.json();
+    document.getElementById('info-hub').innerHTML = d.versao_atual + '<small>' + (d.entradas[0]||{}).titulo + '</small>';
+    document.getElementById('flag-hub').textContent = '🟢 ' + d.versao_atual;
+    document.getElementById('flag-hub').style.color = 'var(--green)';
+  } catch(e) {
+    document.getElementById('flag-hub').textContent = '🔴';
+  }
+}
+
+async function loadHistorico() {
+  try {
+    const r = await fetch(EXEC + '?action=sugestao_log', { cache: 'no-store' });
+    const d = await r.json();
+    if (!d.ok || !d.log || !d.log.length) {
+      document.getElementById('historico').innerHTML = '<div class="loading">sem envios registrados ainda · trigger 7h dispara amanhã</div>';
+      return;
+    }
+    const html = d.log.slice(0, 12).map(e => {
+      const dt = e.timestamp ? new Date(e.timestamp) : null;
+      const dataLabel = dt ? (String(dt.getDate()).padStart(2,'0') + '/' + String(dt.getMonth()+1).padStart(2,'0')) : '—';
+      const flag = e.bandeira === '✦' ? '✦' : (e.bandeira === '🟢' ? '🟢' : (e.bandeira === '🟡' ? '🟡' : '🔴'));
+      return `<a class="linha" href="https://nexuscaldeira.com/c/${e.obra}/" target="_blank">
+        <div class="data">${dataLabel}</div>
+        <div class="titulo">${e.obra}<small>${e.lente || ''} · ${e.estacao || ''}</small></div>
+        <span class="flag">${flag} ${e.fonte_citacao || ''}</span>
+      </a>`;
+    }).join('');
+    document.getElementById('historico').innerHTML = html;
+  } catch(e) {
+    document.getElementById('historico').innerHTML = '<div class="loading">erro ao carregar histórico</div>';
+  }
+}
+
+async function loadLentesSemana() {
+  try {
+    const r = await fetch(EXEC + '?action=sugestao_proximos&n=7', { cache: 'no-store' });
+    const d = await r.json();
+    if (!d.ok || !d.dias) return;
+    const hoje = new Date().getDay();
+    const html = d.dias.map((dia, i) => {
+      const dt = new Date(dia.data + 'T00:00:00-03:00');
+      const ds = dt.getDay();
+      const ativa = i === 0 ? 'ativa' : '';
+      return `<div class="lente-cel ${ativa}">
+        <div class="d">${DIA_NOMES[ds]}</div>
+        <div class="l">${dia.lente_curta}</div>
+      </div>`;
+    }).join('');
+    document.getElementById('lentes-grid').innerHTML = html;
+  } catch(e){}
+}
+
+loadStatus();
+loadRag();
+loadHub();
+loadHistorico();
+loadLentesSemana();
+setInterval(() => { loadStatus(); loadHistorico(); }, 5*60*1000);
 </script>
 </body>
 </html>
