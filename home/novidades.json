@@ -1,9 +1,26 @@
 {
-  "versao_atual": "v15.AN",
-  "ultima_atualizacao": "2026-04-24T22:00:00-03:00",
+  "versao_atual": "v15.AP",
+  "ultima_atualizacao": "2026-04-25T03:30:00-03:00",
   "url_hub": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.AP",
+      "data": "2026-04-25",
+      "tag": "ensino-ativo-real",
+      "titulo": "🧠 30 Núcleos Conceituais + Cápsulas densas + Ensaios + Núcleo do Dia 13h30",
+      "resumo": "Banco curado de 30 núcleos conceituais (10 psicanálise · 5 poder · 10 mentalismo · 5 filosofia). Cada um vira cápsula de 350 palavras (definição operacional + mecânica + 3 sinais + aplicação Fillipe + 2 cruzamentos + pergunta provocativa). Comandos /capsula /ensaio /nucleo /conceitos /hoje. 3 cápsulas iniciais sobre psicanálise enviadas: Recalque, Retorno do Recalcado, Estádio do Espelho. Trigger núcleo do dia 13h30 ativo.",
+      "destaque": true,
+      "hook_cortex": "Use /capsula <tema> para receber cápsula densa de qualquer conceito · /ensaio <tema> para 600-800 palavras · /hoje para briefing dinâmico."
+    },
+    {
+      "v": "v15.AO",
+      "data": "2026-04-25",
+      "tag": "auditoria",
+      "titulo": "🔍 Auditoria estrutural · 6 páginas hub recolocadas + redensificação aulas",
+      "resumo": "Diagnóstico honesto · 6 páginas v15.AN estavam 404 (repo PWA separado · agora pushed) · aulas agora consultam resumo+cards+ficha (densidade 5×) · 8 artefatos órfãos removidos · documento AUDITORIA_v15.AO.md com diagnóstico completo, plano de correção e diretriz nova: cada feature precisa virar mensagem WhatsApp em <7 dias.",
+      "destaque": false
+    },
     {
       "v": "v15.AN",
       "data": "2026-04-24",
