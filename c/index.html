@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXUS · Card</title>
+<meta name="theme-color" content="#0F0E17">
+<style>
+:root{--ink:#0F0E17;--bone:#F0EAE4;--gold:#B8935A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
+.box{max-width:500px}
+h1{font-family:Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;font-weight:400}
+p{font-size:15px;opacity:.75;margin-bottom:18px;line-height:1.5}
+.svg-preview{margin:20px auto;max-width:280px;border-radius:14px;overflow:hidden;box-shadow:0 0 40px rgba(184,147,90,.25)}
+.svg-preview svg{width:100%;height:auto;display:block}
+.btn{display:inline-block;padding:14px 22px;margin:6px;background:rgba(184,147,90,.15);border:1px solid rgba(184,147,90,.4);border-radius:10px;color:var(--gold);text-decoration:none;font-size:14px;font-family:'SF Mono',monospace;letter-spacing:.05em;cursor:pointer}
+.btn:active{transform:scale(.96)}
+.lista{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px;text-align:left;font-size:12px}
+.lista a{color:var(--bone);opacity:.7;text-decoration:none;padding:6px 10px;border-radius:6px;background:rgba(184,147,90,.05)}
+.lista a:active{background:rgba(184,147,90,.15);opacity:1}
+.foot{margin-top:24px;font-size:11px;opacity:.4;font-family:'SF Mono',monospace;letter-spacing:.15em}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1 id="titulo">NEXUS · Card</h1>
+  <div id="content"></div>
+</div>
+
+<script>
+const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main";
+
+// Mapa slug → arquivo (mesmo de integrais.html)
+const MAP = {
+  "freud-sonhos":{f:"Freud_Interpretacao_Sonhos_menor",t:"Sonhos · Freud",aliases:["freud","sonhos","interpretacao"]},
+  "neves-freud":{f:"NevesDaSilva_Citacoes_Pensamentos_Freud",t:"Citações de Freud · Neves",aliases:["neves","citacoes-freud"]},
+  "suy-lacan":{f:"Suy_Amor_e_Desejo_Dissertacao_UFPR",t:"Amor e Desejo · Lacan/Suy",aliases:["suy","lacan","amor-desejo"]},
+  "bandler-padroes":{f:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)",t:"Padrões Hipnóticos · Bandler",aliases:["bandler","padroes","grinder","erickson-padroes"]},
+  "bandler-magia":{f:"Bandler_Grinder_Estrutura_da_Magia_Vol_II",t:"Estrutura da Magia II",aliases:["magia","estrutura"]},
+  "bandler-reframing":{f:"Bandler_Grinder_Reframing",t:"Reframing · Bandler",aliases:["reframing","reenquadramento"]},
+  "rosen-erickson":{f:"Rosen_My_Voice_Will_Go_With_You",t:"My Voice · Rosen/Erickson",aliases:["rosen","my-voice","milton"]},
+  "hamlet":{f:"Shakespeare_Hamlet_ptBR",t:"Hamlet · Shakespeare",aliases:["shakespeare","hamlet-shakespeare"]},
+  "romeu-julieta":{f:"Shakespeare_Romeu_e_Julieta_ptBR",t:"Romeu e Julieta",aliases:["romeu","julieta"]},
+  "rei-lear":{f:"Shakespeare_Rei_Lear_ptBR",t:"Rei Lear · Shakespeare",aliases:["lear"]},
+  "allen-persuasao":{f:"Allen_Tecnicas_Proibidas_Persuasao",t:"Persuasão Proibida · Allen",aliases:["allen","persuasao","persuasao-proibida"]},
+  "maquiavel-got":{f:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel",t:"Príncipe no Trono de Ferro",aliases:["maquiavel","principe","got","trono-ferro"]},
+  "goleman-ie":{f:"Goleman_Inteligencia_Emocional",t:"Inteligência Emocional · Goleman",aliases:["goleman","inteligencia-emocional","ie"]},
+  "obrien-memoria-v1":{f:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB",t:"Memória Perfeita · O'Brien v1",aliases:["obrien","memoria","perfect-memory","obrien-v1"]},
+  "obrien-memoria-v2":{f:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB",t:"Memória Perfeita · O'Brien v2",aliases:["obrien-v2"]},
+  "obrien-memoria-v3":{f:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB",t:"Memória Perfeita · O'Brien v3",aliases:["obrien-v3"]}
+};
+
+function resolveSlug(input) {
+  if (!input) return null;
+  const clean = input.toLowerCase().replace(/[^a-z0-9-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'');
+  if (MAP[clean]) return clean;
+  for (const [slug, info] of Object.entries(MAP)) {
+    if (info.aliases && info.aliases.includes(clean)) return slug;
+  }
+  // partial match
+  for (const slug of Object.keys(MAP)) {
+    if (slug.includes(clean) || clean.includes(slug)) return slug;
+  }
+  return null;
+}
+
+async function abrir(slug) {
+  const info = MAP[slug];
+  if (!info) return false;
+  const fileEnc = encodeURIComponent(info.f);
+  const svgUrl = `${GH_RAW}/45_CARDS/integrais/${fileEnc}.svg`;
+  const fichaUrl = `${GH_RAW}/30_CONTEUDOS/FICHAS_INTEGRAIS/${fileEnc}.md`;
+
+  document.getElementById('titulo').textContent = info.t;
+  document.getElementById('content').innerHTML = '<p>carregando card…</p>';
+
+  try {
+    const r = await fetch(svgUrl);
+    if (!r.ok) throw 0;
+    const svg = await r.text();
+    document.getElementById('content').innerHTML = `
+      <div class="svg-preview">${svg}</div>
+      <a class="btn" href="${svgUrl}" download="${info.f}.svg">⬇ baixar SVG</a>
+      <a class="btn" href="../home/integrais.html#${slug}">📖 ver ficha completa</a>
+      <div class="foot">card · 1080×1350 · NEXUS v15.BE</div>
+    `;
+  } catch (e) {
+    document.getElementById('content').innerHTML = `
+      <p>Erro ao carregar o card. Tente direto pelo GitHub.</p>
+      <a class="btn" href="${svgUrl}">abrir SVG no GitHub</a>
+      <a class="btn" href="../home/integrais.html#${slug}">ficha completa</a>
+    `;
+  }
+  return true;
+}
+
+function listar() {
+  const html = Object.entries(MAP).map(([slug, info]) =>
+    `<a href="./${slug}/">${info.t}</a>`
+  ).join('');
+  document.getElementById('titulo').textContent = "🎨 Cards NEXUS";
+  document.getElementById('content').innerHTML = `
+    <p>Acervo integral · 16 cards SVG visuais story format.<br>Use: <code>nexuscaldeira.com/c/&lt;slug&gt;/</code> ou clique abaixo.</p>
+    <div class="lista">${html}</div>
+    <div class="foot">v15.BE · 16 obras · 🟢 RAG</div>
+  `;
+}
+
+// Resolver slug do path (/c/hamlet/) ou query (?o=hamlet) ou hash (#hamlet)
+const path = window.location.pathname.replace(/^\/c\/?/,'').replace(/\/$/,'').replace(/\.html$/,'');
+const params = new URLSearchParams(window.location.search);
+const fromQuery = params.get('o') || params.get('obra') || params.get('slug');
+const fromHash = window.location.hash.replace(/^#/,'');
+const input = path || fromQuery || fromHash;
+
+const slug = resolveSlug(input);
+if (slug) {
+  abrir(slug);
+} else {
+  listar();
+}
+</script>
+</body>
+</html>
