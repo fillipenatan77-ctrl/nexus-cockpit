@@ -1,9 +1,18 @@
 {
-  "versao_atual": "v15.BE",
-  "ultima_atualizacao": "2026-04-25T18:05:00-03:00",
+  "versao_atual": "v15.BF",
+  "ultima_atualizacao": "2026-04-25T18:30:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BF",
+      "data": "2026-04-25",
+      "tag": "fix-citacao-cleanup",
+      "titulo": "🟡 Citação WhatsApp 7h corrigida · fichas + cards mirror público em nexus-cockpit",
+      "resumo": "Apps Script @162 · WhatsApp 7h trigger agora resolve citação RAG real (era 🔴 sempre). Fichas + cards SVG copiadas para nexus-cockpit/fichas/ e nexus-cockpit/cards/ (público) — antes estavam só no NEXUS privado · Apps Script tinha 404. Parser linha-a-linha de blockquote com filtros anti-metadado. Bandeira agora 🟡 com 200+ chars de citação literal · trigger 7h funcionando end-to-end. integrais.html + /c/<slug>/ também atualizados para apontar pro repo público.",
+      "destaque": true,
+      "hook_cortex": "Sugestão do dia chega no WhatsApp 7h00 · clique no link /c/<slug>/ para card SVG ou na #<slug> da integrais.html para ficha completa."
+    },
     {
       "v": "v15.BE",
       "data": "2026-04-25",
