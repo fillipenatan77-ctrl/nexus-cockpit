@@ -12,9 +12,13 @@
   "endpoints": {
     "hub_publico": "https://nexuscaldeira.com",
     "hub_publico_alt": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
-    "rag_url": "https://rag.nexuscaldeira.com",
-    "rag_url_type": "named_tunnel_persistent",
-    "rag_endpoints": ["/health", "/stats", "/ask", "/citacao", "/embed"],
+    "rag_endpoints": [
+      "/health",
+      "/stats",
+      "/ask",
+      "/citacao",
+      "/embed"
+    ],
     "apps_script": "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec",
     "github": {
       "privado": "https://github.com/fillipenatan77-ctrl/NEXUS",
@@ -22,7 +26,9 @@
     },
     "drive_backup": "G:\\Meu Drive\\NEXUS\\",
     "primordia_ics": "https://nexuscaldeira.com/primordia.ics",
-    "novidades_json": "https://nexuscaldeira.com/novidades.json"
+    "novidades_json": "https://nexuscaldeira.com/novidades.json",
+    "rag_url": "https://rag.nexuscaldeira.com",
+    "rag_url_type": "named_tunnel_persistent"
   },
   "dominio": {
     "principal": "nexuscaldeira.com",
@@ -30,8 +36,15 @@
     "expira_em": "2027-04-25",
     "registrar": "Cloudflare Registrar",
     "dns_provider": "Cloudflare",
-    "subdominios_ativos": ["@", "www", "rag"],
-    "subdominios_reservados": ["api", "docs"]
+    "subdominios_ativos": [
+      "@",
+      "www",
+      "rag"
+    ],
+    "subdominios_reservados": [
+      "api",
+      "docs"
+    ]
   },
   "rag": {
     "collection": "nexus_acervo_v2",
@@ -62,5 +75,6 @@
     "Bandeira de profundidade 🟢🟡🔴 (v15.AR)",
     "PowerShell 7 padrão · Git Bash p/ background",
     "Apps Script = APENAS I/O Google (v15.AV)"
-  ]
+  ],
+  "rag_url_updated_at": "2026-04-25T09:58:58.4670703-03:00"
 }
