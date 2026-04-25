@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NEXUS · Obras</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<style>
+html,body { margin:0; padding:0; background:#0a0a0f; color:#e8e8ed; font-family:-apple-system,Inter,sans-serif; line-height:1.55; }
+header { padding:18px 20px; background:rgba(10,10,15,0.95); backdrop-filter:blur(10px); border-bottom:2px solid #d4a574; position:sticky; top:0; z-index:10; }
+header h1 { margin:0; color:#d4a574; font-size:18px; }
+header .meta { color:#8b6f47; font-size:12px; margin-top:4px; }
+.busca { padding:12px 14px; background:rgba(30,30,38,0.7); position:sticky; top:64px; z-index:9; }
+.busca input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #3a3a4a; background:#1a1a22; color:#e8e8ed; font-size:14px; box-sizing:border-box; }
+main { max-width:780px; margin:0 auto; padding:20px; }
+.obra { padding:14px; margin:10px 0; background:rgba(30,30,38,0.5); border-radius:10px; border-left:3px solid #d4a574; cursor:pointer; transition:all 0.2s; }
+.obra:hover { background:rgba(30,30,38,0.8); }
+.obra h3 { margin:0; color:#e8e8ed; font-size:15px; }
+.obra .autor { color:#d4a574; font-size:13px; margin-top:4px; }
+.obra .links { margin-top:10px; display:flex; gap:8px; flex-wrap:wrap; }
+.obra a { color:#8b6f47; text-decoration:none; font-size:11px; padding:4px 10px; background:rgba(212,165,116,0.1); border-radius:14px; border:1px solid #3a3a4a; }
+.obra a:hover { background:rgba(212,165,116,0.2); color:#d4a574; }
+.tags { margin-top:6px; }
+.tag { display:inline-block; font-size:10px; padding:2px 8px; background:rgba(212,165,116,0.15); border-radius:10px; color:#d4a574; margin-right:4px; }
+.back { display:inline-block; margin:24px 0; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 NEXUS · Acervo de Obras</h1>
+  <div class="meta" id="meta">carregando...</div>
+</header>
+<div class="busca"><input id="q" type="search" placeholder="buscar obra ou autor..."></div>
+<main id="content">carregando obras...</main>
+<a class="back" href="./" style="margin-left:20px">← voltar ao hub</a>
+<script>
+(async function(){
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/30_CONTEUDOS/Fichamentos/_INDEX.json?t=' + Date.now());
+    const data = await res.json();
+    const fichas = (data.fichas || []).filter(f => f && f !== '_TEMPLATE_CAIR.md');
+
+    document.getElementById('meta').textContent = fichas.length + ' obras · todas com ficha CAIR · 37+ enriquecidas';
+
+    function parse(name) {
+      // "Autor - Titulo (ano).md" ou "Autor - Titulo.md"
+      const stem = name.replace(/\.md$/, '');
+      const m = stem.match(/^(.+?)\s*-\s*(.+?)(?:\s*\((\d{3,4})\))?$/);
+      if (m) return { autor: m[1].trim(), titulo: m[2].trim(), ano: m[3] || '', file: name };
+      return { autor: '', titulo: stem, ano: '', file: name };
+    }
+
+    const obras = fichas.map(parse).sort((a,b) => a.autor.localeCompare(b.autor) || a.titulo.localeCompare(b.titulo));
+
+    function render(filter) {
+      filter = (filter || '').toLowerCase().trim();
+      const visible = obras.filter(o => !filter || (o.autor + ' ' + o.titulo + ' ' + o.ano).toLowerCase().includes(filter));
+      const html = visible.map(o => {
+        const baseGh = 'https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/30_CONTEUDOS/Fichamentos/' + encodeURIComponent(o.file);
+        const baseHub = 'https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/30_CONTEUDOS/Fichamentos/' + encodeURIComponent(o.file);
+        return `<div class="obra">
+          <h3>${o.titulo}${o.ano ? ' <span style="color:#888">('+o.ano+')</span>' : ''}</h3>
+          <div class="autor">${o.autor}</div>
+          <div class="links">
+            <a href="${baseGh}" target="_blank">📄 ficha CAIR</a>
+            <a href="${baseHub}" target="_blank">📑 raw</a>
+          </div>
+        </div>`;
+      }).join('');
+      document.getElementById('content').innerHTML = html || '<em style="color:#888;">Nenhum resultado.</em>';
+    }
+    render('');
+    document.getElementById('q').addEventListener('input', e => render(e.target.value));
+  } catch (e) {
+    document.getElementById('content').innerHTML = '<em style="color:#ef4444;">Erro: ' + e.message + '</em>';
+  }
+})();
+</script>
+</body>
+</html>

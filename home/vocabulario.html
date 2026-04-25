@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NEXUS · Vocabulário Tático</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<style>
+html,body { margin:0; padding:0; background:#0a0a0f; color:#e8e8ed; font-family:-apple-system,Inter,sans-serif; line-height:1.55; }
+header { padding:18px 20px; background:rgba(10,10,15,0.95); backdrop-filter:blur(10px); border-bottom:2px solid #d4a574; position:sticky; top:0; z-index:10; }
+header h1 { margin:0; color:#d4a574; font-size:18px; }
+header .meta { color:#8b6f47; font-size:12px; margin-top:4px; }
+.cats { display:flex; flex-wrap:wrap; gap:6px; padding:14px 20px; background:rgba(30,30,38,0.6); position:sticky; top:64px; z-index:9; }
+.cat { padding:6px 12px; background:rgba(212,165,116,0.1); color:#d4a574; border-radius:14px; font-size:12px; border:1px solid #3a3a4a; cursor:pointer; transition:all 0.2s; }
+.cat:hover, .cat.active { background:rgba(212,165,116,0.3); color:#fff; border-color:#d4a574; }
+main { max-width:780px; margin:0 auto; padding:20px; }
+.frase { padding:12px 14px; margin:10px 0; background:rgba(30,30,38,0.5); border-radius:10px; border-left:3px solid #4ade80; font-size:14px; line-height:1.5; }
+.frase .num { color:#888; font-size:11px; margin-right:8px; }
+.cat-titulo { color:#d4a574; font-size:18px; margin:24px 0 10px; padding-bottom:6px; border-bottom:1px solid #2a2a35; }
+.cat-tema { color:#8b6f47; font-size:12px; font-style:italic; margin:-8px 0 16px; }
+.back { display:inline-block; margin:24px 0; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗣️ NEXUS · Vocabulário Tático</h1>
+  <div class="meta">196 frases curadas · 14 categorias · uso ético</div>
+</header>
+<div class="cats" id="cats">
+  <span class="cat active" data-cat="todas">Todas</span>
+  <span class="cat" data-cat="chefe_defensivo">Chefe defensivo</span>
+  <span class="cat" data-cat="vendedor_agressivo">Vendedor agressivo</span>
+  <span class="cat" data-cat="pessoa_evasiva">Evasivo</span>
+  <span class="cat" data-cat="romance_aproximacao">Romance · aproximação</span>
+  <span class="cat" data-cat="romance_conflito">Romance · conflito</span>
+  <span class="cat" data-cat="shakespeare">Shakespeare</span>
+  <span class="cat" data-cat="sun_tzu">Sun Tzu</span>
+  <span class="cat" data-cat="estoica">Estoica</span>
+  <span class="cat" data-cat="maquiavel_greene">Maquiavel/Greene</span>
+  <span class="cat" data-cat="cnv_rosenberg">CNV/Rosenberg</span>
+  <span class="cat" data-cat="erickson_hipnose">Erickson/Hipnose</span>
+  <span class="cat" data-cat="despedida_elegante">Despedida</span>
+  <span class="cat" data-cat="autoafirmacao">Autoafirmação</span>
+  <span class="cat" data-cat="lideranca">Liderança</span>
+  <span class="cat" data-cat="fechamento">Fechamento</span>
+  <span class="cat" data-cat="silencio_estrategico">Silêncio</span>
+</div>
+<main id="content"></main>
+<a class="back" href="./" style="margin-left:20px">← voltar ao hub</a>
+<script>
+const VOCAB = {
+  'chefe_defensivo': { tema: 'reuniões com chefia defensiva ou hesitante', frases: [
+    'Entendi. Antes de qualquer coisa, queria entender o que mais te preocupa nessa decisão.',
+    'Se eu estivesse no seu lugar, também iria querer mais elementos. O que ainda falta?',
+    'Você tem razão em pesar isso. Posso te trazer 3 cenários antes de seguir?',
+    'Concordo que o risco existe. Como você minimiza isso quando precisa avançar?',
+    'Deixa eu reformular: o ponto que mais te incomoda é X ou Y?',
+    'Você lembra melhor do que eu como isso funcionou da última vez. Qual lição?',
+    'Posso te fazer uma pergunta direta sem que pareça desafio?',
+    'Antes de decidirmos, gostaria que você visse esse dado · ele muda meu raciocínio.',
+    'Acho que estou dependendo demais da sua aprovação aqui. Como prefere que eu siga?',
+    'Você claramente já pensou nisso muito mais do que eu. O que eu não estou vendo?'
+  ]},
+  'vendedor_agressivo': { tema: 'recusar pressão de vendas mantendo postura', frases: [
+    'Entendi a oferta. Mas vou pensar 24h antes de decidir.',
+    'Aprecio a urgência, mas ela não muda meu critério de decisão.',
+    'Se for tão bom quanto você diz, ainda vai estar bom amanhã.',
+    'Você está me dizendo que se eu não decidir hoje perco para sempre?',
+    'Posso falar com clientes que compraram há mais de 1 ano e estão usando?',
+    'Qual é o pior caso que pode acontecer comigo após assinar?',
+    'Vou listar 3 coisas que me incomodam · responda só essas, sem expandir.',
+    'Você ganha comissão sobre essa venda? Quanto?',
+    'Não vou comprar agora. Se você insistir, encerro a conversa.',
+    'Me dê 5 minutos sem você falar · preciso pensar.'
+  ]},
+  'pessoa_evasiva': { tema: 'descer ao núcleo de quem foge', frases: [
+    'Vou te fazer uma pergunta de propósito difícil. Posso?',
+    'Sinto que estamos circulando. O que você não quer que eu pergunte?',
+    'Me corrija se eu estiver errado, mas parece que isso te incomoda.',
+    'Você pode me responder só com sim ou não?',
+    'Não precisa decidir agora. Só me diga o que você está sentindo.',
+    'Fica em silêncio comigo um momento. Não precisa preencher.',
+    'Se você tivesse certeza, já teria respondido. O que ainda pesa?',
+    'Estou disposto a ouvir o que você acha que vou julgar mal.',
+    'Quero entender. Não preciso concordar.',
+    'Me conta a versão que você não conta para os outros.'
+  ]},
+  'romance_aproximacao': { tema: 'aproximação com presença e curiosidade', frases: [
+    'Você tem um jeito de olhar para as coisas que eu não vejo · me ensina?',
+    'Por que você ainda não está em outro lugar agora?',
+    'Eu só entendo quem você é depois que escuto você falar do que ama.',
+    'Tem três coisas em você que eu queria ter aprendido antes.',
+    'Você me deve uma história que ninguém te pediu pra contar.',
+    'Eu não preciso te impressionar. Quero te conhecer.',
+    'O que você gostaria que eu perguntasse mas eu ainda não perguntei?',
+    'Conta a coisa mais bonita que você já fez sem ninguém saber.',
+    'Eu fico em silêncio quando você fala porque não quero perder nada.',
+    'Quero ver você quando ninguém está olhando.'
+  ]},
+  'romance_conflito': { tema: 'travessia honesta de conflito amoroso', frases: [
+    'Não estou tentando ganhar essa briga. Estou tentando entender por que ela está aqui.',
+    'Quando você diz X, eu escuto Y. Me ajuda a alinhar.',
+    'Eu erro mais quando estou com medo de te perder.',
+    'Posso pedir um tempo de silêncio antes de responder?',
+    'Não vou te dar uma resposta agora porque te respeito demais para improvisar.',
+    'Estou disposto a estar errado se isso significa estar mais perto.',
+    'Você tem razão · e ainda assim me machuca. As duas coisas são verdade.',
+    'Não preciso vencer · preciso ser visto.',
+    'Vamos parar de discutir o sintoma e ir na causa?',
+    'Eu prefiro a sua verdade dura à minha versão suave.'
+  ]},
+  'shakespeare': { tema: '15 citações shakespearianas (algumas paráfrases tradicionais pt-BR)', frases: [
+    '"O amor não é amor / Se muda quando encontra mudanças." · Soneto 116',
+    '"Meu único consolo é meu amor por ti." · Romeu e Julieta',
+    '"Há mais coisas no céu e na terra do que sonha vossa vã filosofia." · Hamlet',
+    '"O resto é silêncio." · Hamlet',
+    '"Embora eu pareça louco, há método nessa loucura." · Hamlet',
+    '"Estamos feitos da mesma matéria que os sonhos." · A Tempestade',
+    '"O mundo todo é um palco · e os homens e as mulheres, meros atores." · Como Quiseres',
+    '"A brevidade é a alma da inteligência." · Hamlet',
+    '"Falar é prata · calar é ouro."',
+    '"Verdade dirá verdade · ainda que carrancuda." · Bem Está o Que Bem Acaba',
+    '"Esse rosto não é meu inimigo · ele me machuca, mas não é meu inimigo." · O Mercador de Veneza',
+    '"Tudo o que reluz não é ouro." · O Mercador de Veneza',
+    '"Vesti tua coragem como uma luva." · Macbeth',
+    '"Que farsa, esta de existir." · Macbeth',
+    '"Algo está podre no reino da Dinamarca." · Hamlet'
+  ]},
+  'sun_tzu': { tema: '10 lições de Sun Tzu sobre estratégia e poder sutil', frases: [
+    '"A suprema excelência é vencer sem combater."',
+    '"Conhece teu inimigo e a ti mesmo · em cem batalhas, jamais perderás."',
+    '"Toda guerra é baseada no engano."',
+    '"A oportunidade de derrotar o inimigo é fornecida pelo próprio inimigo."',
+    '"Quem é prudente e espera por um inimigo que não é · será vitorioso."',
+    '"A velocidade é a essência da guerra."',
+    '"Construa pontes de ouro para o inimigo recuar."',
+    '"Quando estiver fraco, pareça forte. Quando forte, pareça fraco."',
+    '"Em meio ao caos, há também oportunidade."',
+    '"O guerreiro vitorioso vence primeiro e depois vai à guerra."'
+  ]},
+  'estoica': { tema: 'ancoragem estoica · Marco Aurélio · Sêneca · Epicteto', frases: [
+    '"Não são as coisas que perturbam os homens, mas o que eles pensam delas." · Epicteto',
+    '"Tudo o que vês perecerá · e os que viram perecer também perecerão." · Marco Aurélio',
+    '"Não diga que algo é ruim · diga que é como é." · Epicteto',
+    '"O que está sob seu controle é apenas a tua opinião, o teu desejo, a tua aversão." · Epicteto',
+    '"Confunde-se a tristeza com a sabedoria · não é a mesma coisa." · Sêneca',
+    '"O obstáculo é o caminho." · Marco Aurélio',
+    '"Lembra-te: és mortal. Apesar disso, vive como se fosses imortal hoje." · Sêneca',
+    '"Não temas o futuro · vive o presente." · Marco Aurélio',
+    '"O sábio é o seu próprio amigo." · Sêneca',
+    '"Cedo demais é tarde demais para começar." · Sêneca',
+    '"Se queres ser feliz, espera por nada · espera por tudo." · Marco Aurélio'
+  ]},
+  'maquiavel_greene': { tema: '10 leis cruas sobre poder', frases: [
+    '"Os homens devem ser conquistados ou esmagados." · Maquiavel',
+    '"O fim justifica os meios" (paráfrase) · Maquiavel',
+    '"Mais vale ser temido que amado · se não puder ser ambos." · Maquiavel',
+    '"Diga sempre menos do que o necessário." · Greene · Lei 4',
+    '"Nunca ofusque o mestre." · Greene · Lei 1',
+    '"Quem se faz ovelha, encontra o lobo." · Maquiavel',
+    '"Faça as outras pessoas dependerem de você." · Greene · Lei 11',
+    '"Não comprometa a reputação · proteja-a com a vida." · Greene · Lei 5',
+    '"Quem se mexe primeiro perde · faça o adversário agir." · Greene · Lei 3',
+    '"Esmagar o inimigo totalmente." · Greene · Lei 15'
+  ]},
+  'cnv_rosenberg': { tema: 'Comunicação Não-Violenta · 10 frases-chave', frases: [
+    '"O que está vivo em você agora?"',
+    '"Quando eu vejo X, sinto Y, porque preciso de Z. Você poderia W?"',
+    '"Você está dizendo X porque precisa de Y · estou ouvindo certo?"',
+    '"Antes de eu responder, posso me certificar que entendi?"',
+    '"Quando você diz isso, o que você sentiu?"',
+    '"Você gostaria de ser ouvido sem que eu reagisse?"',
+    '"Eu não estou disponível agora para essa conversa · podemos voltar amanhã?"',
+    '"Quando isso acontece, qual a necessidade que não está sendo atendida?"',
+    '"Não · com calma."',
+    '"Eu te ouço · e ainda assim discordo. As duas coisas cabem."'
+  ]},
+  'erickson_hipnose': { tema: 'padrões de Milton Erickson · sugestão indireta', frases: [
+    '"Você pode notar como, à medida que respira, fica mais fácil entender."',
+    '"Antes de decidir X, qual seria a primeira pequena coisa?"',
+    '"Algumas pessoas percebem isso rapidamente · outras precisam de mais tempo · qual é o seu caso?"',
+    '"Você não precisa concordar comigo · só precisa observar o que sente."',
+    '"E enquanto você pensa nisso, talvez já esteja começando a..."',
+    '"Você sabe que sabe · só ainda não disse em voz alta."',
+    '"O que sua intuição diria, se você ainda não tivesse aprendido a ignorá-la?"',
+    '"Cada pessoa tem seu próprio ritmo · qual é o seu, exatamente?"',
+    '"Eu não sei como, eu não sei quando · mas você vai saber, no momento certo."',
+    '"Quando você fizer isso, vai ser surpreendente · e familiar ao mesmo tempo."'
+  ]},
+  'despedida_elegante': { tema: 'despedidas que elevam', frases: [
+    '"Vou guardar isso · obrigado pelo que ofereceu."',
+    '"Esse foi um encontro raro · cada um sabe."',
+    '"Nem tudo precisa de explicação · isto fica."',
+    '"Se nos encontrarmos de novo, será com mais coisa pra contar."',
+    '"Não vou te procurar · mas você sabe que pode."',
+    '"O que aprendi com você levo comigo."',
+    '"O silêncio também é forma de cuidado."',
+    '"Vai bem. Mais que bem."',
+    '"Foi exatamente o que precisava ser."',
+    '"Que cada um de nós encontre o que está procurando · sem se forçar."'
+  ]},
+  'autoafirmacao': { tema: 'limite com firmeza', frases: [
+    '"Eu posso estar errado · e ainda assim este é o meu limite."',
+    '"Sua avaliação sobre mim é uma informação · não uma sentença."',
+    '"Eu não preciso da sua aprovação para essa decisão."',
+    '"Vou pensar · não preciso responder agora."',
+    '"Não · sem culpa."',
+    '"Esse não é o meu trabalho."',
+    '"Você está pedindo algo razoável · e ainda assim não posso atender."',
+    '"Eu mereço o tempo que precisar para responder."',
+    '"Se você precisa que eu reaja imediatamente, a resposta é não."',
+    '"Eu sou o adulto da minha história."'
+  ]},
+  'lideranca': { tema: 'comando com escuta', frases: [
+    '"Antes de decidirmos, quero ouvir o que você não disse ainda."',
+    '"O que ninguém vai te dizer porque tem medo?"',
+    '"Eu prefiro a verdade dura à versão polida."',
+    '"Você tem 30 segundos para me dizer o que importa."',
+    '"Se isso desse errado, qual seria a primeira coisa que falhou?"',
+    '"O que você precisa de mim para que isso ande?"',
+    '"Sua opinião conta · qual é?"',
+    '"Não estou pedindo · estou perguntando · me convença do contrário."',
+    '"Aqui é seguro errar · não é seguro fingir."',
+    '"Eu confio · mas vou verificar."'
+  ]},
+  'fechamento': { tema: 'fechar acordos com clareza', frases: [
+    '"Então combinado: você faz X até Y · eu faço Z. Pode?"',
+    '"Resumindo · 3 pontos · me corrige se eu errei."',
+    '"Antes de fechar · tem algo mais que você precisa dizer?"',
+    '"Vou te mandar isso por escrito · pra ficar registrado pra ambos."',
+    '"Considera fechado se até X horas você não responder."',
+    '"Posso já contar com isso?"',
+    '"Você prefere fechar agora ou amanhã pela manhã?"',
+    '"Se eu mandar uma proposta · você consegue responder em 48h?"',
+    '"O que falta para isso virar sim?"',
+    '"Excelente · vamos parar antes que estraguemos."'
+  ]},
+  'silencio_estrategico': { tema: 'silêncio que cobra · Patrick Jane', frases: [
+    '(Olhe nos olhos · 7 segundos · não preencha)',
+    '"Hum." (e silêncio)',
+    '"..."',
+    '(Levanta uma sobrancelha · espera)',
+    '(Recosta · respira · espera ele falar)',
+    '"Continua." (pausa)',
+    '"E?" (pausa longa)',
+    '(Anota · espera ele preencher)',
+    '"Estou ouvindo · pode ir."',
+    '(Silêncio que cobra · 10 segundos)'
+  ]}
+};
+
+function render(catFiltro) {
+  const cont = document.getElementById('content');
+  if (catFiltro === 'todas' || !catFiltro) {
+    cont.innerHTML = Object.entries(VOCAB).map(([k,v]) => `
+      <h2 class="cat-titulo">${k.replace(/_/g,' ')}</h2>
+      <div class="cat-tema">${v.tema}</div>
+      ${v.frases.map((f,i) => `<div class="frase"><span class="num">${i+1}.</span>${f}</div>`).join('')}
+    `).join('');
+  } else if (VOCAB[catFiltro]) {
+    cont.innerHTML = `
+      <h2 class="cat-titulo">${catFiltro.replace(/_/g,' ')}</h2>
+      <div class="cat-tema">${VOCAB[catFiltro].tema}</div>
+      ${VOCAB[catFiltro].frases.map((f,i) => `<div class="frase"><span class="num">${i+1}.</span>${f}</div>`).join('')}
+    `;
+  }
+}
+
+document.querySelectorAll('.cat').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.cat').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+    render(c.dataset.cat);
+  });
+});
+render('todas');
+</script>
+</body>
+</html>

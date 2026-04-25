@@ -1,0 +1,991 @@
+{
+  "generated": "2026-04-24T17:13:55.290756",
+  "nodes_count": 37,
+  "edges_count": 103,
+  "nodes": [
+    {
+      "id": "adm - O Principe no Trono de Ferro - Game of Thrones e Maquiavel.md",
+      "titulo": "O Principe no Trono de Ferro - Game of Thrones e Maquiavel",
+      "autor": "adm",
+      "ano": "s/d",
+      "tese": "A ficção de Game of Thrones opera como materialização narrativa da gramática do poder descrita por Maquiavel, demonstran..."
+    },
+    {
+      "id": "Administrador - Shakespeare - Sua Epoca e Sua Obra.md",
+      "titulo": "Shakespeare - Sua Epoca e Sua Obra",
+      "autor": "Administrador",
+      "ano": "s/d",
+      "tese": "A obra shakespeariana pode ser sistematicamente mapeada através da classificação por gêneros dramáticos, cronologia de p..."
+    },
+    {
+      "id": "Assolosa 01 - Como Melhorar o Foco - Guia Definitivo.md",
+      "titulo": "Como Melhorar o Foco - Guia Definitivo",
+      "autor": "Assolosa 01",
+      "ano": "s/d",
+      "tese": "Foco é resultado de modelos mentais deliberadamente construídos que definem simultaneamente o que perseguir e o que evit..."
+    },
+    {
+      "id": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "titulo": "O Inconsciente em Lacan",
+      "autor": "Autoria coletiva",
+      "ano": "s/d",
+      "tese": "O inconsciente lacaniano não é código linguístico depositado no sujeito, mas o próprio lugar da enunciação onde o sujeit..."
+    },
+    {
+      "id": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "titulo": "Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia",
+      "autor": "Autoria coletiva",
+      "ano": "s/d",
+      "tese": "A Comunicação Não Violenta oferece um método estruturado em etapas para transformar conflitos através do reconhecimento ..."
+    },
+    {
+      "id": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "titulo": "Patterns of the Hypnotic Techniques of Milton Erickson PTBR",
+      "autor": "Bandler Grinder",
+      "ano": "s/d",
+      "tese": "A eficácia hipnótica de Erickson deriva de padrões sintáticos identificáveis e replicáveis - especialmente índices refer..."
+    },
+    {
+      "id": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "titulo": "Resumo do livro O Foco – Daniel Goleman",
+      "autor": "Camila Gonçalves",
+      "ano": "2025",
+      "tese": "A atenção humana opera em três dimensões direcionais distintas (interna, interpessoal e externa) cuja maestria diferenci..."
+    },
+    {
+      "id": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "titulo": "AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO",
+      "autor": "Compilacao Erickson",
+      "ano": "s/d",
+      "tese": "A persuasão efetiva resulta da aplicação sistemática de estruturas linguísticas que obscurecem comandos diretos em convi..."
+    },
+    {
+      "id": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "titulo": "as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf",
+      "autor": "Conquer",
+      "ano": "s/d",
+      "tese": "Apresentações persuasivas resultam da arquitetura intencional entre storytelling, compreensão da audiência, técnicas de ..."
+    },
+    {
+      "id": "Dale Carnegie - Como Fazer Amigos e Influenciar Pessoas.md",
+      "titulo": "Como Fazer Amigos e Influenciar Pessoas",
+      "autor": "Dale Carnegie",
+      "ano": "1936",
+      "tese": "A capacidade de influenciar pessoas depende fundamentalmente de satisfazer o desejo universal de sentir-se importante, a..."
+    },
+    {
+      "id": "Daniel Goleman - Inteligencia Emocional.md",
+      "titulo": "Inteligencia Emocional",
+      "autor": "Daniel Goleman",
+      "ano": "1995",
+      "tese": "A tese central em 1 frase densa · o que o livro esta afirmando essencialmente"
+    },
+    {
+      "id": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "titulo": "Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções",
+      "autor": "Daniel Goleman",
+      "ano": "s/d",
+      "tese": "Inteligência emocional é um sistema de habilidades socioemocionais maleáveis, neurologicamente fundamentado, cuja aplica..."
+    },
+    {
+      "id": "Descola - CNV - Ebook Introdutorio.md",
+      "titulo": "CNV - Ebook Introdutorio",
+      "autor": "Descola",
+      "ano": "s/d",
+      "tese": "A Comunicação Não Violenta opera em dois eixos interdependentes - empatia para compreender o outro e autenticidade para ..."
+    },
+    {
+      "id": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "titulo": "Cartilha - Como Usar Gatilhos Mentais",
+      "autor": "Desconhecido",
+      "ano": "s/d",
+      "tese": "Gatilhos mentais são atalhos cognitivos programados no ser humano que podem ser sistematicamente acionados através de fó..."
+    },
+    {
+      "id": "Desconhecido - Exercicios de Estoicismo.md",
+      "titulo": "Exercicios de Estoicismo",
+      "autor": "Desconhecido",
+      "ano": "s/d",
+      "tese": "O estoicismo fundamenta a vida virtuosa e feliz na aceitação racional da ordem natural imutável e na transformação da at..."
+    },
+    {
+      "id": "Dostoiévski, Fiódor - Os demônios.md",
+      "titulo": "Os demônios",
+      "autor": "Dostoiévski, Fiódor",
+      "ano": "1872",
+      "tese": "O niilismo revolucionário russo opera como conspiração destrutiva total que corrói simultaneamente estruturas políticas,..."
+    },
+    {
+      "id": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "titulo": "Portico de Epicteto - Revista 1 (c.125)",
+      "autor": "Epicteto",
+      "ano": "s/d",
+      "tese": "O estoicismo opera como sistema filosófico simultaneamente rigoroso e aplicável, cuja estrutura conceitual pode ser trad..."
+    },
+    {
+      "id": "Fiódor Dostoiévski - Crime e Castigo.md",
+      "titulo": "Crime e Castigo",
+      "autor": "Fiódor Dostoiévski",
+      "ano": "1866",
+      "tese": "As convenções morais entram em colapso quando confrontadas com a complexidade dos motivos humanos e a impossibilidade de..."
+    },
+    {
+      "id": "Fiódor Dostoiévski - O Idiota.md",
+      "titulo": "O Idiota",
+      "autor": "Fiódor Dostoiévski",
+      "ano": "1868",
+      "tese": "A verdadeira força moral reside não na ausência de impulsos de fuga, mas na capacidade de reconhecê-los como pusilanimid..."
+    },
+    {
+      "id": "Geraldino Alves Ferreira Netto - Jacques Lacan e James Joyce O simbólico na linguagem.md",
+      "titulo": "Jacques Lacan e James Joyce: O simbólico na linguagem",
+      "autor": "Geraldino Alves Ferreira Netto",
+      "ano": "s/d",
+      "tese": "O real lacaniano, enquanto impossível de simbolizar, estrutura-se pela forclusão do Nome-do-Pai no momento da castração,..."
+    },
+    {
+      "id": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "titulo": "Mente Milionária: Construa seu próprio império",
+      "autor": "Gerardo García Manjarrez",
+      "ano": "s/d",
+      "tese": "A prosperidade financeira autêntica emerge do alinhamento entre habilidades naturais individuais e uma nova ordem econôm..."
+    },
+    {
+      "id": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "titulo": "A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica",
+      "autor": "Geronimo Theml",
+      "ano": "s/d",
+      "tese": "A superação da procrastinação depende primariamente da gestão adequada do sono como recurso fisiológico que sustenta a f..."
+    },
+    {
+      "id": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "titulo": "MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER",
+      "autor": "Holm, Mateo",
+      "ano": "s/d",
+      "tese": "A persuasão é uma tecnologia social operável e desmistificável, cujo domínio consciente — especialmente através da proje..."
+    },
+    {
+      "id": "Jacques Lacan - Seminario 21 - Les Non-Dupes Errent (1973-74).md",
+      "titulo": "Seminario 21 - Les Non-Dupes Errent (1973-74)",
+      "autor": "Jacques Lacan",
+      "ano": "s/d",
+      "tese": "O objeto a opera simultaneamente como causa do sujeito e potência aniquiladora, produzindo respostas que vão do apagamen..."
+    },
+    {
+      "id": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "titulo": "O que os psiquiatras não te contam",
+      "autor": "Juliana Belo Diniz",
+      "ano": "s/d",
+      "tese": "A psiquiatria opera sob frameworks interpretativos que obscurecem a natureza probabilística e fisiológica dos fenômenos ..."
+    },
+    {
+      "id": "Klaeber - Padroes das Tecnicas Hipnoticas de Milton H Erickson.md",
+      "titulo": "Padroes das Tecnicas Hipnoticas de Milton H Erickson",
+      "autor": "Klaeber",
+      "ano": "1975",
+      "tese": "As técnicas hipnóticas de Milton Erickson podem ser decompostas em padrões linguísticos formais e generalizáveis que, ao..."
+    },
+    {
+      "id": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "titulo": "LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci",
+      "autor": "Lúcio Aneu Sêneca",
+      "ano": "s/d",
+      "tese": "O único bem propriamente humano é a razão aperfeiçoada (virtude), pois ela constitui a natureza específica do homem e se..."
+    },
+    {
+      "id": "Marcos Vinicius - Resumo Capítulo 1 Introdução à Manipulação na Comunicação 1.1 O que é manipulaçã.md",
+      "titulo": "Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática",
+      "autor": "Marcos Vinicius",
+      "ano": "s/d",
+      "tese": "A manipulação é uma ferramenta instrumental ambígua que opera através de técnicas psicológicas identificáveis, cuja apli..."
+    },
+    {
+      "id": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "titulo": "Comunicacao Nao-Violenta resumo",
+      "autor": "Marshall B Rosenberg",
+      "ano": "s/d",
+      "tese": "A comunicação não-violenta consiste em deslocar a atribuição causal das emoções do comportamento do outro para a express..."
+    },
+    {
+      "id": "Marshall B Rosenberg - Comunicacao Nao-Violenta.md",
+      "titulo": "Comunicacao Nao-Violenta",
+      "autor": "Marshall B Rosenberg",
+      "ano": "2003",
+      "tese": "A comunicação autêntica requer observar sem julgar, identificar sentimentos e necessidades não atendidas, e formular ped..."
+    },
+    {
+      "id": "Napoleon Hill - Mais Esperto que o Diabo.md",
+      "titulo": "Mais Esperto que o Diabo",
+      "autor": "Napoleon Hill",
+      "ano": "1938",
+      "tese": "A mesma Força universal que alimenta tanto Deus quanto o Diabo está igualmente disponível aos humanos, e compreender os ..."
+    },
+    {
+      "id": "Robert Cialdini - Influencia - A Psicologia da Persuasao.md",
+      "titulo": "Influencia - A Psicologia da Persuasao",
+      "autor": "Robert Cialdini",
+      "ano": "1984",
+      "tese": "A persuasão opera através de gatilhos psicológicos automáticos que contornam o julgamento racional, sendo a semelhança e..."
+    },
+    {
+      "id": "Robert Greene - As Leis da Natureza Humana.md",
+      "titulo": "As Leis da Natureza Humana",
+      "autor": "Robert Greene",
+      "ano": "2018",
+      "tese": "A natureza humana opera através de leis comportamentais identificáveis que, uma vez compreendidas, permitem navegação so..."
+    },
+    {
+      "id": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "titulo": "Milton H. Erickson - Formas indiretas de sugesto",
+      "autor": "Roby",
+      "ano": "s/d",
+      "tese": "A sugestão hipnótica opera eficazmente quando estruturada indiretamente através de truísmos e dinâmicas psicológicas que..."
+    },
+    {
+      "id": "Sérgio Luciano - CNV - Guia Basico.md",
+      "titulo": "CNV - Guia Basico",
+      "autor": "Sérgio Luciano",
+      "ano": "s/d",
+      "tese": "A CNV opera como sistema de interrupção do piloto automático relacional, substituindo impulsos habituais por escolha con..."
+    },
+    {
+      "id": "User - Conselhos Maquiavelicos.md",
+      "titulo": "Conselhos Maquiavelicos",
+      "autor": "User",
+      "ano": "s/d",
+      "tese": "O engano estratégico é ferramenta legítima e necessária para proteger interesses pessoais na vida cotidiana, desde que e..."
+    },
+    {
+      "id": "User - Linguagem Hipnotica - Amostra.md",
+      "titulo": "Linguagem Hipnotica - Amostra",
+      "autor": "User",
+      "ano": "s/d",
+      "tese": "A linguagem hipnótica opera como tecnologia de acesso e reestruturação cognitiva através de padrões linguísticos específ..."
+    }
+  ],
+  "edges": [
+    {
+      "source": "adm - O Principe no Trono de Ferro - Game of Thrones e Maquiavel.md",
+      "target": "Dale Carnegie - Como Fazer Amigos e Influenciar Pessoas.md",
+      "type": "converge",
+      "label": "mesma estação: Agora",
+      "score": 35
+    },
+    {
+      "source": "Administrador - Shakespeare - Sua Epoca e Sua Obra.md",
+      "target": "Klaeber - Padroes das Tecnicas Hipnoticas de Milton H Erickson.md",
+      "type": "converge",
+      "label": "mesma estação: Lapidário",
+      "score": 35
+    },
+    {
+      "source": "Assolosa 01 - Como Melhorar o Foco - Guia Definitivo.md",
+      "target": "Robert Greene - As Leis da Natureza Humana.md",
+      "type": "converge",
+      "label": "mesma estação: Reflexao Estrategica",
+      "score": 35
+    },
+    {
+      "source": "Assolosa 01 - Como Melhorar o Foco - Guia Definitivo.md",
+      "target": "User - Conselhos Maquiavelicos.md",
+      "type": "converge",
+      "label": "mesma estação: Reflexao Estrategica",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Descola - CNV - Ebook Introdutorio.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Desconhecido - Exercicios de Estoicismo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - O Inconsciente em Lacan.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Descola - CNV - Ebook Introdutorio.md",
+      "type": "converge",
+      "label": "vocab: autenticidade",
+      "score": 20
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "vocab: comunicação não violenta (cnv)",
+      "score": 20
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "vocab: comunicação não violenta (cnv)",
+      "score": 20
+    },
+    {
+      "source": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 50
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Descola - CNV - Ebook Introdutorio.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Desconhecido - Exercicios de Estoicismo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Desconhecido - Exercicios de Estoicismo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Descola - CNV - Ebook Introdutorio.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "target": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Exercicios de Estoicismo.md",
+      "target": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Exercicios de Estoicismo.md",
+      "target": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Exercicios de Estoicismo.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Exercicios de Estoicismo.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Desconhecido - Exercicios de Estoicismo.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Dostoiévski, Fiódor - Os demônios.md",
+      "target": "Fiódor Dostoiévski - Crime e Castigo.md",
+      "type": "converge",
+      "label": "mesma estação: Fogo Interior",
+      "score": 35
+    },
+    {
+      "source": "Dostoiévski, Fiódor - Os demônios.md",
+      "target": "Jacques Lacan - Seminario 21 - Les Non-Dupes Errent (1973-74).md",
+      "type": "converge",
+      "label": "mesma estação: Fogo Interior",
+      "score": 35
+    },
+    {
+      "source": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "target": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Fiódor Dostoiévski - Crime e Castigo.md",
+      "target": "Jacques Lacan - Seminario 21 - Les Non-Dupes Errent (1973-74).md",
+      "type": "converge",
+      "label": "mesma estação: Fogo Interior",
+      "score": 35
+    },
+    {
+      "source": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "target": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "target": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "target": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    },
+    {
+      "source": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "target": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Juliana Belo Diniz - O que os psiquiatras não te contam.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "target": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 35
+    },
+    {
+      "source": "Marcos Vinicius - Resumo Capítulo 1 Introdução à Manipulação na Comunicação 1.1 O que é manipulaçã.md",
+      "target": "Robert Cialdini - Influencia - A Psicologia da Persuasao.md",
+      "type": "converge",
+      "label": "mesma estação: Espelho",
+      "score": 50
+    },
+    {
+      "source": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md",
+      "target": "Sérgio Luciano - CNV - Guia Basico.md",
+      "type": "converge",
+      "label": "mesma estação: Fundacao",
+      "score": 50
+    },
+    {
+      "source": "Robert Greene - As Leis da Natureza Humana.md",
+      "target": "User - Conselhos Maquiavelicos.md",
+      "type": "converge",
+      "label": "mesma estação: Reflexao Estrategica",
+      "score": 35
+    },
+    {
+      "source": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md",
+      "target": "User - Linguagem Hipnotica - Amostra.md",
+      "type": "converge",
+      "label": "mesma estação: Forja",
+      "score": 35
+    }
+  ],
+  "updated": "2026-04-24T18:28:10.200850",
+  "updated_by": "enriquecer_grafo.py"
+}

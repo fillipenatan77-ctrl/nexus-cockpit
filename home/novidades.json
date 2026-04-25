@@ -1,16 +1,98 @@
 {
-  "versao_atual": "v15.AB",
-  "ultima_atualizacao": "2026-04-24T13:30:00-03:00",
+  "versao_atual": "v15.AN",
+  "ultima_atualizacao": "2026-04-24T22:00:00-03:00",
   "url_hub": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.AN",
+      "data": "2026-04-24",
+      "tag": "lab-insight-hub",
+      "titulo": "⚖️ Lab Decisões + 🌙 Insight Noturno + 🎴 Spaced Repetition + Hub completo",
+      "resumo": "/decisao <dilema> retorna análise multi-eixo (Maquiavel + Sun Tzu + Greene + Goleman/Rosenberg + Arendt + Síntese + Carta secreta Patrick Jane). Insight Noturno 22h com pergunta de cabeceira. Revisão de card aleatório 12h (spaced repetition automático). Hub renovado: 6 tiles novos · /arsenal (30+ comandos) · /obras (47+ navegáveis) · /vocabulario (196 frases pesquisáveis).",
+      "destaque": true,
+      "hook_cortex": "Use /decisao para qualquer dilema profissional ou pessoal · receba 7 ângulos do acervo. /insight 22h · /revisao 12h automáticos."
+    },
+    {
+      "v": "v15.AM",
+      "data": "2026-04-24",
+      "tag": "imersao-sensorial",
+      "titulo": "🎧 Imersão · Audio TTS + Quiz cold-reading + Vocabulário 200 + Memory Palace",
+      "resumo": "Aulas em MP3 via edge-tts (voz feminina pt-BR · escutar no carro). Quiz cold-reading sábado 11h com pontuação acumulada. 200 frases táticas curadas em 14 categorias (chefe, vendedor, evasivo, romance, Shakespeare, Sun Tzu, estoica, Maquiavel/Greene, CNV, Erickson, despedida, autoafirmação, liderança, fechamento, silêncio). Memory Palace digital · 144 termos × 18 estações PRIMORDIA visualizáveis em /memory-palace.html. Comandos novos: /audio /quiz_jane /resp /pontuacao /serie /frase /palacio.",
+      "destaque": true,
+      "hook_cortex": "Use /frase chefe_defensivo para 3 frases prontas · /palacio 13 para ver termos da Tessitura · /audio para última aula em MP3 · /quiz_jane para desafio cold-reading."
+    },
+    {
+      "v": "v15.AL",
+      "data": "2026-04-24",
+      "tag": "mentalista",
+      "titulo": "🎩 Modo Mentalista · Patrick Jane Stack",
+      "resumo": "Camada de mentalismo aplicado · trilha curada de 15 obras (Erickson + Cialdini + Greene + Goleman + Rosenberg) · banco com 40 técnicas · técnica do dia 8h · comandos /ler /treino /conversa /roleplay no WhatsApp. Subpágina /mentalista.html dedicada.",
+      "destaque": true,
+      "hook_cortex": "Use /ler <pessoa> para receber perfil + abordagem mentalista. /roleplay <cenário> para praticar. /conversa <transcrição> para post-mortem estilo Patrick Jane."
+    },
+    {
+      "v": "v15.AK",
+      "data": "2026-04-24",
+      "tag": "ensino-profundo",
+      "titulo": "Resumos executivos + Cards conceituais + Plano semanal progressivo",
+      "resumo": "Cada obra agora gera resumo executivo (5 seções: tese, arquitetura, 5 pontos-chave, aplicação, tensão, sequência) + 3 cards conceituais memorizáveis. Domingo 18h NEXUS planeja 7 obras em arco progressivo com tema-fio Claude. Comandos novos WhatsApp: /resumo /cards /plano. Aulas seguem o plano (não mais aleatório).",
+      "destaque": true,
+      "hook_cortex": "Use /resumo <obra> para receber síntese densa · /cards <obra> para 3 conceitos memorizáveis · /plano para ver as 7 obras da semana."
+    },
+    {
+      "v": "v15.AJ",
+      "data": "2026-04-24",
+      "tag": "ensino-ativo",
+      "titulo": "Debate + Cruzamento + Quiz + Grafo enriquecido + Trilhas B01-B08",
+      "resumo": "Debate inaugural Goleman × Dostoiévski enviado WhatsApp (2990 chars). Cruzamento quinzenal (quinta 14h) + Quiz reflexivo (sábado 10h) ativos. 47 fichamentos em Drive FICHAMENTOS_CACHE para zero-latência. Grafo com 103 edges heurísticas. Trilhas B01-B08 agrupam 47 obras em 8 blocos cognitivos.",
+      "destaque": true,
+      "hook_cortex": "Peça /aula <obra> pra aprofundar · /pergunta para RAG · /diario para registrar · o NEXUS responde no grupo em até 5 min."
+    },
+    {
+      "v": "v15.AI",
+      "data": "2026-04-24",
+      "tag": "arquitetura",
+      "titulo": "WhatsApp-first + Digest Semanal + Polling fallback",
+      "resumo": "Aulas quotidianas via WhatsApp com capa OpenLibrary · Gmail apenas domingo 19h (digest consolidado). Polling uazapi cada 5min complementa webhook. Parser resiliente a formatação."
+    },
+    {
+      "v": "v15.AH",
+      "data": "2026-04-24",
+      "tag": "ensino-ativo",
+      "titulo": "Glossário 144 termos + Grafo 37 obras + Rich WhatsApp com capas",
+      "resumo": "GLOSSARIO.md consolidado (144 termos de 37 obras enriquecidas) · grafo.html D3.js interativo · aulas do dia agora com capa da obra via OpenLibrary · autofix DRM filtra páginas com Eduzz/Hotmart · webhook uazapi inbound ativo aceitando comandos /aula /ficha /pergunta /diario /status /ajuda.",
+      "destaque": true,
+      "hook_cortex": "Abrir glossario.html para buscar termo entre 47 obras · ou grafo.html para ver mapa conceitual."
+    },
+    {
+      "v": "v15.AG",
+      "data": "2026-04-24",
+      "tag": "ocr-integracao",
+      "titulo": "9 obras Adobe incorporadas + debate entre autores + OpenLibrary",
+      "resumo": "Hannah Arendt, Aristóteles, Gallo, Colibri CNV, Módulo 7, Rosenberg, Dostoiévski Os Demônios, Carnegie e Freud (NOVA) movidas para acervo oficial. Rotas debate_now, google_books, set_prop ativas.",
+      "destaque": false
+    },
+    {
+      "v": "v15.AF",
+      "data": "2026-04-24",
+      "tag": "enriquecimento",
+      "titulo": "Ficha Enriquecer + Micro-dose + WhatsApp Inbound",
+      "resumo": "37 fichamentos CAIR enriquecidos via Claude Sonnet 4.5 (passe 1/2/3, tese, vocabulário, estação, citações). Micro-dose matinal 7h piggyback autonomousMorningEmail. Webhook bidirecional configurado."
+    },
+    {
+      "v": "v15.AE",
+      "data": "2026-04-24",
+      "tag": "arquitetura",
+      "titulo": "Ensino Ativo proativo + limpeza backups redundantes",
+      "resumo": "Aula densa diária 18h via Claude (abertura + tese + 3 insights + cruzamento + pergunta). Drive sync offline substitui backup redundante · trigger liberado."
+    },
     {
       "v": "v15.AB",
       "data": "2026-04-24",
       "tag": "integracao-ios",
       "titulo": "Interatividade iOS profunda",
-      "resumo": "novidades.json dinâmico · health.json · iCal PRIMORDIA subscribível no Calendar do iPhone · Shortcuts templates · Web Push documentado · subpágina /notificacoes.html unificada.",
-      "destaque": true
+      "resumo": "novidades.json dinâmico · health.json · iCal PRIMORDIA subscribível no Calendar do iPhone · Shortcuts templates · Web Push documentado · subpágina /notificacoes.html unificada."
     },
     {
       "v": "v15.AA",

@@ -1,0 +1,1437 @@
+{
+  "generated": "2026-04-24T20:35:06.198268",
+  "total_termos": 141,
+  "estacoes": [
+    {
+      "id": 1,
+      "nome": "Fundação",
+      "tema": "fundamentos, ponto de origem, o essencial",
+      "cor": "#8b6f47",
+      "termos": [
+        {
+          "termo": "Armadilha do foco negativo",
+          "defs": [
+            {
+              "def": "Tendência de concentrar atenção no que se quer evitar, materializando justamente o resultado indesejado (como olhar para o muro durante a derrapagem)",
+              "src": "Assolosa 01, Como Melhorar o Foco - Guia Definitivo"
+            }
+          ]
+        },
+        {
+          "termo": "Atenção",
+          "defs": [
+            {
+              "def": "Recurso cognitivo essencial que impacta aprendizagem, tomada de decisões e produtividade, funcionando como condição de possibilidade para sucesso pessoal e profissional.",
+              "src": "Camila Gonçalves, Resumo do livro O Foco – Daniel Goleman"
+            }
+          ]
+        },
+        {
+          "termo": "avaliação do funcionamento cerebral",
+          "defs": [
+            {
+              "def": "Processo que parte do princípio de rastreamento de marcadores celulares de atividade, fundamentado em processos metabólicos comuns",
+              "src": "Juliana Belo Diniz, O que os psiquiatras não te contam"
+            }
+          ]
+        },
+        {
+          "termo": "Dor e Prazer",
+          "defs": [
+            {
+              "def": "Gatilho fundamentado na programação humana de buscar prazer e fugir da dor, operacionalizado através da identificação de problemas do cliente (dor) e apresentação da solução como eliminadora desse sofrimento",
+              "src": "Desconhecido, Cartilha - Como Usar Gatilhos Mentais"
+            }
+          ]
+        },
+        {
+          "termo": "Empatia",
+          "defs": [
+            {
+              "def": "Primeiro eixo da CNV, foca na capacidade de compreender o outro dentro do processo comunicacional",
+              "src": "Descola, CNV - Ebook Introdutorio"
+            }
+          ]
+        },
+        {
+          "termo": "FORÇA",
+          "defs": [
+            {
+              "def": "Poder fundamental do universo, neutro em essência, igualmente disponível para Deus e Diabo, passível de direcionamento para objetivos construtivos ou destrutivos conforme a intenção do usuário",
+              "src": "Napoleon Hill, Mais Esperto que o Diabo"
+            }
+          ]
+        },
+        {
+          "termo": "impotência para mudar a realidade",
+          "defs": [
+            {
+              "def": "Condição humana reconhecida pela ética estoica como fundamento para a aceitação racional, não como derrota mas como ponto de partida para a virtude",
+              "src": "Desconhecido, Exercicios de Estoicismo"
+            }
+          ]
+        },
+        {
+          "termo": "necessidades humanas universais",
+          "defs": [
+            {
+              "def": "fundamento compartilhado dos conflitos cuja identificação é essencial para desarmar desentendimentos segundo a metodologia CNV",
+              "src": "Autoria coletiva, Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia"
+            }
+          ]
+        },
+        {
+          "termo": "semelhança",
+          "defs": [
+            {
+              "def": "correspondência superficial (vestuário, estilo) que aumenta probabilidade de conformidade e ajuda, operando como gatilho de identificação",
+              "src": "Robert Cialdini, Influencia - A Psicologia da Persuasao"
+            }
+          ]
+        },
+        {
+          "termo": "Sentir-se importante",
+          "defs": [
+            {
+              "def": "Necessidade psicológica fundamental que motiva comportamentos e torna indivíduos receptivos a quem a satisfaz, não por vaidade superficial mas como reconhecimento existencial.",
+              "src": "Dale Carnegie, Como Fazer Amigos e Influenciar Pessoas"
+            }
+          ]
+        },
+        {
+          "termo": "social actors",
+          "defs": [
+            {
+              "def": "capacidade de performar socialmente enquanto mantém distância interna e espaço mental para pensamento independente",
+              "src": "Robert Greene, As Leis da Natureza Humana"
+            }
+          ]
+        },
+        {
+          "termo": "Storytelling",
+          "defs": [
+            {
+              "def": "Técnica estruturante de apresentações que transmite mensagens através de narrativas, posicionada como primeiro módulo fundamental antes de técnicas de audiência e atenção",
+              "src": "Conquer, as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf"
+            }
+          ]
+        },
+        {
+          "termo": "Sugestão Indireta",
+          "defs": [
+            {
+              "def": "Processo de indução hipnótica que utiliza princípios de proximidade, semelhança e contraste para ativar a psicodinâmica única do sujeito, contornando resistência consciente",
+              "src": "Roby, Milton H. Erickson - Formas indiretas de sugesto"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Liminaridade",
+      "tema": "limiar, transição, espaço entre",
+      "cor": "#9d7e5a",
+      "termos": [
+        {
+          "termo": "abrir mentes",
+          "defs": [
+            {
+              "def": "Estado receptivo induzido no interlocutor que passa a processar apenas aspectos positivos sobre o persuasor",
+              "src": "Holm, Mateo, MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER"
+            }
+          ]
+        },
+        {
+          "termo": "bajulação",
+          "defs": [
+            {
+              "def": "elogio estratégico que produz aceitação mesmo quando reconhecidamente falso, explorando a tendência humana de gostar de quem nos elogia",
+              "src": "Robert Cialdini, Influencia - A Psicologia da Persuasao"
+            }
+          ]
+        },
+        {
+          "termo": "barreira do belo",
+          "defs": [
+            {
+              "def": "limite simbólico que borda o agujero do real; quando transpassada, produz taponamento em vez de bordeamento, revelando conexão entre beleza e sinistro",
+              "src": "Jacques Lacan, Seminario 21 - Les Non-Dupes Errent (1973-74)"
+            }
+          ]
+        },
+        {
+          "termo": "crise de sucessão",
+          "defs": [
+            {
+              "def": "Ruptura na legitimidade dinástica causada pela revelação de ilegitimidade do herdeiro (Joffrey), elemento que desencadeia conflito entre direito formal e verdade biológica do poder",
+              "src": "adm, O Principe no Trono de Ferro - Game of Thrones e Maquiavel"
+            }
+          ]
+        },
+        {
+          "termo": "Gatilhos mentais",
+          "defs": [
+            {
+              "def": "Padrões psicológicos automáticos que podem ser ativados por estímulos verbais ou visuais específicos para influenciar decisões de compra sem necessariamente passar por análise racional consciente",
+              "src": "Desconhecido, Cartilha - Como Usar Gatilhos Mentais"
+            }
+          ]
+        },
+        {
+          "termo": "Hacks de preparação",
+          "defs": [
+            {
+              "def": "Atalhos práticos para montagem de apresentação que antecedem o sucesso, posicionados como etapa final após domínio de técnicas de conteúdo e entrega",
+              "src": "Conquer, as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf"
+            }
+          ]
+        },
+        {
+          "termo": "modelagem causal",
+          "defs": [
+            {
+              "def": "Estrutura sintática que estabelece relação de causa-efeito entre eventos através de conjunções (e, enquanto) ou causativos implícitos, direcionando a cognição do receptor para aceitar sequências como necessárias",
+              "src": "Bandler Grinder, Patterns of the Hypnotic Techniques of Milton Erickson PTBR"
+            }
+          ]
+        },
+        {
+          "termo": "Observação versus julgamento",
+          "defs": [
+            {
+              "def": "Distinção operacional entre descrever fatos ('faço uma pergunta e não recebo resposta') e atribuir características ('essa atendente é lerda')",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta resumo"
+            }
+          ]
+        },
+        {
+          "termo": "piloto automático",
+          "defs": [
+            {
+              "def": "Estado de reatividade inconsciente em que se age por impulsos habituais, tipicamente oscilando entre antipatia e simpatia, sem acesso intencional à conexão",
+              "src": "Sérgio Luciano, CNV - Guia Basico"
+            }
+          ]
+        },
+        {
+          "termo": "sinais elétricos",
+          "defs": [
+            {
+              "def": "Mecanismo de transmissão de informação entre células neurais, parte do repertório funcional diferenciado das células cerebrais",
+              "src": "Juliana Belo Diniz, O que os psiquiatras não te contam"
+            }
+          ]
+        },
+        {
+          "termo": "sincericídio",
+          "defs": [
+            {
+              "def": "confusão entre autenticidade e verbalização indiscriminada de julgamentos conscientes, prática que a CNV rejeita por não representar honestidade genuína",
+              "src": "Autoria coletiva, Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Fogo Interior",
+      "tema": "paixão, motivação intrínseca, energia vital",
+      "cor": "#e85d2c",
+      "termos": [
+        {
+          "termo": "Antecipação",
+          "defs": [
+            {
+              "def": "Estratégia de construir expectativa e desejo antes do lançamento de produto através de campanhas que soltam informações graduais semanas ou meses antes da disponibilização efetiva",
+              "src": "Desconhecido, Cartilha - Como Usar Gatilhos Mentais"
+            }
+          ]
+        },
+        {
+          "termo": "Circuitos de sobrevivência",
+          "defs": [
+            {
+              "def": "Estruturas neurais (pesquisadas por LeDoux) que processam emoções primárias como medo e ansiedade, constituindo base biológica da inteligência emocional",
+              "src": "Daniel Goleman, Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções"
+            }
+          ]
+        },
+        {
+          "termo": "conflito interno",
+          "defs": [
+            {
+              "def": "Estado psicológico resultante de trabalhar em atividades que não correspondem àquilo que realmente motiva e satisfaz o indivíduo, impedindo desenvolvimento autêntico",
+              "src": "Gerardo García Manjarrez, Mente Milionária: Construa seu próprio império"
+            }
+          ]
+        },
+        {
+          "termo": "drama histórico",
+          "defs": [
+            {
+              "def": "Gênero teatral popular nos palcos elisabetanos da década de 1590 que dramatiza eventos da história inglesa, motivando Shakespeare a produzir dezena de peças sobre reis e períodos históricos",
+              "src": "Administrador, Shakespeare - Sua Epoca e Sua Obra"
+            }
+          ]
+        },
+        {
+          "termo": "Foco Interno",
+          "defs": [
+            {
+              "def": "Capacidade atencional direcionada ao desenvolvimento de autoconsciência e controle emocional, permitindo gestão eficaz de emoções e impulsos próprios.",
+              "src": "Camila Gonçalves, Resumo do livro O Foco – Daniel Goleman"
+            }
+          ]
+        },
+        {
+          "termo": "força de vontade",
+          "defs": [
+            {
+              "def": "capacidade executiva dependente de condições fisiológicas adequadas, especialmente sono, que permite converter intenção em ação",
+              "src": "Geronimo Theml, A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica"
+            }
+          ]
+        },
+        {
+          "termo": "marcadores comuns de atividade celular",
+          "defs": [
+            {
+              "def": "Indicadores fisiológicos mensuráveis do funcionamento cerebral, especialmente relacionados à produção de energia via oxigênio, usados para avaliar a ação neural",
+              "src": "Juliana Belo Diniz, O que os psiquiatras não te contam"
+            }
+          ]
+        },
+        {
+          "termo": "objeto a",
+          "defs": [
+            {
+              "def": "causa do sujeito que simultaneamente pode aniquilá-lo; irrepresentável que motiva tanto destruição quanto arrebatamento quando não pode ser alcançado simbolicamente",
+              "src": "Jacques Lacan, Seminario 21 - Les Non-Dupes Errent (1973-74)"
+            }
+          ]
+        },
+        {
+          "termo": "privação de sono",
+          "defs": [
+            {
+              "def": "estado resultante de dormir menos horas do que o corpo necessita, causando diminuição mensurável da força de vontade",
+              "src": "Geronimo Theml, A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica"
+            }
+          ]
+        },
+        {
+          "termo": "realidade psíquica",
+          "defs": [
+            {
+              "def": "vocabulário freudiano incluindo desejo inconsciente e fantasias, do qual Lacan retira o conceito de real para reelaboração",
+              "src": "Geraldino Alves Ferreira Netto, Jacques Lacan e James Joyce: O simbólico na linguagem"
+            }
+          ]
+        },
+        {
+          "termo": "Truísmos Sexuais",
+          "defs": [
+            {
+              "def": "Verbalização de respostas naturais de desejo e paixão estruturadas como verdades incontestáveis, permitindo introduzir conteúdo sexual obsceno sem possibilidade de discordância",
+              "src": "Roby, Milton H. Erickson - Formas indiretas de sugesto"
+            }
+          ]
+        },
+        {
+          "termo": "vilões merecidamente castigados",
+          "defs": [
+            {
+              "def": "Padrão dramático de justiça poética em que personagens malévolos como Antíoco e Cleão são punidos por fogo, estabelecendo economia moral nas peças",
+              "src": "Administrador, Shakespeare - Sua Epoca e Sua Obra"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Reflexão Estratégica",
+      "tema": "análise, mapeamento, antever",
+      "cor": "#5a8bb0",
+      "termos": [
+        {
+          "termo": "destino",
+          "defs": [
+            {
+              "def": "Não fatalidade externa mas consequência necessária de escolhas morais: aquilo que se torna inevitável ao não fugir",
+              "src": "Fiódor Dostoiévski, O Idiota"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "nome": "Ágora",
+      "tema": "comunicação pública, persuasão, voz",
+      "cor": "#d4a574",
+      "termos": [
+        {
+          "termo": "CNV (Comunicação Não Violenta)",
+          "defs": [
+            {
+              "def": "Sistema comunicacional estruturado em dois eixos (empatia e autenticidade) para produzir diálogos e relacionamentos construtivos",
+              "src": "Descola, CNV - Ebook Introdutorio"
+            }
+          ]
+        },
+        {
+          "termo": "Comunicação Estratégica",
+          "defs": [
+            {
+              "def": "Escolha deliberada e cuidadosa de palavras e informações compartilhadas com outros, visando moldar percepções e proteger interesses próprios",
+              "src": "User, Conselhos Maquiavelicos"
+            }
+          ]
+        },
+        {
+          "termo": "comunicações analógicas",
+          "defs": [
+            {
+              "def": "sistemas de comunicação não-verbais ou para-verbais aos quais os padrões ericksonianos podem ser transpostos e generalizados",
+              "src": "Klaeber, Padroes das Tecnicas Hipnoticas de Milton H Erickson"
+            }
+          ]
+        },
+        {
+          "termo": "demanda específica de sono",
+          "defs": [
+            {
+              "def": "quantidade individual e variável de horas necessárias para manutenção da disposição ao longo do dia, determinada empiricamente e modificável com o tempo",
+              "src": "Geronimo Theml, A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica"
+            }
+          ]
+        },
+        {
+          "termo": "era jaimesca",
+          "defs": [
+            {
+              "def": "Período de produção teatral durante o reinado de Jaime I, distinguido da era elisabetana, marcando diferença cronológica e contextual na produção shakespeariana",
+              "src": "Administrador, Shakespeare - Sua Epoca e Sua Obra"
+            }
+          ]
+        },
+        {
+          "termo": "Escuta ativa",
+          "defs": [
+            {
+              "def": "Componente conceitual da CNV mencionado na estrutura pedagógica, associado a empatia e diálogo como técnicas centrais do método",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta resumo"
+            }
+          ]
+        },
+        {
+          "termo": "gramática do poder",
+          "defs": [
+            {
+              "def": "Conjunto de regras e práticas políticas sistematizadas por Maquiavel que definem como o poder é conquistado, exercido e mantido, aplicáveis tanto à teoria política quanto à análise de narrativas ficcionais",
+              "src": "adm, O Principe no Trono de Ferro - Game of Thrones e Maquiavel"
+            }
+          ]
+        },
+        {
+          "termo": "histórias não tradicionais",
+          "defs": [
+            {
+              "def": "Narrativas adaptadas à situação específica vivenciada pelos pacientes, com conteúdos ajustados para trabalhar estados como insegurança, baixa autoestima, resistência ao tratamento",
+              "src": "Epicteto, Portico de Epicteto - Revista 1 (c.125)"
+            }
+          ]
+        },
+        {
+          "termo": "linguagem chacal",
+          "defs": [
+            {
+              "def": "padrão comunicacional baseado em julgamentos morais, diagnósticos e comparações que obscurecem sentimentos e necessidades reais",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta"
+            }
+          ]
+        },
+        {
+          "termo": "lugar de enunciação",
+          "defs": [
+            {
+              "def": "posição a partir da qual o sujeito fala, que o constitui e localiza simbolicamente, distinta do conteúdo enunciado",
+              "src": "Autoria coletiva, O Inconsciente em Lacan"
+            }
+          ]
+        },
+        {
+          "termo": "moradia do sujeito",
+          "defs": [
+            {
+              "def": "metáfora para definir o inconsciente como habitação/espaço próprio do sujeito falante, não como objeto externo a ser decifrado",
+              "src": "Autoria coletiva, O Inconsciente em Lacan"
+            }
+          ]
+        },
+        {
+          "termo": "mortes fictícias",
+          "defs": [
+            {
+              "def": "Recursos dramáticos em que personagens acreditam erroneamente na morte de outros, gerando tensão narrativa sem perda real de vidas, como em A Tempestade com Alonso e Ferdinando",
+              "src": "Administrador, Shakespeare - Sua Epoca e Sua Obra"
+            }
+          ]
+        },
+        {
+          "termo": "observação sem avaliação",
+          "defs": [
+            {
+              "def": "ato de descrever fatos concretos sem misturar julgamento moral ou interpretação do comportamento alheio",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta"
+            }
+          ]
+        },
+        {
+          "termo": "padrões hipnóticos de linguagem",
+          "defs": [
+            {
+              "def": "estruturas comunicacionais específicas que facilitam mudanças profundas ao criar ambientes seguros para exploração e reestruturação de experiências internas",
+              "src": "User, Linguagem Hipnotica - Amostra"
+            }
+          ]
+        },
+        {
+          "termo": "padrões linguísticos",
+          "defs": [
+            {
+              "def": "estruturas comunicacionais replicáveis extraídas da prática clínica de Erickson, passíveis de sistematização e ensino independente do talento intuitivo original",
+              "src": "Klaeber, Padroes das Tecnicas Hipnoticas de Milton H Erickson"
+            }
+          ]
+        },
+        {
+          "termo": "pedido versus exigência",
+          "defs": [
+            {
+              "def": "distinção operacional onde pedido aceita recusa sem punição enquanto exigência implica culpa ou coerção se negada",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta"
+            }
+          ]
+        },
+        {
+          "termo": "Responsabilização emocional",
+          "defs": [
+            {
+              "def": "Processo de vincular a emoção sentida à própria necessidade não atendida em vez de atribuir ao comportamento alheio a causa do sentimento",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta resumo"
+            }
+          ]
+        },
+        {
+          "termo": "rotina matinal",
+          "defs": [
+            {
+              "def": "sequência de atividades pós-despertar que requer tempo específico e estado de descanso adequado para execução",
+              "src": "Geronimo Theml, A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "nome": "Forja",
+      "tema": "moldar, decidir sob pressão, tornar real",
+      "cor": "#c44569",
+      "termos": [
+        {
+          "termo": "arrebatamento/arrobamento",
+          "defs": [
+            {
+              "def": "estado de captura subjetiva diante do objeto que transpõe a barreira do belo, tornando o sujeito presa do brilho e da angústia do real sem mediação",
+              "src": "Jacques Lacan, Seminario 21 - Les Non-Dupes Errent (1973-74)"
+            }
+          ]
+        },
+        {
+          "termo": "atrevimento imperdoável",
+          "defs": [
+            {
+              "def": "Transgressão das fronteiras de intimidade e respeito que Raskólnikov considera invioláveis, independente das intenções declaradas",
+              "src": "Fiódor Dostoiévski, Crime e Castigo"
+            }
+          ]
+        },
+        {
+          "termo": "autenticidade",
+          "defs": [
+            {
+              "def": "expressão de sentimentos e necessidades próprias que transcende julgamentos imediatos, diferenciando-se da simples verbalização de pensamentos",
+              "src": "Autoria coletiva, Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia"
+            },
+            {
+              "def": "Segundo eixo da CNV, definido como capacidade de expressar sentimentos e necessidades de forma construtiva para ser genuinamente compreendido, envolvendo a prática diária de abandonar quem pensamos que devemos ser e abraçar quem somos",
+              "src": "Descola, CNV - Ebook Introdutorio"
+            }
+          ]
+        },
+        {
+          "termo": "caráter cosmopolita do estoicismo",
+          "defs": [
+            {
+              "def": "Dimensão universalista da filosofia estoica que transcende particularidades culturais e temporais, permitindo aplicações transversais",
+              "src": "Epicteto, Portico de Epicteto - Revista 1 (c.125)"
+            }
+          ]
+        },
+        {
+          "termo": "conselho real",
+          "defs": [
+            {
+              "def": "Estrutura de poder colegiada composta por figuras com diferentes recursos (militar, financeiro, informacional) que circundam o monarca e disputam influência sobre decisões do reino",
+              "src": "adm, O Principe no Trono de Ferro - Game of Thrones e Maquiavel"
+            }
+          ]
+        },
+        {
+          "termo": "enlouquecido",
+          "defs": [
+            {
+              "def": "estado psíquico resultante de contágio ideológico revolucionário tratado como patologia social transmissível",
+              "src": "Dostoiévski, Fiódor, Os demônios"
+            }
+          ]
+        },
+        {
+          "termo": "estudante",
+          "defs": [
+            {
+              "def": "figura-símbolo da intelligentsia radical russa agente da transformação violenta esperada pelas massas para derrubar ordem estabelecida",
+              "src": "Dostoiévski, Fiódor, Os demônios"
+            }
+          ]
+        },
+        {
+          "termo": "Expressão verdadeira",
+          "defs": [
+            {
+              "def": "Manifestação construtiva dos próprios sentimentos e necessidades que permite ao outro escutar e compreender genuinamente",
+              "src": "Descola, CNV - Ebook Introdutorio"
+            }
+          ]
+        },
+        {
+          "termo": "fazer o mal aos outros",
+          "defs": [
+            {
+              "def": "Condição humana vista como destino inevitável onde qualquer ação, mesmo benéfica, é suspeita de violar dignidade alheia",
+              "src": "Fiódor Dostoiévski, Crime e Castigo"
+            }
+          ]
+        },
+        {
+          "termo": "Foco nos Outros",
+          "defs": [
+            {
+              "def": "Atenção orientada para empatia e habilidades interpessoais, constitutiva de relacionamentos saudáveis através da sintonização com estados alheios.",
+              "src": "Camila Gonçalves, Resumo do livro O Foco – Daniel Goleman"
+            }
+          ]
+        },
+        {
+          "termo": "formalidades vazias e convencionais",
+          "defs": [
+            {
+              "def": "Estruturas morais socialmente aceitas que impedem ações benéficas por rigidez normativa, ignorando substância ética real",
+              "src": "Fiódor Dostoiévski, Crime e Castigo"
+            }
+          ]
+        },
+        {
+          "termo": "Linguagem inclusiva persuasiva",
+          "defs": [
+            {
+              "def": "Uso sistemático de pronomes coletivos ('nós', 'todos') para criar ilusão de decisão compartilhada enquanto mantém direcionamento unilateral",
+              "src": "Compilacao Erickson, AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO"
+            }
+          ]
+        },
+        {
+          "termo": "migalha de um bem",
+          "defs": [
+            {
+              "def": "Pequeno gesto positivo que, segundo Svidrigáilov, é bloqueado por escrúpulos morais excessivos que impedem generosidade real",
+              "src": "Fiódor Dostoiévski, Crime e Castigo"
+            }
+          ]
+        },
+        {
+          "termo": "Modelos mentais",
+          "defs": [
+            {
+              "def": "Estruturas cognitivas que determinam a robustez do foco ao estabelecer parâmetros do que observar e filtrar na realidade",
+              "src": "Assolosa 01, Como Melhorar o Foco - Guia Definitivo"
+            }
+          ]
+        },
+        {
+          "termo": "monetizar capacidades",
+          "defs": [
+            {
+              "def": "Processo de transformar habilidades naturais e individuais em fonte de renda dentro da economia renovada, substituindo modelos anteriores de trabalho desalinhado com propósito",
+              "src": "Gerardo García Manjarrez, Mente Milionária: Construa seu próprio império"
+            }
+          ]
+        },
+        {
+          "termo": "nominalização",
+          "defs": [
+            {
+              "def": "Transformação de processos verbais em substantivos (memória ao invés de lembrar), criando entidades abstratas que obscurecem agentes e tornam conceitos mais aceitos como realidades fixas",
+              "src": "Bandler Grinder, Patterns of the Hypnotic Techniques of Milton Erickson PTBR"
+            }
+          ]
+        },
+        {
+          "termo": "nova consciência",
+          "defs": [
+            {
+              "def": "Estado coletivo emergente de awareness sobre capacidades individuais únicas, intimamente ligado à transformação do relacionamento com dinheiro e monetização de talentos pessoais",
+              "src": "Gerardo García Manjarrez, Mente Milionária: Construa seu próprio império"
+            }
+          ]
+        },
+        {
+          "termo": "panfleto clandestino",
+          "defs": [
+            {
+              "def": "material impresso estrangeiro circulando ilegalmente contendo programa revolucionário explícito de destruição institucional sistemática",
+              "src": "Dostoiévski, Fiódor, Os demônios"
+            }
+          ]
+        },
+        {
+          "termo": "percepção situacional",
+          "defs": [
+            {
+              "def": "Construção individual e múltipla da realidade diante de mesma situação, reconhecendo que pessoas distintas percebem diferentemente o mesmo evento",
+              "src": "Sérgio Luciano, CNV - Guia Basico"
+            }
+          ]
+        },
+        {
+          "termo": "ponderar",
+          "defs": [
+            {
+              "def": "Tipo de decisão deliberada e racional que o protagonista reconhece como inadequada para certas escolhas existenciais que exigem resolução imediata, não análise",
+              "src": "Fiódor Dostoiévski, O Idiota"
+            }
+          ]
+        },
+        {
+          "termo": "pressuposição",
+          "defs": [
+            {
+              "def": "Informação embutida na estrutura gramatical que deve ser aceita como verdadeira para a sentença fazer sentido (ex: 'mais interessante' pressupõe que já era interessante), bypass do pensamento crítico",
+              "src": "Bandler Grinder, Patterns of the Hypnotic Techniques of Milton Erickson PTBR"
+            },
+            {
+              "def": "Técnica de tratar a ação desejada como já acordada ou inevitável, deslocando o foco da decisão para a execução",
+              "src": "Compilacao Erickson, AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO"
+            }
+          ]
+        },
+        {
+          "termo": "real",
+          "defs": [
+            {
+              "def": "realidade fenomênica imanente à representação e impossível de simbolizar, distinta da realidade externa freudiana incluída no imaginário",
+              "src": "Geraldino Alves Ferreira Netto, Jacques Lacan e James Joyce: O simbólico na linguagem"
+            }
+          ]
+        },
+        {
+          "termo": "reality group",
+          "defs": [
+            {
+              "def": "configuração grupal ideal com membros que contribuem opiniões diversas, mantêm mentes abertas e focam em cooperação de alto nível",
+              "src": "Robert Greene, As Leis da Natureza Humana"
+            }
+          ]
+        },
+        {
+          "termo": "Tempo para reflexão",
+          "defs": [
+            {
+              "def": "Pausa deliberada antes de decisões, contrapondo a sensação ilusória de urgência que compromete qualidade cognitiva",
+              "src": "Assolosa 01, Como Melhorar o Foco - Guia Definitivo"
+            }
+          ]
+        },
+        {
+          "termo": "tonal",
+          "defs": [
+            {
+              "def": "sistema atencional ordinário responsável por manter o diálogo interno e a perspectiva consensual de realidade, que pode ser sobrecarregado por influxo informacional estruturado",
+              "src": "Klaeber, Padroes das Tecnicas Hipnoticas de Milton H Erickson"
+            }
+          ]
+        },
+        {
+          "termo": "transe profundo",
+          "defs": [
+            {
+              "def": "estado alterado de consciência caracterizado pela suspensão do funcionamento crítico ordinário, induzido por representação de instruções específicas",
+              "src": "Klaeber, Padroes das Tecnicas Hipnoticas de Milton H Erickson"
+            }
+          ]
+        },
+        {
+          "termo": "Transformação relacional",
+          "defs": [
+            {
+              "def": "Mudança observável no comportamento de indivíduos (como o caso do aluno Chris) quando submetidos a abordagens que validam sua importância pessoal.",
+              "src": "Dale Carnegie, Como Fazer Amigos e Influenciar Pessoas"
+            }
+          ]
+        },
+        {
+          "termo": "Truísmo",
+          "defs": [
+            {
+              "def": "Afirmação de realidade generalizada impossível de refutar por estar além do controle do sujeito, criando contexto onde a resposta natural coincide com o resultado desejado",
+              "src": "Roby, Milton H. Erickson - Formas indiretas de sugesto"
+            }
+          ]
+        },
+        {
+          "termo": "vida virtuosamente plena",
+          "defs": [
+            {
+              "def": "Realização ética alcançada através do autoconhecimento e identificação das atitudes adequadas nas questões cotidianas, não pela mudança da realidade externa",
+              "src": "Desconhecido, Exercicios de Estoicismo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "nome": "Lapidário",
+      "tema": "refinar, polir, técnica detalhada",
+      "cor": "#8e6dc7",
+      "termos": [
+        {
+          "termo": "diálogo interno",
+          "defs": [
+            {
+              "def": "atividade cognitiva contínua que mantém a perspectiva de mundo ordinária e que deve ser interrompida para acesso a estados alterados",
+              "src": "Klaeber, Padroes das Tecnicas Hipnoticas de Milton H Erickson"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "nome": "Coroa Tríplice",
+      "tema": "memória, repetição, consolidação",
+      "cor": "#d4a574",
+      "termos": [
+        {
+          "termo": "Slogan marcante",
+          "defs": [
+            {
+              "def": "Síntese verbal persuasiva construída por cinco técnicas retóricas específicas (poesia, duplo significado, ironia, justaposição, repetição) para fixação de mensagem central",
+              "src": "Conquer, as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "nome": "Espelho",
+      "tema": "auto-observação, projeção, ver-se",
+      "cor": "#7eb8d4",
+      "termos": [
+        {
+          "termo": "empatia consciente",
+          "defs": [
+            {
+              "def": "Postura relacional sustentada por modelos didáticos tomados como apoio e não como verdades absolutas, diferenciando-se tanto de antipatia quanto de simpatia automática",
+              "src": "Sérgio Luciano, CNV - Guia Basico"
+            }
+          ]
+        },
+        {
+          "termo": "empatia eficaz",
+          "defs": [
+            {
+              "def": "capacidade de escuta que demonstra compreensão das necessidades subjacentes do interlocutor, técnica ensinável pela CNV",
+              "src": "Autoria coletiva, Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia"
+            }
+          ]
+        },
+        {
+          "termo": "exilada das coisas",
+          "defs": [
+            {
+              "def": "figura (Lol) marcada por ferida constitutiva, intocável mas capturante, que impõe sua imagem através do arrebato que provoca no outro",
+              "src": "Jacques Lacan, Seminario 21 - Les Non-Dupes Errent (1973-74)"
+            }
+          ]
+        },
+        {
+          "termo": "Habilidades socioemocionais",
+          "defs": [
+            {
+              "def": "Conjunto de competências relacionadas ao processamento emocional e interação social, observáveis através de diferentes lentes teóricas (IE versus personalidade)",
+              "src": "Daniel Goleman, Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções"
+            }
+          ]
+        },
+        {
+          "termo": "Inteligência emocional",
+          "defs": [
+            {
+              "def": "Modelo específico de habilidades socioemocionais baseado na premissa de maleabilidade cerebral através de experiências (nutrir), distinto de teorias de personalidade que assumem traços fixos",
+              "src": "Daniel Goleman, Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções"
+            }
+          ]
+        },
+        {
+          "termo": "intenção de conexão",
+          "defs": [
+            {
+              "def": "Acesso consciente ao propósito de vincular-se consigo mesmo e com o outro, servindo como espaço interno que viabiliza a prática da CNV em oposição à reatividade",
+              "src": "Sérgio Luciano, CNV - Guia Basico"
+            }
+          ]
+        },
+        {
+          "termo": "permeabilidade",
+          "defs": [
+            {
+              "def": "grau de vulnerabilidade psíquica à influência externa que deve ser reduzido através da elevação da autoestima para manter autonomia mental",
+              "src": "Robert Greene, As Leis da Natureza Humana"
+            }
+          ]
+        },
+        {
+          "termo": "Princípios aplicados",
+          "defs": [
+            {
+              "def": "Técnicas comportamentais derivadas de observações sobre natureza humana, testadas empiricamente através de casos documentados em contextos reais de negócios e educação.",
+              "src": "Dale Carnegie, Como Fazer Amigos e Influenciar Pessoas"
+            }
+          ]
+        },
+        {
+          "termo": "técnica de persuasão",
+          "defs": [
+            {
+              "def": "Procedimento replicável observado em figuras públicas, especialmente a projeção de conduta honesta e gentil para gerar abertura mental nos receptores",
+              "src": "Holm, Mateo, MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "nome": "Bússola Inversa",
+      "tema": "manipulação, leitura oculta, contra-intuitivo",
+      "cor": "#2c3e50",
+      "termos": [
+        {
+          "termo": "credulidade",
+          "defs": [
+            {
+              "def": "disposição humana para acreditar em elogios mesmo quando há evidência de intenção manipulativa, limite variável conforme consciência do contexto",
+              "src": "Robert Cialdini, Influencia - A Psicologia da Persuasao"
+            }
+          ]
+        },
+        {
+          "termo": "Imperativo velado",
+          "defs": [
+            {
+              "def": "Comando disfarçado através de condicionais, subjuntivos ou sugestões que mantêm força diretiva sem forma imperativa explícita",
+              "src": "Compilacao Erickson, AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO"
+            }
+          ]
+        },
+        {
+          "termo": "lógica natural",
+          "defs": [
+            {
+              "def": "Ordem necessária da natureza à qual o homem está submetido e exposto, manifestando-se em eventos inevitáveis como frio do inverno e calor do verão",
+              "src": "Desconhecido, Exercicios de Estoicismo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "nome": "Templo do Eixo",
+      "tema": "ética, princípio inviolável, centro moral",
+      "cor": "#27ae60",
+      "termos": [
+        {
+          "termo": "bem próprio do homem",
+          "defs": [
+            {
+              "def": "Aquilo que corresponde especificamente à natureza humana (razão), distinto de bens externos como ornamentos, riquezas ou atributos físicos",
+              "src": "Lúcio Aneu Sêneca, LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci"
+            }
+          ]
+        },
+        {
+          "termo": "manipulação",
+          "defs": [
+            {
+              "def": "Ferramenta ambígua de influência nas decisões alheias, reconhecida simultaneamente como habilidade profissional para atingir metas e como prática eticamente questionável",
+              "src": "Marcos Vinicius, Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática"
+            },
+            {
+              "def": "uso intencional de gatilhos psicológicos para produzir comportamento desejado, detectável mas frequentemente eficaz mesmo quando exposta",
+              "src": "Robert Cialdini, Influencia - A Psicologia da Persuasao"
+            }
+          ]
+        },
+        {
+          "termo": "Mão do Rei",
+          "defs": [
+            {
+              "def": "Posição de poder executivo delegado ocupada por Eddard Stark, figura que descobre segredos comprometedores e tenta mobilizar a verdade contra a força estabelecida",
+              "src": "adm, O Principe no Trono de Ferro - Game of Thrones e Maquiavel"
+            }
+          ]
+        },
+        {
+          "termo": "pusilanimidade",
+          "defs": [
+            {
+              "def": "Qualificação moral da fuga como covardia inaceitável que desqualifica a opção de escapar aos problemas mesmo quando intensamente desejada",
+              "src": "Fiódor Dostoiévski, O Idiota"
+            }
+          ]
+        },
+        {
+          "termo": "virtude",
+          "defs": [
+            {
+              "def": "Razão aperfeiçoada que constitui simultaneamente o bem próprio do homem e aquilo digno de elogios, identificada ao fim natural humano",
+              "src": "Lúcio Aneu Sêneca, LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "nome": "Vau",
+      "tema": "atravessar, transição perigosa, passagem",
+      "cor": "#16a085",
+      "termos": []
+    },
+    {
+      "id": 13,
+      "nome": "Tessitura",
+      "tema": "linguagem, narrativa, texto que tece",
+      "cor": "#9b59b6",
+      "termos": [
+        {
+          "termo": "ancoragem",
+          "defs": [
+            {
+              "def": "técnica de fixação de estados ou respostas específicas através de estímulos condicionados aplicada em contexto terapêutico",
+              "src": "User, Linguagem Hipnotica - Amostra"
+            }
+          ]
+        },
+        {
+          "termo": "código vs fala",
+          "defs": [
+            {
+              "def": "distinção estrutural entre sistema linguístico abstrato (língua) e ato concreto de enunciação (palavra), sendo o inconsciente vinculado ao segundo",
+              "src": "Autoria coletiva, O Inconsciente em Lacan"
+            }
+          ]
+        },
+        {
+          "termo": "estruturado como uma linguagem",
+          "defs": [
+            {
+              "def": "fórmula que indica que o inconsciente fala (dimensão de palavra/enunciação), não que seja um segmento do código linguístico",
+              "src": "Autoria coletiva, O Inconsciente em Lacan"
+            }
+          ]
+        },
+        {
+          "termo": "forclusão",
+          "defs": [
+            {
+              "def": "tradução lacaniana de Verwerfung como rejeição da castração simbólica no momento de imposição do Nome-do-Pai, com sentido jurídico de decurso de prazo",
+              "src": "Geraldino Alves Ferreira Netto, Jacques Lacan e James Joyce: O simbólico na linguagem"
+            }
+          ]
+        },
+        {
+          "termo": "Frases hipnóticas",
+          "defs": [
+            {
+              "def": "Estruturas verbais que utilizam modificadores modais e linguagem inclusiva para induzir concordância sem confronto direto, atribuídas à técnica ericksoniana",
+              "src": "Compilacao Erickson, AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO"
+            }
+          ]
+        },
+        {
+          "termo": "Fórmula verbal",
+          "defs": [
+            {
+              "def": "Scripts modulares prontos com estrutura tipo 'Você nunca mais vai precisar passar por [DOR] quando começar a usar [produto/serviço]' onde elementos são substituíveis conforme contexto de venda",
+              "src": "Desconhecido, Cartilha - Como Usar Gatilhos Mentais"
+            }
+          ]
+        },
+        {
+          "termo": "hermeneuta",
+          "defs": [
+            {
+              "def": "posição de Lacan como intérprete de textos escritos, contraposta à de Freud como analista da escuta clínica no divã",
+              "src": "Geraldino Alves Ferreira Netto, Jacques Lacan e James Joyce: O simbólico na linguagem"
+            }
+          ]
+        },
+        {
+          "termo": "informação isolada",
+          "defs": [
+            {
+              "def": "Dado único sem contexto populacional que não permite determinação categórica, como altura individual sem referência a distribuições estatísticas",
+              "src": "Juliana Belo Diniz, O que os psiquiatras não te contam"
+            }
+          ]
+        },
+        {
+          "termo": "linguagem corporal",
+          "defs": [
+            {
+              "def": "Sistema de sinais não-verbais dominado por persuasores eficazes para reforçar mensagens de honestidade e gentileza",
+              "src": "Holm, Mateo, MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER"
+            }
+          ]
+        },
+        {
+          "termo": "Maleabilidade",
+          "defs": [
+            {
+              "def": "Capacidade do cérebro de desenvolver habilidades emocionais através de experiências intencionais, princípio diferenciador da IE em relação a modelos de personalidade estáticos",
+              "src": "Daniel Goleman, Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções"
+            }
+          ]
+        },
+        {
+          "termo": "manipulação emocional",
+          "defs": [
+            {
+              "def": "Modalidade específica de influência que opera através de conexões afetivas, narrativas identificatórias e leitura de sinais verbais e não-verbais",
+              "src": "Marcos Vinicius, Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática"
+            }
+          ]
+        },
+        {
+          "termo": "metáfora terapêutica",
+          "defs": [
+            {
+              "def": "recurso que oferece nova perspectiva sobre problemas persistentes de forma não-direta e não-ameaçadora, facilitando insights e soluções criativas",
+              "src": "User, Linguagem Hipnotica - Amostra"
+            }
+          ]
+        },
+        {
+          "termo": "Nome-do-Pai",
+          "defs": [
+            {
+              "def": "instância simbólica de interdição (Não-do-Pai) que, quando não acatada no momento devido, resulta em forclusão estrutural",
+              "src": "Geraldino Alves Ferreira Netto, Jacques Lacan e James Joyce: O simbólico na linguagem"
+            }
+          ]
+        },
+        {
+          "termo": "persuasão",
+          "defs": [
+            {
+              "def": "Processo consciente de influência que modifica percepções e abre mentes através de técnicas identificáveis, não evento místico ou acidental",
+              "src": "Holm, Mateo, MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER"
+            }
+          ]
+        },
+        {
+          "termo": "reenquadramento",
+          "defs": [
+            {
+              "def": "processo de alteração do contexto ou significado atribuído a experiências para modificar resposta emocional ou comportamental",
+              "src": "User, Linguagem Hipnotica - Amostra"
+            }
+          ]
+        },
+        {
+          "termo": "terapeuta-contador",
+          "defs": [
+            {
+              "def": "Profissional que utiliza narrativas construídas ou adaptadas como instrumento terapêutico para trabalhar situações psicológicas específicas em contextos de adoecimento",
+              "src": "Epicteto, Portico de Epicteto - Revista 1 (c.125)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "nome": "Selo Quaternário",
+      "tema": "ciclo completo, integração de 4 elementos",
+      "cor": "#d35400",
+      "termos": [
+        {
+          "termo": "Comunicação Não Violenta (CNV)",
+          "defs": [
+            {
+              "def": "método estruturado em quatro etapas para conduzir conversas difíceis através da identificação de sentimentos e necessidades em vez de julgamentos",
+              "src": "Autoria coletiva, Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia"
+            },
+            {
+              "def": "Método estruturado de interação que substitui julgamentos e atribuições externas por expressão de sentimentos vinculados a necessidades internas não satisfeitas",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta resumo"
+            },
+            {
+              "def": "Abordagem que integra filosofia da não-violência com método prático para linguagem empática voltada à conexão, operando como alternativa consciente aos padrões automáticos de antipatia ou simpatia",
+              "src": "Sérgio Luciano, CNV - Guia Basico"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "nome": "Acrópole",
+      "tema": "cume, autoridade legítima, comando",
+      "cor": "#34495e",
+      "termos": [
+        {
+          "termo": "Arte do Engano",
+          "defs": [
+            {
+              "def": "Conjunto de estratégias astutas que permitem alcançar objetivos pessoais mediante controle calculado de informações e percepções alheias na vida cotidiana",
+              "src": "User, Conselhos Maquiavelicos"
+            }
+          ]
+        },
+        {
+          "termo": "autodefesa emocional",
+          "defs": [
+            {
+              "def": "Conjunto de habilidades defensivas desenvolvidas através do autoconhecimento para identificar e proteger-se contra táticas manipulativas",
+              "src": "Marcos Vinicius, Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática"
+            }
+          ]
+        },
+        {
+          "termo": "Autoridade passageira",
+          "defs": [
+            {
+              "def": "Poder formal temporário que, conforme Shakespeare citado, quando exercido com arrogância, produz efeitos grotescos em vez de influência genuína.",
+              "src": "Dale Carnegie, Como Fazer Amigos e Influenciar Pessoas"
+            }
+          ]
+        },
+        {
+          "termo": "Fonte de Toda a Força",
+          "defs": [
+            {
+              "def": "Origem do poder universal acessível diretamente pelos humanos sem necessidade de intermediários espirituais, destino possível para aqueles libertos do controle pelo medo",
+              "src": "Napoleon Hill, Mais Esperto que o Diabo"
+            }
+          ]
+        },
+        {
+          "termo": "lead",
+          "defs": [
+            {
+              "def": "arte de criar poder, legitimidade e equidade enquanto gera identificação como líder a serviço dos liderados, dominada através da conquista de confiança",
+              "src": "Robert Greene, As Leis da Natureza Humana"
+            }
+          ]
+        },
+        {
+          "termo": "modo irreversível",
+          "defs": [
+            {
+              "def": "Reconhecimento fatal de que permanecer naquele mundo o vinculará definitivamente a um destino do qual não poderá mais se desvincular",
+              "src": "Fiódor Dostoiévski, O Idiota"
+            }
+          ]
+        },
+        {
+          "termo": "sementes do medo",
+          "defs": [
+            {
+              "def": "Instrumentos primários de controle mental plantados pelo Diabo para manter humanos afastados do acesso direto ao poder universal",
+              "src": "Napoleon Hill, Mais Esperto que o Diabo"
+            }
+          ]
+        },
+        {
+          "termo": "subordinos negativos",
+          "defs": [
+            {
+              "def": "Mecanismo de controle usado pelo Diabo para dominar humanos através do medo, impedindo-os de acessar diretamente a Fonte de Todo o Poder",
+              "src": "Napoleon Hill, Mais Esperto que o Diabo"
+            }
+          ]
+        },
+        {
+          "termo": "vulnerabilidades emocionais",
+          "defs": [
+            {
+              "def": "Pontos de fragilidade psicológica individuais que podem ser identificados e explorados para construir conexões profundas e influenciar decisões",
+              "src": "Marcos Vinicius, Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "nome": "Catedra",
+      "tema": "ensino, transmissão, mestre",
+      "cor": "#7f8c8d",
+      "termos": []
+    },
+    {
+      "id": 17,
+      "nome": "Convergência",
+      "tema": "síntese, encontro, todas as linhas",
+      "cor": "#3498db",
+      "termos": [
+        {
+          "termo": "banquete conspirativo",
+          "defs": [
+            {
+              "def": "encontros prolongados onde agitadores cultivam redes revolucionárias através de sociabilidade aparentemente casual",
+              "src": "Dostoiévski, Fiódor, Os demônios"
+            }
+          ]
+        },
+        {
+          "termo": "boiardia",
+          "defs": [
+            {
+              "def": "aristocracia tradicional russa alvo primário de eliminação no programa niilista junto com monarquia e propriedade",
+              "src": "Dostoiévski, Fiódor, Os demônios"
+            }
+          ]
+        },
+        {
+          "termo": "necessidades universais",
+          "defs": [
+            {
+              "def": "conjunto de demandas humanas básicas que transcendem estratégias específicas e não dependem de pessoas particulares para serem satisfeitas",
+              "src": "Marshall B Rosenberg, Comunicacao Nao-Violenta"
+            }
+          ]
+        },
+        {
+          "termo": "questões comezinhas do dia a dia",
+          "defs": [
+            {
+              "def": "Objeto prioritário da reflexão ética estoica em oposição às teorias especulativas sobre o funcionamento da natureza",
+              "src": "Desconhecido, Exercicios de Estoicismo"
+            }
+          ]
+        },
+        {
+          "termo": "Retenção de atenção",
+          "defs": [
+            {
+              "def": "Conjunto de técnicas para manter engajamento da audiência do início ao fim da apresentação, diferenciado de despertar interesse inicial",
+              "src": "Conquer, as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "nome": "Selo Final",
+      "tema": "fechamento, totalidade, sigilo",
+      "cor": "#1a1a1a",
+      "termos": [
+        {
+          "termo": "fim de sua natureza",
+          "defs": [
+            {
+              "def": "Telos ou propósito intrínseco de cada ente conforme sua função específica - no caso humano, o aperfeiçoamento racional",
+              "src": "Lúcio Aneu Sêneca, LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci"
+            }
+          ]
+        },
+        {
+          "termo": "Grandeza de alma",
+          "defs": [
+            {
+              "def": "Qualidade que impõe silêncio reverencial aos inimigos, manifestação de força interior que dispensa piedade e intimida opositores",
+              "src": "User, Conselhos Maquiavelicos"
+            }
+          ]
+        },
+        {
+          "termo": "habilidades naturais",
+          "defs": [
+            {
+              "def": "Capacidades especiais inatas dos indivíduos para desempenhar determinadas atividades, apresentadas como chave para trabalho satisfatório e geração de riqueza alinhada com propósito pessoal",
+              "src": "Gerardo García Manjarrez, Mente Milionária: Construa seu próprio império"
+            }
+          ]
+        },
+        {
+          "termo": "Interesses pessoais",
+          "defs": [
+            {
+              "def": "Objetivos individuais cuja proteção e alcance justificam o uso de estratégias astutas, incluindo engano, no campo relacional cotidiano",
+              "src": "User, Conselhos Maquiavelicos"
+            }
+          ]
+        },
+        {
+          "termo": "radicalidade do cinismo",
+          "defs": [
+            {
+              "def": "Aspecto extremo da filosofia cínica investigado através da correspondência senequiana, provavelmente relacionado à ascese e renúncia material",
+              "src": "Epicteto, Portico de Epicteto - Revista 1 (c.125)"
+            }
+          ]
+        },
+        {
+          "termo": "razão perfeita",
+          "defs": [
+            {
+              "def": "Estado de pleno desenvolvimento da racionalidade humana que coincide com a virtude e realiza o fim (telos) da natureza humana",
+              "src": "Lúcio Aneu Sêneca, LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci"
+            }
+          ]
+        },
+        {
+          "termo": "Sugestão Imediata",
+          "defs": [
+            {
+              "def": "Realização completa e total da ideia ou ordem sugerida, seja diretamente ou indiretamente, conforme taxonomia de Sidis",
+              "src": "Roby, Milton H. Erickson - Formas indiretas de sugesto"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

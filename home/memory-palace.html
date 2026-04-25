@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NEXUS · Memory Palace</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<style>
+html,body { margin:0; padding:0; background:#0a0a0f; color:#e8e8ed; font-family:-apple-system,Inter,sans-serif; }
+header { padding:16px 20px; border-bottom:1px solid #2a2a35; position:sticky; top:0; background:rgba(10,10,15,0.95); backdrop-filter:blur(10px); z-index:10; }
+header h1 { margin:0; color:#d4a574; font-size:17px; }
+header .meta { color:#8b6f47; font-size:12px; margin-top:4px; }
+main { max-width:760px; margin:0 auto; padding:20px; }
+.estacao { margin:16px 0; border-radius:14px; padding:16px; cursor:pointer; transition:all 0.3s; }
+.estacao:hover { transform:translateX(4px); }
+.estacao h2 { margin:0; font-size:16px; }
+.estacao .tema { color:#aaa; font-style:italic; font-size:13px; margin-top:4px; }
+.estacao .count { color:#fff; font-size:11px; opacity:0.7; margin-top:4px; }
+.termos { margin-top:14px; display:none; padding-top:14px; border-top:1px solid rgba(255,255,255,0.15); }
+.estacao.open .termos { display:block; }
+.termo { padding:10px; margin:8px 0; background:rgba(0,0,0,0.3); border-radius:8px; }
+.termo h4 { margin:0 0 6px; font-size:14px; color:#fff; }
+.termo .def { font-size:12px; color:#ddd; line-height:1.5; }
+.termo .src { font-size:11px; color:#aaa; font-style:italic; margin-top:4px; }
+.back { display:inline-block; margin:24px 0; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏛️ NEXUS · Memory Palace</h1>
+  <div class="meta" id="meta">carregando...</div>
+</header>
+<main id="content">carregando...</main>
+<a class="back" href="./">← voltar ao hub</a>
+<script>
+(async function(){
+  const res = await fetch('./memory-palace.json?t=' + Date.now());
+  const d = await res.json();
+  document.getElementById('meta').textContent = d.estacoes.length + ' estações · ' + d.total_termos + ' termos ancorados';
+  let html = '';
+  for (const est of d.estacoes) {
+    html += '<div class="estacao" data-id="' + est.id + '" style="background:linear-gradient(135deg,' + est.cor + ', rgba(0,0,0,0.4))" onclick="this.classList.toggle(\'open\')">';
+    html += '<h2>' + est.id + '. ' + est.nome + '</h2>';
+    html += '<div class="tema">' + est.tema + '</div>';
+    html += '<div class="count">' + est.termos.length + ' termos ancorados · toque para abrir</div>';
+    html += '<div class="termos">';
+    for (const t of est.termos) {
+      html += '<div class="termo"><h4>' + t.termo + '</h4>';
+      for (const def of t.defs) {
+        html += '<div class="def">' + def.def + '</div>';
+        if (def.src) html += '<div class="src">— ' + def.src + '</div>';
+      }
+      html += '</div>';
+    }
+    if (!est.termos.length) html += '<div class="termo"><div class="def">Nenhum termo ancorado nesta estação ainda.</div></div>';
+    html += '</div></div>';
+  }
+  document.getElementById('content').innerHTML = html;
+  // Auto-abrir se URL tem #N
+  const hash = window.location.hash.replace('#','');
+  if (hash) {
+    const el = document.querySelector('.estacao[data-id="' + hash + '"]');
+    if (el) { el.classList.add('open'); el.scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+})();
+</script>
+</body>
+</html>

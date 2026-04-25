@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8"><title>NEXUS · Trilhas B01-B08</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<style>
+html,body { margin:0; padding:0; background:#0f0f14; color:#e8e8ed; font-family:-apple-system,Inter,sans-serif; line-height:1.55; }
+header { padding:16px 20px; background:rgba(15,15,20,0.95); backdrop-filter:blur(10px); border-bottom:1px solid #2a2a35; position:sticky; top:0; z-index:10; }
+header h1 { margin:0; color:#d4a574; font-size:17px; }
+header .meta { color:#888; font-size:12px; margin-top:4px; }
+main { padding:20px; max-width:720px; margin:0 auto; }
+.bloco { background:rgba(30,30,38,0.5); border-radius:12px; padding:18px; margin-bottom:16px; border-left:3px solid #d4a574; }
+.bloco-head { display:flex; justify-content:space-between; align-items:baseline; cursor:pointer; }
+.bloco-head h2 { margin:0; color:#d4a574; font-size:16px; }
+.bloco-head .count { color:#888; font-size:12px; }
+.bloco .tema { color:#8b6f47; font-style:italic; font-size:13px; margin:6px 0 12px; }
+.bloco .obras { margin-top:10px; display:none; }
+.bloco.open .obras { display:block; }
+.obra { margin:10px 0; padding:8px 0; border-top:1px solid rgba(80,80,90,0.3); }
+.obra:first-child { border-top:none; }
+.obra .titulo { font-weight:600; font-size:14px; color:#e8e8ed; }
+.obra .autor { font-size:12px; color:#8b6f47; font-style:italic; margin:2px 0; }
+.obra .tese { font-size:12px; color:#aaa; margin-top:4px; }
+.back { display:inline-block; margin:20px; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
+</style>
+</head><body>
+<header><h1>🧭 NEXUS · Trilhas B01-B08</h1><div class="meta" id="meta">carregando...</div></header>
+<main id="content">carregando trilhas...</main>
+<a class="back" href="./">← voltar ao hub</a>
+<script>
+const TRILHAS = {
+  "B01": {
+    "id": "B01",
+    "nome": "Linguagem e Metamodelo",
+    "tema": "estrutura da fala, implícitos, pressuposições, atos de fala",
+    "obras": [
+      {
+        "titulo": "O Principe no Trono de Ferro - Game of Thrones e Maquiavel",
+        "autor": "adm",
+        "ano": "s/d",
+        "tese": "A ficção de Game of Thrones opera como materialização narrativa da gramática do poder descrita por Maquiavel, demonstrando que os mecanismos de conquista e manutenção do poder político atravessam tant",
+        "file": "adm - O Principe no Trono de Ferro - Game of Thrones e Maquiavel.md"
+      },
+      {
+        "titulo": "O Inconsciente em Lacan",
+        "autor": "Autoria coletiva",
+        "ano": "s/d",
+        "tese": "O inconsciente lacaniano não é código linguístico depositado no sujeito, mas o próprio lugar da enunciação onde o sujeito se constitui ao falar.",
+        "file": "Autoria coletiva - O Inconsciente em Lacan.md"
+      },
+      {
+        "titulo": "Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia",
+        "autor": "Autoria coletiva",
+        "ano": "s/d",
+        "tese": "A Comunicação Não Violenta oferece um método estruturado em etapas para transformar conflitos através do reconhecimento de necessidades humanas universais e da distinção entre autenticidade expressiva",
+        "file": "Autoria coletiva - Respostas Sensatas para Situacoes Delicadas - CNV no dia a dia.md"
+      },
+      {
+        "titulo": "Patterns of the Hypnotic Techniques of Milton Erickson PTBR",
+        "autor": "Bandler Grinder",
+        "ano": "s/d",
+        "tese": "A eficácia hipnótica de Erickson deriva de padrões sintáticos identificáveis e replicáveis - especialmente índices referenciais ausentes, modelagem causal implícita e pressuposições encadeadas - que p",
+        "file": "Bandler Grinder - Patterns of the Hypnotic Techniques of Milton Erickson PTBR.md"
+      },
+      {
+        "titulo": "Five Stars - A Comunicacao que Torna Voce Indispensavel",
+        "autor": "Carmine Gallo",
+        "ano": "2018",
+        "tese": "________________________",
+        "file": "Carmine Gallo - Five Stars - A Comunicacao que Torna Voce Indispensavel.md"
+      },
+      {
+        "titulo": "Storytelling - O Poder da Narrativa",
+        "autor": "Carmine Gallo",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Carmine Gallo - Storytelling - O Poder da Narrativa.md"
+      },
+      {
+        "titulo": "AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA PERSUASÃO",
+        "autor": "Compilacao Erickson",
+        "ano": "s/d",
+        "tese": "A persuasão efetiva resulta da aplicação sistemática de estruturas linguísticas que obscurecem comandos diretos em convites colaborativos e pressuposições consensuais.",
+        "file": "Compilacao Erickson - AS 160 FRASES HIPNÓTICAS DE MILTON ERICKOSN - PARA PARA SE TORNAR UM MESTRE DA P.md"
+      },
+      {
+        "titulo": "as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf",
+        "autor": "Conquer",
+        "ano": "s/d",
+        "tese": "Apresentações persuasivas resultam da arquitetura intencional entre storytelling, compreensão da audiência, técnicas de atenção, visualização de dados e preparação metódica, transformando informação e",
+        "file": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md"
+      },
+      {
+        "titulo": "Como Falar em Publico e Influenciar Pessoas no Mundo dos Negocios",
+        "autor": "Dale Carnegie",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Dale Carnegie - Como Falar em Publico e Influenciar Pessoas no Mundo dos Negocios.md"
+      },
+      {
+        "titulo": "Como Fazer Amigos e Influenciar Pessoas",
+        "autor": "Dale Carnegie",
+        "ano": "1936",
+        "tese": "A capacidade de influenciar pessoas depende fundamentalmente de satisfazer o desejo universal de sentir-se importante, aplicando técnicas que valorizam genuinamente o outro em vez de impor autoridade ",
+        "file": "Dale Carnegie - Como Fazer Amigos e Influenciar Pessoas.md"
+      },
+      {
+        "titulo": "CNV - Ebook Introdutorio",
+        "autor": "Descola",
+        "ano": "s/d",
+        "tese": "A Comunicação Não Violenta opera em dois eixos interdependentes - empatia para compreender o outro e autenticidade para expressar sentimentos e necessidades de forma construtiva - visando diálogos e r",
+        "file": "Descola - CNV - Ebook Introdutorio.md"
+      },
+      {
+        "titulo": "Jacques Lacan e James Joyce: O simbólico na linguagem",
+        "autor": "Geraldino Alves Ferreira Netto",
+        "ano": "s/d",
+        "tese": "O real lacaniano, enquanto impossível de simbolizar, estrutura-se pela forclusão do Nome-do-Pai no momento da castração, demarcando diferenças irredutíveis entre os registros freudiano-imaginário e la",
+        "file": "Geraldino Alves Ferreira Netto - Jacques Lacan e James Joyce O simbólico na linguagem.md"
+      },
+      {
+        "titulo": "A arte de falar e fazer : uma teoria revolucionária para vencer a procrastinação baseada em evidência científica",
+        "autor": "Geronimo Theml",
+        "ano": "s/d",
+        "tese": "A superação da procrastinação depende primariamente da gestão adequada do sono como recurso fisiológico que sustenta a força de vontade necessária para ação.",
+        "file": "Geronimo Theml - A arte de falar e fazer  uma teoria revolucionária para vencer a procrastinação .md"
+      },
+      {
+        "titulo": "MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER",
+        "autor": "Holm, Mateo",
+        "ano": "s/d",
+        "tese": "A persuasão é uma tecnologia social operável e desmistificável, cujo domínio consciente — especialmente através da projeção estratégica de atributos positivos e controle da linguagem corporal — permit",
+        "file": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md"
+      },
+      {
+        "titulo": "Comunicacao Nao-Violenta no Trabalho",
+        "autor": "Marshall B Rosenberg",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Marshall B Rosenberg - Comunicacao Nao-Violenta no Trabalho.md"
+      },
+      {
+        "titulo": "Comunicacao Nao-Violenta resumo",
+        "autor": "Marshall B Rosenberg",
+        "ano": "s/d",
+        "tese": "A comunicação não-violenta consiste em deslocar a atribuição causal das emoções do comportamento do outro para a expressão das próprias necessidades não atendidas, substituindo julgamentos por observa",
+        "file": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md"
+      },
+      {
+        "titulo": "Comunicacao Nao-Violenta",
+        "autor": "Marshall B Rosenberg",
+        "ano": "2003",
+        "tese": "A comunicação autêntica requer observar sem julgar, identificar sentimentos e necessidades não atendidas, e formular pedidos claros em vez de exigências moralizantes",
+        "file": "Marshall B Rosenberg - Comunicacao Nao-Violenta.md"
+      },
+      {
+        "titulo": "Influencia - A Psicologia da Persuasao",
+        "autor": "Robert Cialdini",
+        "ano": "1984",
+        "tese": "A persuasão opera através de gatilhos psicológicos automáticos que contornam o julgamento racional, sendo a semelhança e a bajulação mecanismos exploráveis para produzir conformidade e aceitação.",
+        "file": "Robert Cialdini - Influencia - A Psicologia da Persuasao.md"
+      },
+      {
+        "titulo": "CNV - Guia Basico",
+        "autor": "Sérgio Luciano",
+        "ano": "s/d",
+        "tese": "A CNV opera como sistema de interrupção do piloto automático relacional, substituindo impulsos habituais por escolha consciente de conexão através de um método estruturado de percepção e linguagem",
+        "file": "Sérgio Luciano - CNV - Guia Basico.md"
+      },
+      {
+        "titulo": "Conselhos Maquiavelicos",
+        "autor": "User",
+        "ano": "s/d",
+        "tese": "O engano estratégico é ferramenta legítima e necessária para proteger interesses pessoais na vida cotidiana, desde que exercido com cálculo racional e aparência de equilíbrio ético.",
+        "file": "User - Conselhos Maquiavelicos.md"
+      },
+      {
+        "titulo": "Linguagem Hipnotica - Amostra",
+        "autor": "User",
+        "ano": "s/d",
+        "tese": "A linguagem hipnótica opera como tecnologia de acesso e reestruturação cognitiva através de padrões linguísticos específicos que contornam resistências conscientes.",
+        "file": "User - Linguagem Hipnotica - Amostra.md"
+      }
+    ]
+  },
+  "B02": {
+    "id": "B02",
+    "nome": "Emoção e Autorregulação",
+    "tema": "reconhecer, nomear, regular, integrar afetos",
+    "obras": [
+      {
+        "titulo": "Como Melhorar o Foco - Guia Definitivo",
+        "autor": "Assolosa 01",
+        "ano": "s/d",
+        "tese": "Foco é resultado de modelos mentais deliberadamente construídos que definem simultaneamente o que perseguir e o que evitar, não mera força de vontade.",
+        "file": "Assolosa 01 - Como Melhorar o Foco - Guia Definitivo.md"
+      },
+      {
+        "titulo": "Resumo do livro O Foco – Daniel Goleman",
+        "autor": "Camila Gonçalves",
+        "ano": "2025",
+        "tese": "A atenção humana opera em três dimensões direcionais distintas (interna, interpessoal e externa) cuja maestria diferenciada determina a eficácia no desempenho individual e relacional.",
+        "file": "Camila Gonçalves - Resumo do livro O Foco – Daniel Goleman.md"
+      },
+      {
+        "titulo": "Inteligencia Emocional",
+        "autor": "Daniel Goleman",
+        "ano": "1995",
+        "tese": "A tese central em 1 frase densa · o que o livro esta afirmando essencialmente",
+        "file": "Daniel Goleman - Inteligencia Emocional.md"
+      },
+      {
+        "titulo": "Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções",
+        "autor": "Daniel Goleman",
+        "ano": "s/d",
+        "tese": "Inteligência emocional é um sistema de habilidades socioemocionais maleáveis, neurologicamente fundamentado, cuja aplicação sistemática determina a excelência em liderança e desempenho organizacional.",
+        "file": "Daniel Goleman - Livro da Disciplina - Inteligência emocional gerenciando as próprias emoções.md"
+      },
+      {
+        "titulo": "CNV - Ebook Introdutorio",
+        "autor": "Descola",
+        "ano": "s/d",
+        "tese": "A Comunicação Não Violenta opera em dois eixos interdependentes - empatia para compreender o outro e autenticidade para expressar sentimentos e necessidades de forma construtiva - visando diálogos e r",
+        "file": "Descola - CNV - Ebook Introdutorio.md"
+      },
+      {
+        "titulo": "Comunicacao Nao-Violenta",
+        "autor": "Marshall B Rosenberg",
+        "ano": "2003",
+        "tese": "A comunicação autêntica requer observar sem julgar, identificar sentimentos e necessidades não atendidas, e formular pedidos claros em vez de exigências moralizantes",
+        "file": "Marshall B Rosenberg - Comunicacao Nao-Violenta.md"
+      },
+      {
+        "titulo": "Mais Esperto que o Diabo",
+        "autor": "Napoleon Hill",
+        "ano": "1938",
+        "tese": "A mesma Força universal que alimenta tanto Deus quanto o Diabo está igualmente disponível aos humanos, e compreender os mecanismos de manipulação pelo medo permite o acesso direto a esse poder sem int",
+        "file": "Napoleon Hill - Mais Esperto que o Diabo.md"
+      }
+    ]
+  },
+  "B03": {
+    "id": "B03",
+    "nome": "Contexto e Leitura Situacional",
+    "tema": "ler ambiente, cenário, sinais não-verbais, mapa vs território",
+    "obras": [
+      {
+        "titulo": "Comunicacao Nao-Violenta resumo",
+        "autor": "Marshall B Rosenberg",
+        "ano": "s/d",
+        "tese": "A comunicação não-violenta consiste em deslocar a atribuição causal das emoções do comportamento do outro para a expressão das próprias necessidades não atendidas, substituindo julgamentos por observa",
+        "file": "Marshall B Rosenberg - Comunicacao Nao-Violenta resumo.md"
+      },
+      {
+        "titulo": "Influencia - A Psicologia da Persuasao",
+        "autor": "Robert Cialdini",
+        "ano": "1984",
+        "tese": "A persuasão opera através de gatilhos psicológicos automáticos que contornam o julgamento racional, sendo a semelhança e a bajulação mecanismos exploráveis para produzir conformidade e aceitação.",
+        "file": "Robert Cialdini - Influencia - A Psicologia da Persuasao.md"
+      }
+    ]
+  },
+  "B04": {
+    "id": "B04",
+    "nome": "Poder e Estratégia",
+    "tema": "dinâmicas de poder, assimetria, influência, estratégia social",
+    "obras": [
+      {
+        "titulo": "O Principe no Trono de Ferro - Game of Thrones e Maquiavel",
+        "autor": "adm",
+        "ano": "s/d",
+        "tese": "A ficção de Game of Thrones opera como materialização narrativa da gramática do poder descrita por Maquiavel, demonstrando que os mecanismos de conquista e manutenção do poder político atravessam tant",
+        "file": "adm - O Principe no Trono de Ferro - Game of Thrones e Maquiavel.md"
+      },
+      {
+        "titulo": "Shakespeare - Sua Epoca e Sua Obra",
+        "autor": "Administrador",
+        "ano": "s/d",
+        "tese": "A obra shakespeariana pode ser sistematicamente mapeada através da classificação por gêneros dramáticos, cronologia de produção e padrões temáticos recorrentes, refletindo as demandas e popularidades ",
+        "file": "Administrador - Shakespeare - Sua Epoca e Sua Obra.md"
+      },
+      {
+        "titulo": "Storytelling - O Poder da Narrativa",
+        "autor": "Carmine Gallo",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Carmine Gallo - Storytelling - O Poder da Narrativa.md"
+      },
+      {
+        "titulo": "Como Falar em Publico e Influenciar Pessoas no Mundo dos Negocios",
+        "autor": "Dale Carnegie",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Dale Carnegie - Como Falar em Publico e Influenciar Pessoas no Mundo dos Negocios.md"
+      },
+      {
+        "titulo": "Como Fazer Amigos e Influenciar Pessoas",
+        "autor": "Dale Carnegie",
+        "ano": "1936",
+        "tese": "A capacidade de influenciar pessoas depende fundamentalmente de satisfazer o desejo universal de sentir-se importante, aplicando técnicas que valorizam genuinamente o outro em vez de impor autoridade ",
+        "file": "Dale Carnegie - Como Fazer Amigos e Influenciar Pessoas.md"
+      },
+      {
+        "titulo": "Os demônios",
+        "autor": "Dostoiévski, Fiódor",
+        "ano": "1872",
+        "tese": "O niilismo revolucionário russo opera como conspiração destrutiva total que corrói simultaneamente estruturas políticas, sociais e psicológicas através de agentes cínicos confrontando autoridades mora",
+        "file": "Dostoiévski, Fiódor - Os demônios.md"
+      },
+      {
+        "titulo": "MESTRE DA PERSUASÃO: TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER: Persuasão e linguagem corporal, uma ferramenta poderosa para CONVENCER",
+        "autor": "Holm, Mateo",
+        "ano": "s/d",
+        "tese": "A persuasão é uma tecnologia social operável e desmistificável, cujo domínio consciente — especialmente através da projeção estratégica de atributos positivos e controle da linguagem corporal — permit",
+        "file": "Holm, Mateo - MESTRE DA PERSUASÃO TÉCNICAS PARA PERSUADIR E CONSEGUIR O QUE QUISER Persuasão e.md"
+      },
+      {
+        "titulo": "(C:\\\\Users\\\\IVAN LIVINDO\\\\Documents\\\\Disciplina Doutorado 2012\\\\Saberes do Trabalho\\\\Sennet\\\\Condi\\347\\343o humana Hannah Arendt.tif)",
+        "autor": "IVAN LIVINDO",
+        "ano": "1958",
+        "tese": "________________________",
+        "file": "IVAN LIVINDO - (CUsersIVAN LIVINDODocumentsDisciplina Doutorado 2012Saberes do TrabalhoSennetCo.md"
+      },
+      {
+        "titulo": "Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática",
+        "autor": "Marcos Vinicius",
+        "ano": "s/d",
+        "tese": "A manipulação é uma ferramenta instrumental ambígua que opera através de técnicas psicológicas identificáveis, cuja aplicação transita entre eficácia operacional e questionamento ético conforme o cont",
+        "file": "Marcos Vinicius - Resumo Capítulo 1 Introdução à Manipulação na Comunicação 1.1 O que é manipulaçã.md"
+      },
+      {
+        "titulo": "Mais Esperto que o Diabo",
+        "autor": "Napoleon Hill",
+        "ano": "1938",
+        "tese": "A mesma Força universal que alimenta tanto Deus quanto o Diabo está igualmente disponível aos humanos, e compreender os mecanismos de manipulação pelo medo permite o acesso direto a esse poder sem int",
+        "file": "Napoleon Hill - Mais Esperto que o Diabo.md"
+      },
+      {
+        "titulo": "O Principe",
+        "autor": "Nicolau Maquiavel",
+        "ano": "1532",
+        "tese": "________________________",
+        "file": "Nicolau Maquiavel - O Principe.md"
+      },
+      {
+        "titulo": "As Leis da Natureza Humana",
+        "autor": "Robert Greene",
+        "ano": "2018",
+        "tese": "A natureza humana opera através de leis comportamentais identificáveis que, uma vez compreendidas, permitem navegação social consciente através da elevação da autoestima, redução da permeabilidade psí",
+        "file": "Robert Greene - As Leis da Natureza Humana.md"
+      },
+      {
+        "titulo": "A Arte da guerra",
+        "autor": "Sun Tzu",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Sun Tzu - A Arte da guerra.md"
+      },
+      {
+        "titulo": "Conselhos Maquiavelicos",
+        "autor": "User",
+        "ano": "s/d",
+        "tese": "O engano estratégico é ferramenta legítima e necessária para proteger interesses pessoais na vida cotidiana, desde que exercido com cálculo racional e aparência de equilíbrio ético.",
+        "file": "User - Conselhos Maquiavelicos.md"
+      }
+    ]
+  },
+  "B05": {
+    "id": "B05",
+    "nome": "Memória e Aprendizagem",
+    "tema": "codificação, recuperação, Palácio, espaced repetition",
+    "obras": [
+      {
+        "titulo": "as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf",
+        "autor": "Conquer",
+        "ano": "s/d",
+        "tese": "Apresentações persuasivas resultam da arquitetura intencional entre storytelling, compreensão da audiência, técnicas de atenção, visualização de dados e preparação metódica, transformando informação e",
+        "file": "Conquer - as6VaQ-1697809359447-fa4e19c8-8c25-436f-a732-88de7924e7f3.pdf.md"
+      },
+      {
+        "titulo": "Padroes das Tecnicas Hipnoticas de Milton H Erickson",
+        "autor": "Klaeber",
+        "ano": "1975",
+        "tese": "As técnicas hipnóticas de Milton Erickson podem ser decompostas em padrões linguísticos formais e generalizáveis que, ao inundar o sistema atencional com informação estruturada, suspendem o diálogo in",
+        "file": "Klaeber - Padroes das Tecnicas Hipnoticas de Milton H Erickson.md"
+      },
+      {
+        "titulo": "Resumo Capítulo 1: Introdução à Manipulação na Comunicação 1.1 O que é manipulação? 1.2 A importância da comunicação na manipulação 1.3 As 48 Leis do Poder e a Manipulação Capítulo 2: Entendendo a Manipulação Emocional 2.1 Definição de manipulação emocional 2.2 Como funciona a manipulação emocional? 2.3 Exemplos de manipulação emocional Capítulo 3: Técnicas Psicológicas Avançadas para Manipular 3.1 Identificando vulnerabilidades emocionais 3.2 Construindo conexões profundas através da manipulação 3.3 Responsabilidade ética na utilização dessas técnicas Capítulo 4: Os Perigos da Manipulação Desmedida 4.1 Consequências negativas da manipulação desmedida 4.2 Estudos de caso sobre os perigos da manipulação 4.3 Como evitar a manipulação desmedida Capítulo 5: Princípios Psicológicos por trás da Manipulação 5.1 Compreendendo os princípios psicológicos 5.2 Aplicação dos princípios de comunicação 5.3 Exercícios práticos para desenvolver habilidades de manipulação Capítulo 6: Histórias Reais e Estudos de Caso sobre Manipulações bem-sucedidas 6.1 Análise de casos reais de sucesso em diferentes contextos sociais 6.2 Análise de casos reais de sucesso em contextos profissionais 6.3 Lições aprendidas com esses casos Capítulo 7: A Arte da Manipulação em Vendas e Marketing 7.1 Técnicas de manipulação em vendas 7.2 Técnicas de manipulação em marketing 7.3 Estudos de caso sobre a manipulação na área comercial Capítulo 8: A Arte da Manipulação na Liderança 8.1 Técnicas de manipulação para líderes 8.2 O papel da ética na liderança 8.3 Estudos de caso sobre a manipulação na liderança Capítulo 9: Protegendo-se contra Táticas Manipulativas 9.1 Identificando táticas manipulativas 9.2 Estratégias para se proteger contra a manipulação 9.3 Exercícios práticos para desenvolver habilidades defensivas Capítulo 10: Autoconhecimento e Autodefesa Emocional 10.1 Importância do autoconhecimento no contexto da manipulação 10.2 Desenvolvendo autodefesa emocional 10.3 Exercícios práticos para fortalecer o autoconhecimento e a autodefesa emocional Capítulo 11: Aplicação Positiva das Habilidades de Manipulação 11.1 Usando a manipulação para fins positivos e construtivos 11.2 Responsabilidade social ao usar habilidades de manipulação 11.3 Estudos de caso sobre o uso positivo da manipulação Capítulo 12: A Manipulação na Política e na Mídia 12.1 Técnicas de manipulação política 12.2 O papel da mídia na manipulação da opinião pública 12.3 Estudos de caso sobre a manipulação política e midiática",
+        "autor": "Marcos Vinicius",
+        "ano": "s/d",
+        "tese": "A manipulação é uma ferramenta instrumental ambígua que opera através de técnicas psicológicas identificáveis, cuja aplicação transita entre eficácia operacional e questionamento ético conforme o cont",
+        "file": "Marcos Vinicius - Resumo Capítulo 1 Introdução à Manipulação na Comunicação 1.1 O que é manipulaçã.md"
+      }
+    ]
+  },
+  "B06": {
+    "id": "B06",
+    "nome": "Inconsciente e Profundidade",
+    "tema": "camadas profundas da psique, sonhos, padrões inconscientes",
+    "obras": [
+      {
+        "titulo": "Modulo 7 - Interpretacao de Sonhos",
+        "autor": "Autoria coletiva",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Autoria coletiva - Modulo 7 - Interpretacao de Sonhos.md"
+      },
+      {
+        "titulo": "O Inconsciente em Lacan",
+        "autor": "Autoria coletiva",
+        "ano": "s/d",
+        "tese": "O inconsciente lacaniano não é código linguístico depositado no sujeito, mas o próprio lugar da enunciação onde o sujeito se constitui ao falar.",
+        "file": "Autoria coletiva - O Inconsciente em Lacan.md"
+      },
+      {
+        "titulo": "Jacques Lacan e James Joyce: O simbólico na linguagem",
+        "autor": "Geraldino Alves Ferreira Netto",
+        "ano": "s/d",
+        "tese": "O real lacaniano, enquanto impossível de simbolizar, estrutura-se pela forclusão do Nome-do-Pai no momento da castração, demarcando diferenças irredutíveis entre os registros freudiano-imaginário e la",
+        "file": "Geraldino Alves Ferreira Netto - Jacques Lacan e James Joyce O simbólico na linguagem.md"
+      },
+      {
+        "titulo": "Seminario 21 - Les Non-Dupes Errent (1973-74)",
+        "autor": "Jacques Lacan",
+        "ano": "s/d",
+        "tese": "O objeto a opera simultaneamente como causa do sujeito e potência aniquiladora, produzindo respostas que vão do apagamento destrutivo ao arrebatamento amoroso quando a barreira do belo é transposta e ",
+        "file": "Jacques Lacan - Seminario 21 - Les Non-Dupes Errent (1973-74).md"
+      },
+      {
+        "titulo": "A Interpretação dos Sonhos",
+        "autor": "Sigmund Freud",
+        "ano": "1900",
+        "tese": "________________________",
+        "file": "Sigmund Freud - A Interpretação dos Sonhos.md"
+      }
+    ]
+  },
+  "B07": {
+    "id": "B07",
+    "nome": "Sabedoria Clássica e Filosofia",
+    "tema": "grandes fios filosóficos ocidentais e orientais",
+    "obras": [
+      {
+        "titulo": "Fisica - Livros I e II (-350)",
+        "autor": "Aristoteles",
+        "ano": "s/d",
+        "tese": "________________________",
+        "file": "Aristoteles - Fisica - Livros I e II (-350).md"
+      },
+      {
+        "titulo": "Cartilha - Como Usar Gatilhos Mentais",
+        "autor": "Desconhecido",
+        "ano": "s/d",
+        "tese": "Gatilhos mentais são atalhos cognitivos programados no ser humano que podem ser sistematicamente acionados através de fórmulas linguísticas específicas para aumentar conversão em marketing e vendas.",
+        "file": "Desconhecido - Cartilha - Como Usar Gatilhos Mentais.md"
+      },
+      {
+        "titulo": "Exercicios de Estoicismo",
+        "autor": "Desconhecido",
+        "ano": "s/d",
+        "tese": "O estoicismo fundamenta a vida virtuosa e feliz na aceitação racional da ordem natural imutável e na transformação da atitude interior diante das circunstâncias externas incontroláveis.",
+        "file": "Desconhecido - Exercicios de Estoicismo.md"
+      },
+      {
+        "titulo": "Portico de Epicteto - Revista 1 (c.125)",
+        "autor": "Epicteto",
+        "ano": "s/d",
+        "tese": "O estoicismo opera como sistema filosófico simultaneamente rigoroso e aplicável, cuja estrutura conceitual pode ser traduzida em instrumentos terapêuticos narrativos para enfrentamento de situações-li",
+        "file": "Epicteto - Portico de Epicteto - Revista 1 (c.125).md"
+      },
+      {
+        "titulo": "Crime e Castigo",
+        "autor": "Fiódor Dostoiévski",
+        "ano": "1866",
+        "tese": "As convenções morais entram em colapso quando confrontadas com a complexidade dos motivos humanos e a impossibilidade de pureza ética absoluta na existência concreta.",
+        "file": "Fiódor Dostoiévski - Crime e Castigo.md"
+      },
+      {
+        "titulo": "Mente Milionária: Construa seu próprio império",
+        "autor": "Gerardo García Manjarrez",
+        "ano": "s/d",
+        "tese": "A prosperidade financeira autêntica emerge do alinhamento entre habilidades naturais individuais e uma nova ordem econômica que recompensará capacidades únicas em detrimento de modelos produtivos obso",
+        "file": "Gerardo García Manjarrez - Mente Milionária Construa seu próprio império.md"
+      },
+      {
+        "titulo": "O que os psiquiatras não te contam",
+        "autor": "Juliana Belo Diniz",
+        "ano": "s/d",
+        "tese": "A psiquiatria opera sob frameworks interpretativos que obscurecem a natureza probabilística e fisiológica dos fenômenos mentais, exigindo alfabetização científica para discernimento clínico.",
+        "file": "Juliana Belo Diniz - O que os psiquiatras não te contam.md"
+      },
+      {
+        "titulo": "LÚCIO ANEU SÊNECA CARTAS SELECIONADAS: Introdução, tradução do latim e notas: Aldo Dinucci",
+        "autor": "Lúcio Aneu Sêneca",
+        "ano": "s/d",
+        "tese": "O único bem propriamente humano é a razão aperfeiçoada (virtude), pois ela constitui a natureza específica do homem e seu fim teleológico, sendo todos os demais atributos externos irrelevantes para a ",
+        "file": "Lúcio Aneu Sêneca - LÚCIO ANEU SÊNECA CARTAS SELECIONADAS Introdução, tradução do latim e notas Aldo.md"
+      },
+      {
+        "titulo": "Milton H. Erickson - Formas indiretas de sugesto",
+        "autor": "Roby",
+        "ano": "s/d",
+        "tese": "A sugestão hipnótica opera eficazmente quando estruturada indiretamente através de truísmos e dinâmicas psicológicas que impedem resistência consciente, permitindo indução de estados e respostas sem c",
+        "file": "Roby - Milton H. Erickson - Formas indiretas de sugesto.md"
+      }
+    ]
+  },
+  "B08": {
+    "id": "B08",
+    "nome": "Literatura e Espelho da Condição",
+    "tema": "narrativa que espelha e amplia a vivência humana",
+    "obras": [
+      {
+        "titulo": "Shakespeare - Sua Epoca e Sua Obra",
+        "autor": "Administrador",
+        "ano": "s/d",
+        "tese": "A obra shakespeariana pode ser sistematicamente mapeada através da classificação por gêneros dramáticos, cronologia de produção e padrões temáticos recorrentes, refletindo as demandas e popularidades ",
+        "file": "Administrador - Shakespeare - Sua Epoca e Sua Obra.md"
+      },
+      {
+        "titulo": "Os demônios",
+        "autor": "Dostoiévski, Fiódor",
+        "ano": "1872",
+        "tese": "O niilismo revolucionário russo opera como conspiração destrutiva total que corrói simultaneamente estruturas políticas, sociais e psicológicas através de agentes cínicos confrontando autoridades mora",
+        "file": "Dostoiévski, Fiódor - Os demônios.md"
+      },
+      {
+        "titulo": "Crime e Castigo",
+        "autor": "Fiódor Dostoiévski",
+        "ano": "1866",
+        "tese": "As convenções morais entram em colapso quando confrontadas com a complexidade dos motivos humanos e a impossibilidade de pureza ética absoluta na existência concreta.",
+        "file": "Fiódor Dostoiévski - Crime e Castigo.md"
+      },
+      {
+        "titulo": "O Idiota",
+        "autor": "Fiódor Dostoiévski",
+        "ano": "1868",
+        "tese": "A verdadeira força moral reside não na ausência de impulsos de fuga, mas na capacidade de reconhecê-los como pusilanimidade e escolher conscientemente o enfrentamento dos problemas inevitáveis.",
+        "file": "Fiódor Dostoiévski - O Idiota.md"
+      }
+    ]
+  }
+};
+const blocos = Object.values(TRILHAS);
+const totalObras = new Set(blocos.flatMap(b => b.obras.map(o => o.file))).size;
+document.getElementById('meta').textContent = blocos.length + ' blocos · ' + totalObras + ' obras únicas classificadas';
+const html = blocos.map(b => `
+  <div class="bloco" data-id="${b.id}">
+    <div class="bloco-head" onclick="this.parentElement.classList.toggle('open')">
+      <h2>${b.id} · ${b.nome}</h2>
+      <span class="count">${b.obras.length} obras</span>
+    </div>
+    <div class="tema">${b.tema}</div>
+    <div class="obras">
+      ${b.obras.map(o => `
+        <div class="obra">
+          <div class="titulo">${o.titulo}</div>
+          <div class="autor">${o.autor} · ${o.ano}</div>
+          ${o.tese ? `<div class="tese">"${o.tese.substring(0,180)}..."</div>` : ''}
+        </div>`).join('')}
+    </div>
+  </div>`).join('');
+document.getElementById('content').innerHTML = html;
+// Abrir o primeiro por padrão
+document.querySelector('.bloco')?.classList.add('open');
+</script>
+</body></html>

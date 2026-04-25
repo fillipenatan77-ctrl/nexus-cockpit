@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NEXUS · Arsenal de Comandos</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="manifest" href="./manifest.json">
+<style>
+html,body { margin:0; padding:0; background:#0a0a0f; color:#e8e8ed; font-family:-apple-system,Inter,sans-serif; line-height:1.55; }
+header { padding:18px 20px; background:rgba(10,10,15,0.95); backdrop-filter:blur(10px); border-bottom:2px solid #d4a574; position:sticky; top:0; z-index:10; }
+header h1 { margin:0; color:#d4a574; font-size:18px; }
+header .meta { color:#8b6f47; font-size:12px; margin-top:4px; }
+main { max-width:780px; margin:0 auto; padding:20px; }
+.busca { padding:12px 14px; background:rgba(30,30,38,0.6); border-radius:10px; margin-bottom:24px; }
+.busca input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #3a3a4a; background:#1a1a22; color:#e8e8ed; font-size:14px; box-sizing:border-box; }
+.bloco { margin:24px 0; }
+.bloco h2 { color:#d4a574; font-size:16px; margin:0 0 14px; padding-bottom:6px; border-bottom:1px solid #2a2a35; }
+.cmd { display:grid; grid-template-columns: 220px 1fr; gap:12px; padding:10px 12px; margin:6px 0; background:rgba(30,30,38,0.5); border-radius:8px; border-left:3px solid #d4a574; align-items:start; }
+.cmd-nome { font-family:Menlo,monospace; color:#d4a574; font-size:13px; font-weight:600; }
+.cmd-desc { font-size:13px; color:#ccc; }
+.cmd-desc small { color:#888; display:block; margin-top:4px; font-size:11px; }
+.exemplo { background:rgba(74,222,128,0.05); padding:6px 10px; border-radius:6px; margin-top:6px; font-family:Menlo,monospace; font-size:12px; color:#4ade80; }
+.back { display:inline-block; margin:24px 0; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
+.tip { background:rgba(212,165,116,0.08); padding:14px; border-radius:10px; margin:24px 0; font-size:13px; }
+.tip strong { color:#d4a574; }
+@media (max-width:600px) { .cmd { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>⚔ NEXUS · Arsenal</h1>
+  <div class="meta">30+ comandos WhatsApp · operacionais</div>
+</header>
+<main>
+<div class="busca"><input id="q" type="search" placeholder="filtrar comandos..."></div>
+
+<div class="tip">
+  <strong>📱 Como usar:</strong> envie qualquer comando no grupo <em>NEXUS · Biblioteca Viva</em> · resposta chega em até 5 min via polling.<br>
+  <strong>💡 Dica:</strong> texto livre também funciona — eu classifico e respondo em contexto.
+</div>
+
+<div class="bloco" data-cat="conhecimento">
+  <h2>📚 Conhecimento</h2>
+  <div class="cmd"><div class="cmd-nome">/aula &lt;obra&gt;</div><div class="cmd-desc">Dispara Aula do Dia com foco específico<small>Aula densa via Claude · capa OpenLibrary · ~30s</small><div class="exemplo">/aula Hannah Arendt</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/resumo &lt;obra&gt;</div><div class="cmd-desc">Resumo executivo · 6 seções (tese, arquitetura, 5 pontos, aplicação, tensão, sequência)<div class="exemplo">/resumo Maquiavel</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/cards &lt;obra&gt;</div><div class="cmd-desc">3 cards conceituais memorizáveis (conceito + def + imagem mental + aplicação)<div class="exemplo">/cards Goleman</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/plano</div><div class="cmd-desc">Arco da semana · 7 obras programadas · tema-fio<small>Atualizado domingo 18h</small></div></div>
+  <div class="cmd"><div class="cmd-nome">/ficha &lt;obra&gt;</div><div class="cmd-desc">Link da ficha CAIR no GitHub<div class="exemplo">/ficha Erickson</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/pergunta &lt;X&gt;</div><div class="cmd-desc">RAG · busca semântica nas 47 obras + 12.348 chunks<div class="exemplo">/pergunta o que Arendt pensa de poder?</div></div></div>
+</div>
+
+<div class="bloco" data-cat="mentalista">
+  <h2>🎩 Modo Mentalista</h2>
+  <div class="cmd"><div class="cmd-nome">/ler &lt;pessoa&gt;</div><div class="cmd-desc">Perfil + abordagem em 7 seções (leitura, 3 medos, canal, pressão, 3 abordagens, evitar, carta secreta)<div class="exemplo">/ler chefe defensivo, 50 anos, fala alto</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/treino</div><div class="cmd-desc">Técnica do dia · micro-prática Claude<small>Trigger 8h diário também</small></div></div>
+  <div class="cmd"><div class="cmd-nome">/conversa &lt;txt&gt;</div><div class="cmd-desc">Post-mortem Patrick Jane · padrões + momento decisivo + jogada alternativa<div class="exemplo">/conversa Ele: como vai... Eu: tudo bem...</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/roleplay &lt;cen&gt;</div><div class="cmd-desc">Simulação imersiva · interlocutor difícil em 1ª pessoa<div class="exemplo">/roleplay vendedor pressionando · cliente cético</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/quiz_jane</div><div class="cmd-desc">Desafio cold-reading · 3 hipóteses (A/B/C)<small>Sábado 11h automático</small></div></div>
+  <div class="cmd"><div class="cmd-nome">/resp &lt;A|B|C&gt;</div><div class="cmd-desc">Responde quiz ativo · acumula pontuação<div class="exemplo">/resp B</div></div></div>
+  <div class="cmd"><div class="cmd-nome">/pontuacao</div><div class="cmd-desc">Placar quiz cold-reading</div></div>
+</div>
+
+<div class="bloco" data-cat="vocabulario">
+  <h2>🗣️ Vocabulário Tático</h2>
+  <div class="cmd"><div class="cmd-nome">/frase &lt;categoria&gt;</div><div class="cmd-desc">3 frases curadas aleatórias · 196 total em 14 categorias<small>chefe_defensivo · vendedor_agressivo · pessoa_evasiva · romance_aproximacao · romance_conflito · shakespeare · sun_tzu · estoica · maquiavel_greene · cnv_rosenberg · erickson_hipnose · despedida_elegante · autoafirmacao · lideranca · fechamento · silencio_estrategico</small><div class="exemplo">/frase shakespeare</div></div></div>
+</div>
+
+<div class="bloco" data-cat="memoria">
+  <h2>🏛️ Memória + Palácio</h2>
+  <div class="cmd"><div class="cmd-nome">/palacio &lt;n|nome&gt;</div><div class="cmd-desc">Termos ancorados em estação · 144 termos × 18 estações<div class="exemplo">/palacio 13 · ou /palacio Tessitura</div></div></div>
+</div>
+
+<div class="bloco" data-cat="audio">
+  <h2>🎧 Áudio + Imersão</h2>
+  <div class="cmd"><div class="cmd-nome">/audio</div><div class="cmd-desc">Última aula em MP3 · link Drive<small>Voz feminina pt-BR · escutar no carro</small></div></div>
+  <div class="cmd"><div class="cmd-nome">/serie &lt;tema&gt;</div><div class="cmd-desc">Agenda 7 dias temáticos<small>greene_erickson · maquiavel_arendt · rosenberg_cialdini</small></div></div>
+</div>
+
+<div class="bloco" data-cat="registro">
+  <h2>📝 Registro + Diálogo</h2>
+  <div class="cmd"><div class="cmd-nome">/diario &lt;txt&gt;</div><div class="cmd-desc">Arquiva reflexão em Drive NEXUS/DIARIO_WHATSAPP/yyyy/<small>Aparece no digest semanal de domingo 19h</small><div class="exemplo">/diario Hoje percebi que evitei o confronto quando...</div></div></div>
+  <div class="cmd"><div class="cmd-nome">texto livre</div><div class="cmd-desc">Sem comando · Claude classifica e responde contextualmente em até 80 palavras</div></div>
+</div>
+
+<div class="bloco" data-cat="sistema">
+  <h2>⚙️ Sistema</h2>
+  <div class="cmd"><div class="cmd-nome">/menu</div><div class="cmd-desc">Lista todos os comandos</div></div>
+  <div class="cmd"><div class="cmd-nome">/status</div><div class="cmd-desc">Saúde NEXUS · ciclo PRIMORDIA · triggers · última aula/micro/debate/digest</div></div>
+</div>
+
+<div class="bloco" data-cat="rotina">
+  <h2>📅 Rotina automática (sem ação sua)</h2>
+  <div class="cmd"><div class="cmd-nome">07:00 seg-sex</div><div class="cmd-desc">Micro-dose matinal · 40-55 palavras condensadas da aula anterior</div></div>
+  <div class="cmd"><div class="cmd-nome">08:00 diário</div><div class="cmd-desc">Técnica do dia · 1 micro-prática mentalista</div></div>
+  <div class="cmd"><div class="cmd-nome">14:00 quinta</div><div class="cmd-desc">Cruzamento entre 2 autores · ensaio 400 palavras</div></div>
+  <div class="cmd"><div class="cmd-nome">18:00 diário</div><div class="cmd-desc">Aula do Dia com capa OpenLibrary · segue plano semanal</div></div>
+  <div class="cmd"><div class="cmd-nome">10:00 sábado</div><div class="cmd-desc">Quiz reflexivo · pergunta cruzando 3 últimas aulas</div></div>
+  <div class="cmd"><div class="cmd-nome">11:00 sábado</div><div class="cmd-desc">Quiz cold-reading · desafio mentalista A/B/C</div></div>
+  <div class="cmd"><div class="cmd-nome">18:00 domingo</div><div class="cmd-desc">Plano da semana · 7 obras + tema-fio Claude</div></div>
+  <div class="cmd"><div class="cmd-nome">19:00 domingo</div><div class="cmd-desc">Digest semanal · Gmail HTML rico (arco + cruzamentos + diário)</div></div>
+</div>
+
+<a class="back" href="./">← voltar ao hub</a>
+</main>
+<script>
+document.getElementById('q').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase().trim();
+  document.querySelectorAll('.cmd').forEach(c => {
+    c.style.display = !q || c.textContent.toLowerCase().includes(q) ? 'grid' : 'none';
+  });
+  document.querySelectorAll('.bloco').forEach(b => {
+    const visible = Array.from(b.querySelectorAll('.cmd')).some(c => c.style.display !== 'none');
+    b.style.display = visible ? 'block' : 'none';
+  });
+});
+</script>
+</body>
+</html>

@@ -1,166 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NEXUS · Glossário</title>
-<meta name="theme-color" content="#0F0E17">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<meta charset="utf-8">
+<title>NEXUS · Glossário Vivo</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="manifest" href="./manifest.json">
 <style>
-  :root { --ink:#0F0E17; --ink-soft:#14131E; --bone:#F0EAE4; --gold:#B8935A; --gold-soft:rgba(184,147,90,0.3); --gold-faint:rgba(184,147,90,0.15); }
-  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-  html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',sans-serif;min-height:100vh}
-  body{background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
-  .container{max-width:720px;margin:0 auto;padding:20px 16px 40px}
-
-  .nav{display:flex;gap:8px;padding:10px 0 20px;flex-wrap:wrap;justify-content:center}
-  .nav a{font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px;letter-spacing:0.1em}
-  .nav a.current{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-
-  header{text-align:center;padding:4px 4px 16px}
-  .eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
-  h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:0.04em;line-height:1}
-  .sublead{margin-top:10px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:0.7;font-style:italic;line-height:1.5;padding:0 10px}
-
-  .search{margin:20px 0 20px}
-  .search input{width:100%;padding:14px 18px;background:rgba(184,147,90,0.04);border:1px solid var(--gold-soft);border-radius:12px;color:var(--bone);font-family:Georgia,serif;font-size:15px;outline:none}
-  .search input::placeholder{color:var(--gold);opacity:0.55;font-style:italic}
-  .search input:focus{border-color:var(--gold);background:rgba(184,147,90,0.08)}
-
-  .termo{padding:16px 0;border-bottom:1px solid var(--gold-faint)}
-  .termo:last-child{border-bottom:none}
-  .termo .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-  .termo .nome{font-family:Georgia,serif;font-size:20px;color:var(--bone);font-weight:500;letter-spacing:0.01em}
-  .termo .cat{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);opacity:0.7;letter-spacing:0.18em;text-transform:uppercase;flex-shrink:0}
-  .termo .def{margin-top:8px;font-family:Georgia,serif;font-size:15px;line-height:1.55;color:var(--bone);opacity:0.85}
-  .termo .src{margin-top:6px;font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:0.6;letter-spacing:0.1em}
-
-  .empty{text-align:center;padding:30px;font-family:Georgia,serif;font-style:italic;color:var(--bone);opacity:0.5}
-
-  footer{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:0.2em;color:var(--gold);opacity:0.5;text-transform:uppercase}
+  html,body { margin:0; padding:0; background:#0f0f14; color:#e8e8ed; font-family:-apple-system,Inter,system-ui,sans-serif; line-height:1.6; }
+  header { padding: 16px 20px; border-bottom:1px solid #2a2a35; position:sticky; top:0; background:rgba(15,15,20,0.95); backdrop-filter:blur(10px); z-index:10; }
+  header h1 { margin:0; font-size:17px; color:#d4a574; }
+  header .meta { font-size:12px; color:#888; margin-top:4px; }
+  .search { padding:12px 20px; background:rgba(30,30,38,0.5); position:sticky; top:68px; z-index:9; }
+  .search input { width:100%; padding:10px 14px; border-radius:8px; border:1px solid #3a3a4a; background:#1a1a22; color:#e8e8ed; font-size:14px; box-sizing:border-box; }
+  main { padding:20px; max-width:720px; margin:0 auto; }
+  .letter { color:#d4a574; font-size:14px; font-weight:600; margin:28px 0 12px; padding:6px 0; border-bottom:1px solid #2a2a35; position:sticky; top:128px; background:rgba(15,15,20,0.95); backdrop-filter:blur(6px); }
+  .term { margin:16px 0; padding:12px 14px; background:rgba(30,30,38,0.5); border-radius:8px; border-left:3px solid #d4a574; }
+  .term h3 { margin:0 0 8px; font-size:15px; color:#e8e8ed; }
+  .term .def { font-size:13px; margin:6px 0; }
+  .term .src { font-size:11px; color:#888; font-style:italic; }
+  .back { display:inline-block; margin:20px; color:#d4a574; text-decoration:none; font-size:13px; padding:8px 14px; background:rgba(30,30,38,0.5); border-radius:6px; border:1px solid #3a3a4a; }
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="nav">
-    <a href="./">§ home</a>
-    <a href="./hoje.html">hoje</a>
-    <a href="./coaching.html">coaching</a>
-    <a href="./primeira-semana.html">primeira semana</a>
-    <a href="./iphone-setup.html">iphone</a>
-    <a href="./system-prompt.html">prompt v5</a>
-    <a href="./leitura.html">leitura</a>
-    <a href="./insights.html">insights</a>
-    <a href="./fichas.html">fichas</a>
-    <a href="./timer.html">timer</a>
-    <a href="./busca.html">busca</a>
-    <a href="./diario.html">diário</a>
-    <a href="./cards.html">cards</a>
-    <a href="./autores.html">autores</a>
-    <a href="./glossario.html" class="current">glossário</a>
-    <a href="./recomendacoes.html">recomendações</a>
-    <a href="./biblioteca.html">biblioteca</a>
-    <a href="./trilhas.html">trilhas</a>
-    <a href="./protocolos.html">protocolos</a>
-    <a href="./grafo.html">grafo</a>
-    <a href="./estacoes.html">palácio</a>
-    <a href="./stats.html">stats</a>
-    <a href="./changelog.html">changelog</a>
-    <a href="./rag-status.html">rag</a>
-    <a href="./citacao.html">citação</a>
-    <a href="./oraculo.html">oráculo</a>
-  </div>
-
-  <header>
-    <div class="eyebrow">§ glossário operacional</div>
-    <h1>40 Termos</h1>
-    <div class="sublead">Conceitos atravessando psicanálise, PNL, IE, neurociência e filosofia aplicada — definições operacionais, não acadêmicas.</div>
-  </header>
-
-  <div class="search"><input type="search" id="q" placeholder="buscar termo (ex: transferência, metaprograma, amígdala...)" autocomplete="off"></div>
-  <div id="lista"></div>
-  <footer>NEXUS v15.M · glossário operacional</footer>
-</div>
-
+<header>
+  <h1>NEXUS · Glossário Vivo</h1>
+  <div class="meta" id="meta">carregando...</div>
+</header>
+<div class="search"><input id="q" type="search" placeholder="buscar termo, autor ou obra..."></div>
+<main id="content">carregando...</main>
+<a class="back" href="./">← voltar ao hub</a>
 <script>
-const TERMOS = [
-  {n:'Ancoragem', c:'PNL', d:'Associação entre um estímulo (visual, auditivo, cinestésico) e um estado interno específico, evocável depois. Técnica-base para condicionar acesso a recursos internos.', s:'Bandler & Grinder'},
-  {n:'Amígdala', c:'Neuro', d:'Núcleo cerebral em forma de amêndoa no lobo temporal, central no processamento de medo. Responde em ~40ms, antes do córtex interpretar conscientemente o estímulo.', s:'LeDoux · Emotional Brain'},
-  {n:'Arte da Memória', c:'Memória', d:'Tradição clássica (Simônides → Cícero → Yates) que usa imagens vívidas associadas a lugares (loci) para memorizar. Base do Palácio das 18 Estações.', s:'Yates 1966'},
-  {n:'Calibração', c:'PNL', d:'Habilidade de observar micro-mudanças no interlocutor (respiração, tom, postura, coloração) para inferir estado interno. Anterior a qualquer intervenção.', s:'Bandler · Estrutura da Magia'},
-  {n:'CAIR', c:'NEXUS', d:'Método pedagógico canônico do projeto: Compreender (3 passes + tese), Ancorar (Palácio + citações), Integrar (grafo conceitual), Reativar (aplicar em situações reais).', s:'NEXUS · PEDAGOGIA'},
-  {n:'Contratransferência', c:'Psicanálise', d:'O que o analista (ou qualquer interlocutor denso) sente em presença do outro. Antes vista como defeito, Ferenczi transformou em bússola — desde que nomeada antes de reagir.', s:'Ferenczi · Diário Clínico 1932'},
-  {n:'Conversa Difícil', c:'Comunicação', d:'Protocolo em 7 passos. Reconhece que toda conversa difícil é 3 simultâneas: fato, afeto e identidade. Os erros são quase sempre responder a uma enquanto o outro opera em outra.', s:'Stone/Patton/Heen · Duhigg'},
-  {n:'Coroa Tríplice', c:'NEXUS', d:'Estação 8 do Palácio. Formulação: autoridade real é composta de 4 — sabe, ouve, decide, assume. Se falta uma, vira encenação.', s:'NEXUS · estação canônica'},
-  {n:'Crise 15min', c:'Protocolo', d:'LER (0-2min) · REGULATE (2-5) · CONDUZIR (5-10) · FECHAR (10-15). Protocolo para quando pega fogo, sem espaço para deliberação longa.', s:'NEXUS · B04 + B08'},
-  {n:'Dicotomia do Controle', c:'Estoica', d:'Distinção fundamental: o que depende de mim (juízo, resposta) vs. o que não depende (evento, outro, acaso). Se não separa, não age — só sofre.', s:'Epicteto · Enchirídion 1'},
-  {n:'Duplo Vínculo', c:'PNL/Hipnose', d:'Técnica ericksoniana: oferecer duas alternativas que ambas levam ao movimento desejado ("você prefere começar pelo braço esquerdo ou direito?"). Pressupõe sem impor.', s:'Erickson · Rosen'},
-  {n:'Estrutura Subjetiva', c:'PNL/Satir', d:'Como a pessoa processa: canais (V/A/K), preferências linguísticas, posições sob pressão (Satir: aplacador, acusador, super-razoável, irrelevante, congruente). Mapa antes de intervenção.', s:'Satir · Bandler'},
-  {n:'Fichamento', c:'NEXUS', d:'Aplicação do CAIR a uma obra específica. Resulta em markdown estruturado com 3 passes + tese + vocabulário nuclear + estação do Palácio + grafo.', s:'NEXUS · comando /fichamento'},
-  {n:'Grade 10 Pontos', c:'Protocolo', d:'Default NEXUS para qualquer situação sem protocolo nomeado. 10 camadas do fato à proteção, passando por emoção, poder, linguagem, metaprograma, formulação.', s:'NEXUS · B05+B06+B08 integrados'},
-  {n:'Holding', c:'Psicanálise', d:'Conceito de Winnicott. "Sustentar" emocional — o ambiente que permite ao bebê (e depois ao adulto em crise) existir sem desintegrar. Base da clínica do cuidado.', s:'Winnicott · O Brincar e a Realidade'},
-  {n:'Identity Trigger', c:'Comunicação', d:'Stone/Heen: a 3ª conversa dentro de toda conversa difícil — aquela que toca a auto-imagem. Quando o outro reage forte, geralmente foi essa que bateu, não a factual.', s:'Difficult Conversations'},
-  {n:'Inconsciente', c:'Psicanálise', d:'Para Freud: não é ausência de consciência — é outra consciência, estruturada, que fala por sintoma, sonho, lapso e chiste. Lacan reformulou: é estruturado como linguagem.', s:'Freud · Lacan'},
-  {n:'Investigação', c:'Protocolo', d:'Protocolo em 4 fases: LER (contexto) · ABRIR (rapport, pergunta larga) · EXTRAIR (perguntas estruturadas, global → específico) · FECHAR (sínteses, commit).', s:'NEXUS · polícia + terapia'},
-  {n:'Labeling (Nomear)', c:'Neuro/IE', d:'Nomear uma emoção em palavras reduz sua intensidade em ~50% (fMRI, Lieberman 2007). Mecanismo-chave da inteligência emocional.', s:'Lieberman 2007'},
-  {n:'Loci (Método dos Lugares)', c:'Memória', d:'Inventado por Simônides de Ceos. Associar informação a lugares mentais familiares (colunas, cômodos). Base do Palácio NEXUS.', s:'Cícero · De Oratore'},
-  {n:'Looping', c:'Comunicação', d:'Duhigg (2024): antes da sua réplica, resumir em 1-2 frases o que o interlocutor disse e perguntar se captou certo. Técnica #1 do Supercommunicators.', s:'Supercommunicators'},
-  {n:'Mapa de Influência', c:'Protocolo', d:'Ficha de 8 campos sobre pessoa-chave: metaprograma · Cialdini · V/A/K · Satir · gatilhos · formulação eficaz × queimada · estratégia por cenário · observações.', s:'NEXUS · comando /mapa'},
-  {n:'Marcador Somático', c:'Neuro', d:'Damásio: sinais corporais (vísceras, pele, tônus) associados a experiências passadas que "pré-decidem" — antes da razão. Sem eles, decidimos pior.', s:'Damásio · Erro de Descartes'},
-  {n:'Matching', c:'PNL/Comm', d:'Espelhar sutilmente postura, ritmo de fala, palavra-chave do interlocutor. Gera rapport inconsciente. Não confundir com imitação (queima).', s:'PNL + Duhigg 2024'},
-  {n:'Metaprograma', c:'PNL', d:'Filtro mental estável: direção (rumo/evitar), tamanho (global/detalhe), referência (interna/externa), tempo (passado/presente/futuro). Mapear antes de comunicar.', s:'O\'Connor · Knight'},
-  {n:'Motivacional Interviewing', c:'Feedback', d:'Miller/Rollnick: escutar ambivalência como informação, não como resistência. Quando alguém diz "sim, mas", o "mas" é onde está a verdade.', s:'Miller · Rollnick'},
-  {n:'Palácio (18 Estações)', c:'NEXUS', d:'Aplicação do método de loci ao ciclo PRIMORDIA. 18 lugares mentais canônicos, cada um com duração de ~15 dias, através dos quais o projeto se organiza.', s:'Yates → NEXUS'},
-  {n:'PRIMORDIA', c:'NEXUS', d:'Ciclo operacional do projeto. 272 dias iniciados em 2026-04-02, terminando 2026-12-29. 18 estações do Palácio × ~15 dias cada.', s:'NEXUS'},
-  {n:'Protocolo 10 (Proteção)', c:'NEXUS', d:'Ponto 10 da Grade. Toda formulação deve preservar simultaneamente: imagem institucional + legalidade estrita + dignidade do outro + eficácia. Se falha em 1, recomeça.', s:'NEXUS · regra inviolável'},
-  {n:'Rapport', c:'PNL/Comm', d:'Sintonia de frequência com o interlocutor. Resulta de matching + validação + ritmo compartilhado. Não é manipulação — é condição para comunicação real.', s:'Bandler · Duhigg'},
-  {n:'Reciprocidade', c:'Persuasão', d:'Cialdini: o favor não pedido cria dívida maior que o favor pedido. Mecanismo de influência mais antigo e mais subestimado.', s:'Cialdini · Influence 2021'},
-  {n:'Reframing', c:'PNL', d:'Mudança do quadro de significado de um comportamento sem mudar o comportamento. Todo comportamento tem intenção positiva — pra si mesmo. O reframing o revela.', s:'Bandler/Grinder · Reframing'},
-  {n:'Sinthoma', c:'Psicanálise', d:'Lacan, Seminário 23. O sintoma que te faz sofrer também te sustenta — é o que te amarra ao mundo. Antes de destruir, entender sua função estruturante.', s:'Lacan · Seminário 23'},
-  {n:'Sistema 1 / Sistema 2', c:'Julgamento', d:'Kahneman: dois modos mentais. S1 é rápido, automático, intuitivo. S2 é lento, deliberado, custoso. A maioria dos erros é S1 agindo disfarçado de S2.', s:'Thinking Fast and Slow'},
-  {n:'Supercommunicator', c:'Comunicação', d:'Duhigg: pessoa que identifica em tempo real qual das 3 conversas está acontecendo (prática, emocional, social) e responde à conversa certa.', s:'Duhigg 2024'},
-  {n:'Terceira Via', c:'NEXUS', d:'Entre "depois decido" (adiamento) e "decido mal agora" (reação), a 3ª opção: decidir QUANDO decidir. Aplicável a qualquer caso sem prazo externo real.', s:'NEXUS · próprio'},
-  {n:'Transferência', c:'Psicanálise', d:'Freud: o paciente atualiza com o analista padrões relacionais antigos. Na clínica é instrumento; na vida institucional, é sinal de padrão que pede análise.', s:'Freud'},
-  {n:'Triádica (Escuta)', c:'Comunicação', d:'Escuta em 3 níveis simultâneos: conteúdo (o que diz) · processo (como diz) · meta (o que diz ao dizer isso). Treina-se.', s:'Stone/Heen'},
-  {n:'V/A/K', c:'PNL', d:'Canais representacionais preferenciais: Visual, Auditivo, Cinestésico. Identificar o canal dominante do interlocutor muda radicalmente a eficácia da formulação.', s:'Bandler · Satir'},
-  {n:'Zona Proximal', c:'Pedagogia', d:'Vygotsky: zona entre o que se faz sozinho e o que se faz com mediação. O aprendizado real acontece na zona proximal — nem no banal, nem no inalcançável.', s:'Vygotsky'},
-];
+(async function(){
+  try {
+    const res = await fetch('https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/00_HUB/GLOSSARIO.md?t='+Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const md = await res.text();
 
-function render(filter) {
-  filter = (filter || '').toLowerCase().trim();
-  const container = document.getElementById('lista');
-  container.innerHTML = '';
-  const ordered = [...TERMOS].sort((a, b) => a.n.localeCompare(b.n, 'pt-BR'));
-  const filtered = ordered.filter(t => {
-    if (!filter) return true;
-    return t.n.toLowerCase().includes(filter) || t.d.toLowerCase().includes(filter) || t.c.toLowerCase().includes(filter) || (t.s || '').toLowerCase().includes(filter);
-  });
-  if (filtered.length === 0) {
-    container.innerHTML = '<div class="empty">nada encontrado para "' + escapeHtml(filter) + '"</div>';
-    return;
+    // Parser simples do markdown
+    const blocks = md.split(/\n## /).slice(1);
+    const letters = {};
+    let totalTerms = 0;
+    for (const block of blocks) {
+      const [letterLine, ...rest] = block.split('\n');
+      const L = letterLine.trim();
+      if (!/^[A-Z#]$/.test(L)) continue;
+      const body = rest.join('\n');
+      const termBlocks = body.split(/\n### /).slice(1);
+      letters[L] = termBlocks.map(tb => {
+        const [termLine, ...termRest] = tb.split('\n');
+        const termo = termLine.trim();
+        totalTerms++;
+        const defs = [];
+        const lines = termRest.join('\n').split('\n');
+        for (let i = 0; i < lines.length; i++) {
+          const m = lines[i].match(/^- \*\*(.+?)\*\*\s*$/);
+          if (m) {
+            const defText = m[1];
+            const srcMatch = (lines[i+1] || '').match(/^\s*\*— (.+)\*/);
+            defs.push({ def: defText, src: srcMatch ? srcMatch[1] : null });
+          }
+        }
+        return { termo, defs };
+      });
+    }
+
+    document.getElementById('meta').textContent = totalTerms + ' termos · ' + Object.keys(letters).length + ' letras · atualizado em tempo real';
+
+    function render(filter) {
+      filter = (filter || '').toLowerCase().trim();
+      const html = [];
+      for (const L of Object.keys(letters).sort()) {
+        const filtered = letters[L].filter(t => !filter ||
+          t.termo.toLowerCase().includes(filter) ||
+          t.defs.some(d => d.def.toLowerCase().includes(filter) || (d.src || '').toLowerCase().includes(filter))
+        );
+        if (!filtered.length) continue;
+        html.push('<div class="letter">' + L + '</div>');
+        for (const t of filtered) {
+          html.push('<div class="term"><h3>' + t.termo + '</h3>');
+          for (const d of t.defs) {
+            html.push('<div class="def">' + d.def + '</div>');
+            if (d.src) html.push('<div class="src">— ' + d.src + '</div>');
+          }
+          html.push('</div>');
+        }
+      }
+      document.getElementById('content').innerHTML = html.join('') || '<em style="color:#888;">Nenhum resultado.</em>';
+    }
+    render('');
+    document.getElementById('q').addEventListener('input', e => render(e.target.value));
+  } catch (e) {
+    document.getElementById('content').innerHTML = '<em style="color:#ef4444;">Erro ao carregar: ' + e.message + '</em>';
   }
-  filtered.forEach(t => {
-    const div = document.createElement('div');
-    div.className = 'termo';
-    div.innerHTML = `
-      <div class="head">
-        <div class="nome">${escapeHtml(t.n)}</div>
-        <div class="cat">§ ${escapeHtml(t.c)}</div>
-      </div>
-      <div class="def">${escapeHtml(t.d)}</div>
-      ${t.s ? '<div class="src">— ' + escapeHtml(t.s) + '</div>' : ''}
-    `;
-    container.appendChild(div);
-  });
-}
-function escapeHtml(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-document.getElementById('q').addEventListener('input', (e) => render(e.target.value));
-render();
+})();
 </script>
 </body>
 </html>
