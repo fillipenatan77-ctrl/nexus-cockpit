@@ -333,11 +333,27 @@
       </div>
     </a>
 
+    <a class="tile primary" id="tile-hoje" href="./integrais.html">
+      <div class="glyph">🌅</div>
+      <div>
+        <div class="title" id="hoje-title">Sugestão de Hoje</div>
+        <div class="sub" id="hoje-sub">carregando obra do dia…</div>
+      </div>
+    </a>
+
     <a class="tile primary" href="./integrais.html">
       <div class="glyph">📖</div>
       <div>
         <div class="title">Acervo Integral</div>
         <div class="sub">16 fichas · 16 cards SVG · clicáveis</div>
+      </div>
+    </a>
+
+    <a class="tile primary" href="../c/">
+      <div class="glyph">🎨</div>
+      <div>
+        <div class="title">Cards Visuais</div>
+        <div class="sub">16 capas · story format · download</div>
       </div>
     </a>
 
@@ -744,6 +760,24 @@ if ('serviceWorker' in navigator) {
 
 loadSnapshot();
 setInterval(loadSnapshot, 5 * 60 * 1000); // refresh a cada 5min
+
+// v15.BG · Sugestão de hoje · obra do dia da rotação 7h
+async function loadSugestaoHoje() {
+  try {
+    const r = await fetch(EXEC + '?action=sugestao_today', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.ok && d.obra) {
+      const t = document.getElementById('hoje-title');
+      const s = document.getElementById('hoje-sub');
+      const a = document.getElementById('tile-hoje');
+      if (t) t.textContent = d.obra.titulo;
+      if (s) s.textContent = d.obra.autor + ' · lente ' + d.lente.split('·')[0].trim();
+      if (a) a.href = d.obra.url_card;
+    }
+  } catch (e) { /* offline · mantém placeholder */ }
+}
+loadSugestaoHoje();
+setInterval(loadSugestaoHoje, 30 * 60 * 1000); // refresh 30min
 
 // Novidades · leitura dinâmica do novidades.json
 function toggleNovidades() {

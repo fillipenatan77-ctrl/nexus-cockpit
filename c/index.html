@@ -3,52 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>NEXUS · Card</title>
+<title>NEXUS · Cards</title>
 <meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <style>
-:root{--ink:#0F0E17;--bone:#F0EAE4;--gold:#B8935A}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center}
-.box{max-width:500px}
-h1{font-family:Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;font-weight:400}
-p{font-size:15px;opacity:.75;margin-bottom:18px;line-height:1.5}
-.svg-preview{margin:20px auto;max-width:280px;border-radius:14px;overflow:hidden;box-shadow:0 0 40px rgba(184,147,90,.25)}
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5;overscroll-behavior:none}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 40px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 18px}
+
+/* Modo single (quando há ?o= ou path /c/<slug>) */
+.single{max-width:540px;margin:40px auto;padding:30px 20px;text-align:center}
+.single h1{font-family:Georgia,serif;font-size:30px;color:var(--gold);margin-bottom:14px;font-weight:400}
+.svg-preview{margin:24px auto;max-width:340px;border-radius:14px;overflow:hidden;box-shadow:0 0 60px rgba(184,147,90,.3)}
 .svg-preview svg{width:100%;height:auto;display:block}
-.btn{display:inline-block;padding:14px 22px;margin:6px;background:rgba(184,147,90,.15);border:1px solid rgba(184,147,90,.4);border-radius:10px;color:var(--gold);text-decoration:none;font-size:14px;font-family:'SF Mono',monospace;letter-spacing:.05em;cursor:pointer}
+.btn{display:inline-block;padding:14px 24px;margin:6px;background:rgba(184,147,90,.15);border:1px solid rgba(184,147,90,.4);border-radius:10px;color:var(--gold);text-decoration:none;font-size:13px;font-family:'SF Mono',monospace;letter-spacing:.05em;cursor:pointer}
+.btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600}
 .btn:active{transform:scale(.96)}
-.lista{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px;text-align:left;font-size:12px}
-.lista a{color:var(--bone);opacity:.7;text-decoration:none;padding:6px 10px;border-radius:6px;background:rgba(184,147,90,.05)}
-.lista a:active{background:rgba(184,147,90,.15);opacity:1}
-.foot{margin-top:24px;font-size:11px;opacity:.4;font-family:'SF Mono',monospace;letter-spacing:.15em}
+
+/* Modo grid (quando lista) */
+header{padding:8px 4px 22px;text-align:center}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none}
+h1.main{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:.02em;color:var(--bone);margin-top:6px;line-height:1.1}
+.tag{display:inline-block;margin-top:10px;padding:5px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.sub{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.55;max-width:540px;margin-left:auto;margin-right:auto}
+
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}
+@media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:920px){.grid{grid-template-columns:repeat(4,1fr)}}
+.tile{display:block;background:var(--ink-soft);border:1px solid var(--gold-faint);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--bone);transition:.18s;aspect-ratio:1080/1350;position:relative}
+.tile:active{transform:scale(.98);border-color:var(--gold);box-shadow:0 0 24px rgba(184,147,90,.2)}
+.tile svg{width:100%;height:auto;display:block}
+.tile .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--gold);opacity:.4;font-size:11px;font-family:'SF Mono',monospace;letter-spacing:.1em}
+.tile .label{position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(to top,rgba(0,0,0,.85),transparent);color:var(--bone);font-size:11px;font-family:'SF Mono',monospace;letter-spacing:.1em;text-align:center;text-transform:uppercase}
+
+.foot{margin-top:32px;text-align:center;font-size:11px;opacity:.4;font-family:'SF Mono',monospace;letter-spacing:.15em}
+.foot a{color:var(--gold);text-decoration:none;margin:0 8px}
 </style>
 </head>
 <body>
-<div class="box">
-  <h1 id="titulo">NEXUS · Card</h1>
-  <div id="content"></div>
-</div>
+<div id="root"></div>
 
 <script>
 const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
 
-// Mapa slug → arquivo (mesmo de integrais.html)
 const MAP = {
-  "freud-sonhos":{f:"Freud_Interpretacao_Sonhos_menor",t:"Sonhos · Freud",aliases:["freud","sonhos","interpretacao"]},
-  "neves-freud":{f:"NevesDaSilva_Citacoes_Pensamentos_Freud",t:"Citações de Freud · Neves",aliases:["neves","citacoes-freud"]},
-  "suy-lacan":{f:"Suy_Amor_e_Desejo_Dissertacao_UFPR",t:"Amor e Desejo · Lacan/Suy",aliases:["suy","lacan","amor-desejo"]},
-  "bandler-padroes":{f:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)",t:"Padrões Hipnóticos · Bandler",aliases:["bandler","padroes","grinder","erickson-padroes"]},
-  "bandler-magia":{f:"Bandler_Grinder_Estrutura_da_Magia_Vol_II",t:"Estrutura da Magia II",aliases:["magia","estrutura"]},
-  "bandler-reframing":{f:"Bandler_Grinder_Reframing",t:"Reframing · Bandler",aliases:["reframing","reenquadramento"]},
-  "rosen-erickson":{f:"Rosen_My_Voice_Will_Go_With_You",t:"My Voice · Rosen/Erickson",aliases:["rosen","my-voice","milton"]},
-  "hamlet":{f:"Shakespeare_Hamlet_ptBR",t:"Hamlet · Shakespeare",aliases:["shakespeare","hamlet-shakespeare"]},
-  "romeu-julieta":{f:"Shakespeare_Romeu_e_Julieta_ptBR",t:"Romeu e Julieta",aliases:["romeu","julieta"]},
-  "rei-lear":{f:"Shakespeare_Rei_Lear_ptBR",t:"Rei Lear · Shakespeare",aliases:["lear"]},
-  "allen-persuasao":{f:"Allen_Tecnicas_Proibidas_Persuasao",t:"Persuasão Proibida · Allen",aliases:["allen","persuasao","persuasao-proibida"]},
-  "maquiavel-got":{f:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel",t:"Príncipe no Trono de Ferro",aliases:["maquiavel","principe","got","trono-ferro"]},
-  "goleman-ie":{f:"Goleman_Inteligencia_Emocional",t:"Inteligência Emocional · Goleman",aliases:["goleman","inteligencia-emocional","ie"]},
-  "obrien-memoria-v1":{f:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB",t:"Memória Perfeita · O'Brien v1",aliases:["obrien","memoria","perfect-memory","obrien-v1"]},
-  "obrien-memoria-v2":{f:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB",t:"Memória Perfeita · O'Brien v2",aliases:["obrien-v2"]},
-  "obrien-memoria-v3":{f:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB",t:"Memória Perfeita · O'Brien v3",aliases:["obrien-v3"]}
+  "freud-sonhos":{f:"Freud_Interpretacao_Sonhos_menor",t:"Sonhos",a:"Freud · 1900",aliases:["freud","sonhos","interpretacao"]},
+  "neves-freud":{f:"NevesDaSilva_Citacoes_Pensamentos_Freud",t:"Citações Freud",a:"Neves · s/d",aliases:["neves","citacoes-freud"]},
+  "suy-lacan":{f:"Suy_Amor_e_Desejo_Dissertacao_UFPR",t:"Amor e Desejo",a:"Suy/Lacan",aliases:["suy","lacan","amor-desejo"]},
+  "bandler-padroes":{f:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)",t:"Padrões Hipnóticos",a:"Bandler · 1975",aliases:["bandler","padroes","grinder","erickson-padroes"]},
+  "bandler-magia":{f:"Bandler_Grinder_Estrutura_da_Magia_Vol_II",t:"Estrutura da Magia II",a:"Bandler · 1976",aliases:["magia","estrutura"]},
+  "bandler-reframing":{f:"Bandler_Grinder_Reframing",t:"Reframing",a:"Bandler · 1982",aliases:["reframing","reenquadramento"]},
+  "rosen-erickson":{f:"Rosen_My_Voice_Will_Go_With_You",t:"My Voice",a:"Rosen · 1982",aliases:["rosen","my-voice","milton"]},
+  "hamlet":{f:"Shakespeare_Hamlet_ptBR",t:"Hamlet",a:"Shakespeare",aliases:["shakespeare","hamlet-shakespeare"]},
+  "romeu-julieta":{f:"Shakespeare_Romeu_e_Julieta_ptBR",t:"Romeu e Julieta",a:"Shakespeare",aliases:["romeu","julieta"]},
+  "rei-lear":{f:"Shakespeare_Rei_Lear_ptBR",t:"Rei Lear",a:"Shakespeare",aliases:["lear"]},
+  "allen-persuasao":{f:"Allen_Tecnicas_Proibidas_Persuasao",t:"Persuasão Proibida",a:"Allen",aliases:["allen","persuasao","persuasao-proibida"]},
+  "maquiavel-got":{f:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel",t:"Príncipe no Trono",a:"Maquiavel × GoT",aliases:["maquiavel","principe","got","trono-ferro"]},
+  "goleman-ie":{f:"Goleman_Inteligencia_Emocional",t:"Inteligência Emocional",a:"Goleman · 1995",aliases:["goleman","inteligencia-emocional","ie"]},
+  "obrien-memoria-v1":{f:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB",t:"Memória Perfeita v1",a:"O'Brien · 1993",aliases:["obrien","memoria","perfect-memory","obrien-v1"]},
+  "obrien-memoria-v2":{f:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB",t:"Memória Perfeita v2",a:"O'Brien · 1993",aliases:["obrien-v2"]},
+  "obrien-memoria-v3":{f:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB",t:"Memória Perfeita v3",a:"O'Brien · 1993",aliases:["obrien-v3"]}
 };
 
 function resolveSlug(input) {
@@ -58,7 +74,6 @@ function resolveSlug(input) {
   for (const [slug, info] of Object.entries(MAP)) {
     if (info.aliases && info.aliases.includes(clean)) return slug;
   }
-  // partial match
   for (const slug of Object.keys(MAP)) {
     if (slug.includes(clean) || clean.includes(slug)) return slug;
   }
@@ -67,47 +82,92 @@ function resolveSlug(input) {
 
 async function abrir(slug) {
   const info = MAP[slug];
-  if (!info) return false;
   const fileEnc = encodeURIComponent(info.f);
   const svgUrl = `${GH_RAW}/cards/${fileEnc}.svg`;
-  const fichaUrl = `${GH_RAW}/fichas/${fileEnc}.md`;
-
-  document.getElementById('titulo').textContent = info.t;
-  document.getElementById('content').innerHTML = '<p>carregando card…</p>';
-
+  document.getElementById('root').innerHTML = `
+    <div class="single">
+      <a href="./" class="crumb">← todos os cards</a>
+      <h1>${info.t}</h1>
+      <div class="tag">${info.a}</div>
+      <div class="svg-preview" id="preview"><div class="ph">carregando…</div></div>
+      <div>
+        <a class="btn primary" href="${svgUrl}" download="${info.f}.svg">⬇ baixar SVG</a>
+        <a class="btn" href="../home/integrais.html#${slug}">📖 ficha completa</a>
+      </div>
+      <div class="foot">v15.BG · NEXUS · <a href="../home/">cockpit</a></div>
+    </div>
+  `;
   try {
     const r = await fetch(svgUrl);
     if (!r.ok) throw 0;
     const svg = await r.text();
-    document.getElementById('content').innerHTML = `
-      <div class="svg-preview">${svg}</div>
-      <a class="btn" href="${svgUrl}" download="${info.f}.svg">⬇ baixar SVG</a>
-      <a class="btn" href="../home/integrais.html#${slug}">📖 ver ficha completa</a>
-      <div class="foot">card · 1080×1350 · NEXUS v15.BE</div>
-    `;
+    document.getElementById('preview').innerHTML = svg;
   } catch (e) {
-    document.getElementById('content').innerHTML = `
-      <p>Erro ao carregar o card. Tente direto pelo GitHub.</p>
-      <a class="btn" href="${svgUrl}">abrir SVG no GitHub</a>
-      <a class="btn" href="../home/integrais.html#${slug}">ficha completa</a>
-    `;
+    document.getElementById('preview').innerHTML = '<div class="ph">erro ao carregar</div>';
   }
-  return true;
 }
 
 function listar() {
-  const html = Object.entries(MAP).map(([slug, info]) =>
-    `<a href="./${slug}/">${info.t}</a>`
-  ).join('');
-  document.getElementById('titulo').textContent = "🎨 Cards NEXUS";
-  document.getElementById('content').innerHTML = `
-    <p>Acervo integral · 16 cards SVG visuais story format.<br>Use: <code>nexuscaldeira.com/c/&lt;slug&gt;/</code> ou clique abaixo.</p>
-    <div class="lista">${html}</div>
-    <div class="foot">v15.BE · 16 obras · 🟢 RAG</div>
+  const tilesHtml = Object.entries(MAP).map(([slug, info]) => `
+    <a class="tile" href="./${slug}/" id="tile-${slug}">
+      <div class="ph">carregando…</div>
+      <div class="label">${info.t}</div>
+    </a>
+  `).join('');
+
+  document.getElementById('root').innerHTML = `
+    <div class="wrap">
+      <header>
+        <a href="../home/" class="crumb">← Cockpit</a>
+        <h1 class="main">Cards NEXUS</h1>
+        <div class="tag">16 obras integrais · story format 1080×1350</div>
+        <p class="sub">Capas visuais com citação literal · prontas para WhatsApp/Stories · clique em qualquer uma para download direto.</p>
+      </header>
+      <div class="grid">${tilesHtml}</div>
+      <div class="foot">
+        v15.BG · 16 cards · 🟢 acervo NEXUS · <a href="../home/integrais.html">galeria de fichas</a> · <a href="../home/">hub</a>
+      </div>
+    </div>
   `;
+
+  // Lazy load SVGs com IntersectionObserver
+  const loadSvg = async (slug) => {
+    const tile = document.getElementById(`tile-${slug}`);
+    if (!tile || tile.dataset.loaded) return;
+    tile.dataset.loaded = '1';
+    const fileEnc = encodeURIComponent(MAP[slug].f);
+    try {
+      const r = await fetch(`${GH_RAW}/cards/${fileEnc}.svg`);
+      if (r.ok) {
+        const svg = await r.text();
+        const ph = tile.querySelector('.ph');
+        if (ph) ph.remove();
+        tile.insertAdjacentHTML('afterbegin', svg);
+      }
+    } catch (e) {}
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const slug = entry.target.id.replace('tile-', '');
+          loadSvg(slug);
+          io.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: '200px' });
+    Object.keys(MAP).forEach(slug => {
+      const el = document.getElementById(`tile-${slug}`);
+      if (el) io.observe(el);
+    });
+  } else {
+    // Fallback eager load
+    Object.keys(MAP).forEach(loadSvg);
+  }
 }
 
-// Resolver slug do path (/c/hamlet/) ou query (?o=hamlet) ou hash (#hamlet)
+// Resolver: path → query → hash
 const path = window.location.pathname.replace(/^\/c\/?/,'').replace(/\/$/,'').replace(/\.html$/,'');
 const params = new URLSearchParams(window.location.search);
 const fromQuery = params.get('o') || params.get('obra') || params.get('slug');
@@ -115,11 +175,7 @@ const fromHash = window.location.hash.replace(/^#/,'');
 const input = path || fromQuery || fromHash;
 
 const slug = resolveSlug(input);
-if (slug) {
-  abrir(slug);
-} else {
-  listar();
-}
+if (slug) abrir(slug); else listar();
 </script>
 </body>
 </html>
