@@ -12,15 +12,21 @@
   "endpoints": {
     "hub_publico": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
     "apps_script": "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec",
-    "rag_url": "https://north-geometry-mae-restrictions.trycloudflare.com",
-    "rag_endpoints": ["/health", "/stats", "/ask", "/citacao", "/embed"],
+    "rag_endpoints": [
+      "/health",
+      "/stats",
+      "/ask",
+      "/citacao",
+      "/embed"
+    ],
     "github": {
       "privado": "https://github.com/fillipenatan77-ctrl/NEXUS",
       "publico": "https://github.com/fillipenatan77-ctrl/nexus-cockpit"
     },
     "drive_backup": "G:\\Meu Drive\\NEXUS\\",
     "novidades_json": "./novidades.json",
-    "primordia_ics": "./nexus-primordia.ics"
+    "primordia_ics": "./nexus-primordia.ics",
+    "rag_url": "https://moms-duo-symbol-identification.trycloudflare.com"
   },
   "rag": {
     "collection": "nexus_acervo_v2",
@@ -44,5 +50,6 @@
     "Zona de cautela subjetiva · 4 vetores (v15.AR)",
     "Bandeira de profundidade 🟢🟡🔴 (v15.AR)",
     "PowerShell 7 padrão · Git Bash p/ background (v15.AR)"
-  ]
+  ],
+  "rag_url_updated_at": "2026-04-25T09:22:41.5513867-03:00"
 }
