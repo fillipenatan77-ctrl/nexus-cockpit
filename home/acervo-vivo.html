@@ -88,7 +88,12 @@ h1{font-size:20px;margin:0;font-weight:600}
 </div>
 
 <script>
-const RAG = (window.NEXUS_RAG_URL || "https://dolls-studies-wear-much.trycloudflare.com");
+// URL puxada de health.json (atualizada pelo watchdog) com fallback hardcoded
+const RAG_FALLBACK = "https://north-geometry-mae-restrictions.trycloudflare.com";
+let RAG = window.NEXUS_RAG_URL || localStorage.getItem("nexus_rag_url") || RAG_FALLBACK;
+fetch("./health.json", {cache:"no-store"}).then(r=>r.json()).then(j=>{
+  if(j && j.rag_url){ RAG = j.rag_url; localStorage.setItem("nexus_rag_url", RAG); }
+}).catch(()=>{});
 
 async function loadHealth(){
   try{
