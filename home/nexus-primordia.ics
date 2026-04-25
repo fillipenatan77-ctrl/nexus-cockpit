@@ -693,4 +693,18 @@ DTEND;VALUE=DATE:20261226
 SUMMARY:❦ Sexta · lente Memorização (Yates)
 DESCRIPTION:Revisar o Palácio · colocar 1 conceito novo em 1 das 18 estações · fixar com imagem vívida. Abrir: hub NEXUS aba Palácio.
 END:VEVENT
+BEGIN:VEVENT
+UID:nexus-sugestao-diaria@nexus
+SUMMARY:Sugestao NEXUS - obra do dia
+DESCRIPTION:WhatsApp chegou as 7h00 com a obra escolhida pela rotacao por lente. Detalhes: nexuscaldeira.com/home/sugestao.html - card: nexuscaldeira.com/c/ - ficha: nexuscaldeira.com/home/integrais.html
+URL:https://nexuscaldeira.com/home/sugestao.html
+DTSTART;TZID=America/Sao_Paulo:20260426T070000
+DTEND;TZID=America/Sao_Paulo:20260426T070500
+RRULE:FREQ=DAILY;UNTIL=20261229T235959Z
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Sugestao NEXUS no WhatsApp - obra do dia + citacao
+TRIGGER:-PT5M
+END:VALARM
+END:VEVENT
 END:VCALENDAR
