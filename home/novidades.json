@@ -1,9 +1,18 @@
 {
-  "versao_atual": "v15.BJ",
-  "ultima_atualizacao": "2026-04-25T19:25:00-03:00",
+  "versao_atual": "v15.BO",
+  "ultima_atualizacao": "2026-04-25T19:50:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BO",
+      "data": "2026-04-25",
+      "tag": "5-frentes",
+      "titulo": "🎯 5 frentes simultâneas · stats + deep-links + agenda + /proximos + EasyOCR",
+      "resumo": "BK: /home/stats.html dinâmico (ciclo + KPIs RAG/triggers/pool/obras + histórico de Sugestões NEXUS via /sugestao_log + lentes da semana + saúde infra). BL: 5 deep-links na raiz nexuscaldeira.com/sugestao, /cards, /integrais, /acervo, /hoje-obra (URLs curtas). BM: tile primary 'Próximos 7 dias' + /home/agenda.html mostrando 7 obras programadas com data/lente/autor/link card. BN: Apps Script @166 · função v15be_proximosNDias_(7) + rota ?action=sugestao_proximos&n=7 + WhatsApp /proximos lista 7 dias futuros. BO: ocr_easyocr_shakespeare.py com EasyOCR pure-Python (suporta português sem tessdata) · install em background.",
+      "destaque": true,
+      "hook_cortex": "Use /proximos no WhatsApp para ver as 7 obras da semana · /home/stats.html é o painel vivo · /home/agenda.html mostra timeline visual · URLs curtas /sugestao /cards /integrais funcionam direto."
+    },
     {
       "v": "v15.BJ",
       "data": "2026-04-25",
