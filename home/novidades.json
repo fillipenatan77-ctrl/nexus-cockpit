@@ -1,9 +1,18 @@
 {
-  "versao_atual": "v15.BD",
-  "ultima_atualizacao": "2026-04-25T17:30:00-03:00",
+  "versao_atual": "v15.BE",
+  "ultima_atualizacao": "2026-04-25T18:05:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BE",
+      "data": "2026-04-25",
+      "tag": "ios-deep-integration",
+      "titulo": "🔔 4 frentes · WhatsApp 7h · shortlinks /c/<obra>/ · anchor links · push PWA",
+      "resumo": "Apps Script @159 · trigger 7h novo (v15be_sugestaoDoDia) · 9/20 triggers · cardápio rotador 16 obras integrais (dia % 16 · sem repetir 2 dias seguidos) · WhatsApp envia citação RAG + 3 caminhos + link nexuscaldeira.com/c/<slug>/. Shortlinks /c/freud-sonhos/, /c/hamlet/, /c/bandler-padroes/, etc · 16 URLs limpas com SVG download. Anchor links em integrais.html: nexuscaldeira.com/home/integrais.html#hamlet abre modal direto. Push PWA local atualizado: ao abrir PWA, checa novidades.json e dispara notificação se versão mudou.",
+      "destaque": true,
+      "hook_cortex": "Diga 'card do Hamlet' que envio nexuscaldeira.com/c/hamlet/ direto · ou 'ficha do Bandler' = nexuscaldeira.com/home/integrais.html#bandler-padroes (abre modal)."
+    },
     {
       "v": "v15.BD",
       "data": "2026-04-25",

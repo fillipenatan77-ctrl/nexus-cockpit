@@ -233,12 +233,16 @@ async function ativarPush() {
 
       // Notificação local de teste
       reg.showNotification('NEXUS ativo', {
-        body: 'Push autorizado. Próximas notificações chegam aqui.',
+        body: 'Push autorizado · veja a sugestão do dia (07h) também via WhatsApp · Apps Script trigger v15.BE.',
         icon: './icons/icon-192.png',
         badge: './icons/icon-192.png',
         tag: 'nexus-test',
-        vibrate: [200, 80, 200]
+        vibrate: [200, 80, 200],
+        data: { url: '/home/integrais.html' }
       });
+
+      // Marcar localmente que está ativo · permite checkAtual rodar
+      try { localStorage.setItem('nexus_push_active', '1'); localStorage.setItem('nexus_push_enabled_at', new Date().toISOString()); } catch(e){}
     } else {
       s.textContent = '✗ Permissão negada · habilite em Ajustes → Notificações → NEXUS';
     }
@@ -246,6 +250,34 @@ async function ativarPush() {
     s.textContent = '✗ Erro: ' + e.message;
   }
 }
+
+// Auto-check ao carregar · se push ativo + novidades.json mudou desde última visita,
+// dispara notificação local (compensa ausência de push server VAPID)
+async function checkNovidadesOnOpen() {
+  try {
+    if (!('serviceWorker' in navigator) || !('Notification' in window)) return;
+    if (Notification.permission !== 'granted') return;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+    if (!isStandalone) return;
+
+    const r = await fetch('./novidades.json?_=' + Date.now(), { cache: 'no-store' });
+    const d = await r.json();
+    const lastSeen = localStorage.getItem('nexus_novidades_last_pushed');
+    if (lastSeen !== d.versao_atual) {
+      const reg = await navigator.serviceWorker.ready;
+      const ent = (d.entradas || [])[0] || {};
+      reg.showNotification('NEXUS · ' + d.versao_atual, {
+        body: ent.titulo ? ent.titulo.substring(0, 100) : 'Novidade no hub',
+        icon: './icons/icon-192.png',
+        badge: './icons/icon-192.png',
+        tag: 'nexus-versao-' + d.versao_atual,
+        data: { url: '/home/changelog.html' }
+      });
+      localStorage.setItem('nexus_novidades_last_pushed', d.versao_atual);
+    }
+  } catch (e) { /* silent */ }
+}
+checkNovidadesOnOpen();
 </script>
 </body>
 </html>
