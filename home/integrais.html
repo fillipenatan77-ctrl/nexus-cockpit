@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Integrais</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="./manifest.json">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text','Inter',sans-serif;min-height:100vh;overscroll-behavior:none;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 80px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:24px 18px}
+
+/* header */
+header{padding:8px 4px 22px;text-align:center}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none}
+.crumb:hover{opacity:1}
+h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:.02em;color:var(--bone);margin-top:6px;line-height:1.1}
+.tag{display:inline-block;margin-top:10px;padding:5px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.sub{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.55}
+
+/* tabs */
+.tabs{display:flex;gap:8px;margin:24px 0 18px;background:var(--ink-soft);padding:4px;border-radius:14px;border:1px solid var(--gold-faint)}
+.tab{flex:1;padding:11px 10px;text-align:center;font-size:13px;color:var(--bone);opacity:.55;border-radius:10px;cursor:pointer;transition:.18s;font-weight:500}
+.tab.active{background:rgba(184,147,90,.12);opacity:1;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold-soft)}
+
+/* card de obra */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.grid{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;justify-content:space-between;min-height:170px;padding:16px 14px;border:1px solid var(--gold-soft);border-radius:14px;background:linear-gradient(145deg,rgba(184,147,90,.05) 0%,rgba(15,14,23,.7) 100%);text-decoration:none;color:var(--bone);transition:.18s;cursor:pointer}
+.card:active{transform:scale(.98);border-color:var(--gold)}
+.card .dom{font-family:'SF Mono',monospace;font-size:9.5px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:6px}
+.card .titulo{font-family:Georgia,serif;font-size:16px;line-height:1.25;color:var(--bone);font-weight:500;margin-bottom:4px}
+.card .autor{font-size:12px;color:var(--bone);opacity:.6;font-family:Georgia,serif;font-style:italic;margin-bottom:10px}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;align-items:center}
+.card .chunks{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);background:rgba(184,147,90,.1);padding:3px 8px;border-radius:6px}
+.card .badge{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--green);text-transform:uppercase}
+
+/* SVG card view */
+.svg-card{padding:0;overflow:hidden;background:var(--ink-soft);min-height:auto;aspect-ratio:1080/1350;border-radius:14px}
+.svg-card svg{width:100%;height:auto;display:block;border-radius:14px}
+.svg-fallback{padding:18px;text-align:center;font-size:12px;opacity:.55}
+
+/* viewer modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:100;display:none;flex-direction:column;animation:fadein .25s}
+.modal.show{display:flex}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.modal-head{padding:14px 18px;border-bottom:1px solid var(--gold-faint);display:flex;align-items:center;gap:14px;background:var(--ink)}
+.modal-head .close{font-size:22px;color:var(--gold);background:none;border:none;cursor:pointer;padding:6px}
+.modal-head .titulo-mini{font-family:Georgia,serif;font-size:15px;flex:1}
+.modal-body{flex:1;overflow-y:auto;padding:24px 20px 60px;-webkit-overflow-scrolling:touch}
+.modal-body h1{font-family:Georgia,serif;font-size:26px;margin-bottom:8px;color:var(--bone)}
+.modal-body h2{font-family:Georgia,serif;font-size:19px;margin:24px 0 10px;color:var(--gold);font-weight:500}
+.modal-body h3{font-family:'SF Mono',monospace;font-size:12px;margin:18px 0 8px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.modal-body p{margin-bottom:12px;font-size:15px;line-height:1.6;color:var(--bone);opacity:.85}
+.modal-body strong{color:var(--bone);opacity:1}
+.modal-body em{color:var(--gold);font-style:italic}
+.modal-body blockquote{border-left:3px solid var(--gold);padding:14px 18px;margin:14px 0;background:rgba(184,147,90,.05);border-radius:0 12px 12px 0;font-style:italic;font-size:15px;line-height:1.55}
+.modal-body code{font-family:'SF Mono',monospace;font-size:13px;background:rgba(184,147,90,.1);padding:2px 6px;border-radius:4px;color:var(--gold)}
+.modal-body a{color:var(--gold);text-decoration:underline}
+.modal-body hr{border:none;border-top:1px solid var(--gold-faint);margin:24px 0}
+.modal-body .links{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.modal-body .links a{display:inline-block;padding:10px 16px;background:rgba(184,147,90,.12);border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);text-decoration:none;font-size:13px;font-family:'SF Mono',monospace}
+
+/* svg full */
+.svg-full{display:flex;align-items:center;justify-content:center;padding:20px;background:var(--ink)}
+.svg-full svg{max-width:100%;max-height:90vh;height:auto;border-radius:14px;box-shadow:0 0 60px rgba(184,147,90,.2)}
+
+/* loader */
+.loader{text-align:center;padding:40px;color:var(--gold);opacity:.7;font-size:14px}
+
+/* bottom nav (matching o /home/) */
+.nav{position:fixed;bottom:0;left:0;right:0;background:var(--ink);border-top:1px solid var(--gold-faint);padding:8px 4px calc(env(safe-area-inset-bottom) + 8px);display:flex;justify-content:space-around;z-index:50}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--bone);opacity:.5;padding:6px 4px;font-size:10px;letter-spacing:.05em;font-family:-apple-system,sans-serif;flex:1}
+.nav a.active{opacity:1;color:var(--gold)}
+.nav .icon{font-size:18px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a href="./index.html" class="crumb">← Cockpit</a>
+    <h1>Acervo Integral</h1>
+    <div class="tag">16 obras · 🟢 RAG real</div>
+    <p class="sub">Fichas densas e cards visuais · trechos literais com page_start · acessível offline na PWA</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-tab="fichas" onclick="switchTab('fichas')">📖 Fichas (16)</div>
+    <div class="tab" data-tab="cards" onclick="switchTab('cards')">🎨 Cards SVG (16)</div>
+  </div>
+
+  <div id="tab-fichas" class="grid"></div>
+  <div id="tab-cards" class="grid" style="display:none"></div>
+</div>
+
+<!-- Modal viewer -->
+<div class="modal" id="modal">
+  <div class="modal-head">
+    <button class="close" onclick="fechar()">✕</button>
+    <div class="titulo-mini" id="modalTitle">—</div>
+  </div>
+  <div class="modal-body" id="modalBody">
+    <div class="loader">carregando…</div>
+  </div>
+</div>
+
+<!-- Bottom nav -->
+<nav class="nav">
+  <a href="./index.html"><span class="icon">⬢</span><span>Cockpit</span></a>
+  <a href="./trilhas-auto.html"><span class="icon">→</span><span>Trilhas</span></a>
+  <a href="./obras.html" class="active"><span class="icon">📚</span><span>Acervo</span></a>
+  <a href="./acervo-vivo.html"><span class="icon">🔍</span><span>Buscar</span></a>
+  <a href="./grafo.html"><span class="icon">⊕</span><span>Grafo</span></a>
+  <a href="./diario.html"><span class="icon">⌫</span><span>Diário</span></a>
+</nav>
+
+<script>
+const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main";
+const GH_BLOB = "https://github.com/fillipenatan77-ctrl/NEXUS/blob/main";
+
+// Catálogo curado das 16 obras integrais
+const OBRAS = [
+  {dom:"PSICANÁLISE", titulo:"A Interpretação dos Sonhos", autor:"Sigmund Freud", ano:"1900", chunks:296, file:"Freud_Interpretacao_Sonhos_menor"},
+  {dom:"PSICANÁLISE", titulo:"Citações de Freud", autor:"Neves da Silva", ano:"s/d", chunks:102, file:"NevesDaSilva_Citacoes_Pensamentos_Freud"},
+  {dom:"PSICANÁLISE", titulo:"Amor e Desejo (UFPR)", autor:"Henry Suy / Lacan", ano:"s/d", chunks:82, file:"Suy_Amor_e_Desejo_Dissertacao_UFPR"},
+  {dom:"PNL · HIPNOSE", titulo:"Padrões Hipnóticos de Erickson", autor:"Bandler & Grinder", ano:"1975", chunks:189, file:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)"},
+  {dom:"PNL · HIPNOSE", titulo:"Estrutura da Magia · Vol II", autor:"Bandler & Grinder", ano:"1976", chunks:168, file:"Bandler_Grinder_Estrutura_da_Magia_Vol_II"},
+  {dom:"PNL · HIPNOSE", titulo:"Reframing", autor:"Bandler & Grinder", ano:"1982", chunks:219, file:"Bandler_Grinder_Reframing"},
+  {dom:"PNL · HIPNOSE", titulo:"My Voice Will Go With You", autor:"Sidney Rosen (Erickson)", ano:"1982", chunks:80, file:"Rosen_My_Voice_Will_Go_With_You"},
+  {dom:"LITERATURA", titulo:"Hamlet", autor:"William Shakespeare", ano:"~1600", chunks:104, file:"Shakespeare_Hamlet_ptBR"},
+  {dom:"LITERATURA", titulo:"Romeu e Julieta", autor:"William Shakespeare", ano:"~1597", chunks:99, file:"Shakespeare_Romeu_e_Julieta_ptBR"},
+  {dom:"LITERATURA", titulo:"Rei Lear", autor:"William Shakespeare", ano:"~1606", chunks:77, file:"Shakespeare_Rei_Lear_ptBR"},
+  {dom:"PERSUASÃO · PODER", titulo:"Técnicas Proibidas de Persuasão", autor:"Steve Allen", ano:"s/d", chunks:121, file:"Allen_Tecnicas_Proibidas_Persuasao"},
+  {dom:"PERSUASÃO · PODER", titulo:"O Príncipe no Trono de Ferro", autor:"Diversos · Maquiavel × GoT", ano:"s/d", chunks:100, file:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel"},
+  {dom:"NEUROCIÊNCIA · IE", titulo:"Inteligência Emocional", autor:"Daniel Goleman", ano:"1995", chunks:364, file:"Goleman_Inteligencia_Emocional"},
+  {dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v1", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB"},
+  {dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v2", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB"},
+  {dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v3", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB"}
+];
+
+// Render fichas grid
+function renderFichas() {
+  const root = document.getElementById('tab-fichas');
+  root.innerHTML = OBRAS.map((o, i) => `
+    <div class="card" onclick="abrirFicha(${i})">
+      <div>
+        <div class="dom">${o.dom}</div>
+        <div class="titulo">${o.titulo}</div>
+        <div class="autor">${o.autor} · ${o.ano}</div>
+      </div>
+      <div class="meta">
+        <span class="chunks">${o.chunks} chunks</span>
+        <span class="badge">🟢 RAG</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Render cards grid
+function renderCards() {
+  const root = document.getElementById('tab-cards');
+  root.innerHTML = OBRAS.map((o, i) => `
+    <div class="card svg-card" onclick="abrirCard(${i})" id="svg-${i}">
+      <div class="svg-fallback">carregando…</div>
+    </div>
+  `).join('');
+  // Lazy load SVGs
+  OBRAS.forEach((o, i) => {
+    const url = `${GH_RAW}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg`;
+    fetch(url).then(r => r.ok ? r.text() : null).then(svg => {
+      if (svg) {
+        document.getElementById(`svg-${i}`).innerHTML = svg;
+      }
+    }).catch(() => {});
+  });
+}
+
+// Tabs
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+  document.getElementById('tab-fichas').style.display = name === 'fichas' ? '' : 'none';
+  document.getElementById('tab-cards').style.display = name === 'cards' ? '' : 'none';
+  if (name === 'cards' && !document.getElementById('svg-0')?.querySelector('svg')) {
+    renderCards();
+  }
+}
+
+// Markdown render simples (sem dependências)
+function renderMarkdown(md) {
+  let html = md;
+  // Escape HTML perigoso primeiro
+  html = html.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Restaurar
+  html = html.replace(/&amp;gt;/g, '>'); // blockquote
+  // Headers
+  html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+  html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+  html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+  // Bold + italic
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+  html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  // Code inline
+  html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+  // Blockquotes (linhas começando com >)
+  html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+  // HR
+  html = html.replace(/^---+$/gm, '<hr>');
+  // Links [texto](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Parágrafos · linhas em branco
+  html = html.split(/\n\n+/).map(b => {
+    if (b.trim().match(/^<(h\d|blockquote|hr)/)) return b;
+    if (b.trim() === '') return '';
+    return '<p>' + b.replace(/\n/g, '<br>') + '</p>';
+  }).join('\n');
+  return html;
+}
+
+async function abrirFicha(i) {
+  const o = OBRAS[i];
+  document.getElementById('modalTitle').textContent = o.titulo;
+  document.getElementById('modalBody').innerHTML = '<div class="loader">carregando ficha integral…</div>';
+  document.getElementById('modal').classList.add('show');
+  try {
+    const url = `${GH_RAW}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md`;
+    const r = await fetch(url, {cache: 'no-store'});
+    if (!r.ok) throw 0;
+    const md = await r.text();
+    const html = renderMarkdown(md);
+    const links = `<div class="links">
+      <a href="https://rag.nexuscaldeira.com/ask" target="_blank">🔍 RAG /ask</a>
+      <a href="${GH_BLOB}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md" target="_blank">📂 GitHub raw</a>
+    </div>`;
+    document.getElementById('modalBody').innerHTML = html + links;
+  } catch (e) {
+    document.getElementById('modalBody').innerHTML = `<p>Erro ao carregar. <a href="${GH_BLOB}/30_CONTEUDOS/FICHAS_INTEGRAIS/${encodeURIComponent(o.file)}.md" target="_blank">Ver no GitHub</a></p>`;
+  }
+}
+
+async function abrirCard(i) {
+  const o = OBRAS[i];
+  document.getElementById('modalTitle').textContent = `${o.titulo} · card`;
+  document.getElementById('modalBody').innerHTML = '<div class="loader">carregando card SVG…</div>';
+  document.getElementById('modal').classList.add('show');
+  try {
+    const url = `${GH_RAW}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg`;
+    const r = await fetch(url, {cache: 'no-store'});
+    if (!r.ok) throw 0;
+    const svg = await r.text();
+    const links = `<div class="links">
+      <a href="${GH_BLOB}/45_CARDS/integrais/${encodeURIComponent(o.file)}.svg" target="_blank">📂 GitHub</a>
+      <a href="${url}" download="${o.file}.svg">⬇ baixar SVG</a>
+    </div>`;
+    document.getElementById('modalBody').innerHTML = `<div class="svg-full">${svg}</div>${links}`;
+  } catch (e) {
+    document.getElementById('modalBody').innerHTML = '<p>Erro ao carregar.</p>';
+  }
+}
+
+function fechar() {
+  document.getElementById('modal').classList.remove('show');
+}
+
+// Init
+renderFichas();
+</script>
+</body>
+</html>

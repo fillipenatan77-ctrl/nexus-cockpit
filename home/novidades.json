@@ -1,9 +1,40 @@
 {
-  "versao_atual": "v15.AP",
-  "ultima_atualizacao": "2026-04-25T03:30:00-03:00",
-  "url_hub": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
+  "versao_atual": "v15.BD",
+  "ultima_atualizacao": "2026-04-25T17:30:00-03:00",
+  "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BD",
+      "data": "2026-04-25",
+      "tag": "ios-ready",
+      "titulo": "📖 Acervo Integral · galeria visual de 16 fichas + 16 cards SVG · clicáveis no iOS Safari",
+      "resumo": "Nova página /integrais.html com TODAS as 16 obras integrais navegáveis · 16 fichas densas (Freud Sonhos, Bandler Padrões/Estrutura/Reframing, Rosen Erickson, Shakespeare Hamlet/Romeu/Lear, Allen, Maquiavel/GoT, Goleman IE, OBrien v1/v2/v3, Suy, Neves) abrem em modal viewer com markdown render dentro do Safari · 16 cards SVG 1080×1350 baixáveis · paleta NEXUS canônica · bottom nav · funciona offline na PWA. Tile primary 'Acervo Integral' adicionado no /home/.",
+      "destaque": true,
+      "hook_cortex": "Diga 'me mostre Hamlet' ou 'card do Bandler' que eu envio link direto para a ficha integral renderizada no Safari · também disponível em /integrais.html no hub."
+    },
+    {
+      "v": "v15.BC",
+      "data": "2026-04-25",
+      "tag": "cards-svg",
+      "titulo": "🎨 16 Cards SVG 1080×1350 + relatório linkado + WhatsApp /ficha integral",
+      "resumo": "Geradas 16 capas SVG story format (paleta NEXUS · marca · título · autor · citação literal com page) em 45_CARDS/integrais/ · RELATORIO v15.AZ atualizado com links para fichas e cards no GitHub · WhatsApp /ficha hamlet retorna ficha integral via FICHA_INTEGRAL_INDEX (25+ aliases) · /citacao agora cita literalmente do RAG.",
+      "destaque": true
+    },
+    {
+      "v": "v15.BB",
+      "data": "2026-04-25",
+      "tag": "rag-fichas",
+      "titulo": "📚 Cascade fallback resolve 16/16 fichas integrais",
+      "resumo": "Estratégia source-match → post-filter → tema-fallback substitui filtro source exato. QUERIES_POR_OBRA com queries específicas resolvem Shakespeare, Allen, Maquiavel, Goleman antes magras. Fichas 5.2-5.4KB com page_start em todas as 16 obras integrais."
+    },
+    {
+      "v": "v15.BA",
+      "data": "2026-04-25",
+      "tag": "ajustes-finos",
+      "titulo": "🛠 Filtro RAG por source server-side + redirect index raiz + cleanup",
+      "resumo": "rag_api_v2.py /ask agora aceita parâmetro source filtrando colection-side (3-4× mais rápido) · index.html raiz redireciona para /home/ · acervo-vivo.html já não 404 no domínio canônico."
+    },
     {
       "v": "v15.AP",
       "data": "2026-04-25",
