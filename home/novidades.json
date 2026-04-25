@@ -1,9 +1,25 @@
 {
-  "versao_atual": "v15.BF",
-  "ultima_atualizacao": "2026-04-25T18:30:00-03:00",
+  "versao_atual": "v15.BH",
+  "ultima_atualizacao": "2026-04-25T19:00:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BH",
+      "data": "2026-04-25",
+      "tag": "citacao-canonica",
+      "titulo": "✦ 9 obras com citação canônica · resolve PDFs de fonte corrompida",
+      "resumo": "Diagnóstico revelou que 9 das 16 obras integrais tem PDFs com fonte custom sem CMap unicode (Hamlet, Romeu, Lear, Allen, GoT/Maquiavel, Suy/Lacan, Bandler Reframing, Bandler Magia II, Neves Freud) · busca semântica RAG retornava trechos espúrios de outras obras. Solução v15.BH: cardápio com flag rag:'ok'/'fantasma' · obras fantasma usam quoteCanonical hardcoded com fonte clássica (ex: 'Ser ou não ser' de Hamlet/Heliodora). Apps Script @164 envia ✦ como bandeira nessas obras · WhatsApp 7h sempre tem citação literal real. 9 fichas regeneradas com badge ✦ canônica + tese central + links Domínio Público (Shakespeare/Gutenberg).",
+      "destaque": true,
+      "hook_cortex": "Quando perguntarem sobre Hamlet/Romeu/Lear/Maquiavel/etc, posso citar a frase canônica clássica via WhatsApp 7h ou /c/<slug>/ — texto-fonte do PDF tem fonte corrompida, mas a obra é integralmente conhecida."
+    },
+    {
+      "v": "v15.BG",
+      "data": "2026-04-25",
+      "tag": "grid-visual",
+      "titulo": "🎨 Grade visual /c/ · smart rotation por lente · tile Sugestão de Hoje",
+      "resumo": "/c/ landing com 16 cards SVG inline (lazy load IntersectionObserver) · clique vai para /c/<slug>/ com SVG fullscreen + download. Apps Script @163: smart rotation prefere obras da lente do dia (sábado=Shakespeare, terça=PNL, etc). Tile primary 'Sugestão de Hoje' no /home/ carrega via ?action=sugestao_today (rota nova read-only) · refresh 30min."
+    },
     {
       "v": "v15.BF",
       "data": "2026-04-25",

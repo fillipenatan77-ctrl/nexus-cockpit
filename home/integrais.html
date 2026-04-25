@@ -86,8 +86,8 @@ h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:.02em
   <header>
     <a href="./index.html" class="crumb">← Cockpit</a>
     <h1>Acervo Integral</h1>
-    <div class="tag">16 obras · 🟢 RAG real</div>
-    <p class="sub">Fichas densas e cards visuais · trechos literais com page_start · acessível offline na PWA</p>
+    <div class="tag">16 obras · 7 🟢 RAG · 9 ✦ canônica</div>
+    <p class="sub">Fichas densas + cards visuais · 🟢 trechos literais via RAG · ✦ obras com PDF de fonte custom usam citação canônica clássica · acessível offline na PWA</p>
   </header>
 
   <div class="tabs">
@@ -125,23 +125,24 @@ const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cock
 const GH_BLOB = "https://github.com/fillipenatan77-ctrl/nexus-cockpit/blob/main";
 
 // Catálogo curado das 16 obras integrais · slug = anchor link
+// rag: "ok" → busca semântica retorna trechos legíveis | "fantasma" → PDF com fonte custom · usa citação canônica
 const OBRAS = [
-  {slug:"freud-sonhos", dom:"PSICANÁLISE", titulo:"A Interpretação dos Sonhos", autor:"Sigmund Freud", ano:"1900", chunks:296, file:"Freud_Interpretacao_Sonhos_menor"},
-  {slug:"neves-freud", dom:"PSICANÁLISE", titulo:"Citações de Freud", autor:"Neves da Silva", ano:"s/d", chunks:102, file:"NevesDaSilva_Citacoes_Pensamentos_Freud"},
-  {slug:"suy-lacan", dom:"PSICANÁLISE", titulo:"Amor e Desejo (UFPR)", autor:"Henry Suy / Lacan", ano:"s/d", chunks:82, file:"Suy_Amor_e_Desejo_Dissertacao_UFPR"},
-  {slug:"bandler-padroes", dom:"PNL · HIPNOSE", titulo:"Padrões Hipnóticos de Erickson", autor:"Bandler & Grinder", ano:"1975", chunks:189, file:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)"},
-  {slug:"bandler-magia", dom:"PNL · HIPNOSE", titulo:"Estrutura da Magia · Vol II", autor:"Bandler & Grinder", ano:"1976", chunks:168, file:"Bandler_Grinder_Estrutura_da_Magia_Vol_II"},
-  {slug:"bandler-reframing", dom:"PNL · HIPNOSE", titulo:"Reframing", autor:"Bandler & Grinder", ano:"1982", chunks:219, file:"Bandler_Grinder_Reframing"},
-  {slug:"rosen-erickson", dom:"PNL · HIPNOSE", titulo:"My Voice Will Go With You", autor:"Sidney Rosen (Erickson)", ano:"1982", chunks:80, file:"Rosen_My_Voice_Will_Go_With_You"},
-  {slug:"hamlet", dom:"LITERATURA", titulo:"Hamlet", autor:"William Shakespeare", ano:"~1600", chunks:104, file:"Shakespeare_Hamlet_ptBR"},
-  {slug:"romeu-julieta", dom:"LITERATURA", titulo:"Romeu e Julieta", autor:"William Shakespeare", ano:"~1597", chunks:99, file:"Shakespeare_Romeu_e_Julieta_ptBR"},
-  {slug:"rei-lear", dom:"LITERATURA", titulo:"Rei Lear", autor:"William Shakespeare", ano:"~1606", chunks:77, file:"Shakespeare_Rei_Lear_ptBR"},
-  {slug:"allen-persuasao", dom:"PERSUASÃO · PODER", titulo:"Técnicas Proibidas de Persuasão", autor:"Steve Allen", ano:"s/d", chunks:121, file:"Allen_Tecnicas_Proibidas_Persuasao"},
-  {slug:"maquiavel-got", dom:"PERSUASÃO · PODER", titulo:"O Príncipe no Trono de Ferro", autor:"Diversos · Maquiavel × GoT", ano:"s/d", chunks:100, file:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel"},
-  {slug:"goleman-ie", dom:"NEUROCIÊNCIA · IE", titulo:"Inteligência Emocional", autor:"Daniel Goleman", ano:"1995", chunks:364, file:"Goleman_Inteligencia_Emocional"},
-  {slug:"obrien-memoria-v1", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v1", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB"},
-  {slug:"obrien-memoria-v2", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v2", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB"},
-  {slug:"obrien-memoria-v3", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v3", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB"}
+  {slug:"freud-sonhos", dom:"PSICANÁLISE", titulo:"A Interpretação dos Sonhos", autor:"Sigmund Freud", ano:"1900", chunks:296, file:"Freud_Interpretacao_Sonhos_menor", rag:"ok"},
+  {slug:"neves-freud", dom:"PSICANÁLISE", titulo:"Citações de Freud", autor:"Neves da Silva", ano:"s/d", chunks:102, file:"NevesDaSilva_Citacoes_Pensamentos_Freud", rag:"fantasma"},
+  {slug:"suy-lacan", dom:"PSICANÁLISE", titulo:"Amor e Desejo (UFPR)", autor:"Henry Suy / Lacan", ano:"s/d", chunks:82, file:"Suy_Amor_e_Desejo_Dissertacao_UFPR", rag:"fantasma"},
+  {slug:"bandler-padroes", dom:"PNL · HIPNOSE", titulo:"Padrões Hipnóticos de Erickson", autor:"Bandler & Grinder", ano:"1975", chunks:189, file:"Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)", rag:"ok"},
+  {slug:"bandler-magia", dom:"PNL · HIPNOSE", titulo:"Estrutura da Magia · Vol II", autor:"Bandler & Grinder", ano:"1976", chunks:168, file:"Bandler_Grinder_Estrutura_da_Magia_Vol_II", rag:"fantasma"},
+  {slug:"bandler-reframing", dom:"PNL · HIPNOSE", titulo:"Reframing", autor:"Bandler & Grinder", ano:"1982", chunks:219, file:"Bandler_Grinder_Reframing", rag:"fantasma"},
+  {slug:"rosen-erickson", dom:"PNL · HIPNOSE", titulo:"My Voice Will Go With You", autor:"Sidney Rosen (Erickson)", ano:"1982", chunks:80, file:"Rosen_My_Voice_Will_Go_With_You", rag:"ok"},
+  {slug:"hamlet", dom:"LITERATURA", titulo:"Hamlet", autor:"William Shakespeare", ano:"~1600", chunks:104, file:"Shakespeare_Hamlet_ptBR", rag:"fantasma"},
+  {slug:"romeu-julieta", dom:"LITERATURA", titulo:"Romeu e Julieta", autor:"William Shakespeare", ano:"~1597", chunks:99, file:"Shakespeare_Romeu_e_Julieta_ptBR", rag:"fantasma"},
+  {slug:"rei-lear", dom:"LITERATURA", titulo:"Rei Lear", autor:"William Shakespeare", ano:"~1606", chunks:77, file:"Shakespeare_Rei_Lear_ptBR", rag:"fantasma"},
+  {slug:"allen-persuasao", dom:"PERSUASÃO · PODER", titulo:"Técnicas Proibidas de Persuasão", autor:"Steve Allen", ano:"s/d", chunks:121, file:"Allen_Tecnicas_Proibidas_Persuasao", rag:"fantasma"},
+  {slug:"maquiavel-got", dom:"PERSUASÃO · PODER", titulo:"O Príncipe no Trono de Ferro", autor:"Diversos · Maquiavel × GoT", ano:"s/d", chunks:100, file:"Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel", rag:"fantasma"},
+  {slug:"goleman-ie", dom:"NEUROCIÊNCIA · IE", titulo:"Inteligência Emocional", autor:"Daniel Goleman", ano:"1995", chunks:364, file:"Goleman_Inteligencia_Emocional", rag:"ok"},
+  {slug:"obrien-memoria-v1", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v1", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v1_1MB", rag:"ok"},
+  {slug:"obrien-memoria-v2", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v2", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB", rag:"ok"},
+  {slug:"obrien-memoria-v3", dom:"MEMORIZAÇÃO", titulo:"Develop a Perfect Memory · v3", autor:"Dominic O'Brien", ano:"1993", chunks:154, file:"OBrien_How_to_Develop_Perfect_Memory_v3_2MB", rag:"ok"}
 ];
 
 // Aliases (slugs alternativos que apontam para a mesma obra)
@@ -165,7 +166,11 @@ const ALIASES = {
 // Render fichas grid
 function renderFichas() {
   const root = document.getElementById('tab-fichas');
-  root.innerHTML = OBRAS.map((o, i) => `
+  root.innerHTML = OBRAS.map((o, i) => {
+    const badge = o.rag === "fantasma"
+      ? '<span class="badge" style="color:#d4a15c">✦ canônica</span>'
+      : '<span class="badge">🟢 RAG</span>';
+    return `
     <div class="card" id="${o.slug}" onclick="abrirFicha(${i})">
       <div>
         <div class="dom">${o.dom}</div>
@@ -174,10 +179,10 @@ function renderFichas() {
       </div>
       <div class="meta">
         <span class="chunks">${o.chunks} chunks</span>
-        <span class="badge">🟢 RAG</span>
+        ${badge}
       </div>
-    </div>
-  `).join('');
+    </div>`;
+  }).join('');
 }
 
 // Resolve slug do hash · suporta aliases
