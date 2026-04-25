@@ -88,17 +88,8 @@ h1{font-size:20px;margin:0;font-weight:600}
 </div>
 
 <script>
-// URL do RAG · fonte única é health.json deste mesmo Pages (atualizado pelo watchdog)
-let RAG = window.NEXUS_RAG_URL || localStorage.getItem("nexus_rag_url") || "";
-fetch("./health.json", {cache:"no-store"})
-  .then(r=>r.json())
-  .then(j=>{
-    if(j && j.endpoints && j.endpoints.rag_url){
-      RAG = j.endpoints.rag_url;
-      localStorage.setItem("nexus_rag_url", RAG);
-    }
-  })
-  .catch(()=>{});
+// URL fixa do RAG · domínio próprio (v15.AX) · imutável
+const RAG = window.NEXUS_RAG_URL || "https://rag.nexuscaldeira.com";
 
 async function loadHealth(){
   try{
