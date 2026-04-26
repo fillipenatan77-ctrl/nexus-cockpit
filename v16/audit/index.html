@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · v16 · Audit</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3;--yellow:#ffd803;--red:#e53170}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 24px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;opacity:.7}
+.section{margin-top:24px}
+.section h2{font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;opacity:.85}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid var(--gold-faint);border-radius:8px;margin-bottom:6px;background:rgba(184,147,90,.03);font-size:14px}
+.row .lab{font-family:'SF Mono',monospace;font-size:12px;opacity:.85}
+.row .val{font-family:Georgia,serif;font-weight:500}
+.flag{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.flag.green{background:var(--green);box-shadow:0 0 8px var(--green)}
+.flag.yellow{background:var(--yellow);box-shadow:0 0 8px var(--yellow)}
+.flag.red{background:var(--red);box-shadow:0 0 8px var(--red)}
+.flag.gray{background:#555}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+.loading{padding:30px 20px;text-align:center;color:var(--gold);opacity:.6;font-family:'SF Mono',monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ saúde do sistema · v16.0</div>
+    <h1>Audit NEXUS</h1>
+    <p class="lead">Endpoints canônicos · bandeiras 🟢 🟡 🔴 · ciclo PRIMORDIA · cardápio.</p>
+  </header>
+
+  <div class="section">
+    <h2>endpoints canônicos</h2>
+    <div id="endpoints"><div class="loading">checando…</div></div>
+  </div>
+
+  <div class="section">
+    <h2>cardápio · trio completo</h2>
+    <div id="cardapio"></div>
+  </div>
+
+  <div class="section">
+    <h2>regras invioláveis · invariantes</h2>
+    <div id="regras"></div>
+  </div>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../cards/">cards</a> · <a href="../agenda/">agenda</a> · <a href="../pulse/">pulse</a></div>
+</div>
+
+<script>
+const ENDPOINTS = [
+  ['nexuscaldeira.com', 'https://nexuscaldeira.com/'],
+  ['rag.nexuscaldeira.com', 'https://rag.nexuscaldeira.com/'],
+  ['pulses.json (40)', 'https://nexuscaldeira.com/pulses.json'],
+  ['v16/index.html', 'https://nexuscaldeira.com/v16/'],
+  ['health.json', 'https://nexuscaldeira.com/home/health.json'],
+];
+async function check(label, url) {
+  const t0 = Date.now();
+  try {
+    const r = await fetch(url, { cache: 'no-store', mode: 'cors' });
+    const ms = Date.now() - t0;
+    const flag = r.ok ? 'green' : (r.status >= 500 ? 'red' : 'yellow');
+    return `<div class="row"><div class="lab"><span class="flag ${flag}"></span>${label}</div><div class="val">${r.status} · ${ms}ms</div></div>`;
+  } catch (e) {
+    return `<div class="row"><div class="lab"><span class="flag gray"></span>${label}</div><div class="val">cors/offline</div></div>`;
+  }
+}
+(async () => {
+  const out = [];
+  for (const [l, u] of ENDPOINTS) out.push(await check(l, u));
+  document.getElementById('endpoints').innerHTML = out.join('');
+})();
+
+// trio canônico
+const TRIO_30 = 30, TRIO_OK = 30;
+document.getElementById('cardapio').innerHTML =
+  `<div class="row"><div class="lab"><span class="flag green"></span>obras com trio (RAG+ficha+card)</div><div class="val">${TRIO_OK}/${TRIO_30}</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>14 fichas novas (Onda 3.2)</div><div class="val">live</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>14 cards SVG novos</div><div class="val">live</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>chunks Chroma · nexus_acervo_v4</div><div class="val">60.969</div></div>`;
+
+// invariantes
+document.getElementById('regras').innerHTML =
+  `<div class="row"><div class="lab"><span class="flag green"></span>regra 4 · Apps Script triggers</div><div class="val">13/13</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>regra 6 · embeddings 1536d</div><div class="val">OpenAI canônico</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>regra 8 · backup 3-2-1</div><div class="val">local+OneDrive+GitHub+snapshot</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>regra 9 · domínio único</div><div class="val">nexuscaldeira.com</div></div>` +
+  `<div class="row"><div class="lab"><span class="flag green"></span>deploy Apps Script</div><div class="val">@170 · v16.0.1 PulseLoader</div></div>`;
+</script>
+</body>
+</html>

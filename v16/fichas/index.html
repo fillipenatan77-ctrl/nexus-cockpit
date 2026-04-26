@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · v16 · Fichas</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 24px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;opacity:.7}
+.section-h{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:20px 0 10px;opacity:.85}
+.row{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--gold-faint);border-radius:10px;margin-bottom:6px;background:rgba(184,147,90,.03);text-decoration:none;color:inherit}
+.row:active{transform:scale(.99);border-color:var(--gold-soft)}
+.row .lab{font-family:Georgia,serif;font-size:15px}
+.row .lab .autor{font-family:Georgia,serif;font-style:italic;font-size:12px;opacity:.6;display:block;margin-top:2px}
+.row .meta{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--gold);opacity:.7;text-align:right;text-transform:uppercase;flex-shrink:0;margin-left:10px}
+.viewer{margin-top:20px;padding:16px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(15,14,23,.6);font-family:Georgia,serif;font-size:14px;line-height:1.65;display:none}
+.viewer.show{display:block}
+.viewer h1,.viewer h2,.viewer h3{font-family:Georgia,serif;color:var(--bone);margin-top:14px;margin-bottom:8px}
+.viewer h1{font-size:22px}.viewer h2{font-size:17px;color:var(--gold)}.viewer h3{font-size:15px}
+.viewer p{margin-bottom:10px;opacity:.9}
+.viewer code{font-family:'SF Mono',monospace;font-size:12px;background:rgba(184,147,90,.12);padding:1px 5px;border-radius:3px;color:var(--gold)}
+.viewer hr{border:none;border-top:1px solid var(--gold-faint);margin:14px 0}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ fichas CAIR · cardápio 30</div>
+    <h1>Fichas Canônicas</h1>
+    <p class="lead">Toque numa obra para abrir a ficha CAIR (Contexto · Argumento · Implicações · Referências).</p>
+  </header>
+
+  <div class="section-h">v16.0 · novas (Onda 3.2)</div>
+  <div id="lista-novas"></div>
+
+  <div class="section-h">núcleo</div>
+  <div id="lista-original"></div>
+
+  <div class="viewer" id="viewer"></div>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../cards/">cards</a> · <a href="../audit/">audit</a></div>
+</div>
+
+<script>
+const NOVAS = [
+  ['cialdini-influence','Cialdini · Influence','Robert Cialdini','1.618 chunks'],
+  ['greene-seducao','Greene · Sedução','Robert Greene','1.746 chunks'],
+  ['kahneman-rapido-devagar','Kahneman · Rápido e Devagar','Daniel Kahneman','1.554 chunks'],
+  ['aristoteles-fisica','Aristóteles · Física','Aristóteles','1.385 chunks'],
+  ['arendt-condicao','Arendt · Condição Humana','Hannah Arendt','1.025 chunks'],
+  ['suma-i','Aquino · Suma I','Tomás de Aquino','4.398 chunks'],
+  ['suma-ii-1','Aquino · Suma I-II','Tomás de Aquino','4.205 chunks'],
+  ['suma-ii-2','Aquino · Suma II-II','Tomás de Aquino','4.238 chunks'],
+  ['suma-iii','Aquino · Suma III','Tomás de Aquino','4.257 chunks'],
+  ['sun-tzu','Sun Tzu · Arte da Guerra','Sun Tzu','209 chunks'],
+  ['lacan-sem21','Lacan · Sem 21','Jacques Lacan','196 chunks'],
+  ['epicteto-portico','Epicteto · Pórtico','Epicteto','188 chunks'],
+  ['seneca-lucilio','Sêneca · Lucílio','Lúcio Aneu Sêneca','168 chunks'],
+  ['ferreira-500-freud','Ferreira · 500 Frases','Ferreira (org.)','128 chunks'],
+];
+const ORIGINAIS = [
+  ['Freud_Interpretacao_Sonhos_menor','Freud · Sonhos','Freud','276 chunks'],
+  ['Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)','Bandler · Padrões','Bandler/Grinder','612 chunks'],
+  ['Bandler_Grinder_Estrutura_da_Magia_Vol_II','Bandler · Magia II','Bandler/Grinder','1.109 chunks'],
+  ['Bandler_Grinder_Reframing','Reframing','Bandler/Grinder','637 chunks'],
+  ['Rosen_My_Voice_Will_Go_With_You','Rosen · Erickson','Rosen','511 chunks'],
+  ['Shakespeare_Hamlet_ptBR','Hamlet','Shakespeare','266 chunks'],
+  ['Shakespeare_Romeu_e_Julieta_ptBR','Romeu e Julieta','Shakespeare','104 chunks'],
+  ['Shakespeare_Rei_Lear_ptBR','Rei Lear','Shakespeare','84 chunks'],
+  ['Allen_Tecnicas_Proibidas_Persuasao','Allen · Persuasão','Allen','403 chunks'],
+  ['Goleman_Inteligencia_Emocional','Goleman · IE','Goleman','1.135 chunks'],
+  ['NevesDaSilva_Citacoes_Pensamentos_Freud','Neves · Freud','Neves da Silva','339 chunks'],
+  ['OBrien_How_to_Develop_Perfect_Memory_v1_1MB',"O'Brien · v1","O'Brien",'162 chunks'],
+  ['Suy_Amor_e_Desejo_Dissertacao_UFPR','Suy · Lacan','Suy/UFPR','89 chunks'],
+];
+function row(slug, label, autor, meta) {
+  return `<a class="row" href="javascript:void(0)" onclick="abrir('${slug}')">
+    <div class="lab">${label}<span class="autor">${autor}</span></div>
+    <div class="meta">${meta}</div></a>`;
+}
+document.getElementById('lista-novas').innerHTML = NOVAS.map(o => row(o[0], o[1], o[2], o[3])).join('');
+document.getElementById('lista-original').innerHTML = ORIGINAIS.map(o => row(o[0], o[1], o[2], o[3])).join('');
+
+// markdown leve render
+function md(text) {
+  let h = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  h = h.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  h = h.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  h = h.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  h = h.replace(/^---$/gm,'<hr>');
+  h = h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  h = h.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  h = h.replace(/`(.+?)`/g,'<code>$1</code>');
+  h = h.split(/\n\n+/).map(b => /^<(h\d|hr|ul)/.test(b.trim()) ? b : `<p>${b.replace(/\n/g,' ')}</p>`).join('');
+  return h;
+}
+async function abrir(slug) {
+  const v = document.getElementById('viewer');
+  v.innerHTML = '<p style="opacity:.6">carregando…</p>';
+  v.classList.add('show');
+  v.scrollIntoView({behavior:'smooth',block:'start'});
+  try {
+    const r = await fetch('../../fichas/' + slug + '.md', {cache:'no-store'});
+    if (!r.ok) throw 0;
+    v.innerHTML = md(await r.text());
+  } catch (e) {
+    v.innerHTML = '<p style="color:var(--gold);opacity:.7">ficha indisponível · slug ' + slug + '</p>';
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · v16 · Cards · Cardápio 30</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 24px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;opacity:.7;max-width:520px;margin-left:auto;margin-right:auto}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+@media (min-width:560px){.grid{grid-template-columns:repeat(3,1fr)}}
+.card-tile{position:relative;display:block;aspect-ratio:1080/1350;overflow:hidden;border:1px solid var(--gold-faint);border-radius:10px;background:var(--ink-soft);text-decoration:none;color:var(--bone);transition:.18s}
+.card-tile:active{transform:scale(.98);border-color:var(--gold-soft)}
+.card-tile img{width:100%;height:100%;display:block;object-fit:cover}
+.card-tile .meta{position:absolute;bottom:0;left:0;right:0;padding:6px 8px;background:linear-gradient(0deg,rgba(15,14,23,.95) 0%,transparent 100%);font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;opacity:.85;text-align:center}
+.section-h{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:26px 0 12px;text-align:center;opacity:.85}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ cardápio · 30 obras · trio completo</div>
+    <h1>Cards Canônicos</h1>
+    <p class="lead">Cada card é uma porta — abre o trio (citação · ficha · RAG denso).</p>
+  </header>
+
+  <div class="section-h">v16.0 · 14 novas (Onda 3.2)</div>
+  <div class="grid" id="grid-novas"></div>
+
+  <div class="section-h">núcleo · 16 originais</div>
+  <div class="grid" id="grid-original"></div>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../../c/">galeria /c/</a> · <a href="../../home/">home legacy</a></div>
+</div>
+
+<script>
+const NOVAS = [
+  ['cialdini-influence','Cialdini · Influence'],
+  ['greene-seducao','Greene · Sedução'],
+  ['kahneman-rapido-devagar','Kahneman · Rápido e Devagar'],
+  ['aristoteles-fisica','Aristóteles · Física'],
+  ['arendt-condicao','Arendt · Condição Humana'],
+  ['suma-i','Aquino · Suma I'],
+  ['suma-ii-1','Aquino · Suma I-II'],
+  ['suma-ii-2','Aquino · Suma II-II'],
+  ['suma-iii','Aquino · Suma III'],
+  ['sun-tzu','Sun Tzu · Arte da Guerra'],
+  ['lacan-sem21','Lacan · Sem 21'],
+  ['epicteto-portico','Epicteto · Pórtico'],
+  ['seneca-lucilio','Sêneca · Lucílio'],
+  ['ferreira-500-freud','Ferreira · 500 Frases'],
+];
+const ORIGINAIS = [
+  ['freud-sonhos','Freud · Sonhos','Freud_Interpretacao_Sonhos_menor'],
+  ['bandler-padroes','Bandler · Padrões','Bandler Grinder - Padroes das Tecnicas Hipnoticas de Milton H Erickson (1975)'],
+  ['bandler-magia','Bandler · Magia II','Bandler_Grinder_Estrutura_da_Magia_Vol_II'],
+  ['bandler-reframing','Reframing','Bandler_Grinder_Reframing'],
+  ['rosen-erickson','Rosen · Erickson','Rosen_My_Voice_Will_Go_With_You'],
+  ['hamlet','Hamlet','Shakespeare_Hamlet_ptBR'],
+  ['romeu-julieta','Romeu e Julieta','Shakespeare_Romeu_e_Julieta_ptBR'],
+  ['rei-lear','Rei Lear','Shakespeare_Rei_Lear_ptBR'],
+  ['allen-persuasao','Allen · Persuasão','Allen_Tecnicas_Proibidas_Persuasao'],
+  ['maquiavel-got','Maquiavel · GoT','Autoria coletiva - O Principe no Trono de Ferro - Game of Thrones e Maquiavel'],
+  ['goleman-ie','Goleman · IE','Goleman_Inteligencia_Emocional'],
+  ['obrien-memoria-v1','O\'Brien · v1','OBrien_How_to_Develop_Perfect_Memory_v1_1MB'],
+  ['obrien-memoria-v2','O\'Brien · v2','OBrien_How_to_Develop_Perfect_Memory_v2_1.6MB'],
+  ['obrien-memoria-v3','O\'Brien · v3','OBrien_How_to_Develop_Perfect_Memory_v3_2MB'],
+  ['suy-lacan','Suy · Lacan','Suy_Amor_e_Desejo_Dissertacao_UFPR'],
+  ['neves-freud','Neves · Freud','NevesDaSilva_Citacoes_Pensamentos_Freud'],
+];
+function tile(slug, label, fileSlug) {
+  const file = encodeURIComponent(fileSlug || slug);
+  return `<a class="card-tile" href="../../c/${slug}/"><img src="../../cards/${file}.svg" alt="${label}" loading="lazy"><div class="meta">${label}</div></a>`;
+}
+document.getElementById('grid-novas').innerHTML = NOVAS.map(o => tile(o[0], o[1], o[0])).join('');
+document.getElementById('grid-original').innerHTML = ORIGINAIS.map(o => tile(o[0], o[1], o[2])).join('');
+</script>
+</body>
+</html>

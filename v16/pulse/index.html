@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · v16 · Pulse</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 22px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;opacity:.7;max-width:520px;margin-left:auto;margin-right:auto}
+.section{margin-top:22px}
+.section h2{font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;opacity:.85}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.stat{padding:12px 14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04)}
+.stat .lab{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;opacity:.8}
+.stat .val{font-family:Georgia,serif;font-size:22px;color:var(--bone);margin-top:4px}
+.stat .sub{font-family:'SF Mono',monospace;font-size:10px;opacity:.5;margin-top:2px}
+.pulse-card{padding:14px 16px;border:1px solid var(--gold-faint);border-radius:12px;margin-bottom:10px;background:rgba(184,147,90,.03)}
+.pulse-card .tag{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;background:rgba(184,147,90,.15);padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:8px}
+.pulse-card .titulo{font-family:Georgia,serif;font-size:16px;font-weight:500;line-height:1.25}
+.pulse-card .body{font-family:Georgia,serif;font-size:13px;opacity:.8;margin-top:6px;line-height:1.55}
+.pulse-card .cta{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.1em;color:var(--gold);opacity:.85;margin-top:8px;font-style:italic}
+.pulse-card .slot{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);opacity:.6;letter-spacing:.1em;text-transform:uppercase;float:right}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+.loading{padding:30px 20px;text-align:center;color:var(--gold);opacity:.6;font-family:'SF Mono',monospace;font-size:13px}
+.flag-green{color:var(--green)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ banco canônico · pulses.json</div>
+    <h1>Pulse NEXUS</h1>
+    <p class="lead">40 pulses servidos via PulseLoader · WhatsApp 11h + 16h BRT · cache 1h em ScriptProperties.</p>
+  </header>
+
+  <div class="section">
+    <h2>status</h2>
+    <div class="stat-grid">
+      <div class="stat"><div class="lab">deploy</div><div class="val flag-green">@170</div><div class="sub">v16.0.1 PulseLoader</div></div>
+      <div class="stat"><div class="lab">triggers</div><div class="val">11h+16h</div><div class="sub">regra 4 · 13/13</div></div>
+      <div class="stat"><div class="lab">pulses</div><div class="val" id="count">…</div><div class="sub">banco remoto</div></div>
+      <div class="stat"><div class="lab">tipos</div><div class="val" id="tipos">…</div><div class="sub">distintos</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>amostra · próximos slots</h2>
+    <div id="amostra"><div class="loading">carregando pulses.json…</div></div>
+  </div>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../cards/">cards</a> · <a href="../audit/">audit</a> · <a href="../agenda/">agenda</a></div>
+</div>
+
+<script>
+async function load() {
+  let pulses;
+  try {
+    const r = await fetch('../../pulses.json', {cache:'no-store'});
+    const data = await r.json();
+    pulses = data.pulses || data;
+  } catch (e) {
+    document.getElementById('amostra').innerHTML = '<div class="loading">offline</div>';
+    return;
+  }
+  document.getElementById('count').textContent = pulses.length;
+  const tipos = new Set(pulses.map(p => p.tipo));
+  document.getElementById('tipos').textContent = tipos.size;
+
+  // amostra: 1 manhã + 1 tarde + 1 qualquer
+  const slots = ['manha','tarde','qualquer'];
+  const sample = slots.map(s => {
+    const pool = pulses.filter(p => p.slot === s || (s === 'qualquer' && !['manha','tarde'].includes(p.slot)));
+    return pool[Math.floor(Math.random() * Math.max(pool.length,1))];
+  }).filter(Boolean);
+
+  document.getElementById('amostra').innerHTML = sample.map(p => `
+    <div class="pulse-card">
+      <span class="slot">${p.slot}</span>
+      <span class="tag">${p.tipo}</span>
+      <div class="titulo">${p.titulo || ''}</div>
+      <div class="body">${(p.body || '').substring(0,180)}${(p.body || '').length>180?'…':''}</div>
+      ${p.cta ? `<div class="cta">→ ${p.cta}</div>` : ''}
+    </div>
+  `).join('');
+}
+load();
+</script>
+</body>
+</html>
