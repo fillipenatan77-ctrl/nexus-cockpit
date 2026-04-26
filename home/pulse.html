@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Pulse</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.6}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 50px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:680px;margin:0 auto;padding:18px 18px 30px}
+
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+
+header{margin:14px 0 24px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:36px;font-weight:400;letter-spacing:.02em;line-height:1.1;color:var(--bone)}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.65;max-width:520px;margin:12px auto 0;line-height:1.55}
+
+.controls{display:flex;gap:8px;margin:18px 0;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.1em;text-decoration:none;border:1px solid var(--gold-soft);background:rgba(184,147,90,.06);color:var(--gold);cursor:pointer;transition:.18s}
+.btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600}
+.btn:active{transform:scale(.96)}
+
+.pulse-card{margin:18px 0;padding:24px 22px;border:1px solid var(--gold-soft);border-radius:18px;background:linear-gradient(145deg,rgba(184,147,90,.06) 0%,rgba(15,14,23,.5) 100%);box-shadow:0 0 30px rgba(184,147,90,.08)}
+.pulse-card.atual{border-color:var(--gold);background:linear-gradient(145deg,rgba(184,147,90,.14) 0%,rgba(15,14,23,.5) 100%);box-shadow:0 0 50px rgba(184,147,90,.18)}
+
+.pulse-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.pulse-tipo{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);background:rgba(184,147,90,.16);padding:4px 10px;border-radius:6px;text-transform:uppercase}
+.pulse-slot{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--bone);opacity:.55;text-transform:uppercase}
+.pulse-titulo{font-family:Georgia,serif;font-size:20px;font-weight:500;line-height:1.25;color:var(--bone);margin-bottom:14px}
+.pulse-body{font-family:Georgia,serif;font-size:15px;line-height:1.7;color:var(--bone);opacity:.92;white-space:pre-wrap}
+.pulse-body strong{color:var(--bone);font-weight:600}
+.pulse-body em{color:var(--gold);font-style:italic}
+.pulse-cta{margin-top:16px;padding:12px 16px;border-left:3px solid var(--gold);background:rgba(184,147,90,.05);border-radius:0 10px 10px 0;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.95;line-height:1.5}
+.pulse-cta::before{content:'🎯 ';opacity:.85}
+.pulse-link{display:inline-block;margin-top:14px;padding:10px 16px;background:rgba(184,147,90,.1);border:1px solid var(--gold-soft);border-radius:8px;color:var(--gold);text-decoration:none;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.05em}
+.pulse-link:active{background:rgba(184,147,90,.2)}
+
+.foot{margin-top:32px;padding-top:18px;border-top:1px solid var(--gold-faint);text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+.loading{padding:40px 20px;text-align:center;color:var(--gold);opacity:.55;font-family:'SF Mono',monospace;font-size:13px;letter-spacing:.05em}
+
+.proximos-list{margin-top:22px}
+.proximo-item{display:block;padding:12px 14px;margin-bottom:8px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.02);text-decoration:none;color:inherit}
+.proximo-item:active{background:rgba(184,147,90,.06);border-color:var(--gold-soft)}
+.proximo-item .tipo-mini{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;opacity:.85}
+.proximo-item .titulo-mini{font-family:Georgia,serif;font-size:14px;color:var(--bone);margin-top:4px;line-height:1.3}
+
+.help-bloco{margin-top:30px;padding:16px 18px;border:1px dashed var(--gold-soft);border-radius:12px;background:rgba(184,147,90,.02);font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:.78;line-height:1.55}
+.help-bloco strong{color:var(--gold)}
+.help-bloco code{font-family:'SF Mono',monospace;font-size:12px;background:rgba(184,147,90,.12);padding:2px 6px;border-radius:4px;color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
+
+  <header>
+    <div class="eyebrow">§ camada proativa NEXUS</div>
+    <h1>Pulse NEXUS</h1>
+    <p class="lead">Conteúdos curados, variados, multiplos tipos · entregues 11h e 16h via WhatsApp · clique em "rolar agora" para gerar um aleatório aqui no hub.</p>
+  </header>
+
+  <div class="controls">
+    <button class="btn primary" onclick="rolarAgora()">✦ rolar pulse agora</button>
+    <button class="btn" onclick="loadProximos()">↻ recarregar prévia</button>
+    <a class="btn" href="./agenda.html">📅 agenda obras</a>
+  </div>
+
+  <div id="atual">
+    <div class="loading">carregando pulse de agora…</div>
+  </div>
+
+  <div class="proximos-list">
+    <div style="font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.75;margin:24px 0 10px">§ prévia · próximos pulses</div>
+    <div id="proximos-feed">
+      <div class="loading">carregando prévia…</div>
+    </div>
+  </div>
+
+  <div class="help-bloco">
+    <strong>📲 No WhatsApp · automático:</strong> 11h00 e 16h00 BRT diariamente.<br>
+    <strong>📲 No WhatsApp · sob demanda:</strong> envie <code>/pulse</code> ou <code>/surpreenda-me</code>.<br>
+    <strong>🤖 No Claude iOS:</strong> digite <code>pulse</code> ou <code>tem novidade?</code> que o Cortex puxa um curado · ou abra esta página no Safari.<br>
+    <strong>📦 Banco:</strong> 40 pulses curados (cresce continuamente) · 10 tipos · sem repetir em 30 dias.
+  </div>
+
+  <div class="foot">
+    NEXUS v15.BS · <a href="./">cockpit</a> · <a href="./sugestao.html">hoje</a> · <a href="./agenda.html">agenda</a> · <a href="./stats.html">stats</a>
+  </div>
+</div>
+
+<script>
+const EXEC = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
+
+function renderPulse(p, slot, atual) {
+  const cls = atual ? 'pulse-card atual' : 'pulse-card';
+  const slotLabel = slot === 'manha' ? 'manhã · 11h' : (slot === 'tarde' ? 'tarde · 16h' : 'agora');
+  let html = `<div class="${cls}">
+    <div class="pulse-head">
+      <span class="pulse-tipo">[${p.tipo}]</span>
+      <span class="pulse-slot">${slotLabel}</span>
+    </div>
+    <div class="pulse-titulo">${p.titulo}</div>
+    <div class="pulse-body">${p.body || ''}</div>`;
+  if (p.cta) html += `<div class="pulse-cta">${p.cta}</div>`;
+  if (p.link) html += `<a href="${p.link}" class="pulse-link" target="_blank">${p.link.replace('https://','')}</a>`;
+  html += '</div>';
+  return html;
+}
+
+async function loadAtual() {
+  try {
+    const r = await fetch(EXEC + '?action=pulse_today', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.ok && d.pulse) {
+      document.getElementById('atual').innerHTML = renderPulse(d.pulse, d.slot, true);
+    } else {
+      document.getElementById('atual').innerHTML = '<div class="loading">erro · ' + (d.error || 'sem pulse') + '</div>';
+    }
+  } catch (e) {
+    document.getElementById('atual').innerHTML = '<div class="loading">offline · tente novamente em alguns segundos</div>';
+  }
+}
+
+async function loadProximos() {
+  document.getElementById('proximos-feed').innerHTML = '<div class="loading">carregando prévia…</div>';
+  try {
+    const r = await fetch(EXEC + '?action=pulse_proximos&n=5', { cache: 'no-store' });
+    const d = await r.json();
+    if (d.ok && d.pulses) {
+      const html = d.pulses.map(p => `
+        <a class="proximo-item" href="javascript:void(0)" onclick="exibirPulse('${p.id}')">
+          <div class="tipo-mini">[${p.tipo}] · ${p.slot === 'manha' ? '11h' : '16h'}</div>
+          <div class="titulo-mini">${p.titulo}</div>
+        </a>`).join('');
+      document.getElementById('proximos-feed').innerHTML = html;
+    }
+  } catch (e) {
+    document.getElementById('proximos-feed').innerHTML = '<div class="loading">offline</div>';
+  }
+}
+
+async function rolarAgora() {
+  document.getElementById('atual').innerHTML = '<div class="loading">rolando novo pulse…</div>';
+  await loadAtual();
+}
+
+async function exibirPulse(id) {
+  // GitHub Pages é estático · não temos rota pra ID específico ainda
+  // Use rolar agora · retorna aleatório
+  await rolarAgora();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// SW registrado em /home/index.html · cobre essa página automaticamente
+loadAtual();
+loadProximos();
+</script>
+</body>
+</html>

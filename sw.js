@@ -39,6 +39,7 @@ const SHELL = [
   '/home/notificacoes.html',
   '/home/iphone-setup.html',
   '/home/coaching.html',
+  '/home/pulse.html',
   '/home/offline.html',
   '/home/manifest.json',
   '/home/novidades.json',
