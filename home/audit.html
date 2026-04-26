@@ -75,11 +75,16 @@ h2{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.22em;color:var
   <a href="./" class="crumb">← Cockpit</a>
 
   <header>
-    <div class="eyebrow">§ auditoria honesta · v15.BT</div>
+    <div class="eyebrow">§ auditoria + reingestão em curso · v15.BU</div>
     <h1>Acervo Real do NEXUS</h1>
-    <div class="tag">2026-04-26 · scan via /stats + probes semânticas</div>
-    <p class="lead">Status real de cada obra · sem maquiar. Diferencia o que está vivo no sistema do que está apenas ocupando espaço.</p>
+    <div class="tag" id="status-tag">RAG v3 · ingestão ativa</div>
+    <p class="lead">Status real de cada obra · sem maquiar. Em <strong>v15.BU</strong> · migrei o RAG para collection v3 limpa e o pipeline <code>master_ingest.py</code> está reingerindo TUDO (Hamlet OCR + 27 PDFs do Drive) em background. Página atualiza chunks em tempo real.</p>
   </header>
+
+  <div class="diag-bloco yellow" style="margin-top:14px">
+    <strong>📡 LIVE · ingestão autônoma:</strong> chunks no RAG v3: <strong id="live-chunks">…</strong> · obras: <strong id="live-obras">…</strong> · ETA total ~3-5h CPU (~5 chunks/min via Ollama).<br>
+    Pipeline processa: 1) Hamlet via EasyOCR (266 chunks esperados) · 2) Romeu/Lear quando OCR concluir · 3) 27 PDFs do Drive (Adobe-OCR-ed) · 4) auto-skip de PDFs com legibilidade &lt;60%.
+  </div>
 
   <h2>§ resumo executivo</h2>
   <div class="kpi-grid">
@@ -214,10 +219,28 @@ h2{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.22em;color:var
   </div>
 
   <div class="foot">
-    NEXUS v15.BT · auditoria executada via <code style="color:var(--gold);background:rgba(184,147,90,.12);padding:2px 6px;border-radius:4px;font-family:'SF Mono',monospace;font-size:10px">audit_acervo.py</code><br>
-    <span class="timestamp">scan: 2026-04-26 · próxima auditoria automatizada: domingo 21h00</span><br><br>
-    <a href="./">cockpit</a> · <a href="./stats.html">stats vivas</a> · <a href="./integrais.html">acervo</a> · <a href="./novidades.json">novidades</a>
+    NEXUS v15.BU · auditoria + reingestão autônoma via <code style="color:var(--gold);background:rgba(184,147,90,.12);padding:2px 6px;border-radius:4px;font-family:'SF Mono',monospace;font-size:10px">master_ingest.py</code><br>
+    <span class="timestamp">RAG v3 · live · próxima auditoria automatizada: domingo 21h00</span><br><br>
+    <a href="./">cockpit</a> · <a href="./stats.html">stats</a> · <a href="./integrais.html">acervo</a> · <a href="./google-plan.html">plano Google</a> · <a href="./web-pulse-plan.html">plano WebPulse</a>
   </div>
 </div>
+
+<script>
+async function pollRAG() {
+  try {
+    const r = await fetch('https://rag.nexuscaldeira.com/health', { cache: 'no-store' });
+    const h = await r.json();
+    document.getElementById('live-chunks').textContent = (h.chunks||0).toLocaleString('pt-BR');
+    const r2 = await fetch('https://rag.nexuscaldeira.com/stats', { cache: 'no-store' });
+    const s = await r2.json();
+    document.getElementById('live-obras').textContent = (s.obras||0) + ' (' + (s.obras_integrais||0) + ' integrais)';
+    document.getElementById('status-tag').textContent = 'RAG v3 · ' + (h.chunks||0) + ' chunks · ' + (h.collection||'?');
+  } catch(e) {
+    document.getElementById('live-chunks').textContent = 'offline';
+  }
+}
+pollRAG();
+setInterval(pollRAG, 30 * 1000);
+</script>
 </body>
 </html>

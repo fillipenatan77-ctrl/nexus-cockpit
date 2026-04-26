@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEXUS">
+<meta name="theme-color" content="#0F0E17">
+<title>NEXUS · v16.0</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../icons/icon-192.png">
+<style>
+:root {
+  --bg: #0F0E17;
+  --bg-card: #1a1830;
+  --bg-card-2: #232142;
+  --fg: #FFFFFE;
+  --fg-dim: #A7A9BE;
+  --accent: #FF8906;
+  --accent-2: #F25F4C;
+  --green: #2CB67D;
+  --yellow: #FFD803;
+  --red: #E53170;
+  --border: #2a2548;
+  --safe-top: env(safe-area-inset-top);
+  --safe-bottom: env(safe-area-inset-bottom);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  padding-top: var(--safe-top);
+}
+header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+header h1 {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+header .v { font-size: 11px; color: var(--fg-dim); text-transform: uppercase; letter-spacing: 0.1em; }
+main {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 20px 100px;
+}
+nav.tabs {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  background: rgba(15, 14, 23, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding-bottom: var(--safe-bottom);
+}
+nav.tabs button {
+  background: transparent;
+  border: 0;
+  color: var(--fg-dim);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 10px 4px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+nav.tabs button.active { color: var(--accent); }
+nav.tabs button .ic { font-size: 22px; line-height: 1; }
+.section { display: none; animation: fadeIn 0.25s ease; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.card {
+  background: var(--bg-card);
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--border);
+}
+.card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-dim); margin-bottom: 10px; }
+.card h3 { font-size: 18px; margin-bottom: 8px; line-height: 1.3; }
+.chip {
+  display: inline-block;
+  background: var(--bg-card-2);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--fg-dim);
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+.chip.green { background: rgba(44, 182, 125, 0.2); color: var(--green); }
+.chip.yellow { background: rgba(255, 216, 3, 0.2); color: var(--yellow); }
+.chip.red { background: rgba(229, 49, 112, 0.2); color: var(--red); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #1a1a1a;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 6px 6px 0 0;
+}
+.btn.ghost { background: var(--bg-card-2); color: var(--fg); border: 1px solid var(--border); }
+.btn.full { display: flex; width: 100%; justify-content: center; }
+input, textarea {
+  width: 100%;
+  background: var(--bg-card-2);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  margin-bottom: 10px;
+}
+textarea { min-height: 80px; resize: vertical; }
+.cite { font-style: italic; color: var(--fg-dim); padding: 12px 0; border-left: 3px solid var(--accent); padding-left: 14px; margin: 10px 0; }
+.list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.list-item:last-child { border-bottom: 0; }
+.list-item .ti { font-weight: 600; }
+.list-item .me { color: var(--fg-dim); font-size: 13px; }
+pre {
+  background: var(--bg-card-2);
+  padding: 12px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.hint { font-size: 12px; color: var(--fg-dim); margin-top: 8px; }
+details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
+.tag { font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-card-2); color: var(--fg-dim); }
+.bandeira { font-size: 18px; vertical-align: middle; }
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <div>
+    <h1>NEXUS</h1>
+    <div class="v">v16.0 · <span id="cycle">dia ?/272</span></div>
+  </div>
+  <div id="status" class="chip green">●</div>
+</header>
+
+<main>
+  <!-- HOJE -->
+  <section class="section active" data-tab="hoje">
+    <div class="card">
+      <h2>🌅 Hoje</h2>
+      <h3 id="hoje-titulo">Carregando…</h3>
+      <div id="hoje-meta" class="hint"></div>
+      <div class="cite" id="hoje-citacao">—</div>
+      <div id="hoje-mergulho"></div>
+    </div>
+    <div class="card">
+      <h2>Ações rápidas</h2>
+      <a class="btn full" href="https://claude.ai/project/nexus-cortex" target="_blank">💬 Cortex iOS</a>
+      <a class="btn ghost full" href="https://wa.me/" target="_blank">💚 Biblioteca Viva</a>
+      <button class="btn ghost full" onclick="show('acervo')">🔍 Buscar no acervo</button>
+    </div>
+    <div class="card">
+      <h2>Sistema</h2>
+      <div id="sysinfo">Verificando…</div>
+    </div>
+  </section>
+
+  <!-- ACERVO -->
+  <section class="section" data-tab="acervo">
+    <div class="card">
+      <h2>🔍 Busca RAG</h2>
+      <input id="q" placeholder="Pergunte ao acervo · ex: o que é Nachträglichkeit?" enterkeyhint="search">
+      <button class="btn full" onclick="ragAsk()">Buscar</button>
+      <div class="hint">60.561 chunks · 77 obras integrais · OpenAI 1536d</div>
+    </div>
+    <div id="results"></div>
+  </section>
+
+  <!-- GLOSSÁRIO -->
+  <section class="section" data-tab="glossario">
+    <div class="card">
+      <h2>📖 Glossário</h2>
+      <input id="gloss-q" placeholder="Filtrar termo · ex: recalque" oninput="filterGloss()">
+    </div>
+    <div id="gloss-list"></div>
+  </section>
+
+  <!-- DIÁRIO -->
+  <section class="section" data-tab="diario">
+    <div class="card">
+      <h2>📓 Nova entrada</h2>
+      <textarea id="diario-text" placeholder="Insight · decisão · pergunta..."></textarea>
+      <button class="btn full" onclick="diarioSave()">Registrar</button>
+      <div class="hint">Salva via Apps Script no Diário NEXUS</div>
+    </div>
+    <div class="card">
+      <h2>Últimas entradas</h2>
+      <div id="diario-list">Carregando…</div>
+    </div>
+  </section>
+
+  <!-- PROMPT v6.6 -->
+  <section class="section" data-tab="prompt">
+    <div class="card">
+      <h2>⚙️ System Prompt v6.6</h2>
+      <p>Para Cortex iOS · Custom Instructions do Project NEXUS Cortex</p>
+      <button class="btn full" onclick="copyPrompt()">📋 Copiar tudo</button>
+      <a class="btn ghost full" href="https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/00_HUB/NEXUS_CORTEX_SYSTEM_PROMPT_v6.6.md" target="_blank">Ver no GitHub</a>
+    </div>
+    <div class="card">
+      <h2>Resumo · 17 regras invioláveis v16.0</h2>
+      <details><summary>Ver lista</summary>
+      <ol style="padding-left:20px;font-size:14px;line-height:1.7;color:var(--fg-dim)">
+        <li>RAG é fonte canônica · probe semântica obrigatória</li>
+        <li>Bandeira de profundidade visível (🟢/✦/🟡/🔴)</li>
+        <li>Pipeline atómico para toda obra adicionada</li>
+        <li><b>Apps Script CONGELADO em 13 triggers</b></li>
+        <li>WhatsApp via nexus_notify (canônico) · uazapi direto = fallback</li>
+        <li>OpenAI text-embedding-3-small 1536d · Ollama é fallback offline</li>
+        <li>8 categorias rígidas + _DERIVADOS + _ARQUIVO</li>
+        <li>Backup 3-2-1: local + OneDrive + GitHub + snapshot semanal</li>
+        <li>URL única nexuscaldeira.com · subdomínios fixos</li>
+        <li>Mobile-first · iPhone primário · PWA complemento</li>
+        <li>Frente fechada = probe 🟢 + Scheduled Task ativa + GUIA atualizado</li>
+        <li>Custo OpenAI mensal target &lt; USD 5</li>
+        <li>_ENTRADAS_NEXUS é única porta de entrada</li>
+        <li>.env em 70_APP/cortex · gitignored</li>
+        <li>ESTADO_ATUAL.md + FILA atualizados a cada Frente</li>
+        <li>Diferenças teóricas reais expostas</li>
+        <li>Cautela subjetiva · 4 vetores · sem regra · critério é Fillipe</li>
+      </ol>
+      </details>
+    </div>
+    <div class="card">
+      <h2>74 Skills</h2>
+      <p style="color:var(--fg-dim);font-size:14px">Núcleo: nexus-retomar · nexus-status · grade-10-pontos · mapa-influencia · conversa-dificil · investigacao · fichamento-obra · nexus-final-check</p>
+      <a class="btn ghost full" href="https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/00_HUB/SKILLS_NEXUS_MAPA_GERAL.md" target="_blank">Mapa completo</a>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs">
+  <button data-tab="hoje" class="active" onclick="show('hoje')"><span class="ic">🌅</span>Hoje</button>
+  <button data-tab="acervo" onclick="show('acervo')"><span class="ic">🔍</span>Acervo</button>
+  <button data-tab="glossario" onclick="show('glossario')"><span class="ic">📖</span>Glossário</button>
+  <button data-tab="diario" onclick="show('diario')"><span class="ic">📓</span>Diário</button>
+  <button data-tab="prompt" onclick="show('prompt')"><span class="ic">⚙️</span>Prompt</button>
+</nav>
+</div>
+
+<script>
+const RAG = "https://rag.nexuscaldeira.com";
+const APPS_SCRIPT = "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec";
+const HEALTH_URL = "../home/health.json";
+
+const ESTACOES = ["Limiar","Forja","Vento","Sentinela","Bússola Inversa","Reservatório","Tear","Espelho","Vento de Costas","Aurora","Cofre","Fronteira","Encruzilhada","Pulso","Constelação","Travessia","Síntese","Selo"];
+const LENTES_DIA = ["foco","escuta","decisão","memória","palavra","desejo","limite","poder","linguagem","tempo","corpo","sombra","vínculo","sentido","ação","silêncio"];
+
+function show(tab) {
+  document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.dataset.tab === tab));
+  document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  if (tab === "glossario" && !window._glossLoaded) loadGloss();
+  if (tab === "diario" && !window._diarioLoaded) loadDiario();
+}
+
+async function loadHealth() {
+  try {
+    const r = await fetch(HEALTH_URL + "?_=" + Date.now());
+    const d = await r.json();
+    const dia = d.ciclo.dia;
+    const estIdx = d.ciclo.estacao_idx;
+    document.getElementById("cycle").textContent = `dia ${dia}/${d.ciclo.total}`;
+    document.getElementById("hoje-titulo").textContent = `${ESTACOES[estIdx]} · lente: ${LENTES_DIA[dia % LENTES_DIA.length]}`;
+    document.getElementById("hoje-meta").textContent = `Estação ${estIdx+1}/18 · ciclo ${d.ciclo.inicio} → ${d.ciclo.fim}`;
+    const c = d.rag;
+    document.getElementById("sysinfo").innerHTML = `
+      <div class="chip green">RAG ${c.estado_aprox.chunks.toLocaleString()} chunks</div>
+      <div class="chip green">${c.estado_aprox.integrais} obras 🟢</div>
+      <div class="chip green">Apps Script ${d.infra.apps_script_deploy}</div>
+      <div class="chip yellow">Frente 1: ${d.frentes_v16_0?.["1_obras_integrais"]?.desc || "-"}</div>
+    `;
+    sugestaoDoDia(dia);
+  } catch (e) {
+    document.getElementById("sysinfo").innerHTML = `<div class="chip red">offline</div>`;
+  }
+}
+
+const SUGESTOES_16 = [
+  ["Freud · Interpretação dos Sonhos", "trecho integral comentado · /citacao Freud"],
+  ["Mapa conceitual: o desejo em Lacan", "5 conceitos centrais · grafo"],
+  ["Klein × Lacan · objeto a", "disputa teórica · base bibliográfica"],
+  ["MPMG · caso real", "aplicação operacional · conectar autor"],
+  ["Cápsula 300 chars", "WhatsApp-ready · /capsula"],
+  ["Trilha 7 dias · Stoicismo", "sequência encadeada"],
+  ["Glossário · 5 termos", "ipsis litteris"],
+  ["Pergunta socrática", "3 perguntas · sem resposta direta"],
+  ["Pomodoro NEXUS", "25min foco + 5min reflexão"],
+  ["Lab decisões", "dilema → 4 perspectivas + viés"],
+  ["Conversa difícil simulada", "interlocutor X · roteiro"],
+  ["Memory palace", "Yates/O'Brien · 5 imagens-loci"],
+  ["Card visual 1080×1920", "prompt SVG"],
+  ["Insight cruzado", "2 obras · campos distintos"],
+  ["Audio aula", "TTS · 3-5 min"],
+  ["Quiz cold-reading", "5 perguntas Mentalist"]
+];
+function sugestaoDoDia(dia) {
+  const [titulo, hint] = SUGESTOES_16[dia % 16];
+  document.getElementById("hoje-mergulho").innerHTML = `
+    <div style="margin-top:12px"><b>📖 Mergulho do dia:</b> ${titulo}</div>
+    <div class="hint">${hint}</div>
+  `;
+}
+
+async function ragAsk() {
+  const q = document.getElementById("q").value.trim();
+  if (!q) return;
+  const out = document.getElementById("results");
+  out.innerHTML = `<div class="card"><h2>Buscando…</h2></div>`;
+  try {
+    const r = await fetch(RAG + "/ask", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({q, top_k: 5})
+    });
+    const d = await r.json();
+    out.innerHTML = "";
+    (d.results || []).forEach(h => {
+      const score = (h.score || 0).toFixed(2);
+      const flag = h.score > 0.5 ? "🟢" : (h.score > 0.3 ? "🟡" : "🔴");
+      out.innerHTML += `
+        <div class="card">
+          <div class="chip">${h.autor || "?"}</div>
+          <div class="chip">${h.titulo || h.obra || "?"}</div>
+          <div class="chip">${flag} ${score}</div>
+          ${h.page_start ? `<div class="chip">p. ${h.page_start}-${h.page_end}</div>` : ""}
+          <div class="cite">${(h.text || "").slice(0, 600)}…</div>
+        </div>
+      `;
+    });
+    if (!d.results || !d.results.length) out.innerHTML = `<div class="card"><h2>Sem resultados</h2></div>`;
+  } catch (e) {
+    out.innerHTML = `<div class="card"><h2 class="red">Erro</h2><pre>${e.message}</pre></div>`;
+  }
+}
+document.getElementById("q")?.addEventListener("keydown", e => { if (e.key === "Enter") ragAsk(); });
+
+async function loadGloss() {
+  window._glossLoaded = true;
+  try {
+    const r = await fetch("../home/glossario.json?_=" + Date.now()).catch(() => null);
+    if (!r || !r.ok) {
+      document.getElementById("gloss-list").innerHTML = `<div class="card"><p>Glossário ainda não publicado · use Cortex /glossario</p></div>`;
+      return;
+    }
+    window._gloss = await r.json();
+    renderGloss(window._gloss);
+  } catch (e) {
+    document.getElementById("gloss-list").innerHTML = `<div class="card red">Erro: ${e.message}</div>`;
+  }
+}
+function renderGloss(items) {
+  const out = items.map(it => `
+    <div class="card">
+      <h3>${it.termo}</h3>
+      <div class="chip">${it.autor || "?"}</div>
+      <div class="chip">${it.campo || "?"}</div>
+      <p style="margin-top:8px">${it.definicao || ""}</p>
+    </div>
+  `).join("");
+  document.getElementById("gloss-list").innerHTML = out || `<div class="card">Vazio</div>`;
+}
+function filterGloss() {
+  const q = document.getElementById("gloss-q").value.toLowerCase();
+  if (!window._gloss) return;
+  renderGloss(window._gloss.filter(it => (it.termo + " " + (it.autor||"") + " " + (it.definicao||"")).toLowerCase().includes(q)));
+}
+
+async function loadDiario() {
+  window._diarioLoaded = true;
+  document.getElementById("diario-list").innerHTML = `<div class="hint">Funcionalidade plena via Cortex /diario</div>`;
+}
+async function diarioSave() {
+  const text = document.getElementById("diario-text").value.trim();
+  if (!text) return;
+  alert("Para registrar permanentemente, use: WhatsApp /diario " + text + " · ou Cortex iOS");
+}
+
+async function copyPrompt() {
+  try {
+    const r = await fetch("https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/00_HUB/NEXUS_CORTEX_SYSTEM_PROMPT_v6.6.md");
+    const txt = await r.text();
+    await navigator.clipboard.writeText(txt);
+    alert("System Prompt v6.6 copiado · cole nas Custom Instructions do Cortex iOS");
+  } catch (e) {
+    alert("Falha ao copiar: " + e.message + "\nAcesse via botão GitHub abaixo.");
+  }
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js").catch(() => {});
+}
+
+loadHealth();
+</script>
+</body>
+</html>

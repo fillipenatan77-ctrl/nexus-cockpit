@@ -1,0 +1,21 @@
+{
+  "name": "NEXUS · v16.0",
+  "short_name": "NEXUS",
+  "description": "Cockpit pessoal NEXUS v16.0 · 5 telas mobile-first · Hoje · Acervo · Glossário · Diário · Prompt",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0F0E17",
+  "theme_color": "#0F0E17",
+  "categories": ["productivity", "education", "lifestyle"],
+  "icons": [
+    { "src": "../icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "../icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {"name": "Buscar acervo", "url": "./index.html?tab=acervo", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
+    {"name": "Diário", "url": "./index.html?tab=diario", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
+    {"name": "System Prompt v6.6", "url": "./index.html?tab=prompt", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]}
+  ]
+}

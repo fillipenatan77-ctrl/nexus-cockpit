@@ -1,8 +1,8 @@
 {
   "projeto": "NEXUS",
-  "versao": "v15.AX",
+  "versao": "v16.0",
   "ciclo": {
-    "dia": 24,
+    "dia": 25,
     "total": 272,
     "inicio": "2026-04-02",
     "fim": "2026-12-29",
@@ -17,7 +17,9 @@
       "/stats",
       "/ask",
       "/citacao",
-      "/embed"
+      "/embed",
+      "/admin/ingest_chunks",
+      "/admin/delete_sources"
     ],
     "apps_script": "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec",
     "github": {
@@ -28,7 +30,8 @@
     "primordia_ics": "https://nexuscaldeira.com/primordia.ics",
     "novidades_json": "https://nexuscaldeira.com/novidades.json",
     "rag_url": "https://rag.nexuscaldeira.com",
-    "rag_url_type": "named_tunnel_persistent"
+    "rag_url_type": "named_tunnel_persistent",
+    "gcp_project": "nexus-operator-hub"
   },
   "dominio": {
     "principal": "nexuscaldeira.com",
@@ -47,34 +50,67 @@
     ]
   },
   "rag": {
-    "collection": "nexus_acervo_v2",
-    "ingestao_em_curso": true,
-    "criterio_integral": "≥50 chunks por obra",
+    "collection": "nexus_acervo_v4",
+    "embed_model": "text-embedding-3-small",
+    "embed_dims": 1536,
+    "embed_provider": "openai",
+    "ingestao_em_curso": false,
+    "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
     "estado_aprox": {
-      "chunks": 3304,
-      "obras": 53,
-      "integrais": 27
+      "chunks": 60561,
+      "obras": 83,
+      "integrais": 77
     }
   },
   "infra": {
-    "apps_script_deploy": "@153",
-    "triggers_meta": 8,
-    "pwa_paginas": 28,
+    "apps_script_deploy": "@99",
+    "triggers_meta": 13,
+    "triggers_status": "CONGELADO em 13 (regra v16.0 #4)",
+    "pwa_paginas": 33,
     "watchdog_scheduled": true,
+    "watchdog_versao": "v2",
     "tunnel_keeper": "named_tunnel_persistent",
-    "chroma_v1_status": "deletada",
-    "chroma_v2_status": "ativo"
+    "chroma_v4_status": "ativo",
+    "scheduled_tasks_v16": {
+      "NEXUS_Watchdog_v2": "5min",
+      "NEXUS_Chroma_Snapshot": "Sun-22:00",
+      "NEXUS_Drive_Watcher": "AtStartup",
+      "NEXUS_Drive_Watcher_Docs": "AtStartup",
+      "NEXUS_Gmail_Digest_Manha": "08:00",
+      "NEXUS_Gmail_Digest_Tarde": "18:00",
+      "NEXUS_Contatos_Audit": "Mon-07:30"
+    },
+    "google_oauth": {
+      "client_type": "Desktop",
+      "scopes": 9,
+      "scopes_list": ["gmail.modify","gmail.send","calendar","tasks","drive","contacts","documents","spreadsheets","presentations"]
+    },
+    "custo_openai_cumulativo_usd": 0.29,
+    "custo_openai_mensal_estimado_usd": 0.05
   },
-  "principios_vigentes": [
-    "Domínio nexuscaldeira.com é coluna estrutural (v15.AX)",
-    "URL única /home/ como frente (v15.AA · ainda válido)",
-    "pt-BR inviolável (v5)",
-    "Arquitetura 5 camadas (v15.AR)",
-    "Profundidade conceitual liberada (v15.AR)",
-    "Zona de cautela subjetiva · 4 vetores (v15.AR)",
-    "Bandeira de profundidade 🟢🟡🔴 (v15.AR)",
-    "PowerShell 7 padrão · Git Bash p/ background",
-    "Apps Script = APENAS I/O Google (v15.AV)"
+  "principios_vigentes_v16_0": [
+    "Apps Script CONGELADO em 13 triggers · novas integrações em Python local (regra inviolavel #4)",
+    "WhatsApp via Apps Script nexus_notify (canônico) · uazapi direto (fallback)",
+    "Embeddings = OpenAI text-embedding-3-small 1536d · Ollama é fallback offline",
+    "Categorias acervo = 8 + _DERIVADOS + _ARQUIVO (rígidas)",
+    "Backup 3-2-1: local + OneDrive + GitHub + snapshot semanal",
+    "URL pública única: nexuscaldeira.com · subdomínios fixos imutáveis",
+    "Mobile-first · iPhone interface primária · PWA complemento",
+    "Bandeira de profundidade visível: 🟢 RAG-INTEGRAL · ✦ canônica · 🟡 amostra · 🔴 inferência",
+    "PowerShell 7 ADMINISTRADOR padrão · Git Bash p/ background detached",
+    "Cautela subjetiva · 4 vetores (imagem · persuasão · impacto · eficácia) · sem regra de proteção",
+    "Diferenças teóricas reais expostas (Freud × Klein × Lacan · Heidegger × Levinas)",
+    "Pasta NEXUS em backup tempo real Google Drive (sync ativo)"
   ],
-  "rag_url_updated_at": "2026-04-25T09:58:58.4670703-03:00"
+  "frentes_v16_0": {
+    "1_obras_integrais": {"status": "yellow", "desc": "5 OCRs Shakespeare em background · Suma partition pendente"},
+    "2_canonizacao_docs": {"status": "green", "desc": "5 pilares v16.0 · 68→31 docs"},
+    "3_system_prompt_v66": {"status": "green", "desc": "v6.6 escrito"},
+    "4_drive_watcher": {"status": "green", "desc": "pipeline atomico ativo"},
+    "5_google_ecosystem": {"status": "green", "desc": "10 modulos · 8 APIs · 4 tasks ativas"},
+    "6_pedagogia_mobile": {"status": "yellow", "desc": "em desenvolvimento"},
+    "7_pwa_5_telas": {"status": "yellow", "desc": "em desenvolvimento"},
+    "8_backup_watchdog": {"status": "green", "desc": "Watchdog_v2 + snapshot semanal ativos"}
+  },
+  "rag_url_updated_at": "2026-04-26T14:25:00-03:00"
 }
