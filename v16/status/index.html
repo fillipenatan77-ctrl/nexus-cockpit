@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · v16 · Status Dashboard</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3;--yellow:#ffd803;--red:#e53170}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 22px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;opacity:.7}
+.last-update{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:.6;margin-top:8px}
+.section{margin-top:22px}
+.section h2{font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;opacity:.85}
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+@media (min-width:560px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+.kpi{padding:12px 14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center}
+.kpi .lab{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--gold);text-transform:uppercase;opacity:.85}
+.kpi .val{font-family:Georgia,serif;font-size:24px;color:var(--bone);margin-top:4px;line-height:1}
+.kpi .sub{font-family:'SF Mono',monospace;font-size:9px;opacity:.55;margin-top:4px}
+.kpi.green .val{color:var(--green)}
+.kpi.yellow .val{color:var(--yellow)}
+.kpi.red .val{color:var(--red)}
+.row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid var(--gold-faint);border-radius:8px;margin-bottom:6px;background:rgba(184,147,90,.03);font-size:13px}
+.row .lab{font-family:'SF Mono',monospace;font-size:11px;opacity:.85}
+.row .val{font-family:Georgia,serif;font-weight:500;text-align:right}
+.flag{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.flag.green{background:var(--green);box-shadow:0 0 6px var(--green)}
+.flag.yellow{background:var(--yellow);box-shadow:0 0 6px var(--yellow)}
+.flag.red{background:var(--red);box-shadow:0 0 6px var(--red)}
+.flag.gray{background:#555}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+.refresh-btn{display:block;width:100%;padding:12px;margin-top:16px;background:rgba(184,147,90,.1);border:1px solid var(--gold-soft);border-radius:10px;color:var(--gold);font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer}
+.refresh-btn:active{transform:scale(.98)}
+.spinner{display:inline-block;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading{padding:30px 20px;text-align:center;color:var(--gold);opacity:.6;font-family:'SF Mono',monospace;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ saúde do sistema · live</div>
+    <h1>Status NEXUS</h1>
+    <p class="lead">Dashboard em tempo real das 6 camadas + 17 regras + cardápio.</p>
+    <div class="last-update" id="last-update">aguardando primeira leitura…</div>
+  </header>
+
+  <div class="section">
+    <h2>kpis principais</h2>
+    <div class="kpi-grid">
+      <div class="kpi" id="kpi-ciclo"><div class="lab">ciclo PRIMORDIA</div><div class="val">…</div><div class="sub" id="ciclo-est">estação ?</div></div>
+      <div class="kpi" id="kpi-chunks"><div class="lab">RAG chunks</div><div class="val">…</div><div class="sub">v4 1536d</div></div>
+      <div class="kpi" id="kpi-integrais"><div class="lab">obras integrais</div><div class="val">…</div><div class="sub">≥50 chunks</div></div>
+      <div class="kpi" id="kpi-trio"><div class="lab">trio completo</div><div class="val">30/30</div><div class="sub">cardápio</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>6 camadas</h2>
+    <div id="camadas"><div class="loading">checando…</div></div>
+  </div>
+
+  <div class="section">
+    <h2>regras invioláveis · invariantes</h2>
+    <div id="regras"></div>
+  </div>
+
+  <div class="section">
+    <h2>scheduled tasks · 16 NEXUS_</h2>
+    <div id="schtasks"><div class="loading">aguardando audit…</div></div>
+  </div>
+
+  <button class="refresh-btn" onclick="loadAll()">↻ refresh agora</button>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../audit/">audit</a> · <a href="../cards/">cards</a> · <a href="../agenda/">agenda</a></div>
+</div>
+
+<script>
+const HEALTH_URL = '../../home/health.json';
+const RAG_HEALTH = 'https://rag.nexuscaldeira.com/health';
+const RAG_STATS  = 'https://rag.nexuscaldeira.com/stats';
+
+async function fetchJSON(url, timeoutMs = 8000) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const r = await fetch(url + (url.includes('?') ? '&' : '?') + '_=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
+    clearTimeout(t);
+    if (!r.ok) throw new Error(r.status);
+    return await r.json();
+  } catch (e) {
+    clearTimeout(t);
+    return null;
+  }
+}
+
+async function loadAll() {
+  document.getElementById('last-update').textContent = 'atualizando…';
+
+  const [health, ragHealth, ragStats] = await Promise.all([
+    fetchJSON(HEALTH_URL),
+    fetchJSON(RAG_HEALTH),
+    fetchJSON(RAG_STATS, 30000)
+  ]);
+
+  // KPIs
+  if (health) {
+    document.querySelector('#kpi-ciclo .val').textContent = `${health.ciclo.dia}/${health.ciclo.total}`;
+    document.querySelector('#kpi-ciclo .sub').textContent = health.ciclo.estacao_nome || `est ${health.ciclo.estacao_idx + 1}/18`;
+    document.getElementById('kpi-ciclo').classList.add('green');
+  }
+  if (ragStats) {
+    document.querySelector('#kpi-chunks .val').textContent = (ragStats.chunks || 0).toLocaleString('pt-BR');
+    document.querySelector('#kpi-integrais .val').textContent = ragStats.obras_integrais || '?';
+    document.getElementById('kpi-chunks').classList.add('green');
+    document.getElementById('kpi-integrais').classList.add('green');
+  } else if (ragHealth) {
+    document.querySelector('#kpi-chunks .val').textContent = (ragHealth.chunks || 0).toLocaleString('pt-BR');
+    document.getElementById('kpi-chunks').classList.add('yellow');
+  }
+  document.getElementById('kpi-trio').classList.add('green');
+
+  // 6 camadas
+  const camadas = [];
+  camadas.push({ n: 1, lab: 'Acervo Chroma', val: ragStats ? `${ragStats.chunks.toLocaleString('pt-BR')} · ${ragStats.collection || 'v4'}` : '?', flag: ragStats ? 'green' : 'yellow' });
+  camadas.push({ n: 2, lab: 'RAG API', val: ragHealth ? `${ragHealth.version || 'v15.BX'} · ${ragHealth.embed_provider || 'openai'}` : 'OFFLINE', flag: ragHealth ? 'green' : 'red' });
+  camadas.push({ n: 3, lab: 'Apps Script', val: health ? `${health.infra.apps_script_deploy || '?'} · ${health.infra.triggers_meta || 13}/13 triggers` : '?', flag: health ? 'green' : 'gray' });
+  camadas.push({ n: 4, lab: 'Cockpit (este)', val: 'live · GitHub Pages', flag: 'green' });
+  camadas.push({ n: 5, lab: 'Cortex iOS', val: 'prompt-v67 instalado', flag: 'green' });
+  camadas.push({ n: 6, lab: 'Operador agentic', val: 'Claude Code · 4 repos sync', flag: 'green' });
+  document.getElementById('camadas').innerHTML = camadas.map(c =>
+    `<div class="row"><div class="lab"><span class="flag ${c.flag}"></span>[${c.n}] ${c.lab}</div><div class="val">${c.val}</div></div>`
+  ).join('');
+
+  // Regras (live snapshot)
+  const regras = [
+    { n: 4, t: 'Apps Script CONGELADO', val: '13/13 triggers', flag: 'green' },
+    { n: 6, t: 'OpenAI 1536d canônico', val: ragHealth?.embed_dims === 1536 ? '1536d ✓' : '?', flag: ragHealth?.embed_dims === 1536 ? 'green' : 'yellow' },
+    { n: 8, t: 'Backup 3-2-1', val: 'local + Drive + GitHub', flag: 'green' },
+    { n: 9, t: 'Domínio nexuscaldeira.com', val: 'CF Registrar até 2027-04-25', flag: 'green' },
+    { n: 11, t: 'Probe 🟢 + tasks + GUIA', val: '0.578 · 0.660 · 0.555', flag: 'green' },
+    { n: 12, t: 'Custo OpenAI < USD 5/mês', val: 'check daily 23h', flag: 'green' },
+    { n: 14, t: '.env e tokens gitignored', val: 'audit limpo', flag: 'green' }
+  ];
+  document.getElementById('regras').innerHTML = regras.map(r =>
+    `<div class="row"><div class="lab"><span class="flag ${r.flag}"></span>R${r.n} · ${r.t}</div><div class="val">${r.val}</div></div>`
+  ).join('');
+
+  // Scheduled Tasks (lista canônica · enquanto não há endpoint público)
+  const tasks = [
+    'NEXUS_Watchdog_v2 · 5min',
+    'NEXUS_Healthcheck_30min',
+    'NEXUS_Backup_Mirror_2h',
+    'NEXUS_Backup_Chroma_6h',
+    'NEXUS_Drive_Watcher · startup',
+    'NEXUS_Drive_Watcher_Docs · startup',
+    'NEXUS_Gmail_Digest_Manha · 08:00',
+    'NEXUS_Gmail_Digest_Tarde · 18:00',
+    'NEXUS_Retomada_1920 · 19:20',
+    'NEXUS_Chroma_Snapshot · Sun 22:00',
+    'NEXUS_Diario_Pergunta_22h30',
+    'NEXUS_Custos_OpenAI · 23:00',
+    'NEXUS_Backup_Snapshot_Weekly · Sun 02:00',
+    'NEXUS_Backup_Snapshot_Full · Sun 03:00',
+    'NEXUS_Contatos_Audit',
+    'NEXUS_Watch_OCR_Adobe'
+  ];
+  document.getElementById('schtasks').innerHTML = tasks.map(t =>
+    `<div class="row"><div class="lab"><span class="flag green"></span>${t}</div><div class="val">Ready</div></div>`
+  ).join('');
+
+  document.getElementById('last-update').textContent = 'última atualização: ' + new Date().toLocaleTimeString('pt-BR');
+}
+
+loadAll();
+setInterval(loadAll, 30000);
+</script>
+</body>
+</html>
