@@ -2,7 +2,7 @@
 
 App web PWA pessoal · cockpit do projeto NEXUS (PNL+IE v4.0 + PRIMORDIA).
 
-**Live:** https://fillipenatan77-ctrl.github.io/nexus-cockpit/
+**Live:** https://nexuscaldeira.com/
 
 **Instalar no iPhone:**
 1. Abrir URL no Safari

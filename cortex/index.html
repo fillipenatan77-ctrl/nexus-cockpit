@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F0E17">
+<title>NEXUS Cortex · abrir no iOS</title>
+<style>
+body { background: #0F0E17; color: #FFFFFE; font-family: -apple-system, system-ui, sans-serif; margin: 0; padding: 40px 24px; min-height: 100dvh; box-sizing: border-box; }
+.wrap { max-width: 480px; margin: 0 auto; }
+h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; }
+p { color: #A7A9BE; line-height: 1.5; margin: 16px 0; }
+.btn { display: block; background: #FF8906; color: #1a1a1a; text-decoration: none; padding: 14px 20px; border-radius: 12px; font-weight: 600; margin: 12px 0; text-align: center; font-size: 16px; }
+.btn.ghost { background: transparent; color: #FFFFFE; border: 1px solid #2a2548; }
+ol { color: #A7A9BE; padding-left: 24px; line-height: 1.7; }
+code { background: #1a1830; padding: 2px 8px; border-radius: 4px; font-size: 13px; }
+.foot { color: #5a5870; font-size: 12px; margin-top: 40px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>💬 NEXUS Cortex</h1>
+<p>Abrir o Project NEXUS Cortex no app Claude do iPhone:</p>
+
+<a class="btn" href="claude://" id="open-app">Abrir app Claude</a>
+<a class="btn ghost" href="https://claude.ai" target="_blank">Abrir na web</a>
+
+<p style="margin-top:32px"><b>Setup do Project (uma vez):</b></p>
+<ol>
+  <li>Instalar app Claude da App Store</li>
+  <li>Login na sua conta Anthropic</li>
+  <li>Projects → criar Project chamado <code>NEXUS Cortex</code></li>
+  <li>Custom Instructions → colar conteúdo de <a href="../prompt-v66.md" style="color:#FF8906">nexuscaldeira.com/prompt-v66.md</a></li>
+  <li>Salvar · usar daí em diante</li>
+</ol>
+
+<p class="foot">nexuscaldeira.com · v16.0</p>
+</div>
+<script>
+// Tenta abrir app · fallback para web em 1.2s
+setTimeout(() => {
+  if (document.hidden) return; // app abriu
+  window.location.href = "https://claude.ai";
+}, 1200);
+</script>
+</body>
+</html>

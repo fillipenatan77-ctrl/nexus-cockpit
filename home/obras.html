@@ -36,7 +36,7 @@ main { max-width:780px; margin:0 auto; padding:20px; }
 <script>
 (async function(){
   try {
-    const res = await fetch('https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/30_CONTEUDOS/Fichamentos/_INDEX.json?t=' + Date.now());
+    const res = await fetch('../fichas/_INDEX.json?t=' + Date.now());
     const data = await res.json();
     const fichas = (data.fichas || []).filter(f => f && f !== '_TEMPLATE_CAIR.md');
 
@@ -56,14 +56,12 @@ main { max-width:780px; margin:0 auto; padding:20px; }
       filter = (filter || '').toLowerCase().trim();
       const visible = obras.filter(o => !filter || (o.autor + ' ' + o.titulo + ' ' + o.ano).toLowerCase().includes(filter));
       const html = visible.map(o => {
-        const baseGh = 'https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/30_CONTEUDOS/Fichamentos/' + encodeURIComponent(o.file);
-        const baseHub = 'https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/30_CONTEUDOS/Fichamentos/' + encodeURIComponent(o.file);
+        const fichaUrl = 'https://nexuscaldeira.com/fichas/' + encodeURIComponent(o.file);
         return `<div class="obra">
           <h3>${o.titulo}${o.ano ? ' <span style="color:#888">('+o.ano+')</span>' : ''}</h3>
           <div class="autor">${o.autor}</div>
           <div class="links">
-            <a href="${baseGh}" target="_blank">📄 ficha CAIR</a>
-            <a href="${baseHub}" target="_blank">📑 raw</a>
+            <a href="${fichaUrl}" target="_blank">📄 ficha CAIR</a>
           </div>
         </div>`;
       }).join('');

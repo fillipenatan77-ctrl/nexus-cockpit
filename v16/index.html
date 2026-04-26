@@ -193,8 +193,8 @@ details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
     </div>
     <div class="card">
       <h2>Ações rápidas</h2>
-      <a class="btn full" href="https://claude.ai/project/nexus-cortex" target="_blank">💬 Cortex iOS</a>
-      <a class="btn ghost full" href="https://wa.me/" target="_blank">💚 Biblioteca Viva</a>
+      <a class="btn full" href="https://nexuscaldeira.com/cortex/" target="_blank">💬 Cortex iOS</a>
+      <a class="btn ghost full" href="https://nexuscaldeira.com/wpp/" target="_blank">💚 Biblioteca Viva</a>
       <button class="btn ghost full" onclick="show('acervo')">🔍 Buscar no acervo</button>
     </div>
     <div class="card">
@@ -243,7 +243,7 @@ details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
       <h2>⚙️ System Prompt v6.6</h2>
       <p>Para Cortex iOS · Custom Instructions do Project NEXUS Cortex</p>
       <button class="btn full" onclick="copyPrompt()">📋 Copiar tudo</button>
-      <a class="btn ghost full" href="https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/00_HUB/NEXUS_CORTEX_SYSTEM_PROMPT_v6.6.md" target="_blank">Ver no GitHub</a>
+      <a class="btn ghost full" href="https://nexuscaldeira.com/prompt-v66.md" target="_blank">Ver texto completo</a>
     </div>
     <div class="card">
       <h2>Resumo · 17 regras invioláveis v16.0</h2>
@@ -425,12 +425,12 @@ async function diarioSave() {
 
 async function copyPrompt() {
   try {
-    const r = await fetch("https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/00_HUB/NEXUS_CORTEX_SYSTEM_PROMPT_v6.6.md");
+    const r = await fetch("https://nexuscaldeira.com/prompt-v66.md?_=" + Date.now());
     const txt = await r.text();
     await navigator.clipboard.writeText(txt);
     alert("System Prompt v6.6 copiado · cole nas Custom Instructions do Cortex iOS");
   } catch (e) {
-    alert("Falha ao copiar: " + e.message + "\nAcesse via botão GitHub abaixo.");
+    alert("Falha: " + e.message + "\nAbra: nexuscaldeira.com/prompt-v66.md");
   }
 }
 

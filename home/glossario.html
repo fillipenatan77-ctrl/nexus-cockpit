@@ -32,7 +32,7 @@
 <script>
 (async function(){
   try {
-    const res = await fetch('https://raw.githubusercontent.com/fillipenatan77-ctrl/NEXUS/main/00_HUB/GLOSSARIO.md?t='+Date.now());
+    const res = await fetch('./GLOSSARIO.md?t='+Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const md = await res.text();
 

@@ -11,7 +11,8 @@
   },
   "endpoints": {
     "hub_publico": "https://nexuscaldeira.com",
-    "hub_publico_alt": "https://fillipenatan77-ctrl.github.io/nexus-cockpit/home/",
+    "hub_publico_canonico": true,
+    "_nota_github_io": "URL github.io/nexus-cockpit/home descontinuada · v15.AX · usar nexuscaldeira.com",
     "rag_endpoints": [
       "/health",
       "/stats",
