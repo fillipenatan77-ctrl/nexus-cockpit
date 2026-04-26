@@ -16,6 +16,8 @@
   "shortcuts": [
     {"name": "Buscar acervo", "url": "./index.html?tab=acervo", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
     {"name": "Diário", "url": "./index.html?tab=diario", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
-    {"name": "System Prompt v6.6", "url": "./index.html?tab=prompt", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]}
+    {"name": "Cards 30", "url": "./cards/", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
+    {"name": "Agenda 7d", "url": "./agenda/", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
+    {"name": "System Prompt v6.7", "url": "./index.html?tab=prompt", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]}
   ]
 }

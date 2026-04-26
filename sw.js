@@ -1,6 +1,6 @@
-// NEXUS Home · Service Worker v3 (v15.BR · offline total · 16 fichas + 16 cards + páginas)
-const CACHE = 'nexus-home-v3';
-const RUNTIME = 'nexus-runtime-v3';
+// NEXUS Home · Service Worker v4 (v16.0 Onda 3.4 · offline total · 30 fichas + 30 cards + /v16/ + páginas)
+const CACHE = 'nexus-home-v4';
+const RUNTIME = 'nexus-runtime-v4';
 
 // 16 obras integrais (slugs e arquivos canônicos)
 const OBRAS_FILES = [
@@ -49,7 +49,23 @@ const SHELL = [
   '/home/icons/icon-192.png',
   '/home/icons/icon-512.png',
   '/c/',
-  '/c/index.html'
+  '/c/index.html',
+  '/v16/',
+  '/v16/index.html',
+  '/v16/manifest.webmanifest',
+  '/v16/cards/',
+  '/v16/agenda/',
+  '/v16/audit/',
+  '/v16/fichas/',
+  '/v16/pulse/',
+  '/pulses.json',
+  '/prompt-v67.md'
+];
+
+const SLUGS_V16 = [
+  'cialdini-influence','greene-seducao','kahneman-rapido-devagar','aristoteles-fisica',
+  'arendt-condicao','suma-i','suma-ii-1','suma-ii-2','suma-iii','sun-tzu',
+  'lacan-sem21','epicteto-portico','seneca-lucilio','ferreira-500-freud'
 ];
 
 // Páginas /c/<slug>/
@@ -59,7 +75,13 @@ const C_ROUTES = SLUGS.map(s => `/c/${s}/`);
 const FICHAS = OBRAS_FILES.map(f => `/fichas/${encodeURI(f)}.md`);
 const CARDS = OBRAS_FILES.map(f => `/cards/${encodeURI(f)}.svg`);
 
-const PRECACHE_LIST = [...SHELL, ...C_ROUTES, ...FICHAS, ...CARDS];
+// 14 fichas + cards novas v16 (Onda 3.2)
+const FICHAS_V16 = SLUGS_V16.map(s => `/fichas/${s}.md`);
+const CARDS_V16 = SLUGS_V16.map(s => `/cards/${s}.svg`);
+const C_ROUTES_V16 = SLUGS_V16.map(s => `/c/${s}/`);
+
+const PRECACHE_LIST = [...SHELL, ...C_ROUTES, ...FICHAS, ...CARDS,
+                       ...C_ROUTES_V16, ...FICHAS_V16, ...CARDS_V16];
 
 self.addEventListener('install', (e) => {
   e.waitUntil((async () => {

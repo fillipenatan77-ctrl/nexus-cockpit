@@ -22,7 +22,7 @@
       "/admin/ingest_chunks",
       "/admin/delete_sources"
     ],
-    "apps_script": "https://script.google.com/macros/s/AKfycby76YrIrYocLMDN7VLnCtVcpVz3kquK6e5Q0gx5wwQQQQly3OQ9ZLlbT8sP0JNl8ufc/exec",
+    "apps_script": "https://script.google.com/macros/s/AKfycbz03XgyfGLJWGZYKIUba14GfA7qquRRIXFsFkIbu0LtFxmJjAO6VNwqrvfpMeAiBZ7_/exec",
     "github": {
       "privado": "https://github.com/fillipenatan77-ctrl/NEXUS",
       "publico": "https://github.com/fillipenatan77-ctrl/nexus-cockpit"
@@ -58,13 +58,16 @@
     "ingestao_em_curso": false,
     "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
     "estado_aprox": {
-      "chunks": 60561,
-      "obras": 83,
-      "integrais": 77
+      "chunks": 60969,
+      "obras": 79,
+      "integrais": 71,
+      "cardapio_30": 30,
+      "cardapio_30_trio_completo": 30
     }
   },
   "infra": {
-    "apps_script_deploy": "@99",
+    "apps_script_deploy": "@170",
+    "apps_script_deploy_label": "v16.0.1 PulseLoader · pool canonico nexuscaldeira.com/pulses.json",
     "triggers_meta": 13,
     "triggers_status": "CONGELADO em 13 (regra v16.0 #4)",
     "pwa_paginas": 33,
