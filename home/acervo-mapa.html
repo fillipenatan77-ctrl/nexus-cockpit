@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Mapa do Acervo</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3;--red:#ff8e8e;--yellow:#f5c469}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 50px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:780px;margin:0 auto;padding:18px 18px 30px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+
+header{margin:14px 0 20px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:.02em;line-height:1.1;color:var(--bone)}
+.tag{display:inline-block;margin-top:12px;padding:5px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.7;max-width:580px;margin:14px auto 0;line-height:1.6}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:520px){.compare{grid-template-columns:1fr}}
+.compare .col{padding:14px;border:1px solid var(--gold-faint);border-radius:12px}
+.compare .col.antes{background:rgba(255,142,142,.04)}
+.compare .col.depois{background:rgba(125,243,163,.05);border-color:rgba(125,243,163,.3)}
+.compare .col h3{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px;color:var(--gold)}
+.compare .col .num{font-family:Georgia,serif;font-size:36px;font-weight:500;line-height:1}
+.compare .col.antes .num{color:var(--red)}
+.compare .col.depois .num{color:var(--green)}
+.compare .col p{font-size:11px;font-family:'SF Mono',monospace;opacity:.75;margin-top:6px;letter-spacing:.05em}
+
+.tax-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0}
+@media(max-width:520px){.tax-grid{grid-template-columns:1fr}}
+.tax-card{padding:16px 16px;border:1px solid var(--gold-faint);border-radius:14px;background:rgba(184,147,90,.04);position:relative}
+.tax-card .num{position:absolute;top:14px;right:14px;font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);opacity:.7}
+.tax-card .icon{font-size:28px;margin-bottom:8px;opacity:.85}
+.tax-card h3{font-family:Georgia,serif;font-size:16px;font-weight:500;color:var(--bone);margin-bottom:6px}
+.tax-card .desc{font-family:Georgia,serif;font-size:12px;font-style:italic;color:var(--bone);opacity:.65;line-height:1.5}
+.tax-card .obras{margin-top:8px;font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.05em;color:var(--gold);opacity:.7}
+.tax-card.derivado{border-style:dashed;background:rgba(184,147,90,.02)}
+
+.fundidas{margin-top:20px;padding:16px 18px;border-left:3px solid var(--gold);background:rgba(184,147,90,.04);border-radius:0 12px 12px 0;font-family:Georgia,serif;font-size:13px;color:var(--bone);opacity:.92;line-height:1.7}
+.fundidas strong{color:var(--gold)}
+.fundidas code{font-family:'SF Mono',monospace;font-size:11px;background:rgba(184,147,90,.12);padding:1px 5px;border-radius:4px;color:var(--gold)}
+
+.foot{margin-top:28px;padding-top:18px;border-top:1px solid var(--gold-faint);text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
+
+  <header>
+    <div class="eyebrow">§ taxonomia consolidada · v15.BW</div>
+    <h1>Mapa do Acervo</h1>
+    <div class="tag">28 → 10 pastas · sem perda · Chroma intacto</div>
+    <p class="lead">Reorganização estrutural por temas reais. Menos pastas, mais coerência. Os <em>sources</em> do Chroma indexam pelo nome do arquivo (não pelo path), então mover de pasta não quebra retrieval — apenas torna o filesystem inteligível.</p>
+  </header>
+
+  <div class="compare">
+    <div class="col antes">
+      <h3>§ antes</h3>
+      <div class="num">28</div>
+      <p>pastas · B01–B08 + Comunicacao + IE_Neurociencia + INTEGRAL_MAPS + Literatura + Shakespeare + Persuasao_Poder + PNL_IE + Psicanalise + Filosofia + Memorizacao + Neurociencia + FICHAS_INTEGRAIS + Fichamentos + Cards_Producao + Estudos_Derivados + Resumos_Executivos + Descarte_Samples + AUDIOS + AULAS_RECEBIDAS</p>
+    </div>
+    <div class="col depois">
+      <h3>§ depois</h3>
+      <div class="num">10</div>
+      <p>pastas · 8 temáticas + 2 estruturais (_DERIVADOS, _ARQUIVO) · 453 itens movidos · 0 perdas</p>
+    </div>
+  </div>
+
+  <h2 style="font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin:28px 0 12px;padding-left:4px">§ 8 raízes temáticas</h2>
+
+  <div class="tax-grid">
+    <div class="tax-card">
+      <div class="num">01</div>
+      <div class="icon">🛋</div>
+      <h3>Psicanálise</h3>
+      <div class="desc">Freud, Lacan, Klein, Winnicott, Roudinesco, Suy, Neves · 30 arquivos</div>
+      <div class="obras">⊃ ex-Psicanalise</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">02</div>
+      <div class="icon">⚖</div>
+      <h3>Filosofia</h3>
+      <div class="desc">Aristóteles, Aquino, Arendt, Sêneca, Epicteto, Heidegger, Wittgenstein, Maquiavel · 16 arquivos</div>
+      <div class="obras">⊃ ex-Filosofia</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">03</div>
+      <div class="icon">📜</div>
+      <h3>Literatura</h3>
+      <div class="desc">Shakespeare integral, Dostoiévski, Greenblatt, Bloom · 14 arquivos</div>
+      <div class="obras">⊃ ex-Literatura + Shakespeare + OCR/</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">04</div>
+      <div class="icon">🧠</div>
+      <h3>Neurociência · IE</h3>
+      <div class="desc">Goleman, Damásio, Kahneman, LeDoux, neuroplasticidade · 14 arquivos</div>
+      <div class="obras">⊃ ex-IE_Neurociencia + Neurociencia + B04</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">05</div>
+      <div class="icon">🗣</div>
+      <h3>Linguagem · PNL</h3>
+      <div class="desc">Bandler/Grinder, Erickson, Rosen, CNV Rosenberg, comunicação clínica · 41 arquivos</div>
+      <div class="obras">⊃ ex-PNL_IE + B03 + Comunicacao + B06</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">06</div>
+      <div class="icon">⚔</div>
+      <h3>Persuasão · Estratégia</h3>
+      <div class="desc">Maquiavel, Greene, Cialdini, Sun Tzu, Allen · 15 arquivos</div>
+      <div class="obras">⊃ ex-Persuasao_Poder + B05</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">07</div>
+      <div class="icon">🏛</div>
+      <h3>Memorização</h3>
+      <div class="desc">O'Brien, Yates, técnicas mnemônicas, palácio · 5 arquivos</div>
+      <div class="obras">⊃ ex-Memorizacao</div>
+    </div>
+    <div class="tax-card">
+      <div class="num">08</div>
+      <div class="icon">⚙</div>
+      <h3>Metodologia NEXUS</h3>
+      <div class="desc">Estrutura B01, manuais, feedback, julgamento — base PNL+IE v4.0 · 13 arquivos</div>
+      <div class="obras">⊃ ex-B01 + B02 + B07 + B08</div>
+    </div>
+    <div class="tax-card derivado">
+      <div class="num">_DV</div>
+      <div class="icon">📦</div>
+      <h3>_DERIVADOS</h3>
+      <div class="desc">Saídas geradas: fichas integrais, fichamentos CAIR, cards SVG, resumos executivos, mapas · 523 arquivos</div>
+      <div class="obras">⊃ FICHAS_INTEGRAIS + Fichamentos + Cards + Estudos_Derivados + INTEGRAL_MAPS + Resumos_Executivos</div>
+    </div>
+    <div class="tax-card derivado">
+      <div class="num">_AR</div>
+      <div class="icon">🗄</div>
+      <h3>_ARQUIVO</h3>
+      <div class="desc">Material descartado, samples, áudios antigos, aulas recebidas · 39 arquivos</div>
+      <div class="obras">⊃ Descarte_Samples + Duplicatas + AUDIOS_AULAS + AULAS_RECEBIDAS</div>
+    </div>
+  </div>
+
+  <div class="fundidas">
+    <strong>O que foi fundido com inteligência:</strong><br>
+    · <code>B01–B08</code> dispersos: B01/B02/B07/B08 (estrutura+manuais+feedback+julgamento) viraram <code>08_Metodologia_NEXUS</code>; B03 (linguagem) → <code>05_Linguagem_PNL</code>; B04 (IE) → <code>04_Neurociencia_IE</code>; B05 (persuasão) → <code>06_Persuasao_Estrategia</code>; B06 (comunicação) → <code>05_Linguagem_PNL</code>.<br><br>
+    · <code>IE_Neurociencia</code> + <code>Neurociencia</code> + <code>B04</code> → <code>04_Neurociencia_IE</code> (cessou redundância).<br><br>
+    · <code>PNL_IE</code> + <code>Comunicacao</code> + <code>B03</code> + <code>B06</code> → <code>05_Linguagem_PNL</code> (linguagem como eixo único).<br><br>
+    · <code>Shakespeare</code> + <code>Literatura</code> → <code>03_Literatura</code> (autor não merece pasta separada).<br><br>
+    · <code>FICHAS_INTEGRAIS</code> + <code>Fichamentos</code> + <code>Cards_Producao</code> + <code>Estudos_Derivados</code> + <code>INTEGRAL_MAPS</code> + <code>Resumos_Executivos</code> → <code>_DERIVADOS</code> (saída do sistema, não fonte).<br><br>
+    · <code>Descarte_Samples</code> + <code>_Arquivo_Duplicatas</code> + <code>AUDIOS</code> + <code>AULAS</code> → <code>_ARQUIVO</code> (não-fonte canônica).
+  </div>
+
+  <div class="fundidas" style="border-color:var(--green);background:rgba(125,243,163,.05)">
+    <strong style="color:var(--green)">Por que sem perda:</strong> o Chroma indexa cada chunk pelo metadado <code>source = nome_do_arquivo.pdf</code>. Mover o arquivo de pasta no Drive <strong>não muda</strong> o source. Logo, todos os 4587 chunks já indexados continuam funcionando · busca semântica intacta · ficha/card visualização intacta. Apenas o <strong>filesystem</strong> ficou mais legível para você e para o pipeline de novos PDFs.
+  </div>
+
+  <div class="foot">
+    NEXUS v15.BW · taxonomia consolidada autonomamente<br>
+    <a href="./">cockpit</a> · <a href="./audit.html">auditoria live</a> · <a href="./integrais.html">acervo</a> · <a href="./novidades.json">novidades</a>
+  </div>
+</div>
+</body>
+</html>

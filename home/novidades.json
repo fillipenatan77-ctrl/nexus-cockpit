@@ -1,9 +1,34 @@
 {
-  "versao_atual": "v15.BT",
-  "ultima_atualizacao": "2026-04-26T09:30:00-03:00",
+  "versao_atual": "v15.BW",
+  "ultima_atualizacao": "2026-04-26T09:35:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BW",
+      "data": "2026-04-26",
+      "tag": "reorganizacao-acervo",
+      "titulo": "🗺 Reorganização estrutural · 28 → 10 pastas · acervo consolidado por temas",
+      "resumo": "v15.BW reduziu fragmentação (B01-B08 dispersos + IE_Neurociencia + Comunicacao + Persuasao_Poder + Shakespeare + Literatura + 23 outras) para arquitetura enxuta de 8 raízes temáticas (01_Psicanalise, 02_Filosofia, 03_Literatura, 04_Neurociencia_IE, 05_Linguagem_PNL, 06_Persuasao_Estrategia, 07_Memorizacao, 08_Metodologia_NEXUS) + 2 estruturais (_DERIVADOS, _ARQUIVO). 453 itens movidos sem perda · Chroma intacto (indexa por nome do arquivo, não path). RAG v3 limpo · 864 chunks subindo · master_ingest detectou 74 PDFs novos (antes pegava só 27). Página /home/acervo-mapa.html documenta a taxonomia visual com fundições. Tile no hub.",
+      "destaque": true,
+      "hook_cortex": "Quando falar do acervo, use a taxonomia consolidada: 8 núcleos temáticos + _DERIVADOS (saídas: fichas, cards, resumos) + _ARQUIVO (descarte). Mapa em nexuscaldeira.com/home/acervo-mapa.html · auditoria live em /home/audit.html"
+    },
+    {
+      "v": "v15.BV",
+      "data": "2026-04-26",
+      "tag": "web-pulse",
+      "titulo": "🌐 Web Pulse NEXUS · busca recorrente internet · segunda + quinta 09h",
+      "resumo": "Apps Script @168 · módulo v15.BV WebPulse · 32 queries temáticas curadas (psicanálise, neurociência, PNL, literatura, filosofia, persuasão, IA/tech, jurisprudência militar, clínico). Triggers: segunda + quinta 09h00 BRT (13/20 triggers). Cada execução: 3 queries aleatórias (sem repetir 30 dias) · DuckDuckGo Instant Answer API · ranking por domínios acadêmicos preferidos (.edu, .gov, scielo, jstor, pubmed, anpepp, conjur). WhatsApp digest com 3 achados curados + link. Comandos: /webpulse (force) · /pesquisar <tema> (busca livre).",
+      "destaque": true,
+      "hook_cortex": "Use /pesquisar <tema> no WhatsApp para busca livre · /webpulse força digest temático · trigger automático 2x semana 09h."
+    },
+    {
+      "v": "v15.BU",
+      "data": "2026-04-26",
+      "tag": "rag-v3-migracao",
+      "titulo": "🚀 RAG v3 · migração para collection limpa + master_ingest autônomo",
+      "resumo": "v2 antigo tinha incompatibilidade chromadb 1.5.8 (Error loading hnsw index). Decisão: migrar para nexus_acervo_v3 limpo · reingere TUDO autonomamente. master_ingest.py com endpoints admin /admin/delete_sources e /admin/ingest_chunks no rag_api_v2.py · suporta replace_existing. Ingestão paralela: Hamlet OCR (266 chunks) + 74 PDFs Drive · ETA 4-6h CPU. Fallback: PDFs com legibilidade <60% são skipados (Shakespeare extras Tempestade/Macbeth/Rei João precisam OCR · adicionados ao pipeline EasyOCR). RAG v3 ja tem 864 chunks subindo."
+    },
     {
       "v": "v15.BT",
       "data": "2026-04-26",
