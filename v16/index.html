@@ -237,13 +237,13 @@ details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
     </div>
   </section>
 
-  <!-- PROMPT v6.6 -->
+  <!-- PROMPT v6.7 -->
   <section class="section" data-tab="prompt">
     <div class="card">
-      <h2>⚙️ System Prompt v6.6</h2>
+      <h2>⚙️ System Prompt v6.7</h2>
       <p>Para Cortex iOS · Custom Instructions do Project NEXUS Cortex</p>
       <button class="btn full" onclick="copyPrompt()">📋 Copiar tudo</button>
-      <a class="btn ghost full" href="https://nexuscaldeira.com/prompt-v66.md" target="_blank">Ver texto completo</a>
+      <a class="btn ghost full" href="https://nexuscaldeira.com/prompt-v67.md" target="_blank">Ver texto completo</a>
     </div>
     <div class="card">
       <h2>Resumo · 17 regras invioláveis v16.0</h2>
@@ -425,12 +425,12 @@ async function diarioSave() {
 
 async function copyPrompt() {
   try {
-    const r = await fetch("https://nexuscaldeira.com/prompt-v66.md?_=" + Date.now());
+    const r = await fetch("https://nexuscaldeira.com/prompt-v67.md?_=" + Date.now());
     const txt = await r.text();
     await navigator.clipboard.writeText(txt);
-    alert("System Prompt v6.6 copiado · cole nas Custom Instructions do Cortex iOS");
+    alert("System Prompt v6.7 copiado · cole nas Custom Instructions do Cortex iOS");
   } catch (e) {
-    alert("Falha: " + e.message + "\nAbra: nexuscaldeira.com/prompt-v66.md");
+    alert("Falha: " + e.message + "\nAbra: nexuscaldeira.com/prompt-v67.md");
   }
 }
 

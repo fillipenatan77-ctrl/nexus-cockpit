@@ -106,7 +106,7 @@
   "frentes_v16_0": {
     "1_obras_integrais": {"status": "yellow", "desc": "5 OCRs Shakespeare em background · Suma partition pendente"},
     "2_canonizacao_docs": {"status": "green", "desc": "5 pilares v16.0 · 68→31 docs"},
-    "3_system_prompt_v66": {"status": "green", "desc": "v6.6 escrito"},
+    "3_system_prompt_v67": {"status": "green", "desc": "v6.7 canonical · 19 docs canônicos integralizados"},
     "4_drive_watcher": {"status": "green", "desc": "pipeline atomico ativo"},
     "5_google_ecosystem": {"status": "green", "desc": "10 modulos · 8 APIs · 4 tasks ativas"},
     "6_pedagogia_mobile": {"status": "yellow", "desc": "em desenvolvimento"},
