@@ -186,6 +186,13 @@ details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
 <main>
   <!-- HOJE -->
   <section class="section active" data-tab="hoje">
+    <div class="card" id="install-banner" style="display:none;background:linear-gradient(135deg,#B8935A22 0%,#1a1830 100%);border:1px solid #B8935A55">
+      <h2 style="color:#B8935A">📲 Instale o NEXUS</h2>
+      <p style="font-size:14px;line-height:1.55">Safari → toque em <b>Compartilhar</b> (☐↑) → role até <b>Adicionar à Tela de Início</b> → confirme.</p>
+      <p class="hint">App instalado funciona offline · 30 obras + cards + fichas pré-cacheadas (SW v4).</p>
+      <button class="btn ghost" onclick="document.getElementById('install-banner').style.display='none'">Já instalei · ocultar</button>
+    </div>
+
     <div class="card">
       <h2>🌅 Hoje</h2>
       <h3 id="hoje-titulo">Carregando…</h3>

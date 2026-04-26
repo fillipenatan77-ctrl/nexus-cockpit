@@ -1,0 +1,22 @@
+{
+  "name": "NEXUS",
+  "short_name": "NEXUS",
+  "description": "NEXUS · biblioteca viva · v16.0 · 60.969 chunks · 30 obras canônicas",
+  "start_url": "https://nexuscaldeira.com/v16/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0F0E17",
+  "theme_color": "#B8935A",
+  "categories": ["productivity", "education", "lifestyle"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/apple-touch-icon-180.png", "sizes": "180x180", "type": "image/png" }
+  ],
+  "shortcuts": [
+    { "name": "Cards 30", "url": "/v16/cards/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Agenda 7d", "url": "/v16/agenda/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Audit", "url": "/v16/audit/", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
