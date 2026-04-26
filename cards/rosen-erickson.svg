@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F0E17"/>
+      <stop offset="100%" stop-color="#14131E"/>
+    </linearGradient>
+    <linearGradient id="goldFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7d6644" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#B8935A" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#7d6644" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1350" fill="url(#bg)"/>
+
+  <!-- Borda dourada superior -->
+  <rect x="80" y="80" width="920" height="2" fill="url(#goldFade)"/>
+  <rect x="80" y="1268" width="920" height="2" fill="url(#goldFade)"/>
+
+  <!-- Marca NEXUS topo -->
+  <text x="540" y="155" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="22" letter-spacing="8" fill="#B8935A">N E X U S</text>
+  <text x="540" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" letter-spacing="3" fill="#F0EAE4" opacity="0.5">BIBLIOTECA · VIVA</text>
+
+  <!-- Título da obra -->
+  <text x="540" y="320" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="56" font-weight="600" fill="#F0EAE4">My Voice Will Go With You</text>
+
+  <!-- Autor + ano -->
+  <text x="540" y="380" text-anchor="middle" font-family="Inter, sans-serif" font-size="26" letter-spacing="2" fill="#B8935A">Sidney Rosen · 1982</text>
+
+  <!-- Separador dourado central -->
+  <line x1="450" y1="460" x2="630" y2="460" stroke="#B8935A" stroke-width="2" opacity="0.5"/>
+
+  <!-- Citação literal -->
+  <text x="540" y="600" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"It would be &#x27;What does a little child think of"</text>
+<text x="540" y="644" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"an apple?&#x27; or &#x27;What do you do with an apple as a"</text>
+<text x="540" y="688" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"little child?&#x27; You bring an apple to the"</text>
+<text x="540" y="732" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"teacher. And it was a symbol of being pleasing."</text>
+<text x="540" y="776" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"Erickson had an understanding of people&#x27;s"</text>
+<text x="540" y="820" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"unconscious, so that he would know that if you"</text>
+<text x="540" y="864" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"presented this type of word or symbol, you could"</text>
+<text x="540" y="908" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"expect these possible associations. As you"</text>
+<text x="540" y="952" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"watched the person, you could then grab on to"</text>
+<text x="540" y="996" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"whichever associations that particular person"</text>
+<text x="540" y="1040" text-anchor="middle" font-family="Crimson Pro, Georgia, serif" font-size="32" font-style="italic" fill="#F0EAE4">"had, and you could follow up on them.…"</text>
+
+
+  <!-- Página + bandeira -->
+  <text x="540" y="1180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" letter-spacing="2" fill="#B8935A" opacity="0.8">🟢 RAG · p.27-28</text>
+
+  <!-- URL rodapé -->
+  <text x="540" y="1230" text-anchor="middle" font-family="Inter, sans-serif" font-size="14" letter-spacing="2" fill="#F0EAE4" opacity="0.4">nexuscaldeira.com</text>
+</svg>
