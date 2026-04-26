@@ -1,9 +1,18 @@
 {
-  "versao_atual": "v15.BS",
-  "ultima_atualizacao": "2026-04-26T08:45:00-03:00",
+  "versao_atual": "v15.BT",
+  "ultima_atualizacao": "2026-04-26T09:30:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BT",
+      "data": "2026-04-26",
+      "tag": "auditoria-real",
+      "titulo": "📊 Auditoria honesta · 5 obras vivas · 11 fantasmas · 32 PDFs não indexados · OCR Hamlet pronto",
+      "resumo": "Audit script audit_acervo.py escaneou TODAS as 20 obras do Chroma + 37 PDFs no Drive. Resultado real: apenas 5 obras realmente úteis no RAG (Goleman, Freud Sonhos, Bandler Padrões, OBrien v3, Rosen) · 11 estão indexadas mas com embeddings ruins (PDFs com fonte custom sem CMap) · 4 DUP_SYNC poluem busca · 32 PDFs grandes nem foram indexados (Maquiavel original, Aristóteles, Arendt, Sêneca, Lacan Seminário 21, Macbeth, Tempestade, etc). Solução em curso: OCR Hamlet via EasyOCR concluído (192 páginas · 174KB texto bom · validado), Romeu/Lear OCR rodando em background. Endpoints admin /admin/delete_sources e /admin/ingest_chunks adicionados ao rag_api_v2.py para cleanup + reingestão programática. Página /home/audit.html publicada com diagnóstico transparente · tile no hub.",
+      "destaque": true,
+      "hook_cortex": "Ao falar 'tem coisa em vermelho', explique HONESTO: 11 obras integrais têm chunks ruins (PDFs corrompidos) por isso fallback de citação canônica ✦. OCR EasyOCR está consertando · Hamlet já pronto, Romeu/Lear em curso. Audit completa em nexuscaldeira.com/home/audit.html"
+    },
     {
       "v": "v15.BS",
       "data": "2026-04-26",

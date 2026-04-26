@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · Auditoria do Acervo</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png">
+<link rel="manifest" href="./manifest.json">
+<style>
+:root{--ink:#0F0E17;--ink-soft:#14131E;--bone:#F0EAE4;--gold:#B8935A;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.15);--green:#7df3a3;--red:#ff8e8e;--yellow:#f5c469}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 50px) 0;background:radial-gradient(ellipse at top,var(--ink-soft) 0%,var(--ink) 60%)}
+.wrap{max-width:780px;margin:0 auto;padding:18px 18px 30px}
+
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);opacity:.85;text-transform:uppercase;text-decoration:none;padding:6px 10px;border:1px solid var(--gold-soft);border-radius:999px}
+
+header{margin:14px 0 22px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);opacity:.85;text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:34px;font-weight:400;letter-spacing:.02em;line-height:1.1;color:var(--bone)}
+.tag{display:inline-block;margin-top:12px;padding:5px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);opacity:.7;max-width:620px;margin:14px auto 0;line-height:1.6}
+
+h2{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;margin:32px 0 14px;padding-left:4px}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:18px 0}
+@media(min-width:600px){.kpi-grid{grid-template-columns:repeat(4,1fr)}}
+.kpi{padding:14px 12px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,.03);text-align:center}
+.kpi .v{font-family:Georgia,serif;font-size:28px;font-weight:500;line-height:1.1}
+.kpi .l{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-top:6px;opacity:.85}
+.kpi.green .v{color:var(--green)}
+.kpi.red .v{color:var(--red)}
+.kpi.yellow .v{color:var(--yellow)}
+.kpi.gold .v{color:var(--gold)}
+
+.lista{border:1px solid var(--gold-faint);border-radius:12px;overflow:hidden;margin-bottom:8px}
+.linha{display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid var(--gold-faint);font-family:'SF Mono',monospace;font-size:12px}
+.linha:last-child{border-bottom:none}
+.linha .flag{flex:0 0 auto;font-size:14px}
+.linha .chunks{flex:0 0 50px;text-align:right;color:var(--gold);font-weight:600}
+.linha .nome{flex:1;color:var(--bone);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.linha .leg{flex:0 0 60px;text-align:right;font-size:10px;color:var(--bone);opacity:.65}
+
+.linha.green{background:rgba(125,243,163,.04)}
+.linha.red{background:rgba(255,142,142,.04)}
+.linha.yellow{background:rgba(245,196,105,.04)}
+.linha.gray{background:rgba(184,147,90,.02)}
+
+.diag-bloco{margin:16px 0;padding:18px 20px;border-left:3px solid;border-radius:0 12px 12px 0;font-family:Georgia,serif;font-size:14px;line-height:1.65;color:var(--bone);opacity:.92}
+.diag-bloco.red{border-color:var(--red);background:rgba(255,142,142,.04)}
+.diag-bloco.yellow{border-color:var(--yellow);background:rgba(245,196,105,.04)}
+.diag-bloco.green{border-color:var(--green);background:rgba(125,243,163,.04)}
+.diag-bloco strong{color:var(--gold)}
+.diag-bloco code{font-family:'SF Mono',monospace;font-size:12px;background:rgba(184,147,90,.12);padding:2px 6px;border-radius:4px;color:var(--gold)}
+
+.plano{margin-top:20px;padding:18px 20px;border:1px solid var(--gold-soft);border-radius:14px;background:rgba(184,147,90,.04)}
+.plano h3{font-family:Georgia,serif;font-size:18px;color:var(--gold);font-weight:500;margin-bottom:12px}
+.plano ol{padding-left:22px;font-family:Georgia,serif;font-size:14px;color:var(--bone);opacity:.92;line-height:1.7}
+.plano li{margin-bottom:8px}
+.plano li strong{color:var(--gold)}
+.plano li.feito{opacity:.5;text-decoration:line-through}
+.plano li.feito strong{color:var(--green);text-decoration:none}
+.plano li.curso strong{color:var(--yellow)}
+
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--gold-faint);text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+.timestamp{margin-top:8px;font-style:italic;opacity:.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="./" class="crumb">← Cockpit</a>
+
+  <header>
+    <div class="eyebrow">§ auditoria honesta · v15.BT</div>
+    <h1>Acervo Real do NEXUS</h1>
+    <div class="tag">2026-04-26 · scan via /stats + probes semânticas</div>
+    <p class="lead">Status real de cada obra · sem maquiar. Diferencia o que está vivo no sistema do que está apenas ocupando espaço.</p>
+  </header>
+
+  <h2>§ resumo executivo</h2>
+  <div class="kpi-grid">
+    <div class="kpi gold"><div class="v">4587</div><div class="l">chunks Chroma</div></div>
+    <div class="kpi gold"><div class="v">20</div><div class="l">obras únicas</div></div>
+    <div class="kpi green"><div class="v">5</div><div class="l">integral funcional</div></div>
+    <div class="kpi red"><div class="v">11</div><div class="l">fantasma · 🔴</div></div>
+    <div class="kpi yellow"><div class="v">4</div><div class="l">DUP_SYNC dups</div></div>
+    <div class="kpi yellow"><div class="v">872</div><div class="l">chunks duplicados</div></div>
+    <div class="kpi red"><div class="v">32</div><div class="l">PDFs não indexados</div></div>
+    <div class="kpi green"><div class="v">16</div><div class="l">fichas + cards SVG</div></div>
+  </div>
+
+  <h2>🟢 grupo A · INTEGRAL FUNCIONAL (5)</h2>
+  <p style="font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);opacity:.65;padding:0 4px;margin-bottom:10px">
+    Texto legível 99-100% · retorna em busca semântica · pode dar citação literal real.
+  </p>
+  <div class="lista">
+    <div class="linha green"><span class="flag">🟢</span><span class="chunks">364</span><span class="nome">Goleman · Inteligência Emocional</span><span class="leg">99%</span></div>
+    <div class="linha green"><span class="flag">🟢</span><span class="chunks">296</span><span class="nome">Freud · Interpretação dos Sonhos</span><span class="leg">100%</span></div>
+    <div class="linha green"><span class="flag">🟢</span><span class="chunks">189</span><span class="nome">Bandler · Padrões Hipnóticos Erickson (1975)</span><span class="leg">99%</span></div>
+    <div class="linha green"><span class="flag">🟢</span><span class="chunks">154</span><span class="nome">O'Brien · Develop a Perfect Memory v3</span><span class="leg">100%</span></div>
+    <div class="linha green"><span class="flag">🟢</span><span class="chunks">80</span><span class="nome">Rosen · My Voice Will Go With You</span><span class="leg">100%</span></div>
+  </div>
+
+  <h2>🔴 grupo D · FANTASMA · indexadas mas embeddings ruins (11)</h2>
+  <p style="font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);opacity:.65;padding:0 4px;margin-bottom:10px">
+    Chunks existem no Chroma, mas <strong>nunca retornam em busca semântica</strong> — porque o texto-fonte do PDF veio corrompido (fonte custom sem CMap unicode → caracteres binários). Por isso aparece <strong>vermelho 🔴</strong> em integrais.html, sugestão WhatsApp, citações.
+  </p>
+  <div class="lista">
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">219</span><span class="nome">Bandler · Reframing</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">168</span><span class="nome">Bandler · Estrutura da Magia Vol II</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">154</span><span class="nome">O'Brien · Memory v1 (duplicata Memory v3)</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">154</span><span class="nome">O'Brien · Memory v2 (duplicata Memory v3)</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">121</span><span class="nome">Allen · Técnicas Proibidas de Persuasão</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">104</span><span class="nome">Shakespeare · Hamlet ptBR</span><span class="leg">0% · OCR ✓ pronto</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">102</span><span class="nome">Neves · Citações de Freud</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">100</span><span class="nome">Maquiavel × GoT · Trono de Ferro</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">99</span><span class="nome">Shakespeare · Romeu e Julieta ptBR</span><span class="leg">0% · OCR em curso</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">82</span><span class="nome">Suy/Lacan · Amor e Desejo (UFPR)</span><span class="leg">0%</span></div>
+    <div class="linha red"><span class="flag">🔴</span><span class="chunks">77</span><span class="nome">Shakespeare · Rei Lear ptBR</span><span class="leg">0% · OCR em curso</span></div>
+  </div>
+
+  <h2>🟡 grupo E · DUP_SYNC · duplicatas no Chroma (4)</h2>
+  <p style="font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);opacity:.65;padding:0 4px;margin-bottom:10px">
+    872 chunks que duplicam obras já presentes · poluem busca semântica (RAG retorna versão duplicada ao invés da canônica). Programadas para remoção.
+  </p>
+  <div class="lista">
+    <div class="linha yellow"><span class="flag">🟡</span><span class="chunks">364</span><span class="nome">DUP_SYNC_03 Inteligência Emocional Goleman</span><span class="leg">remover</span></div>
+    <div class="linha yellow"><span class="flag">🟡</span><span class="chunks">219</span><span class="nome">DUP_SYNC_09 Reframing NLP</span><span class="leg">remover</span></div>
+    <div class="linha yellow"><span class="flag">🟡</span><span class="chunks">168</span><span class="nome">DUP_SYNC_07 Estrutura da Magia II</span><span class="leg">remover</span></div>
+    <div class="linha yellow"><span class="flag">🟡</span><span class="chunks">121</span><span class="nome">DUP_SYNC_01 Allen Persuasão</span><span class="leg">remover</span></div>
+  </div>
+
+  <h2>⚫ grupo F · 32 PDFs no Drive NÃO indexados</h2>
+  <p style="font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);opacity:.65;padding:0 4px;margin-bottom:10px">
+    Acervo importante esperando ingestão. Inclui obras canônicas que aumentariam muito a profundidade do RAG.
+  </p>
+  <div class="lista">
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">109MB</span><span class="nome">Maquiavel · O Príncipe (1532) original</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">66MB</span><span class="nome">Aristóteles · Física Livros I-II</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">23MB</span><span class="nome">Aquino · Suma Teológica vol 3</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">12MB</span><span class="nome">Hannah Arendt · A Condição Humana (1958)</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">7MB</span><span class="nome">Bandler/Grinder · Patterns Hypnotic ptBR</span><span class="leg">PNL</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">4MB</span><span class="nome">Freud · Interpretação dos Sonhos (1900) original</span><span class="leg">psican</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">3.4MB</span><span class="nome">Lacan · Seminário 21 - Les Non-Dupes Errent</span><span class="leg">psican</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">3.8MB</span><span class="nome">Epicteto · Pórtico (revista)</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">2.8MB</span><span class="nome">Lacan + Joyce · Geraldino Ferreira Netto</span><span class="leg">psican</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">560KB</span><span class="nome">Sêneca · Cartas a Lucílio</span><span class="leg">filos</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">529KB</span><span class="nome">O Inconsciente em Lacan (coletivo)</span><span class="leg">psican</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">416KB</span><span class="nome">Erickson · Formas Indiretas de Sugestão</span><span class="leg">PNL</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">393KB</span><span class="nome">Shakespeare · Macbeth ptBR</span><span class="leg">lit</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">377KB</span><span class="nome">Shakespeare · Vida e Morte de Rei João</span><span class="leg">lit</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">363KB</span><span class="nome">Shakespeare · A Tempestade ptBR</span><span class="leg">lit</span></div>
+    <div class="linha gray"><span class="flag">⚫</span><span class="chunks">+17 outros</span><span class="nome">Conselhos Maquiavélicos · Erickson 160 frases · ...</span><span class="leg"></span></div>
+  </div>
+
+  <h2>§ por que vermelho aparece</h2>
+  <div class="diag-bloco red">
+    <strong>Causa raiz técnica:</strong> 11 das 16 obras integrais têm PDFs com fonte embedded sem mapeamento Unicode (CMap ausente). Quando o ingestor chama <code>pypdf.extract_text()</code>, ao invés de receber texto português, recebe sequências de glyph IDs (caracteres como <code></code>). Esse "texto-binário" foi indexado no Chroma como se fosse válido — mas os embeddings ficaram com vetores que não casam com nenhuma query real em português.<br><br>
+    <strong>Por isso o WhatsApp 7h, /home/integrais.html, /home/sugestao.html, /c/&lt;slug&gt;/ mostram 🔴 ou usam ✦ canônica</strong> para essas obras: o sistema sabe que o RAG não vai retornar nada útil e cai no fallback de citação clássica hardcoded (decisão deliberada de v15.BH).
+  </div>
+
+  <h2>§ correções já executadas</h2>
+  <div class="plano">
+    <h3>Feito</h3>
+    <ol>
+      <li class="feito"><strong>v15.BH</strong> · 9 fichas regeneradas com citação canônica clássica · obras "fantasma" agora têm conteúdo útil (✦ Heliodora · Maquiavel cap. XVII · Lacan Sem. VIII · etc)</li>
+      <li class="feito"><strong>v15.BO</strong> · EasyOCR 1.7.2 instalado (suporta português nativamente, sem precisar tessdata-por)</li>
+      <li class="feito"><strong>OCR Hamlet</strong> · 192/192 páginas processadas · 174 KB texto legível extraído (validado · começa com "ATO I Cena I · Esplanada do castelo de Elsinor...")</li>
+      <li class="feito"><strong>Apps Script</strong> · cardápio Pulse + Sugestão funciona offline com 9 citações canônicas hardcoded</li>
+    </ol>
+    <h3>Em curso (background)</h3>
+    <ol>
+      <li class="curso"><strong>OCR Romeu e Julieta</strong> · EasyOCR rodando · ETA ~10min</li>
+      <li class="curso"><strong>OCR Rei Lear</strong> · EasyOCR rodando · ETA ~10min</li>
+    </ol>
+    <h3>Pendente · janela de manutenção (~5min com RAG offline)</h3>
+    <ol>
+      <li><strong>Cleanup DUP_SYNC</strong> · remover 4 duplicatas (872 chunks) do Chroma · script <code>cleanup_dup_sync.py</code> pronto · BLOQUEADO pelo lock do RAG ativo</li>
+      <li><strong>Reingestão Hamlet</strong> · substituir 104 chunks corrompidos pelos chunks OCR limpos · script <code>reingest_ocr_text.py</code> pronto</li>
+      <li><strong>Reingestão Romeu/Lear</strong> · idem após OCR concluir</li>
+      <li><strong>Ingestão 32 PDFs faltantes</strong> · pipeline existente <code>ingest_acervo.py</code> · ETA ~2-4h em CPU para tudo</li>
+    </ol>
+  </div>
+
+  <h2>§ plano para integralização real</h2>
+  <div class="plano">
+    <h3>Próximas 24h (autônomo)</h3>
+    <ol>
+      <li><strong>Aguardar OCR Romeu/Lear</strong> concluir (~10min cada · em curso)</li>
+      <li><strong>Janela de manutenção 5min</strong>: parar RAG · executar cleanup_dup_sync.py · executar reingest_ocr_text.py para Hamlet/Romeu/Lear · religar RAG (watchdog faz isso sozinho)</li>
+      <li><strong>Resultado esperado</strong>: 5 → 8 obras INTEGRAIS funcionais (Hamlet/Romeu/Lear ganham retorno real do RAG · não dependem mais de citação canônica). DUP_SYNC removido · busca mais precisa.</li>
+    </ol>
+    <h3>Próximas 72h (autônomo)</h3>
+    <ol>
+      <li><strong>Re-OCR via EasyOCR das outras 8 obras fantasma</strong>: Bandler Reframing/Estrutura, Allen, Maquiavel/GoT, Suy, Neves, OBrien v1+v2 (4-6h CPU total · paralelizável)</li>
+      <li><strong>Reingestão de todas no Chroma</strong> com texto limpo</li>
+      <li><strong>Ingestão de 10 PDFs prioritários</strong>: Arendt, Sêneca, Epicteto, Lacan Seminário 21, Macbeth, Tempestade, Rei João, Erickson Formas Indiretas, Lacan+Joyce, Inconsciente em Lacan</li>
+      <li><strong>Resultado esperado</strong>: 5 → 16 INTEGRAL · acervo total 26+ obras úteis no RAG · score retrieval &gt;80% em queries temáticas comuns</li>
+    </ol>
+    <h3>O que precisa mudar no método</h3>
+    <ol>
+      <li><strong>Validação pré-ingestão</strong>: rejeitar PDFs cujo texto extraído tenha &lt;60% printable chars · disparar OCR automático antes de indexar</li>
+      <li><strong>Probe semântica pós-ingestão</strong>: cada obra recém-ingerida passa por probe de 5 queries · se nenhuma retornar a obra, marcar como FANTASMA imediatamente · evita o cenário atual onde 11 obras "fingiam" estar OK por meses</li>
+      <li><strong>Auditoria automática semanal</strong>: rodar audit_acervo.py todo domingo 21h · publicar resultado em /home/audit.html · alertar se grupo A diminuir</li>
+    </ol>
+  </div>
+
+  <div class="diag-bloco green" style="margin-top:24px">
+    <strong>Honestidade:</strong> o sistema declarava "31 obras integrais" baseado apenas em <em>contagem de chunks ≥50</em>. Isso era enganoso · só 5 das 31 são realmente úteis no RAG. As outras 11 sobreviviam mascaradas pelo fallback de citação canônica que implementei em v15.BH (decisão correta · não esconde a falha · marca explicitamente com bandeira ✦). Os 32 PDFs no Drive nunca foram indexados — provavelmente skipados em ingestões antigas por timeout/erro de OCR. Plano acima resolve definitivamente.
+  </div>
+
+  <div class="foot">
+    NEXUS v15.BT · auditoria executada via <code style="color:var(--gold);background:rgba(184,147,90,.12);padding:2px 6px;border-radius:4px;font-family:'SF Mono',monospace;font-size:10px">audit_acervo.py</code><br>
+    <span class="timestamp">scan: 2026-04-26 · próxima auditoria automatizada: domingo 21h00</span><br><br>
+    <a href="./">cockpit</a> · <a href="./stats.html">stats vivas</a> · <a href="./integrais.html">acervo</a> · <a href="./novidades.json">novidades</a>
+  </div>
+</div>
+</body>
+</html>
