@@ -58,9 +58,9 @@
     "ingestao_em_curso": false,
     "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
     "estado_aprox": {
-      "chunks": 60969,
-      "obras": 79,
-      "integrais": 71,
+      "chunks": 63526,
+      "obras": 82,
+      "integrais": 74,
       "cardapio_30": 30,
       "cardapio_30_trio_completo": 30
     }
@@ -87,7 +87,17 @@
     "google_oauth": {
       "client_type": "Desktop",
       "scopes": 9,
-      "scopes_list": ["gmail.modify","gmail.send","calendar","tasks","drive","contacts","documents","spreadsheets","presentations"]
+      "scopes_list": [
+        "gmail.modify",
+        "gmail.send",
+        "calendar",
+        "tasks",
+        "drive",
+        "contacts",
+        "documents",
+        "spreadsheets",
+        "presentations"
+      ]
     },
     "custo_openai_cumulativo_usd": 0.29,
     "custo_openai_mensal_estimado_usd": 0.05
@@ -107,14 +117,38 @@
     "Pasta NEXUS em backup tempo real Google Drive (sync ativo)"
   ],
   "frentes_v16_0": {
-    "1_obras_integrais": {"status": "yellow", "desc": "5 OCRs Shakespeare em background · Suma partition pendente"},
-    "2_canonizacao_docs": {"status": "green", "desc": "5 pilares v16.0 · 68→31 docs"},
-    "3_system_prompt_v67": {"status": "green", "desc": "v6.7 canonical · 19 docs canônicos integralizados"},
-    "4_drive_watcher": {"status": "green", "desc": "pipeline atomico ativo"},
-    "5_google_ecosystem": {"status": "green", "desc": "10 modulos · 8 APIs · 4 tasks ativas"},
-    "6_pedagogia_mobile": {"status": "yellow", "desc": "em desenvolvimento"},
-    "7_pwa_5_telas": {"status": "yellow", "desc": "em desenvolvimento"},
-    "8_backup_watchdog": {"status": "green", "desc": "Watchdog_v2 + snapshot semanal ativos"}
+    "1_obras_integrais": {
+      "status": "yellow",
+      "desc": "5 OCRs Shakespeare em background · Suma partition pendente"
+    },
+    "2_canonizacao_docs": {
+      "status": "green",
+      "desc": "5 pilares v16.0 · 68→31 docs"
+    },
+    "3_system_prompt_v67": {
+      "status": "green",
+      "desc": "v6.7 canonical · 19 docs canônicos integralizados"
+    },
+    "4_drive_watcher": {
+      "status": "green",
+      "desc": "pipeline atomico ativo"
+    },
+    "5_google_ecosystem": {
+      "status": "green",
+      "desc": "10 modulos · 8 APIs · 4 tasks ativas"
+    },
+    "6_pedagogia_mobile": {
+      "status": "yellow",
+      "desc": "em desenvolvimento"
+    },
+    "7_pwa_5_telas": {
+      "status": "yellow",
+      "desc": "em desenvolvimento"
+    },
+    "8_backup_watchdog": {
+      "status": "green",
+      "desc": "Watchdog_v2 + snapshot semanal ativos"
+    }
   },
   "rag_url_updated_at": "2026-04-26T14:25:00-03:00"
 }
