@@ -1,0 +1,343 @@
+{
+  "version": "v16.0",
+  "exported_at": "2026-04-26T17:10:00-03:00",
+  "source_apps_script": "NEXUS_V15_BS_PulseNexus.js · V15BS_PULSES",
+  "count": 40,
+  "anti_repeticao_dias": 30,
+  "pulses": [
+    {
+      "id": "crz_001",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Freud (1900) Ã DamÃ¡sio (1994) Â· 94 anos para a mesma descoberta",
+      "body": "Freud: o sonho nÃ£o Ã© desvio, Ã© a *via rÃ©gia* ao inconsciente. DamÃ¡sio: o sentimento nÃ£o Ã© decoraÃ§Ã£o da razÃ£o, Ã© o solo onde ela cresce â *marcador somÃ¡tico*.\n\nDiferenÃ§a crÃ­tica: Freud encena, DamÃ¡sio mede. Um lÃª metÃ¡fora, outro lÃª cÃ³rtex prÃ©-frontal ventromedial.\n\nA continuidade Ã© mais radical que parece â a descoberta freudiana de que afeto antecede pensamento foi confirmada 94 anos depois por neurologia de lesÃ£o (pacientes com vmPFC danificado decidem mal mesmo com QI intacto).",
+      "cta": "Que decisÃ£o sua hoje tem um marcador somÃ¡tico votando antes da razÃ£o?",
+      "link": "https://nexuscaldeira.com/c/freud-sonhos/"
+    },
+    {
+      "id": "crz_002",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Maquiavel (1513) Ã Greene (1998) Â· o mesmo livro reescrito em 485 anos",
+      "body": "Maquiavel Â· *O PrÃ­ncipe*, cap. XVIII: \"O prÃ­ncipe nÃ£o precisa ser piedoso, mas precisa parecer piedoso.\"\nGreene Â· *48 Leis do Poder*, lei 3: \"Esconda suas intenÃ§Ãµes.\"\n\nMaquiavel escreve em hora de Estado nascente; Greene reembala para CEO/influencer. Ambos partem da mesma pressuposiÃ§Ã£o antipÃ¡tica: a moralidade pÃºblica Ã© dispositivo, nÃ£o substÃ¢ncia. A diferenÃ§a Ã© sÃ³ linguÃ­stica â Maquiavel admite o cinismo, Greene o estiliza como sabedoria de mesa de negociaÃ§Ã£o.",
+      "cta": "Em qual situaÃ§Ã£o sua a *aparÃªncia* faz mais trabalho que a substÃ¢ncia? E vale o custo?",
+      "link": "https://nexuscaldeira.com/c/maquiavel-got/"
+    },
+    {
+      "id": "crz_003",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Bandler/Grinder Ã Milton Erickson Â· pai vs. filho rebelde",
+      "body": "Bandler decompÃ´s Erickson em padrÃµes nomeÃ¡veis (*PadrÃµes HipnÃ³ticos*, 1975). Mas Erickson resistia ao prÃ³prio modelamento â \"meu trabalho nÃ£o Ã© tÃ©cnica, Ã© *utilizaÃ§Ã£o* do que o paciente trouxe\".\n\nA tensÃ£o Ã© geracional: Bandler queria reproduzibilidade (PNL como engenharia); Erickson defendia a singularidade (cada transe Ã© um one-shot). Quem estÃ¡ certo? Ambos, em escalas diferentes â modelar serve atÃ© o ponto onde a personalidade vivida do operador retoma o lugar do roteiro.",
+      "cta": "O que vocÃª opera com tÃ©cnica modelada, e o que opera com presenÃ§a? A linha tÃ¡ no lugar certo?",
+      "link": "https://nexuscaldeira.com/c/bandler-padroes/"
+    },
+    {
+      "id": "crz_004",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Goleman Ã Kahneman Â· sequestro emocional vs. Sistema 1",
+      "body": "Goleman fala de *amygdala hijack* (sequestro): situaÃ§Ã£o emocionalmente carregada faz o tÃ¡lamo curto-circuitar e ativar amÃ­gdala antes do cÃ³rtex prÃ©-frontal processar. \nKahneman descreve o mesmo evento como \"Sistema 1 dominando Sistema 2\" â heurÃ­stica rÃ¡pida sobrescreve anÃ¡lise lenta.\n\nMesmo fenÃ´meno, vocabulÃ¡rios distintos. Goleman Ã© clÃ­nico (afeto), Kahneman Ã© econÃ´mico (decisÃ£o). CruzÃ¡-los rende uma operaÃ§Ã£o prÃ¡tica: o intervalo de 6 segundos entre estÃ­mulo e resposta â onde o prÃ©-frontal alcanÃ§a a amÃ­gdala â Ã© tambÃ©m onde o Sistema 2 pode cobrir o Sistema 1.",
+      "cta": "Em qual ambiente seus 6 segundos somem mais rÃ¡pido?",
+      "link": "https://nexuscaldeira.com/c/goleman-ie/"
+    },
+    {
+      "id": "crz_005",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Lacan Ã LLMs Â· a fala antes do significado",
+      "body": "Lacan: \"O significante representa o sujeito para outro significante.\" NÃ£o hÃ¡ significado primeiro â sÃ³ cadeia. O sujeito *emerge* da estrutura linguÃ­stica, nÃ£o a habita.\n\nLLMs (Claude, GPT) operam exatamente assim: nenhum significado existe antes do prÃ³ximo token; a coerÃªncia Ã© efeito da cadeia, nÃ£o causa. Cinquenta anos antes da arquitetura Transformer, Lacan jÃ¡ tinha modelado a psique como um modelo de linguagem auto-regressivo.\n\nProvocaÃ§Ã£o: vocÃª Ã© mais autor das suas frases ou sÃ£o elas que escolhem vocÃª?",
+      "cta": "Releia uma fala que vocÃª repetiu hoje. Quem estÃ¡ falando â vocÃª, ou a estrutura?",
+      "link": "https://nexuscaldeira.com/c/suy-lacan/"
+    },
+    {
+      "id": "crz_006",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Yates (Memory Palace) Ã RAG (LLMs) Â· 2.500 anos do mesmo mÃ©todo",
+      "body": "Frances Yates Â· *A Arte da MemÃ³ria* (1966): a tradiÃ§Ã£o mnemÃ´nica comeÃ§a com SimÃ´nides de Ceos (sÃ©c. VI a.C.) â associar conceito a *locus* visualmente vÃ­vido. CÃ­cero usa para discursos; TomÃ¡s de Aquino para teologia.\n\nRAG (Retrieval-Augmented Generation) faz a mesma operaÃ§Ã£o: indexa conceitos como vetores semÃ¢nticos, recupera por proximidade, *retorna ao contexto*. A diferenÃ§a Ã© que o palÃ¡cio digital nÃ£o esquece â mas tambÃ©m nÃ£o esquece com graÃ§a (nÃ£o tem o luxo do recalque seletivo).\n\nUm Ã© cÃ³rtex visuoespacial, outro Ã© embedding 768-d. A geometria do significado Ã© a mesma.",
+      "cta": "Qual conceito hoje merece um *locus* na sua estaÃ§Ã£o atual do PalÃ¡cio (Forja)?",
+      "link": "https://nexuscaldeira.com/home/memory-palace.html"
+    },
+    {
+      "id": "crz_007",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Shakespeare Ã Freud Â· Hamlet como manual de psicanÃ¡lise antes da psicanÃ¡lise",
+      "body": "Freud (Carta 71 a Fliess, 1897): \"O drama de Hamlet pode ser entendido como o conflito do desejo edipiano que se torna acessÃ­vel Ã  consciÃªncia apenas obliquamente.\" Hamlet hesita em vingar o pai porque *secretamente o invejou pelo lugar da mÃ£e*.\n\nShakespeare, em 1600, escreveu o mecanismo da neurose 300 anos antes do termo existir. A peÃ§a Ã© uma psicanÃ¡lise sem analista: o herÃ³i nÃ£o age porque o ato traria Ã  tona o desejo recalcado. \"To be or not to be\" nÃ£o Ã© dilema metafÃ­sico â Ã© *resistÃªncia* (no sentido tÃ©cnico).",
+      "cta": "Releia a hesitaÃ§Ã£o que vocÃª atribuiu a 'falta de tempo' essa semana. Tem peÃ§a por trÃ¡s?",
+      "link": "https://nexuscaldeira.com/c/hamlet/"
+    },
+    {
+      "id": "crz_008",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Sun Tzu Ã Maquiavel Â· 1.700 anos de distÃ¢ncia, mesma equaÃ§Ã£o",
+      "body": "Sun Tzu (sÃ©c. V a.C.) Â· *Arte da Guerra*, cap. III: \"Vencer cem batalhas em cem combates nÃ£o Ã© o auge da habilidade. Submeter o exÃ©rcito inimigo sem combate Ã© o auge.\"\nMaquiavel (1513) Â· *O PrÃ­ncipe*, cap. XVIII: \"HÃ¡ dois modos de combater: pelas leis e pela forÃ§a. O primeiro Ã© prÃ³prio do homem, o segundo dos animais â quase sempre o primeiro nÃ£o basta.\"\n\nDivergÃªncia crÃ­tica: Sun Tzu acredita que vitÃ³ria sem violÃªncia Ã© auge; Maquiavel acha que sempre se chega ao recurso da forÃ§a. Sun Tzu Ã© taoÃ­sta (forma flui); Maquiavel Ã© renascentista (substÃ¢ncia dura). Ambos concordam: quem confia sÃ³ na violÃªncia jÃ¡ perdeu o jogo da inteligÃªncia.",
+      "cta": "Onde sua estratÃ©gia atual estÃ¡ confiando mais na forÃ§a do que na forma?"
+    },
+    {
+      "id": "crz_009",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "Klein Ã Winnicott Â· seio bom/mau vs. mÃ£e suficientemente boa",
+      "body": "Klein: o bebÃª *cinde* a mÃ£e em seio bom (presente, alimentando) e seio mau (ausente, frustrante). A integraÃ§Ã£o dos dois (posiÃ§Ã£o depressiva) Ã© trabalho psÃ­quico permanente.\nWinnicott: a mÃ£e *suficientemente boa* nÃ£o Ã© a perfeita â Ã© a que falha o suficiente para o bebÃª construir o si-mesmo na frustraÃ§Ã£o. A frustraÃ§Ã£o precoce demais quebra; a tarde demais infantiliza.\n\nMesmo fenÃ´meno (a relaÃ§Ã£o primÃ¡ria), enquadres opostos: Klein vÃª paranÃ³ia constitutiva; Winnicott vÃª a falha como dispositivo do desenvolvimento. Para o adulto que ainda nÃ£o integrou: que seio vocÃª ainda quer perfeito?",
+      "cta": "Onde, hoje, vocÃª espera que algo (chefe, sistema, parceira) seja perfeito ou ruim â sem o cinza intermediÃ¡rio?"
+    },
+    {
+      "id": "crz_010",
+      "tipo": "CRUZAMENTO",
+      "slot": "qualquer",
+      "titulo": "AristÃ³teles Ã Cialdini Â· *ethos/pathos/logos* virou *autoridade/escassez/...*",
+      "body": "AristÃ³teles (*RetÃ³rica*, sÃ©c. IV a.C.): persuasÃ£o tem 3 pilares â *ethos* (carÃ¡ter do orador), *pathos* (emoÃ§Ã£o da audiÃªncia), *logos* (lÃ³gica do argumento).\nCialdini (*Influence*, 1984): 6 princÃ­pios â autoridade, escassez, prova social, reciprocidade, consistÃªncia, simpatia.\n\nMapeando: autoridade=*ethos*; escassez+prova social=*pathos* coletivizado; reciprocidade+consistÃªncia=*logos* social. Cialdini nÃ£o inventou â codificou AristÃ³teles para a sociedade de consumo. A diferenÃ§a Ãºtil: Cialdini mostra que cada pilar tem *gatilhos automÃ¡ticos* (nÃ£o-conscientes), AristÃ³teles supunha auditÃ³rio racional.",
+      "cta": "Qual princÃ­pio vocÃª usa pouco Â· qual vocÃª sofre mais com?"
+    },
+    {
+      "id": "cit_001",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Freud Â· sobre o que escapa",
+      "body": "\"Quem tem olhos para ver e ouvidos para ouvir convence-se de que nenhum mortal pode guardar um segredo. Se seus lÃ¡bios estÃ£o silenciosos, ele tagarela com a ponta dos dedos; trai-se por todos os poros.\"\n\nâ S. Freud, *Fragmento de AnÃ¡lise de um Caso de Histeria* (Caso Dora, 1905)\n\nDÃ©cadas antes do conceito de comunicaÃ§Ã£o nÃ£o-verbal entrar na psicologia experimental, Freud nomeia o que vazarÃ¡: o corpo Ã© signo, mesmo quando a lÃ­ngua se cala. A clÃ­nica Ã© etnografia do involuntÃ¡rio.",
+      "cta": "Em qual gesto seu, esta semana, alguÃ©m pÃ´de ler o que sua boca nÃ£o disse?",
+      "link": "https://nexuscaldeira.com/c/freud-sonhos/"
+    },
+    {
+      "id": "cit_002",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Hamlet Â· a melhor sÃ­ntese da indecisÃ£o",
+      "body": "\"Assim a consciÃªncia nos faz a todos covardes;\nE da resoluÃ§Ã£o o matiz original\nDoentio se torna co'o pÃ¡lido pensamento,\nE empreendimentos de grande alcance e forÃ§a,\nCom isso seus impulsos desviam\nE perdem o nome de aÃ§Ã£o.\"\n\nâ Shakespeare, *Hamlet*, ato III, cena I (Heliodora)\n\nO solilÃ³quio inteiro Ã© uma anatomia do que Freud chamarÃ¡ de \"pensamento substituindo aÃ§Ã£o\" 300 anos depois. Hamlet nÃ£o age porque pensar demais sobre o ato faz o ato perder cor â *the native hue of resolution sicklied o'er with the pale cast of thought*.",
+      "cta": "Que ato seu, esta semana, perdeu a cor por excesso de matiz?",
+      "link": "https://nexuscaldeira.com/c/hamlet/"
+    },
+    {
+      "id": "cit_003",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Lacan Â· a frase mais densa da psicanÃ¡lise francesa",
+      "body": "\"Amar Ã© dar o que nÃ£o se tem a alguÃ©m que nÃ£o o quer.\"\n\nâ J. Lacan, *SeminÃ¡rio VIII Â· A TransferÃªncia* (1960-61)\n\nA frase parece niilismo erÃ³tico mas Ã© o oposto: descreve a estrutura *Ã©tica* do amor verdadeiro. Quem dÃ¡ sÃ³ o que tem (objeto, dinheiro, tempo medido) estÃ¡ negociando, nÃ£o amando. Amar Ã© oferecer a *falta* â a parte de si que nÃ£o fecha. E o outro sÃ³ pode amar de volta se tambÃ©m aceitar o presente que nÃ£o pediu: a sua prÃ³pria falta projetada no parceiro.",
+      "cta": "Esta semana vocÃª ofereceu (a alguÃ©m) o que tinha â ou o que falta? E recebeu o que pediu â ou o que mereceu?",
+      "link": "https://nexuscaldeira.com/c/suy-lacan/"
+    },
+    {
+      "id": "cit_004",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Maquiavel Â· sobre a arquitetura do medo",
+      "body": "\"Sendo difÃ­cil unir as duas qualidades, Ã© muito mais seguro ser temido do que amado, quando uma das duas tem que faltar. Os homens tÃªm menos pejo de ofender a quem se faz amar do que a quem se faz temer.\"\n\nâ N. Maquiavel, *O PrÃ­ncipe*, cap. XVII (1513)\n\nA leitura preguiÃ§osa lÃª isso como cinismo. A leitura cuidadosa lÃª como diagnÃ³stico operacional: o amor *do outro por vocÃª* Ã© volÃºvel (depende da boa vontade dele); o medo *do outro a vocÃª* Ã© estÃ¡vel (depende de vocÃª nÃ£o falhar em ser temido). Para quem opera em ambientes hostis, a equaÃ§Ã£o nÃ£o Ã© de moralidade â Ã© de previsibilidade.",
+      "cta": "No seu trabalho atual, onde vocÃª apostou no amor e mereceria ter apostado no respeito (que Ã© o nome polido do temor)?",
+      "link": "https://nexuscaldeira.com/c/maquiavel-got/"
+    },
+    {
+      "id": "cit_005",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Erickson Â· sobre a resistÃªncia",
+      "body": "\"ResistÃªncia do paciente nÃ£o Ã© obstÃ¡culo. Ã informaÃ§Ã£o sobre a forma do mapa interno dele. Use a resistÃªncia, nÃ£o a combata.\"\n\nâ Milton H. Erickson, citado por Sidney Rosen em *My Voice Will Go With You* (1982)\n\nA virada que Erickson opera Ã© radical: onde a psicanÃ¡lise via resistÃªncia como muro a derrubar (*Widerstand*), Erickson via como contorno a navegar. \"Utilization\" Ã© o nome tÃ©cnico â qualquer coisa que o paciente trouxer (sintoma, queixa, recusa) Ã© matÃ©ria-prima Ãºtil. A resistÃªncia nÃ£o Ã© barreira do tratamento, Ã© a primeira frase do mapa que ele acabou de te dar.",
+      "cta": "Que resistÃªncia (sua ou de alguÃ©m) vocÃª esta semana tentou *vencer* â quando podia ter *usado*?",
+      "link": "https://nexuscaldeira.com/c/rosen-erickson/"
+    },
+    {
+      "id": "cit_006",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Bandler Â· sobre o mapa e o territÃ³rio",
+      "body": "\"O mapa nÃ£o Ã© o territÃ³rio. As pessoas nÃ£o respondem ao mundo, respondem aos seus modelos do mundo. E os modelos sÃ£o construÃ­dos por linguagem, generalizaÃ§Ã£o e omissÃ£o.\"\n\nâ Bandler & Grinder, *A Estrutura da Magia* (1975), reformulando Korzybski\n\nA frase Ã© simples mas a consequÃªncia operacional Ã© violenta: nenhuma briga Ã© sobre os fatos. Cada participante estÃ¡ defendendo o *modelo dele* dos fatos. Quando a discussÃ£o te exaspera, geralmente Ã© porque vocÃª estÃ¡ corrigindo o territÃ³rio de alguÃ©m que estÃ¡ defendendo o mapa.",
+      "cta": "Onde, hoje, vocÃª confundiu defender mapa com defender territÃ³rio â e gastou energia errada?",
+      "link": "https://nexuscaldeira.com/c/bandler-magia/"
+    },
+    {
+      "id": "cit_007",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Marco AurÃ©lio Â· receita estoica de 7 segundos",
+      "body": "\"Tens poder sobre tua mente, nÃ£o sobre os eventos exteriores. Compreende isso, e encontrarÃ¡s forÃ§a.\"\n\nâ Marco AurÃ©lio, *MeditaÃ§Ãµes*, livro VIII (sÃ©c. II)\n\nA dicotomia do controle Ã© a base operacional do estoicismo: dividir tudo em duas pilhas â o que depende de vocÃª (julgamento, aÃ§Ã£o, intenÃ§Ã£o, atenÃ§Ã£o) e o que nÃ£o depende (corpo alheio, opiniÃ£o alheia, resultado, passado, morte). Toda perturbaÃ§Ã£o vem de querer controle do segundo grupo. A serenidade Ã© a disciplina de soltar o que nunca foi seu.",
+      "cta": "Liste agora 1 coisa que pesa em vocÃª esta semana. Pertence Ã  pilha 1 (controlÃ¡vel) ou pilha 2?"
+    },
+    {
+      "id": "cit_008",
+      "tipo": "CITAÇÃO",
+      "slot": "qualquer",
+      "titulo": "Wittgenstein Â· o limite da linguagem",
+      "body": "\"Os limites da minha linguagem significam os limites do meu mundo.\"\n\nâ L. Wittgenstein, *Tractatus Logico-Philosophicus*, 5.6 (1921)\n\nNÃ£o Ã© poesia â Ã© tese. O *Tractatus* argumenta que pensar Ã© *operar com proposiÃ§Ãµes*; o que nÃ£o cabe em proposiÃ§Ã£o nÃ£o Ã© pensamento, Ã© silÃªncio (\"Sobre aquilo de que nÃ£o se pode falar, deve-se calar.\"). Wittgenstein II (InvestigaÃ§Ãµes, 1953) suaviza: o sentido vem do *uso*, nÃ£o da forma lÃ³gica. Mas a liÃ§Ã£o inicial permanece â ampliar vocabulÃ¡rio nÃ£o Ã© frescura literÃ¡ria, Ã© ampliaÃ§Ã£o literal do mundo pensÃ¡vel.",
+      "cta": "Que conceito vocÃª gostaria de operar mas ainda nÃ£o tem palavra para? (Marca para entrar no GlossÃ¡rio NEXUS.)"
+    },
+    {
+      "id": "prg_001",
+      "tipo": "PERGUNTA",
+      "slot": "manha",
+      "titulo": "Pergunta provocativa Â· estrutura do dia",
+      "body": "Antes de qualquer aÃ§Ã£o hoje:\n\nSe vocÃª sÃ³ pudesse fazer 1 coisa nas prÃ³ximas 6 horas, e essa 1 coisa fosse a *Ãºnica* memÃ³ria que sobraria do dia, qual seria?\n\nA pergunta nÃ£o Ã© de produtividade â Ã© de hierarquia interna. A maioria das listas de tarefa Ã© defensiva: cobre incerteza com volume. Esta pergunta forÃ§a ranqueamento radical, Ã  moda Patrick Jane: \"qual Ã© o ato cuja ausÃªncia destruiria o dia?\".",
+      "cta": "Responda mentalmente. Se a resposta veio em 2 segundos, faÃ§a-a. Se demorou mais de 30s, hÃ¡ resistÃªncia."
+    },
+    {
+      "id": "prg_002",
+      "tipo": "PERGUNTA",
+      "slot": "qualquer",
+      "titulo": "Pergunta lacaniana Â· o sintoma como mensagem",
+      "body": "O sintoma (queixa repetitiva, comportamento que vocÃª nÃ£o controla, dor sem causa orgÃ¢nica clara) Ã©, na leitura de Lacan, *uma metÃ¡fora* â substitui um significante recalcado por outro aceitÃ¡vel.\n\nEscolha agora 1 sintoma seu (fÃ­sico, emocional, comportamental) que retorna nas Ãºltimas semanas. Pergunte:\n\n1. *Quando comeÃ§ou exatamente?* (Data, evento, frase ouvida)\n2. *O que ele te impede de fazer?* (NÃ£o o que ele *te faz fazer* â o que ele *te impede*)\n3. *Se ele falasse, o que diria?*\n\nO sintoma nunca Ã© estÃºpido. Ele Ã© elegante demais â disfarÃ§ado.",
+      "cta": "Anote 1 sintoma e responda Ã s 3 perguntas. Sem editar."
+    },
+    {
+      "id": "prg_003",
+      "tipo": "PERGUNTA",
+      "slot": "qualquer",
+      "titulo": "Pergunta estoica Â· o prÃ©-luto",
+      "body": "SÃªneca recomendava o *praemeditatio malorum* â meditar sobre o pior cenÃ¡rio antes que aconteÃ§a, para tirar a urgÃªncia de surpresa.\n\nEscolha 1 coisa que vocÃª teme perder no prÃ³ximo ano (saÃºde, funÃ§Ã£o, pessoa, posiÃ§Ã£o, projeto).\nDescreva em 3 linhas o cenÃ¡rio concreto da perda â nÃ£o evite, detalhe.\nResponda: *\"se isso acontecer, em 12 meses estarei...\"*\n\nNÃ£o Ã© pessimismo â Ã© vacina. O exercÃ­cio faz o corpo entender que a perda Ã© digerÃ­vel. A maior parte do sofrimento Ã© a *resistÃªncia ao cenÃ¡rio*, nÃ£o o cenÃ¡rio em si.",
+      "cta": "FaÃ§a isso por 3 minutos com 1 perda imaginada. Reduz ansiedade base em medida observÃ¡vel."
+    },
+    {
+      "id": "prg_004",
+      "tipo": "PERGUNTA",
+      "slot": "qualquer",
+      "titulo": "Pergunta cold-reading Â· 3 perguntas que abrem qualquer pessoa",
+      "body": "Patrick Jane (e Erickson antes dele) operavam com 3 perguntas-Ã¢ncora que abrem o outro:\n\n1. *\"O que mudou recentemente?\"* (assume que algo mudou â e quase sempre mudou)\n2. *\"O que ainda nÃ£o foi dito sobre isso?\"* (legitima o silÃªncio prÃ©vio + abre)\n3. *\"Se essa situaÃ§Ã£o fosse de outra pessoa, o que vocÃª diria a ela?\"* (deslocamento que dribla defesa)\n\nNÃ£o sÃ£o truques â sÃ£o vias rÃ¡pidas para o que a pessoa jÃ¡ sabia mas nÃ£o tinha permissÃ£o de dizer.",
+      "cta": "Use 1 das 3 hoje. Em alguÃ©m aleatÃ³rio, baixa pressÃ£o. Observe o silÃªncio antes da resposta."
+    },
+    {
+      "id": "prg_005",
+      "tipo": "PERGUNTA",
+      "slot": "tarde",
+      "titulo": "Pergunta de auditoria Â· onde vocÃª mente para si mesmo",
+      "body": "Identifique 1 Ã¡rea da sua vida onde vocÃª sabe que estÃ¡ se enganando, mas o engano Ã© confortÃ¡vel.\n\nNÃ£o Ã© a Ã¡rea onde vocÃª *erra* (erros sÃ£o honestos). Ã a Ã¡rea onde vocÃª *vÃª o erro e finge que nÃ£o viu*.\n\nNomeie a verdade em 1 frase, sem maquiar.\n\nSe a frase saiu em 5 segundos, vocÃª jÃ¡ sabia (e o trabalho Ã© integrar). Se vocÃª ficou paralisado, a Ã¡rea Ã© maior que vocÃª admitia.",
+      "cta": "Anote a frase em /diario com tag #auditoria Â· sÃ³ para vocÃª."
+    },
+    {
+      "id": "prg_006",
+      "tipo": "PERGUNTA",
+      "slot": "qualquer",
+      "titulo": "Pergunta sobre alianÃ§as Â· quem vocÃª esqueceu de cuidar",
+      "body": "Em ambiente institucional (PMMG/MPMG), alianÃ§a nÃ£o Ã© amizade â Ã© capital relacional acumulado. Decai sozinho se nÃ£o for renovado.\n\nListe 3 pessoas dentro da estrutura que:\nÂ· apoiaram vocÃª nos Ãºltimos 6 meses,\nÂ· e que vocÃª nÃ£o procurou desde entÃ£o sem precisar de algo.\n\nMaquiavel: \"O prÃ­ncipe que negligencia a manutenÃ§Ã£o do que conquistou perde duas vezes â primeiro a coisa, depois a reputaÃ§Ã£o de saber mantÃª-la.\"",
+      "cta": "Mande 1 mensagem hoje a 1 dessas 3 pessoas â sem pedir nada. Capital de alianÃ§a rende juros compostos."
+    },
+    {
+      "id": "prg_007",
+      "tipo": "PERGUNTA",
+      "slot": "qualquer",
+      "titulo": "Pergunta sobre ego Â· o tom da sua Ãºltima correÃ§Ã£o",
+      "body": "Lembre da Ãºltima vez que vocÃª corrigiu alguÃ©m (subordinado, parceira, alguÃ©m da famÃ­lia).\n\n1. Foi *sobre o conteÃºdo* (\"isso aqui estÃ¡ errado por X razÃ£o tÃ©cnica\") ou foi *sobre a pessoa* (\"vocÃª sempre faz isso\")?\n2. A pessoa saiu da conversa sabendo o que mudar â ou sÃ³ sabendo que vocÃª estava aborrecido?\n3. VocÃª teria corrigido do mesmo jeito se a pessoa fosse 2 nÃ­veis hierÃ¡rquicos acima?\n\nA correÃ§Ã£o que serve Ã  hierarquia Ã© diferente da correÃ§Ã£o que serve ao ensino. A primeira Ã© vinganÃ§a disfarÃ§ada; a segunda Ã© amor disfarÃ§ado de aspereza.",
+      "cta": "Releia mentalmente a Ãºltima correÃ§Ã£o. Em qual categoria caiu?"
+    },
+    {
+      "id": "prg_008",
+      "tipo": "PERGUNTA",
+      "slot": "manha",
+      "titulo": "Pergunta de retorno Â· o passado que ainda governa",
+      "body": "Existe 1 frase que alguÃ©m te disse anos atrÃ¡s (pode ser ofensa, elogio, advertÃªncia) que ainda informa decisÃµes suas hoje â mesmo que vocÃª raramente lembre dela.\n\nQual Ã©? Quem disse? Quando?\n\nA frase opera como *significante mestre* (Lacan): organiza outras decisÃµes em torno dela sem precisar ser citada. TrazÃª-la Ã  tona nÃ£o a apaga â sÃ³ te dÃ¡ voto contra ela.",
+      "cta": "Anote a frase, nome, data. /diario com tag #significante. Releitura em 30 dias muda quase sempre o sentido."
+    },
+    {
+      "id": "mic_001",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *NachtrÃ¤glichkeit* (Freud)",
+      "body": "**Posterioridade**: o trauma nÃ£o Ã© o evento original â Ã© a re-significaÃ§Ã£o dele meses ou anos depois, quando outro evento o atualiza.\n\n**Sinal:** vocÃª lembra de algo banal antigo e agora dÃ³i. Era neutro na Ã©poca Â· hoje virou ferida.\n\n**AplicaÃ§Ã£o:** 1 lembranÃ§a sua \"chata\" da infÃ¢ncia/juventude que hoje irrita mais. *NachtrÃ¤glichkeit* em aÃ§Ã£o. VocÃª nÃ£o estÃ¡ sendo mole â o cÃ©rebro estÃ¡ re-empacotando o passado com vocabulÃ¡rio atual.\n\n**Cruzamento:** corresponde quase exato Ã  reconsolidaÃ§Ã£o de memÃ³ria descrita por LeDoux (2000) â a memÃ³ria, ao ser evocada, Ã© regravada com o estado emocional do presente.",
+      "cta": "Que evento antigo dÃ³i diferente hoje?"
+    },
+    {
+      "id": "mic_002",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *Metaprograma* (PNL)",
+      "body": "**Filtros mentais inconscientes** que decidem o que vocÃª nota e o que ignora. NÃ£o sÃ£o opiniÃµes â sÃ£o prÃ©-opiniÃµes.\n\n**6 metaprogramas operacionais:**\nÂ· interno/externo (referÃªncia)\nÂ· especÃ­fico/global (granularidade)\nÂ· semelhanÃ§a/diferenÃ§a (atenÃ§Ã£o)\nÂ· aproximaÃ§Ã£o/afastamento (motivaÃ§Ã£o)\nÂ· opÃ§Ãµes/procedimentos (estrutura)\nÂ· proativo/reativo (iniciativa)\n\n**Sinal:** ao ouvir alguÃ©m descrever decisÃ£o, observe qual eixo ele usa primeiro. Esse Ã© o metaprograma dominante.\n\n**AplicaÃ§Ã£o:** falar a lÃ­ngua do metaprograma do interlocutor reduz fricÃ§Ã£o dramaticamente.",
+      "cta": "Identifique o seu dominante em 'aproximaÃ§Ã£o/afastamento': vocÃª foge mais do que persegue, ou o oposto?"
+    },
+    {
+      "id": "mic_003",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *Marcador somÃ¡tico* (DamÃ¡sio)",
+      "body": "**Sinal corporal prÃ©-cognitivo** que valida ou veta uma decisÃ£o antes da razÃ£o chegar. DamÃ¡sio descobriu em pacientes com lesÃ£o no cÃ³rtex prÃ©-frontal ventromedial: QI intacto, mas decidem mal â porque perderam o canal corpoârazÃ£o.\n\n**Sinal:** vocÃª 'sentiu' que algo era ruim antes de saber por quÃª. O sentimento veio do estÃ´mago, nÃ£o do plano de aÃ§Ã£o.\n\n**AplicaÃ§Ã£o:** quando o marcador discordar da planilha, *nÃ£o* ignore â investigue. Geralmente o corpo viu padrÃ£o que a planilha nÃ£o captou.\n\n**Cuidado:** marcador tambÃ©m pode ser viÃ©s (fobia treinada). Diferenciar exige histÃ³rico.",
+      "cta": "Qual decisÃ£o sua hoje teve marcador discordante â e vocÃª seguiu a planilha mesmo assim?"
+    },
+    {
+      "id": "mic_004",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *PrincÃ­pio da escassez* (Cialdini)",
+      "body": "**Coisas raras parecem mais valiosas** â mesmo quando objetivamente nÃ£o sÃ£o. Vem da heurÃ­stica evolutiva: o que Ã© finito acaba; antecipe.\n\n**Sinal externo:** \"Ãºltimas vagas\", \"oferta termina hoje\", \"informaÃ§Ã£o privilegiada\". Funciona pela urgÃªncia, nÃ£o pela qualidade.\n\n**Sinal interno:** vocÃª compra/decide algo porque \"pode acabar\" e depois pergunta-se por que comprou.\n\n**Defesa operacional:** quando sentir o gatilho, esperar 24h. Se ainda quiser/decidir, era racional. Quase sempre, nÃ£o.\n\n**InversÃ£o estratÃ©gica:** sua atenÃ§Ã£o, seu tempo, seu julgamento â esses *sÃ£o* genuinamente escassos. Trate como tal.",
+      "cta": "Que decisÃ£o recente sua foi puro gatilho de escassez? E qual recurso seu real vocÃª dÃ¡ demais?"
+    },
+    {
+      "id": "mic_005",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *EstÃ¡dio do espelho* (Lacan)",
+      "body": "**Entre 6 e 18 meses**, o bebÃª reconhece sua imagem refletida e *jubila* â pela primeira vez vÃª a si como *unidade*. Mas a imagem Ã© exterior, antecipada â o eu integrado Ã© fantasia, o real corporal ainda Ã© fragmentado e descoordenado.\n\n**ConsequÃªncia:** o eu se constitui *fora* (na imagem). Toda identidade adulta carrega esse vestÃ­gio: vocÃª se reconhece pela versÃ£o de fora.\n\n**Sinal adulto:** tropeÃ§o de auto-imagem ao ver foto/vÃ­deo seu (\"nÃ£o pareÃ§o com isso\"). Ã a *Spaltung* original retornando.\n\n**AplicaÃ§Ã£o:** seu eu profissional, parental, amoroso sÃ£o imagens projetadas e re-internalizadas. A coerÃªncia delas Ã© trabalho contÃ­nuo, nÃ£o dado.",
+      "cta": "Em qual papel seu (chefe, filho, parceiro) a imagem que vocÃª projeta diverge mais da experiÃªncia interna?"
+    },
+    {
+      "id": "mic_006",
+      "tipo": "MICRODOSE",
+      "slot": "qualquer",
+      "titulo": "60 segundos Â· *PalÃ¡cio da MemÃ³ria* (Yates/CÃ­cero)",
+      "body": "**TÃ©cnica clÃ¡ssica:** atribua a cada conceito a memorizar um *locus* (cÃ´modo, mÃ³vel, ponto da rua). Para recuperar, faÃ§a caminhada mental.\n\n**Por que funciona:** memÃ³ria visuoespacial Ã© a mais antiga arquitetura cerebral (hippocampus). MemÃ³ria semÃ¢ntica abstrata Ã© mais frÃ¡gil. Ancorar abstrato em espacial Ã© importar do canal mais robusto.\n\n**AplicaÃ§Ã£o NEXUS:** cada conceito-chave que vocÃª quiser fixar, atribua Ã  estaÃ§Ã£o atual do PRIMORDIA (Forja, hoje). Em 18 dias, conceito virou propriedade da estaÃ§Ã£o.\n\n**Limite:** nÃ£o funciona para grande volume sem prÃ¡tica. Comece com 5 conceitos no primeiro PalÃ¡cio.",
+      "cta": "Que conceito da semana merece um *locus* na Forja? (Acrescenta em /palacio.)"
+    },
+    {
+      "id": "cur_001",
+      "tipo": "CURIOSIDADE",
+      "slot": "qualquer",
+      "titulo": "Etimologia Â· 'persuadir' vem de *suadere*",
+      "body": "*Persuadir* (lat. *per-suadere*) = \"levar a doce\". A raiz *suad-* aparece em *suave*, *dissuadir* (afastar do doce), *consuetudinal* (acostumado).\n\nA equaÃ§Ã£o latina Ã© elegante: persuasÃ£o Ã© *adoÃ§ar o caminho* atÃ© a posiÃ§Ã£o que vocÃª queria que o outro tomasse. NÃ£o Ã© forÃ§ar (que seria *cogere* â origem de *coerÃ§Ã£o*).\n\nMaquiavel sabia: a persuasÃ£o *cogente* Ã© sempre frÃ¡gil. A persuasÃ£o *suadens* dura porque o outro acredita que escolheu.",
+      "cta": "Que decisÃ£o sua hoje vai precisar mais de *suadere* que de *cogere*?"
+    },
+    {
+      "id": "cur_002",
+      "tipo": "CURIOSIDADE",
+      "slot": "qualquer",
+      "titulo": "Anedota histÃ³rica Â· Freud e a teoria do trauma que ele recolheu",
+      "body": "Em 1896, Freud apresenta Ã  Sociedade Vienense de Psiquiatria sua *Teoria da SeduÃ§Ã£o*: histeria Ã© causada por abuso sexual real na infÃ¢ncia, recalcado.\n\nA recepÃ§Ã£o foi gÃ©lida. Em 1897, Freud abandona a teoria â nÃ£o por falta de evidÃªncia (pacientes continuavam reportando), mas por estimar que \"em todos os casos o pai precisaria ser acusado, inclusive o meu\". Substitui por *fantasia inconsciente*.\n\nA decisÃ£o foi politicamente acertada (psicanÃ¡lise sobreviveu) e clinicamente desastrosa: geraÃ§Ãµes de vÃ­timas reais de abuso foram tratadas como *fantasiando* atÃ© o final do sÃ©culo XX.\n\nA psicanÃ¡lise contemporÃ¢nea (Laplanche, Bohleber) estÃ¡ reabilitando trauma real como elemento. Freud nÃ£o estava 100% errado â ele apenas recuou na hora errada.",
+      "cta": "Onde vocÃª recuou da verdade incÃ´moda â por motivo politicamente acertado, mas clinicamente custoso?"
+    },
+    {
+      "id": "cur_003",
+      "tipo": "CURIOSIDADE",
+      "slot": "qualquer",
+      "titulo": "Detalhe Shakespeare Â· 'native hue' vs. 'pale cast'",
+      "body": "No \"to be or not to be\", a frase chave em inglÃªs Ã©:\n*\"Thus the native hue of resolution / Is sicklied o'er with the pale cast of thought.\"*\n\n\"Native hue\" = matiz nativo (a cor original da resoluÃ§Ã£o, vermelha-quente, de sangue, aÃ§Ã£o).\n\"Pale cast\" = molde pÃ¡lido (o pensamento como camada de cera/gesso esmaecendo a cor original).\n\nShakespeare opera com pintura: a deliberaÃ§Ã£o nÃ£o Ã© sÃ³ atraso â Ã© *descolorir* o ato. Quando vocÃª pensa demais, o ato perde a cor que o teria identificado como *seu*.\n\nFreud tem versÃ£o tÃ©cnica: \"mecanismo de pensamento substituindo aÃ§Ã£o\". Mas a metÃ¡fora da palidez Ã© mais precisa â vocÃª sente o ato perder calor.",
+      "cta": "Qual ato seu hoje precisaria do *native hue* sem cobertura?"
+    },
+    {
+      "id": "anc_001",
+      "tipo": "ANCHOR",
+      "slot": "qualquer",
+      "titulo": "Hoje Â· 25 de abril Â· 1719 Â· *Robinson CrusoÃ©* publicado",
+      "body": "Daniel Defoe publica em 25/04/1719 *Robinson CrusoÃ©*, primeiro romance da literatura inglesa. Robinson sobrevive 28 anos numa ilha porque *cataloga* tudo: data, materiais, eventos, oraÃ§Ã£o diÃ¡ria, balanÃ§o bemÃmal de cada dia.\n\nSua tabela final Ã© cÃ©lebre â duas colunas: *males* / *bens*. \"Estou separado da humanidade\" / \"mas tenho comida\". \"Estou sÃ³\" / \"mas tenho saÃºde\".\n\nÃ a primeira praeparatio estoica em forma de planilha. Marco AurÃ©lio escrito por contador. A liÃ§Ã£o Ã© tÃ©cnica: catalogar Ã© sobreviver â em ilha fÃ­sica ou em afastamento mÃ©dico.",
+      "cta": "FaÃ§a hoje sua tabela bens/males em 4 linhas cada. Robinson teria recomendado."
+    },
+    {
+      "id": "anc_002",
+      "tipo": "ANCHOR",
+      "slot": "qualquer",
+      "titulo": "SÃ¡bado Â· lente Shakespeare Â· sobre o silÃªncio de CordÃ©lia",
+      "body": "Em *Rei Lear*, ato I, cena I: Lear pede que as 3 filhas declarem amor para receberem partilha do reino. Goneril e Regan declaram â emfaticamente, retÃ³ricamente, falsamente. CordÃ©lia diz: *\"Nothing.\"*\n\n\"Nada virÃ¡ de nada\", responde Lear, e a deserda.\n\nO silÃªncio de CordÃ©lia Ã© o oposto do silÃªncio neurÃ³tico (recalque). Ã silÃªncio Ã©tico: ela recusa o jogo da hipÃ©rbole porque o jogo desonra o afeto. \"Amo Vossa Majestade segundo meu dever, nem mais nem menos.\"\n\nLiÃ§Ã£o operacional: nem todo silÃªncio Ã© defesa. Alguns sÃ£o a Ãºnica recusa decente que sobrou â quando o pedido em si Ã© corrupto.",
+      "cta": "Que pedido vocÃª recebeu esta semana onde o 'nothing' seria a resposta mais nobre?",
+      "link": "https://nexuscaldeira.com/c/rei-lear/"
+    },
+    {
+      "id": "anc_003",
+      "tipo": "ANCHOR",
+      "slot": "qualquer",
+      "titulo": "Dia 24 do PRIMORDIA Â· Forja (estaÃ§Ã£o 6) Â· sobre fundir antes de moldar",
+      "body": "A Forja Ã© a estaÃ§Ã£o onde o metal se torna lÃ­quido. Antes da forma, o calor.\n\nSimbolicamente: *vocÃª precisa estar fluido para receber molde novo*. Conceito teimoso (rÃ­gido, certo de si) nÃ£o recebe forja â quebra. Conceito fluido (curioso, aberto a contradiÃ§Ã£o) absorve calor e re-cristaliza diferente.\n\nNa metalurgia, hÃ¡ um ponto preciso onde o metal estÃ¡ *exatamente* na temperatura de moldagem â abaixo, ainda Ã© rÃ­gido; acima, evapora a estrutura. Esse ponto Ã© a competÃªncia do ferreiro.\n\nVocÃª estÃ¡ em Forja hÃ¡ 24 dias. O que precisa estar mais lÃ­quido em vocÃª nesta semana â e o que precisa retornar a sÃ³lido?",
+      "cta": "Anote 1 conceito que precisa fundir + 1 que precisa cristalizar."
+    },
+    {
+      "id": "pzl_001",
+      "tipo": "PUZZLE",
+      "slot": "qualquer",
+      "titulo": "Puzzle cold-reading Â· 3 sinais para inferir",
+      "body": "Pessoa A te diz na conversa:\n\nÂ· *\"NÃ£o que eu seja perfeccionista...\"* (pausa)\nÂ· veste roupa cuidadosamente combinada mas com 1 detalhe deliberadamente *fora* (manga arregaÃ§ada irregular, cabelo levemente despenteado)\nÂ· quando pedem desculpa, ela responde \"sem problema\" e muda de assunto rapidamente\n\nQual Ã© a hipÃ³tese de cold-reading mais provÃ¡vel (estilo Patrick Jane)?\n\n[a] perfeccionismo recalcado\n[b] inseguranÃ§a disfarÃ§ada\n[c] estratÃ©gia de aproximaÃ§Ã£o (parecer menos formal)\n[d] tudo isso em diferentes proporÃ§Ãµes\n\nCertinho seria [d] â mas o sinal mais decisivo Ã© a frase iniciada com *negaÃ§Ã£o*. Em PNL chamamos de \"command negation\": o cÃ©rebro processa a negaÃ§Ã£o sÃ³ depois do conteÃºdo. \"NÃ£o que eu seja perfeccionista\" deixa o ouvinte com a imagem *de perfeccionismo*. Quem usa essa estrutura estÃ¡, em parte, *anunciando* o que tenta esconder.",
+      "cta": "Em qual frase sua dessa semana vocÃª usou negaÃ§Ã£o como anÃºncio reverso?"
+    },
+    {
+      "id": "pzl_002",
+      "tipo": "PUZZLE",
+      "slot": "qualquer",
+      "titulo": "Dilema Â· 3 caminhos com custos diferentes",
+      "body": "CenÃ¡rio hipotÃ©tico (use depois para casos reais):\n\nVocÃª precisa entregar feedback duro a alguÃ©m com quem terÃ¡ que continuar trabalhando 2 anos. TrÃªs caminhos:\n\n[a] **Direto tÃ©cnico**: \"isso aqui nÃ£o funciona, motivo X, refazer Y\". Custo: pode quebrar relaÃ§Ã£o se a pessoa for frÃ¡gil. Ganho: clareza mÃ¡xima, sem ambiguidade.\n\n[b] **Sandwich** (elogio-crÃ­tica-elogio): preserva ego. Custo: pessoa pode nÃ£o captar a crÃ­tica e repetir o erro. Ganho: relaÃ§Ã£o fluida.\n\n[c] **SÃ³cratico**: pergunta orientada (\"o que vocÃª acha que pode ser melhorado em X?\"). Custo: lento, exige tempo. Ganho: pessoa chega na crÃ­tica sozinha â adesÃ£o maior.\n\n*Resposta*: depende do nÃ­vel de confianÃ§a prÃ©vio. ConfianÃ§a alta â [a]; mÃ©dia â [c]; baixa ou pessoa frÃ¡gil â [b].\n\nO erro frequente Ã© usar [a] sem checar a confianÃ§a prÃ©via â e perder o capital relacional para um problema tÃ©cnico solÃºvel.",
+      "cta": "Qual feedback vocÃª adiou esta semana, e qual dos 3 caminhos cabe Ã  confianÃ§a que vocÃª tem com a pessoa?"
+    }
+  ]
+}

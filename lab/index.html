@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0F0E17">
+<title>NEXUS · /lab/ · Imagine with Claude</title>
+<style>
+:root { --bg:#0F0E17; --fg:#FFFFFE; --dim:#A7A9BE; --accent:#FF8906; --card:#1a1830; --border:#2a2548; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--bg); color:var(--fg); font-family:-apple-system,system-ui,sans-serif; min-height:100dvh; padding:24px; }
+.wrap { max-width:900px; margin:0 auto; }
+h1 { font-size:32px; font-weight:800; letter-spacing:-0.02em; margin-bottom:8px; }
+.sub { color:var(--dim); margin-bottom:32px; }
+.tag { display:inline-block; background:var(--card); padding:4px 10px; border-radius:999px; font-size:11px; color:var(--accent); margin-right:6px; }
+.experiment { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:18px; margin-bottom:14px; }
+.experiment h3 { font-size:18px; margin-bottom:8px; }
+.experiment .date { color:var(--dim); font-size:12px; margin-bottom:8px; }
+.experiment .desc { color:var(--dim); font-size:14px; margin-bottom:10px; }
+.btn { display:inline-block; background:var(--accent); color:#1a1a1a; text-decoration:none; padding:8px 14px; border-radius:8px; font-weight:600; font-size:13px; }
+.foot { color:var(--dim); font-size:12px; text-align:center; margin-top:60px; }
+.empty { background:var(--card); border:1px dashed var(--border); border-radius:14px; padding:40px; text-align:center; color:var(--dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🧪 /lab/</h1>
+<div class="sub">Sandbox de experimentos visuais · mockups · diagramas · provas de conceito UI · gerados via comando Cortex iOS <code style="background:#1a1830;padding:2px 6px;border-radius:4px">/lab &lt;prompt&gt;</code></div>
+
+<span class="tag">v16.0</span>
+<span class="tag">experimentais</span>
+<span class="tag">não-canônicos</span>
+
+<h2 style="margin-top:40px;margin-bottom:16px;font-size:20px">Experimentos</h2>
+<div id="list">
+<div class="empty">
+  Nenhum experimento publicado ainda · use o Cortex iOS:<br>
+  <code style="background:#1a1830;padding:4px 10px;border-radius:6px;display:inline-block;margin-top:12px">/lab "esboço de dashboard com 4 KPIs psicanalíticos"</code>
+</div>
+</div>
+
+<div class="foot">
+  nexuscaldeira.com/lab/ · v16.0 · ondas 4.3<br>
+  Não é substituto de cards canônicos · vive em <code>30_CONTEUDOS/_DERIVADOS/cards/</code>
+</div>
+</div>
+
+<script>
+// Carrega experimentos a partir de _MANIFEST.json (gerado pelo skill nexus-card-visual-prompt)
+fetch('./_MANIFEST.json?_=' + Date.now())
+  .then(r => r.ok ? r.json() : { experiments: [] })
+  .then(d => {
+    const list = d.experiments || [];
+    if (list.length === 0) return;
+    const html = list.map(e => `
+      <div class="experiment">
+        <div class="date">${e.date}</div>
+        <h3>${e.title}</h3>
+        <div class="desc">${e.description || ''}</div>
+        <a class="btn" href="./${e.file}" target="_blank">Abrir</a>
+      </div>
+    `).join('');
+    document.getElementById('list').innerHTML = html;
+  })
+  .catch(() => {});
+</script>
+</body>
+</html>
