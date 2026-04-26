@@ -121,7 +121,9 @@ h1{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:.02em
 </nav>
 
 <script>
-const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
+// v15.BR · same-origin para SW cachear · raw GH como fallback se necessário
+const ORIGIN = "https://nexuscaldeira.com";
+const GH_RAW = ORIGIN;
 const GH_BLOB = "https://github.com/fillipenatan77-ctrl/nexus-cockpit/blob/main";
 
 // Catálogo curado das 16 obras integrais · slug = anchor link

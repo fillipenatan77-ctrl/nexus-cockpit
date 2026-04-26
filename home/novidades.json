@@ -1,9 +1,18 @@
 {
-  "versao_atual": "v15.BO",
-  "ultima_atualizacao": "2026-04-25T19:50:00-03:00",
+  "versao_atual": "v15.BR",
+  "ultima_atualizacao": "2026-04-25T20:15:00-03:00",
   "url_hub": "https://nexuscaldeira.com",
   "regra_permanente": "URL única como frente. Subpáginas só acessadas pela nav. Sem links semanais novos.",
   "entradas": [
+    {
+      "v": "v15.BR",
+      "data": "2026-04-25",
+      "tag": "offline-total",
+      "titulo": "📦 Service Worker v3 · acervo navegável sem rede (avião/metrô)",
+      "resumo": "SW movido para /sw.js (raiz · scope global) · cobre /home, /c, /fichas, /cards. Precache no install: 20 páginas (cockpit, sugestao, agenda, stats, integrais, system-prompt, etc) + 16 fichas + 16 cards SVG + 16 rotas /c/<slug>/. Strategies: stale-while-revalidate (HTML/MD/SVG), network-first (novidades/health JSON), cache-first (raw GitHub fallback), Apps Script + RAG sempre online com offline JSON gracioso. Botão 'pré-cachear acervo offline' em /home/notificacoes.html dispara precache via postMessage. Página /offline.html como fallback elegante. Páginas reescritas para fetch same-origin ao invés de raw GitHub.",
+      "destaque": true,
+      "hook_cortex": "Acesse /sugestao /integrais /cards mesmo sem rede após primeira visita. SW v3 mantém tudo em cache · botão de pré-cache em notificacoes.html força download imediato (ideal antes de voar)."
+    },
     {
       "v": "v15.BO",
       "data": "2026-04-25",

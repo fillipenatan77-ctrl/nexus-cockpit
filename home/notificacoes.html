@@ -162,6 +162,11 @@
 
       <button id="btnPush" onclick="ativarPush()" style="padding:16px 24px;background:var(--gold);color:var(--ink);border:none;border-radius:12px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;font-weight:700;cursor:pointer;margin-top:12px;width:100%">⟶ ativar notificações</button>
       <div id="pushStatus" style="margin-top:10px;font-family:'SF Mono',monospace;font-size:11px;color:var(--gold);opacity:0.85;letter-spacing:0.1em;text-align:center"></div>
+
+      <button id="btnPrecache" onclick="precacheAcervo()" style="padding:14px 22px;background:rgba(184,147,90,0.12);color:var(--gold);border:1px solid var(--gold-soft);border-radius:12px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:0.13em;text-transform:uppercase;font-weight:600;cursor:pointer;margin-top:14px;width:100%">📦 pré-cachear acervo (offline total)</button>
+      <div style="margin-top:8px;font-family:Georgia,serif;font-size:12px;font-style:italic;color:var(--bone);opacity:0.65;line-height:1.5;text-align:center">
+        v15.BR · baixa 16 fichas + 16 cards + páginas críticas para acessar tudo sem rede no avião / metrô.
+      </div>
     </div>
 
     <div class="desc" style="margin-top:14px;opacity:0.8"><strong style="color:var(--gold)">Limitações honestas:</strong> iOS Web Push funciona só em PWA standalone (não no Safari normal) · exige iOS 16.4 ou superior · pode precisar de app server VAPID configurado no Apps Script (fase seguinte).</div>
@@ -278,6 +283,33 @@ async function checkNovidadesOnOpen() {
   } catch (e) { /* silent */ }
 }
 checkNovidadesOnOpen();
+
+// v15.BR · botão "pré-cachear acervo offline" via SW message
+async function precacheAcervo() {
+  const btn = document.getElementById('btnPrecache');
+  if (!btn) return;
+  if (!('serviceWorker' in navigator)) {
+    btn.textContent = '✗ SW não suportado';
+    return;
+  }
+  try {
+    const reg = await navigator.serviceWorker.ready;
+    const sw = reg.active;
+    if (!sw) { btn.textContent = '⚠ SW ativando · tente em alguns segundos'; return; }
+    const ch = new MessageChannel();
+    btn.textContent = '⌛ baixando 16 fichas + 16 cards…';
+    btn.disabled = true;
+    ch.port1.onmessage = (ev) => {
+      const r = ev.data || {};
+      btn.textContent = `✓ ${r.ok || 0} cacheados · ${r.fail || 0} falharam (de ${r.total || '?'})`;
+      btn.style.background = '#2a8f4f';
+      btn.style.color = '#fff';
+    };
+    sw.postMessage({ action: 'precache_now' }, [ch.port2]);
+  } catch (e) {
+    btn.textContent = '✗ erro: ' + e.message;
+  }
+}
 </script>
 </body>
 </html>

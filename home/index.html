@@ -761,9 +761,12 @@ try {
   if (subP) subP.textContent = est;
 } catch(e) {}
 
-// Service worker para offline mínimo
+// Service worker v3 (v15.BR) · scope global / · cobre /home /c /fichas /cards
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js').catch(() => {});
+  navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {
+    // Fallback: scope local /home/
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
 }
 
 loadSnapshot();

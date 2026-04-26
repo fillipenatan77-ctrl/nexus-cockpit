@@ -46,7 +46,12 @@ h1.main{font-family:Georgia,serif;font-size:38px;font-weight:400;letter-spacing:
 <div id="root"></div>
 
 <script>
-const GH_RAW = "https://raw.githubusercontent.com/fillipenatan77-ctrl/nexus-cockpit/main";
+// v15.BR · registrar SW de qualquer ponto da PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
+}
+// v15.BR · same-origin para SW cachear · raw GH como fallback se necessário
+const GH_RAW = "https://nexuscaldeira.com";
 
 const MAP = {
   "freud-sonhos":{f:"Freud_Interpretacao_Sonhos_menor",t:"Sonhos",a:"Freud · 1900",aliases:["freud","sonhos","interpretacao"]},
