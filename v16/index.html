@@ -197,6 +197,16 @@ body.offline .offline-banner{display:block}
         <span class="lbl">Sugestões obras</span>
         <span class="hint">próximas a ingerir</span>
       </a>
+      <a class="quick" href="design/">
+        <span class="ic">✦</span>
+        <span class="lbl">Design system</span>
+        <span class="hint">tokens · tipografia · 5 princípios</span>
+      </a>
+      <button class="quick" id="btn-share" onclick="sharePage()">
+        <span class="ic">🔗</span>
+        <span class="lbl">Compartilhar</span>
+        <span class="hint">WhatsApp · iMessage · email</span>
+      </button>
     </div>
 
     <!-- Cardápio · scroll horizontal -->
@@ -548,9 +558,44 @@ if ("serviceWorker" in navigator) {
 window.addEventListener('online', () => { document.body.classList.remove('offline'); loadHealth(); });
 window.addEventListener('offline', () => document.body.classList.add('offline'));
 
+// === v17.1 Wake Lock · evita tela apagar durante leitura ===
+let wakeLock = null;
+async function requestWakeLock() {
+  if (!('wakeLock' in navigator)) return;
+  try { wakeLock = await navigator.wakeLock.request('screen'); } catch (e) {}
+}
+async function releaseWakeLock() { if (wakeLock) { await wakeLock.release(); wakeLock = null; } }
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') requestWakeLock();
+});
+// Ativar quando entra na tab Hoje (leitura primária)
+document.querySelector('[data-tab="hoje"]').addEventListener('click', requestWakeLock);
+
+// === v17.2 Web Share API · botão compartilhar ===
+async function sharePage() {
+  const shareData = {
+    title: 'NEXUS · biblioteca viva',
+    text: 'Cockpit pessoal NEXUS · 30 obras canônicas · 64.552 chunks RAG · v16.0',
+    url: 'https://nexuscaldeira.com/v16/'
+  };
+  if (navigator.share) {
+    try { await navigator.share(shareData); } catch (e) {}
+  } else if (navigator.clipboard) {
+    try {
+      await navigator.clipboard.writeText(shareData.url);
+      alert('✅ link copiado: ' + shareData.url);
+    } catch (e) { alert('compartilhe manualmente: ' + shareData.url); }
+  }
+}
+
 // Init
 renderObrasScroll();
 loadHealth();
+requestWakeLock();
+
+// Tab from URL (?tab=acervo etc)
+const urlTab = new URLSearchParams(location.search).get('tab');
+if (urlTab) show(urlTab);
 </script>
 
 </body>

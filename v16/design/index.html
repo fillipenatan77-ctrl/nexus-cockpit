@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · design system v16</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--ink-2:#1a1830;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--bone-faint:rgba(240,234,228,.4);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12);--green:#7df3a3;--yellow:#ffd803;--red:#e53170}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 26px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:32px;font-weight:400;line-height:1.1}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:15px;font-style:italic;color:var(--bone-dim);max-width:540px;margin-left:auto;margin-right:auto}
+h2{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:30px 0 12px;opacity:.85}
+.section{padding:18px;border:1px solid var(--gold-faint);border-radius:14px;background:rgba(184,147,90,.04);margin-bottom:14px}
+
+.swatch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:8px}
+.swatch{padding:18px 14px;border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;text-align:center;border:1px solid rgba(255,255,255,.08)}
+.sw-ink{background:var(--ink);color:var(--bone)}
+.sw-ink-1{background:var(--ink-1);color:var(--bone)}
+.sw-ink-2{background:var(--ink-2);color:var(--bone)}
+.sw-bone{background:var(--bone);color:var(--ink)}
+.sw-gold{background:var(--gold);color:var(--ink)}
+.sw-gold-light{background:var(--gold-light);color:var(--ink)}
+.sw-gold-soft{background:rgba(184,147,90,.3);color:var(--gold)}
+.sw-green{background:var(--green);color:var(--ink)}
+.sw-yellow{background:var(--yellow);color:var(--ink)}
+.sw-red{background:var(--red);color:var(--bone)}
+.sw .name{font-weight:600;font-size:10px;display:block;margin-top:4px;letter-spacing:.1em}
+.sw .hex{font-size:10px;opacity:.7;display:block;margin-top:2px}
+
+.type-sample{padding:14px 16px;border:1px solid var(--gold-faint);border-radius:10px;margin-bottom:8px;background:rgba(184,147,90,.03)}
+.type-sample .meta{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);opacity:.7;margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em}
+.type-georgia-h{font-family:Georgia,'Crimson Pro',serif;font-size:32px;font-weight:500}
+.type-georgia-s{font-family:Georgia,'Crimson Pro',serif;font-size:18px;font-weight:500}
+.type-georgia-b{font-family:Georgia,'Crimson Pro',serif;font-size:15px}
+.type-georgia-i{font-family:Georgia,'Crimson Pro',serif;font-size:14px;font-style:italic;color:var(--bone-dim)}
+.type-mono{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.type-sans{font-family:-apple-system,sans-serif;font-size:14px}
+
+.btn{display:inline-flex;align-items:center;gap:6px;padding:11px 18px;border-radius:10px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold-soft);background:rgba(184,147,90,.1);color:var(--gold);cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn.ghost{background:transparent}
+
+.spacing-demo{display:flex;gap:8px;align-items:center}
+.spacing-demo .sp{display:block;background:var(--gold-soft);border:1px solid var(--gold);height:30px}
+.s-4{width:4px}.s-8{width:8px}.s-12{width:12px}.s-16{width:16px}.s-20{width:20px}.s-24{width:24px}
+
+.principle{padding:16px;border-left:3px solid var(--gold);margin-bottom:10px;background:rgba(184,147,90,.04);border-radius:0 8px 8px 0}
+.principle h3{font-family:Georgia,serif;font-size:15px;color:var(--gold-light);margin-bottom:6px;font-weight:500}
+.principle p{font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);line-height:1.65}
+
+code{font-family:'SF Mono',monospace;font-size:11px;background:var(--ink-1);padding:2px 6px;border-radius:4px;color:var(--gold)}
+pre{font-family:'SF Mono',monospace;font-size:11px;background:var(--ink-1);padding:12px 14px;border-radius:8px;color:var(--bone-dim);overflow-x:auto;border:1px solid var(--gold-faint);line-height:1.6}
+
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ design system canônico · NEXUS</div>
+    <h1>Design System</h1>
+    <p class="lead">Tokens visuais, tipografia, componentes e princípios. Compatível com Claude Design (claude.ai/design) · pronto para importação automática.</p>
+  </header>
+
+  <h2>1 · paleta cromática</h2>
+  <div class="section">
+    <p style="font-family:Georgia,serif;font-size:14px;color:var(--bone-dim);margin-bottom:14px">Paleta dual: noite estoica + ouro contemplativo. Inspirada em manuscritos iluminados + minimalismo digital.</p>
+    <div class="swatch-grid">
+      <div class="swatch sw-ink"><span class="name">INK</span><span class="hex">#0F0E17</span></div>
+      <div class="swatch sw-ink-1"><span class="name">INK-1</span><span class="hex">#14131E</span></div>
+      <div class="swatch sw-ink-2"><span class="name">INK-2</span><span class="hex">#1a1830</span></div>
+      <div class="swatch sw-bone"><span class="name">BONE</span><span class="hex">#F0EAE4</span></div>
+      <div class="swatch sw-gold-light"><span class="name">GOLD-LIGHT</span><span class="hex">#D4A668</span></div>
+      <div class="swatch sw-gold"><span class="name">GOLD</span><span class="hex">#B8935A</span></div>
+      <div class="swatch sw-gold-soft"><span class="name">GOLD-SOFT</span><span class="hex">rgba(B8935A · 30%)</span></div>
+      <div class="swatch sw-green"><span class="name">SEMÂNTICA · OK</span><span class="hex">#7df3a3</span></div>
+      <div class="swatch sw-yellow"><span class="name">SEMÂNTICA · WARN</span><span class="hex">#ffd803</span></div>
+      <div class="swatch sw-red"><span class="name">SEMÂNTICA · ERR</span><span class="hex">#e53170</span></div>
+    </div>
+  </div>
+
+  <h2>2 · tipografia</h2>
+  <div class="section">
+    <div class="type-sample">
+      <div class="meta">heading · georgia · serif · 32px · weight 500</div>
+      <div class="type-georgia-h">Os não-enganados erram</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">subhead · georgia · serif · 18px · weight 500</div>
+      <div class="type-georgia-s">Lacan · Seminário 21 · 1973-1974</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">body · georgia · serif · 15px</div>
+      <div class="type-georgia-b">A tese-força do seminário é a inversão da posição clássica do saber. Quem se imagina não enganado pelo simbólico vive na crença de uma lucidez que é ela própria o engano máximo.</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">italic · citação · 14px</div>
+      <div class="type-georgia-i">"Das coisas, umas dependem de nós e outras não dependem."</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">mono · UI labels · letter-spacing alto</div>
+      <div class="type-mono">N E X U S · CAMINHO · DOMINGO</div>
+    </div>
+    <div class="type-sample">
+      <div class="meta">sans · interface · system font</div>
+      <div class="type-sans">Configurações · cards · pulse · diário</div>
+    </div>
+  </div>
+
+  <h2>3 · componentes</h2>
+  <div class="section">
+    <p style="font-family:Georgia,serif;font-size:14px;color:var(--bone-dim);margin-bottom:14px">Botões, chips, cards. Sempre touch-friendly (mín 44pt iOS HIG).</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+      <button class="btn primary">primário</button>
+      <button class="btn">secundário</button>
+      <button class="btn ghost">ghost</button>
+    </div>
+    <pre>.btn { padding: 11px 18px; border-radius: 10px; font-family: SF Mono;
+       font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }</pre>
+  </div>
+
+  <h2>4 · espaçamento (4-base scale)</h2>
+  <div class="section">
+    <div class="spacing-demo">
+      <span class="sp s-4"></span>
+      <span class="sp s-8"></span>
+      <span class="sp s-12"></span>
+      <span class="sp s-16"></span>
+      <span class="sp s-20"></span>
+      <span class="sp s-24"></span>
+    </div>
+    <pre>4 · 8 · 12 · 16 · 20 · 24 · 32 · 48 · 64</pre>
+  </div>
+
+  <h2>5 · raio de borda</h2>
+  <div class="section">
+    <pre>chips/inline   → 4-6px
+botões/inputs  → 10-12px
+cards          → 12-14px
+hero/section   → 14-18px
+icons squircle → 22% (iOS-style)</pre>
+  </div>
+
+  <h2>6 · 5 princípios</h2>
+  <div class="section">
+    <div class="principle">
+      <h3>1 · densidade pedagógica antes de UI</h3>
+      <p>O hub serve cognição · não chamada de atenção. Hierarquia favorece conteúdo (citação, obra, ficha) sobre crômo gráfico.</p>
+    </div>
+    <div class="principle">
+      <h3>2 · paleta dual estável</h3>
+      <p>Dois eixos: ink (noite estoica) + gold (ouro contemplativo). Nunca introduzir terceiro eixo cromático sem revisão arquitetural.</p>
+    </div>
+    <div class="principle">
+      <h3>3 · tipografia como filosofia</h3>
+      <p>Georgia para conteúdo (densidade serif aristotélica) · SF Mono para metadados/UI (precisão monospace) · system sans para inputs.</p>
+    </div>
+    <div class="principle">
+      <h3>4 · mobile-first iPhone</h3>
+      <p>Safe-area sempre · touch targets ≥ 44pt · viewport-fit cover · backdrop-filter blur iOS-style. Desktop é fallback.</p>
+    </div>
+    <div class="principle">
+      <h3>5 · offline-first</h3>
+      <p>Conteúdo principal (cardápio, citações, obra do dia) inline no JS · zero fetch crítico. SW só amplia (não é dependência).</p>
+    </div>
+  </div>
+
+  <h2>7 · usar com Claude Design</h2>
+  <div class="section">
+    <p style="font-family:Georgia,serif;font-size:14px;color:var(--bone-dim);line-height:1.7">
+      <b style="color:var(--gold)">Claude Design</b> (claude.ai/design · Anthropic Labs · lançado 17 abr 2026 · Claude Opus 4.7) cria design systems automáticos a partir de repos GitHub e Figma. Para usar com NEXUS:
+    </p>
+    <ol style="font-family:Georgia,serif;font-size:14px;line-height:1.8;color:var(--bone-dim);padding-left:24px;margin-top:8px">
+      <li>Abra <code>claude.ai/design</code> · plano Pro/Max/Team/Enterprise</li>
+      <li>Importe o repo GitHub: <code>fillipenatan77-ctrl/nexus-cockpit</code></li>
+      <li>Claude analisa <code>v16/index.html</code> + esta página + cards SVG e infere o design system</li>
+      <li>Use Claude Design para gerar novas páginas (e.g. landing page institucional, slides) usando as mesmas tokens</li>
+      <li>Output volta ao repo via PR · merge mantém consistência visual NEXUS</li>
+    </ol>
+  </div>
+
+  <h2>8 · implementação como CSS variables</h2>
+  <div class="section">
+    <pre>:root {
+  /* paleta */
+  --ink: #0F0E17;
+  --ink-1: #14131E;
+  --ink-2: #1a1830;
+  --bone: #F0EAE4;
+  --bone-dim: rgba(240,234,228,.65);
+  --bone-faint: rgba(240,234,228,.4);
+  --gold: #B8935A;
+  --gold-light: #D4A668;
+  --gold-soft: rgba(184,147,90,.3);
+  --gold-faint: rgba(184,147,90,.12);
+
+  /* semântica */
+  --green: #7df3a3;
+  --yellow: #ffd803;
+  --red: #e53170;
+
+  /* safe area iOS */
+  --safe-top: env(safe-area-inset-top);
+  --safe-bot: env(safe-area-inset-bottom);
+}</pre>
+  </div>
+
+  <div class="foot">
+    NEXUS v16 · <a href="../">v16</a> · <a href="../cards/">cards</a> · <a href="../status/">status</a> · <a href="../sugestoes/">sugestões</a>
+  </div>
+</div>
+</body>
+</html>
