@@ -93,6 +93,9 @@ h1{font-family:Georgia,'Crimson Pro',serif;font-size:34px;font-weight:400;line-h
     <p class="lead">Output do Claude Design (Opus 4.7) aplicado aos tokens canônicos NEXUS · 19 telas em 6 frascos · Inter + Georgia + JetBrains Mono · ouro #B8935A sobre tinta #0F0E17.</p>
   </header>
 
+  <!-- IFRAME DINÂMICO · carrega URL pública do Claude Design quando configurada -->
+  <div id="iframe-slot" style="margin:30px 0"></div>
+
   <div class="frasco-h">I · Entrada · primeiro contato com o sistema</div>
   <div class="stage">
     <!-- Onboarding -->
@@ -223,8 +226,50 @@ h1{font-family:Georgia,'Crimson Pro',serif;font-size:34px;font-weight:400;line-h
   </div>
 
   <div class="foot">
-    NEXVS · Claude Design output · <a href="../">v16 hub</a> · <a href="../design/">design system</a> · <a href="../preview/">preview iOS</a> · <a href="../cards/">cards</a>
+    NEXVS · Claude Design output · <a href="../">v16 hub</a> · <a href="../design/">design system</a> · <a href="../preview/">preview iOS</a> · <a href="../cards/">cards</a> · <a href="../install/">instalar</a>
   </div>
 </div>
+
+<script>
+// Carrega URL Claude Design dinamicamente · usuário só precisa atualizar share.json
+(async () => {
+  try {
+    const r = await fetch('./share.json?_=' + Date.now(), { cache: 'no-store' });
+    const cfg = await r.json();
+    const slot = document.getElementById('iframe-slot');
+    if (!slot) return;
+
+    if (cfg.share_url) {
+      slot.innerHTML = `
+        <div style="text-align:center;margin-bottom:14px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.85">canvas live · 19 telas · Claude Opus 4.7</span>
+        </div>
+        <iframe src="${cfg.share_url}"
+                width="${cfg.iframe_options.width}"
+                height="${cfg.iframe_options.height}"
+                allow="${cfg.iframe_options.allow}"
+                loading="${cfg.iframe_options.loading}"
+                sandbox="${cfg.iframe_options.sandbox}"
+                style="border:1px solid rgba(184,147,90,.3);border-radius:14px;background:#fff;display:block;width:100%"></iframe>
+      `;
+    } else {
+      slot.innerHTML = `
+        <div style="padding:20px 24px;border:1px dashed rgba(184,147,90,.4);border-radius:14px;background:rgba(184,147,90,.04);text-align:center">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:8px">⚙ iframe pendente · ativar com 1 edição</div>
+          <p style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);line-height:1.7;max-width:540px;margin:0 auto">
+            ${cfg.share_url_instructions}
+          </p>
+          <div style="margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);opacity:.7">
+            edite: <code style="background:var(--ink-1);padding:2px 6px;border-radius:4px">v16/nexvs/share.json</code> · campo <code style="background:var(--ink-1);padding:2px 6px;border-radius:4px">share_url</code>
+          </div>
+        </div>
+      `;
+    }
+  } catch (e) {
+    console.log('share.json fetch err:', e);
+  }
+})();
+</script>
+
 </body>
 </html>

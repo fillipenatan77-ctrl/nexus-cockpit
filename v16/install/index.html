@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXUS · instalar no iPhone</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--bone-faint:rgba(240,234,228,.4);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.55}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+.wrap{max-width:680px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;gap:8px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+
+header{margin:24px 0 30px;text-align:center}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+h1{font-family:Georgia,'Crimson Pro',serif;font-size:36px;font-weight:400;line-height:1.1;letter-spacing:.01em}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:15px;font-style:italic;color:var(--bone-dim);max-width:520px;margin-left:auto;margin-right:auto}
+
+.url-card{padding:22px 24px;border:1px solid var(--gold-soft);border-radius:14px;background:linear-gradient(135deg,rgba(184,147,90,.10) 0%,rgba(15,14,23,.5) 70%);margin:24px 0;text-align:center}
+.url-card .lbl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);opacity:.85;margin-bottom:10px}
+.url-card .url{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--gold-light);letter-spacing:.05em;word-break:break-all;display:inline-block}
+.url-card .copy{margin-top:14px;padding:11px 22px;background:var(--gold);color:var(--ink);border:none;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;cursor:pointer}
+.url-card .copy:active{transform:scale(.98)}
+
+.step{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid var(--gold-faint)}
+.step:last-child{border:none}
+.step-n{font-family:'Crimson Pro',Georgia,serif;font-size:32px;font-style:italic;color:var(--gold);width:40px;flex-shrink:0;line-height:1;padding-top:4px}
+.step-c{flex:1}
+.step-t{font-family:Georgia,serif;font-size:17px;font-weight:500;color:var(--bone);margin-bottom:6px;line-height:1.3}
+.step-d{font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);line-height:1.65}
+.step-d code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--ink-1);padding:2px 6px;border-radius:4px;color:var(--gold)}
+.step-d b{color:var(--gold-light)}
+
+.section-h{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:36px 0 14px;text-align:center;opacity:.85}
+.section-h::before,.section-h::after{content:'§';color:var(--gold);opacity:.4;margin:0 12px}
+
+.bonus{padding:16px 18px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,.04);margin-bottom:10px}
+.bonus h3{font-family:Georgia,serif;font-size:15px;font-weight:600;color:var(--gold-light);margin-bottom:6px}
+.bonus p{font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);line-height:1.6}
+.bonus a{color:var(--gold);text-decoration:none}
+
+.preview-icon{display:flex;justify-content:center;margin:24px 0}
+.preview-icon img{width:100px;height:100px;border-radius:22px;box-shadow:0 8px 24px rgba(0,0,0,.4),0 0 0 1px rgba(184,147,90,.3)}
+
+.foot{margin-top:40px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.55;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ instalar NEXUS no iPhone · iOS 26</div>
+    <h1>Instalação · 4 passos</h1>
+    <p class="lead">App-like · ícone próprio na home · funciona offline · pronto em ~90 segundos.</p>
+  </header>
+
+  <div class="preview-icon">
+    <img src="../../icons/icon-512.png" alt="NEXUS icon">
+  </div>
+
+  <!-- LINK ÚNICO CANÔNICO -->
+  <div class="url-card">
+    <div class="lbl">▸ link único canônico</div>
+    <div class="url" id="url-canonico">nexuscaldeira.com</div>
+    <div style="margin-top:6px;font-family:Georgia,serif;font-style:italic;font-size:12px;color:var(--bone-dim)">redireciona automático para hub <code style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--ink-1);padding:1px 5px;border-radius:3px;color:var(--gold)">/v16/</code></div>
+    <button class="copy" onclick="copiar()">📋 copiar link</button>
+  </div>
+
+  <div class="section-h">passo a passo</div>
+
+  <div class="step">
+    <div class="step-n">I</div>
+    <div class="step-c">
+      <div class="step-t">Abra Safari no iPhone</div>
+      <div class="step-d">PWA iOS só funciona via <b>Safari</b> nativo. Chrome/Firefox no iOS não permitem instalação. Vá direto a <code>nexuscaldeira.com</code> · você será redirecionado para o hub <code>/v16/</code> automaticamente.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">II</div>
+    <div class="step-c">
+      <div class="step-t">Toque no ícone Compartilhar</div>
+      <div class="step-d">Na barra inferior do Safari · ícone <b>☐↑</b> (caixa com seta para cima). No iPad ou modo paisagem, fica no canto superior direito.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">III</div>
+    <div class="step-c">
+      <div class="step-t">Selecione "Adicionar à Tela de Início"</div>
+      <div class="step-d">Role o menu de Compartilhamento para baixo · linha com ícone <b>+</b> e texto "Adicionar à Tela de Início" (em inglês: "Add to Home Screen"). Toque.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-n">IV</div>
+    <div class="step-c">
+      <div class="step-t">Confirme "Adicionar"</div>
+      <div class="step-d">Tela final mostra: ícone NEXUS dourado · nome <b>NEXUS</b> · URL <code>nexuscaldeira.com/v16/</code>. Toque <b>Adicionar</b> no canto superior direito. App aparece na home com ícone próprio.</div>
+    </div>
+  </div>
+
+  <div class="section-h">bônus · iOS 26</div>
+
+  <div class="bonus">
+    <h3>★ Web app por padrão</h3>
+    <p>Em iOS 26, todo site adicionado à Tela de Início abre como web app standalone (sem barra Safari) por padrão · NEXUS já configurado para isso (<code>display: standalone</code>).</p>
+  </div>
+  <div class="bonus">
+    <h3>★ Wake Lock ativo</h3>
+    <p>Tela não desliga durante leitura no NEXUS (Safari 18.4+ · iOS 26). Útil para sessões longas com cards e fichas CAIR.</p>
+  </div>
+  <div class="bonus">
+    <h3>★ Web Share API</h3>
+    <p>Botão "Compartilhar" no hub usa o sheet nativo do iOS · você pode mandar uma obra direto ao WhatsApp, iMessage, ou Mail.</p>
+  </div>
+  <div class="bonus">
+    <h3>★ Offline-first</h3>
+    <p>30 obras com trio completo (RAG + ficha + card) ficam pré-cacheadas no Service Worker v5. Funciona sem internet · cardápio + citações + obra do dia inline no JS.</p>
+  </div>
+  <div class="bonus">
+    <h3>★ Atalhos manifest</h3>
+    <p>Pressione e segure o ícone NEXUS na home · 4 atalhos rápidos aparecem: <b>Cards 30 obras</b> · <b>Buscar acervo</b> · <b>Agenda 7d</b> · <b>Sugestões obras</b>.</p>
+  </div>
+
+  <div class="section-h">se algo falhar</div>
+
+  <div class="bonus">
+    <h3>App não atualiza após mudanças</h3>
+    <p>iOS pode cachear o SW antigo. Solução: segure o ícone na home → <b>Remover App</b> → Safari → <code>nexuscaldeira.com/v16/</code> → Compartilhar → Adicionar à Tela de Início. SW v5 reinstala fresco com 30 obras.</p>
+  </div>
+  <div class="bonus">
+    <h3>Painéis "Carregando…" não renderizam</h3>
+    <p>Cache stale do SW antigo (v3 ou v4). Mesma solução: remover app + reinstalar. Ou abra <code>nexuscaldeira.com/v16/audit/</code> para diagnosticar endpoints individualmente.</p>
+  </div>
+  <div class="bonus">
+    <h3>App sumiu da home</h3>
+    <p>iOS pode limpar PWA storage após 7 dias sem uso (limitação Safari). Re-instalar resolve · estado SM-2/FSRS-5 está no Apps Script (não local), então cards de revisão não se perdem.</p>
+  </div>
+
+  <div class="foot">
+    NEXUS v17 · <a href="../">v16 hub</a> · <a href="../nexvs/">NEXVS Claude Design</a> · <a href="../design/">design system</a> · <a href="../status/">status</a>
+  </div>
+</div>
+
+<script>
+async function copiar() {
+  try {
+    await navigator.clipboard.writeText('https://nexuscaldeira.com');
+    alert('✅ link copiado: https://nexuscaldeira.com');
+  } catch (e) {
+    alert('https://nexuscaldeira.com (copie manualmente)');
+  }
+}
+</script>
+</body>
+</html>

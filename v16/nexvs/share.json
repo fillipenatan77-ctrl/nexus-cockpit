@@ -1,0 +1,17 @@
+{
+  "schema": "claude_design_share_v1",
+  "updated_at": "2026-04-26T22:55:00-03:00",
+  "project_id": "73d1f864-8234-493e-8030-8b3838a116db",
+  "telas_geradas": 19,
+  "frascos": 6,
+  "share_url": null,
+  "share_url_instructions": "Em claude.ai/design/p/73d1f864... · clique no botão 'Compartilhar' (canto superior direito) · selecione 'Tornar público' ou 'Copiar link' · cole a URL aqui no campo share_url e push o repo. Iframe live em /v16/nexvs/ atualiza automaticamente.",
+  "iframe_options": {
+    "width": "100%",
+    "height": "900px",
+    "allow": "clipboard-write",
+    "loading": "lazy",
+    "sandbox": "allow-same-origin allow-scripts allow-forms allow-popups"
+  },
+  "fallback_when_null": "mostra os 6 frascos + 3 telas réplica + instruções de como ativar o iframe"
+}
