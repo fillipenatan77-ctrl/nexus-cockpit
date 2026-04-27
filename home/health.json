@@ -28,8 +28,9 @@
     "hub": "https://nexuscaldeira.com",
     "v16_app_pwa": "https://nexuscaldeira.com/v16/app/",
     "system_prompt_canonical": "https://nexuscaldeira.com/prompt-v610.md",
-    "api_proxy": "https://api.nexuscaldeira.com/",
-    "r2_acervo": "https://nexus-acervo.r2.cloudflarestorage.com/"
+    "api_proxy": "https://nexus-api-proxy.fillipenatan77.workers.dev/",
+    "api_proxy_custom_domain": "https://api.nexuscaldeira.com/ (pending DNS)",
+    "r2_acervo": "https://nexus-acervo.r2.cloudflarestorage.com/ (pending R2 enable)"
   },
   "cloudflare": {
     "account_id": "0a428501735b6b6eab7c1cd869ac116f",
@@ -46,7 +47,11 @@
     },
     "worker": {
       "name": "nexus-api-proxy",
-      "status": "pending_dashboard"
+      "status": "active",
+      "url": "https://nexus-api-proxy.fillipenatan77.workers.dev",
+      "custom_domain_status": "pending_dns_propagation",
+      "bindings": ["NEXUS_DIARIO (D1)", "NEXUS_RL (KV)"],
+      "deployed_at_iso": "2026-04-27T23:13:00Z"
     },
     "r2_bucket": {
       "name": "nexus-acervo",
