@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXUS · Grafo conceitual · v17</title>
+<meta name="theme-color" content="#0F0E17">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{margin:0;background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;height:100vh;overflow:hidden}
+body{display:flex;flex-direction:column;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+
+header{padding:14px 18px;border-bottom:1px solid var(--gold-faint);display:flex;justify-content:space-between;align-items:center;background:rgba(15,14,23,.85);backdrop-filter:blur(12px);z-index:10}
+.crumb{display:inline-flex;gap:8px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+.title{font-family:Georgia,serif;font-size:16px;color:var(--bone);letter-spacing:.02em}
+.legend{display:flex;gap:10px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.85}
+.legend span{display:flex;align-items:center;gap:4px}
+.legend .dot{width:8px;height:8px;border-radius:50%}
+
+#viz{flex:1;position:relative;overflow:hidden}
+.tip{position:absolute;background:var(--ink-1);border:1px solid var(--gold-soft);border-radius:8px;padding:8px 12px;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--bone);z-index:100;display:none;letter-spacing:.05em;backdrop-filter:blur(4px)}
+.tip .obra{color:var(--gold);font-family:Georgia,serif;font-size:13px;font-style:italic}
+.tip .meta{margin-top:4px;color:var(--bone-dim);font-size:9px}
+
+footer{padding:10px 16px;border-top:1px solid var(--gold-faint);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;text-align:center;opacity:.7;background:rgba(15,14,23,.85)}
+footer a{color:var(--gold);text-decoration:none;margin:0 6px}
+
+.controls{position:absolute;top:18px;right:18px;display:flex;flex-direction:column;gap:6px;z-index:5}
+.controls button{padding:8px 14px;background:rgba(184,147,90,.1);border:1px solid var(--gold-soft);border-radius:8px;color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.controls button:hover{background:rgba(184,147,90,.2)}
+
+.stats{position:absolute;bottom:18px;left:18px;padding:12px 14px;background:rgba(15,14,23,.85);border:1px solid var(--gold-faint);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.05em;color:var(--bone-dim);backdrop-filter:blur(8px);z-index:5}
+.stats b{color:var(--gold);font-weight:600}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../" class="crumb">← v16</a>
+  <div class="title">Grafo conceitual · 8 trilhas</div>
+  <div class="legend">
+    <span><span class="dot" style="background:#B8935A"></span>autor</span>
+    <span><span class="dot" style="background:#D4A668;opacity:.5"></span>trilha</span>
+  </div>
+</header>
+
+<div id="viz">
+  <div class="tip" id="tooltip"></div>
+  <div class="controls">
+    <button onclick="reseed()">↻ recompor</button>
+    <button onclick="zoomFit()">⊡ enquadrar</button>
+  </div>
+  <div class="stats" id="stats">carregando trilhas…</div>
+</div>
+
+<footer>
+  NEXUS v17 · grafo skeleton · D3 force · <a href="../sugestoes/">sugestões</a> · <a href="../cards/">cards</a> · <a href="../">hub</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+// === Dados estáticos · sucessores serão extraídos via Cognee/NER em v17.8 ===
+const TRILHAS = {
+  B01: { nome: 'Linguagem · PNL', cor: '#D4A668' },
+  B02: { nome: 'Memória · Palácio', cor: '#B8935A' },
+  B03: { nome: 'IE · Neurociência', cor: '#7df3a3' },
+  B04: { nome: 'Psicanálise', cor: '#e53170' },
+  B05: { nome: 'CNV · Conversas', cor: '#ffd803' },
+  B06: { nome: 'Literatura', cor: '#A268D4' },
+  B07: { nome: 'Persuasão · Poder', cor: '#68A9D4' },
+  B08: { nome: 'Filosofia · Estoicismo', cor: '#D46868' }
+};
+
+const AUTORES = [
+  // B01 PNL
+  { id: 'Bandler/Grinder', trilha: 'B01', chunks: 1109+612+540+637+543+343 },
+  { id: 'Knight', trilha: 'B01', chunks: 1094 },
+  { id: 'OConnor', trilha: 'B01', chunks: 802+774+653 },
+  { id: 'Andreas', trilha: 'B01', chunks: 841 },
+  { id: 'Erickson', trilha: 'B01', chunks: 215+184+134 },
+  { id: 'Rosen', trilha: 'B01', chunks: 511 },
+  // B02 Memória
+  { id: 'Yates', trilha: 'B02', chunks: 83 },
+  { id: "O'Brien", trilha: 'B02', chunks: 162+73+71 },
+  // B03 IE
+  { id: 'Kahneman', trilha: 'B03', chunks: 1554+1519 },
+  { id: 'Goleman', trilha: 'B03', chunks: 1135+147 },
+  { id: 'LeDoux', trilha: 'B03', chunks: 226+226 },
+  { id: 'Amthor', trilha: 'B03', chunks: 465 },
+  // B04 Psicanálise
+  { id: 'Freud', trilha: 'B04', chunks: 276+339+128 },
+  { id: 'Lacan', trilha: 'B04', chunks: 196 },
+  { id: 'Klein', trilha: 'B04', chunks: 32 },
+  { id: 'Winnicott', trilha: 'B04', chunks: 262+38 },
+  { id: 'Ferenczi', trilha: 'B04', chunks: 2009 },
+  { id: 'Suy', trilha: 'B04', chunks: 89 },
+  // B05 CNV
+  { id: 'Rosenberg', trilha: 'B05', chunks: 498+360+84 },
+  { id: 'Stone/Patton', trilha: 'B05', chunks: 934+838 },
+  { id: 'Miller/Rollnick', trilha: 'B05', chunks: 1045 },
+  { id: 'Duhigg', trilha: 'B05', chunks: 792 },
+  // B06 Literatura
+  { id: 'Shakespeare', trilha: 'B06', chunks: 266+104+84+920 },
+  { id: 'Dostoiévski', trilha: 'B06', chunks: 2887+2191+1729 },
+  // B07 Persuasão
+  { id: 'Cialdini', trilha: 'B07', chunks: 1618+934+888+271 },
+  { id: 'Greene', trilha: 'B07', chunks: 1746+238 },
+  { id: 'Maquiavel', trilha: 'B07', chunks: 329+327 },
+  { id: 'Carnegie', trilha: 'B07', chunks: 601+542 },
+  { id: 'Allen', trilha: 'B07', chunks: 403 },
+  { id: 'Sun Tzu', trilha: 'B07', chunks: 209 },
+  { id: 'Arendt', trilha: 'B07', chunks: 1025 },
+  { id: 'Gallo', trilha: 'B07', chunks: 821+698 },
+  // B08 Filosofia
+  { id: 'Aquino', trilha: 'B08', chunks: 4398+4205+4238+4257 },
+  { id: 'Aristóteles', trilha: 'B08', chunks: 1385 },
+  { id: 'Marco Aurélio', trilha: 'B08', chunks: 366 },
+  { id: 'Epicteto', trilha: 'B08', chunks: 188 },
+  { id: 'Sêneca', trilha: 'B08', chunks: 168 },
+];
+
+// Construir nodos: trilhas (super-nós) + autores
+const nodes = [
+  ...Object.keys(TRILHAS).map(k => ({ id: k, type: 'trilha', label: TRILHAS[k].nome, cor: TRILHAS[k].cor, r: 30 })),
+  ...AUTORES.map(a => ({
+    id: a.id, type: 'autor', trilha: a.trilha, chunks: a.chunks,
+    cor: TRILHAS[a.trilha].cor,
+    r: Math.max(8, Math.min(32, Math.sqrt(a.chunks)/4))
+  }))
+];
+
+const links = AUTORES.map(a => ({ source: a.id, target: a.trilha }));
+
+// Stats
+const stats = document.getElementById('stats');
+stats.innerHTML = `<b>${AUTORES.length}</b> autores · <b>${Object.keys(TRILHAS).length}</b> trilhas · <b>${nodes.reduce((s,n) => s + (n.chunks || 0), 0).toLocaleString('pt-BR')}</b> chunks · <b>${links.length}</b> arestas`;
+
+// === D3 force simulation ===
+const viz = document.getElementById('viz');
+const w = viz.clientWidth, h = viz.clientHeight;
+
+const svg = d3.select('#viz').append('svg').attr('width', w).attr('height', h);
+const g = svg.append('g');
+
+const zoom = d3.zoom().scaleExtent([0.2, 4]).on('zoom', (e) => g.attr('transform', e.transform));
+svg.call(zoom);
+
+let sim = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(links).id(d => d.id).distance(d => d.target.type === 'trilha' ? 60 : 100).strength(0.4))
+  .force('charge', d3.forceManyBody().strength(d => d.type === 'trilha' ? -800 : -150))
+  .force('center', d3.forceCenter(w/2, h/2))
+  .force('collision', d3.forceCollide().radius(d => d.r + 4));
+
+const link = g.append('g').attr('stroke-opacity', 0.3).selectAll('line')
+  .data(links).join('line')
+  .attr('stroke', d => TRILHAS[typeof d.target === 'string' ? d.target : d.target.id]?.cor || '#B8935A')
+  .attr('stroke-width', 1);
+
+const node = g.append('g').selectAll('g')
+  .data(nodes).join('g')
+  .style('cursor', 'pointer')
+  .call(d3.drag()
+    .on('start', (e,d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e,d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e,d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+node.append('circle')
+  .attr('r', d => d.r)
+  .attr('fill', d => d.type === 'trilha' ? d.cor + '66' : d.cor)
+  .attr('stroke', d => d.type === 'trilha' ? d.cor : 'rgba(15,14,23,.5)')
+  .attr('stroke-width', d => d.type === 'trilha' ? 2 : 1);
+
+node.append('text')
+  .text(d => d.type === 'trilha' ? d.id : d.id)
+  .attr('font-family', d => d.type === 'trilha' ? "'JetBrains Mono', monospace" : 'Georgia, serif')
+  .attr('font-size', d => d.type === 'trilha' ? 11 : 10)
+  .attr('fill', d => d.type === 'trilha' ? d.cor : '#F0EAE4')
+  .attr('text-anchor', 'middle')
+  .attr('dy', d => d.type === 'trilha' ? 4 : -d.r - 4)
+  .style('pointer-events', 'none')
+  .style('letter-spacing', d => d.type === 'trilha' ? '.1em' : 0);
+
+// Tooltip
+const tip = document.getElementById('tooltip');
+node.on('mouseenter', (e, d) => {
+  if (d.type === 'autor') {
+    tip.innerHTML = `<div class="obra">${d.id}</div><div class="meta">${d.chunks.toLocaleString('pt-BR')} chunks · trilha ${d.trilha} · ${TRILHAS[d.trilha].nome}</div>`;
+  } else {
+    const total = AUTORES.filter(a => a.trilha === d.id).length;
+    tip.innerHTML = `<div class="obra">${d.label}</div><div class="meta">${total} autores · trilha ${d.id}</div>`;
+  }
+  tip.style.display = 'block';
+}).on('mousemove', (e) => {
+  tip.style.left = (e.pageX + 14) + 'px';
+  tip.style.top = (e.pageY + 14) + 'px';
+}).on('mouseleave', () => tip.style.display = 'none');
+
+sim.on('tick', () => {
+  link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  node.attr('transform', d => `translate(${d.x},${d.y})`);
+});
+
+function reseed() {
+  nodes.forEach(n => { n.fx = null; n.fy = null; });
+  sim.alpha(1).restart();
+}
+function zoomFit() {
+  const bounds = g.node().getBBox();
+  const fullW = w, fullH = h;
+  const scale = 0.85 / Math.max(bounds.width / fullW, bounds.height / fullH);
+  const tx = (fullW - bounds.width * scale) / 2 - bounds.x * scale;
+  const ty = (fullH - bounds.height * scale) / 2 - bounds.y * scale;
+  svg.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(scale));
+}
+
+setTimeout(zoomFit, 1500);
+</script>
+</body>
+</html>
