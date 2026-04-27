@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · revisar · FSRS-5</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--ink-2:#1a1830;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12);--green:#7df3a3;--yellow:#ffd803;--red:#e53170;--easy:#7df3a3}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;height:100vh;overflow:hidden}
+body{display:flex;flex-direction:column;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%);padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+
+header{padding:12px 18px;border-bottom:1px solid var(--gold-faint);display:flex;justify-content:space-between;align-items:center;background:rgba(15,14,23,.85);backdrop-filter:blur(12px)}
+.crumb{display:inline-flex;gap:8px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+.brand{font-family:Georgia,serif;font-size:14px;color:var(--bone)}
+.brand b{color:var(--gold)}
+.stats-mini{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);opacity:.85}
+
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;overflow:hidden}
+
+.queue-info{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:18px;opacity:.85}
+.queue-info b{color:var(--gold-light)}
+
+.card{width:100%;max-width:480px;min-height:380px;border:1px solid var(--gold-soft);border-radius:18px;background:linear-gradient(135deg,rgba(184,147,90,.08) 0%,rgba(15,14,23,.7) 80%);padding:28px 24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:0 24px 60px rgba(0,0,0,.4),0 0 0 1px rgba(184,147,90,.1)}
+
+.card .flip-front,.card .flip-back{display:none;flex-direction:column;justify-content:space-between;flex:1}
+.card.show-front .flip-front{display:flex}
+.card.show-back .flip-back{display:flex}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;opacity:.85;margin-bottom:10px}
+.obra-titulo{font-family:Georgia,serif;font-size:24px;font-weight:500;color:var(--bone-light,var(--bone));line-height:1.2;margin-bottom:8px}
+.obra-autor{font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--bone-dim);margin-bottom:20px}
+.citacao{font-family:Georgia,serif;font-style:italic;font-size:18px;color:var(--bone);line-height:1.55;text-align:center;margin:auto 0;padding:14px 4px}
+.fsrs-badge{position:absolute;top:14px;right:18px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.7}
+
+.tap-hint{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.6;text-transform:uppercase;margin-top:18px}
+
+.actions{display:none;gap:8px;margin-top:18px;width:100%;max-width:480px}
+.card.show-back ~ .actions{display:grid;grid-template-columns:repeat(4,1fr)}
+.btn-q{padding:14px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--gold-faint);background:rgba(184,147,90,.06);color:var(--bone);cursor:pointer;transition:.18s;font-weight:600}
+.btn-q:active{transform:scale(.96)}
+.btn-q .lbl{display:block;font-size:9px;opacity:.65;margin-top:3px;font-weight:400;letter-spacing:.05em}
+.btn-q.q1{border-color:rgba(229,49,112,.4);background:rgba(229,49,112,.08);color:#ff6a8c}
+.btn-q.q2{border-color:rgba(255,216,3,.4);background:rgba(255,216,3,.08);color:#ffe44a}
+.btn-q.q3{border-color:rgba(184,147,90,.5);background:rgba(184,147,90,.12);color:var(--gold-light)}
+.btn-q.q4{border-color:rgba(125,243,163,.4);background:rgba(125,243,163,.08);color:var(--easy)}
+
+.empty-state{text-align:center;padding:40px 20px}
+.empty-state h2{font-family:Georgia,serif;font-size:22px;color:var(--gold-light);margin-bottom:10px;font-weight:500}
+.empty-state p{font-family:Georgia,serif;font-size:14px;color:var(--bone-dim);line-height:1.6;max-width:400px;margin:0 auto}
+.empty-state .next-date{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+
+.tabs-bot{display:flex;justify-content:space-around;padding:10px 8px;border-top:1px solid var(--gold-faint);background:rgba(15,14,23,.85);backdrop-filter:blur(12px)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none}
+.tab .ic{font-family:'Crimson Pro',Georgia,serif;font-size:14px;color:var(--bone-dim)}
+.tab.active{color:var(--gold)}
+.tab.active .ic{color:var(--gold)}
+
+.session-bar{display:flex;justify-content:center;gap:14px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--bone-dim);text-transform:uppercase;border-top:1px solid var(--gold-faint)}
+.session-bar b{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="../" class="crumb">← v16</a>
+  <div class="brand"><b>NEXUS</b> · revisar</div>
+  <div class="stats-mini" id="stats-mini">FSRS-5</div>
+</header>
+
+<main>
+  <div class="queue-info" id="queue-info">carregando fila…</div>
+
+  <div class="card show-front" id="card" onclick="virar()">
+    <div class="fsrs-badge" id="fsrs-badge">FSRS-5</div>
+
+    <div class="flip-front">
+      <div class="eyebrow">obra do cardápio · revisão</div>
+      <div class="obra-titulo" id="obra-titulo">—</div>
+      <div class="obra-autor" id="obra-autor">—</div>
+      <div class="citacao" id="frente-q">Tocar para revelar</div>
+      <div class="tap-hint">▼ toque no card</div>
+    </div>
+
+    <div class="flip-back">
+      <div class="eyebrow">resposta canônica</div>
+      <div class="citacao" id="verso-a">—</div>
+      <div class="tap-hint">▼ avalie sua lembrança ▼</div>
+    </div>
+  </div>
+
+  <div class="actions" id="actions">
+    <button class="btn-q q1" onclick="responder(1)">again<span class="lbl">esqueci · &lt;1d</span></button>
+    <button class="btn-q q2" onclick="responder(2)">hard<span class="lbl">difícil</span></button>
+    <button class="btn-q q3" onclick="responder(3)">good<span class="lbl">bem</span></button>
+    <button class="btn-q q4" onclick="responder(4)">easy<span class="lbl">fácil</span></button>
+  </div>
+
+  <div class="empty-state" id="empty-state" style="display:none">
+    <h2>✦ revisões em dia</h2>
+    <p>Sem cards devidos hoje. FSRS-5 redistribuiu seus intervalos com base nas suas últimas revisões.</p>
+    <div class="next-date" id="next-date"></div>
+    <div style="margin-top:24px"><a class="crumb" href="../">voltar ao hub</a></div>
+  </div>
+</main>
+
+<div class="session-bar" id="session-bar">
+  <span><b id="rev-count">0</b> hoje</span>
+  <span>·</span>
+  <span><b id="fsrs-ef">2.5</b> EF</span>
+  <span>·</span>
+  <span><b id="next-rev">—</b> próx</span>
+</div>
+
+<nav class="tabs-bot">
+  <a class="tab" href="../"><span class="ic">◯</span>HUB</a>
+  <a class="tab" href="../cards/"><span class="ic">◇</span>CARDS</a>
+  <a class="tab active"><span class="ic">↻</span>REVISAR</a>
+  <a class="tab" href="../fichas/"><span class="ic">§</span>FICHAS</a>
+  <a class="tab" href="../sugestoes/"><span class="ic">+</span>OBRAS</a>
+</nav>
+
+<script>
+// === Cardápio com Q/A para revisão (citação → autor/obra) ===
+const CARDAPIO_REV = [
+  ['marco-aurelio', 'Meditações', 'Marco Aurélio',
+    '"Vive como se devesses morrer agora. Não desperdices o que sobra da vida em pensamentos sobre os outros."',
+    'Marco Aurélio · Meditações · II.4'],
+  ['epicteto-portico', 'Pórtico', 'Epicteto',
+    '"Das coisas, umas dependem de nós, outras não dependem."',
+    'Epicteto · Manual §1 · dichotomia do controle'],
+  ['seneca-lucilio', 'Cartas a Lucílio', 'Sêneca',
+    '"Toda a vida deve-se aprender a morrer."',
+    'Sêneca · ep. LXXXII · vacare sibi'],
+  ['suma-i', 'Suma · I', 'Aquino',
+    '"Tudo o que se move é movido por outro."',
+    'Aquino · Suma I, q.2 a.3 · 1ª via cosmológica'],
+  ['suma-ii-2', 'Suma · II-II', 'Aquino',
+    '"A prudência aplica princípios universais a circunstâncias singulares."',
+    'Aquino · Suma II-II q.47 a.1 · prudentia recta ratio agibilium'],
+  ['aristoteles-fisica', 'Física I-II', 'Aristóteles',
+    '"Natureza é princípio interno de movimento e de repouso."',
+    'Aristóteles · Física II.1 · physis vs poiesis'],
+  ['arendt-condicao', 'Condição Humana', 'Arendt',
+    '"A ação inscreve o homem, plural e revelado, no espaço público."',
+    'Arendt · cap. V · vita activa · ação ≠ trabalho ≠ obra'],
+  ['kahneman-rapido-devagar', 'Rápido e Devagar', 'Kahneman',
+    '"O Sistema 2 endossa, por preguiça, aquilo que o Sistema 1 produziu."',
+    'Kahneman · cap. 4 · System 1/2'],
+  ['cialdini-influence', 'Influence', 'Cialdini',
+    '"As armas de influência derivam seu poder dos atalhos psicológicos universais."',
+    'Cialdini · cap. 1 · 7 princípios (reciprocidade · compromisso · autoridade · etc)'],
+  ['greene-seducao', 'Arte da Sedução', 'Greene',
+    '"A sedução é o ato lento de fazer o outro descobrir-se em estado novo."',
+    'Greene · cap. introdutório · 9 tipos de sedutor'],
+  ['sun-tzu', 'A Arte da Guerra', 'Sun Tzu',
+    '"Conhece-te a ti mesmo e ao inimigo: em mil batalhas, sem perigo."',
+    'Sun Tzu · cap. III · vencer sem combater'],
+  ['lacan-sem21', 'Seminário 21', 'Lacan',
+    '"Os não-enganados erram. Renunciar à ficção do pai é vagar sem norte."',
+    'Lacan · Sem 21 (1973-74) · les non-dupes errent'],
+  ['ferreira-500-freud', '500 Frases', 'Ferreira',
+    '"O sintoma é uma satisfação disfarçada do desejo recalcado."',
+    'Freud (compilação Ferreira) · §247 · estrutura do sintoma'],
+  ['hamlet', 'Hamlet', 'Shakespeare',
+    '"To be or not to be: that is the question."',
+    'Hamlet · III.i · soliloquy do ser'],
+  ['bandler-reframing', 'Reframing', 'Bandler/Grinder',
+    '"Reframing é a arte de mudar a moldura sem mudar o conteúdo."',
+    'Bandler/Grinder · livro Reframing · técnica central PNL'],
+  ['goleman-ie', 'Inteligência Emocional', 'Goleman',
+    '"A inteligência emocional começa onde o sequestro de amígdala termina."',
+    'Goleman · IE 1995 · autorregulação'],
+  ['obrien-memoria-v1', 'Perfect Memory', "O'Brien",
+    '"O palácio da memória é uma arquitetura mental para o resgate ordenado."',
+    "O'Brien v1 · técnica loci · Renascimento → moderno"],
+];
+
+// === SM-2/FSRS-5 storage local (espelho do Apps Script) ===
+const STORE_KEY = 'nexus_fsrs_state_v1';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+function saveState(state) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(state));
+}
+
+// FSRS-5 simplificado (mesmo dos pesos canônicos)
+const FSRS_W = [0.4,0.6,2.4,5.8,4.93,0.94,0.86,0.01,1.49,0.14,0.94,2.18,0.05,0.34,1.26,0.29,2.61];
+const TARGET_RETENTION = 0.9;
+const FACTOR = -0.5 / Math.log(TARGET_RETENTION);
+
+function fsrsRetrievability(daysElapsed, stability) {
+  return Math.pow(1 + daysElapsed / (FACTOR * stability), -1);
+}
+function fsrsNextInterval(stability) {
+  const dias = FACTOR * stability * (Math.pow(TARGET_RETENTION, -1) - 1);
+  return Math.max(1, Math.round(dias));
+}
+function fsrsReview(slug, qualidade) {
+  const all = loadState();
+  let s = all[slug] || { ef: 2.5, intervalo: 1, repeticoes: 0, fsrs_difficulty: 0, fsrs_stability: 0, ultima_revisao: null };
+  const q = Math.max(1, Math.min(4, qualidade));
+  const hoje = new Date();
+
+  let stab = s.fsrs_stability || 0;
+  let diff = s.fsrs_difficulty || (FSRS_W[4] - Math.exp(FSRS_W[5] * (q-1)) + 1);
+
+  if (stab === 0) {
+    stab = FSRS_W[q-1];
+    diff = FSRS_W[4] - Math.exp(FSRS_W[5] * (q-1)) + 1;
+  } else {
+    const dias = s.ultima_revisao ? Math.max(0, Math.floor((hoje - new Date(s.ultima_revisao)) / 86400000)) : 0;
+    const R = fsrsRetrievability(dias, stab);
+    if (q === 1) {
+      stab = FSRS_W[11] * Math.pow(diff, -FSRS_W[12]) * (Math.pow(stab+1, FSRS_W[13]) - 1) * Math.exp(FSRS_W[14] * (1-R));
+    } else {
+      const hard = q === 2 ? FSRS_W[15] : 1;
+      const easy = q === 4 ? FSRS_W[16] : 1;
+      stab = stab * (1 + Math.exp(FSRS_W[8]) * (11 - diff) * Math.pow(stab, -FSRS_W[9]) * (Math.exp((1-R) * FSRS_W[10]) - 1) * hard * easy);
+    }
+    diff = Math.max(1, Math.min(10, diff - FSRS_W[6] * (q-3)));
+  }
+
+  const next_dias = fsrsNextInterval(stab);
+  const next_date = new Date(hoje.getTime() + next_dias * 86400000);
+
+  s.fsrs_difficulty = diff;
+  s.fsrs_stability = stab;
+  s.intervalo = next_dias;
+  s.proxima_data = next_date.toISOString().substring(0,10);
+  s.ultima_revisao = hoje.toISOString().substring(0,10);
+  s.ultima_qualidade = q;
+  s.repeticoes = (s.repeticoes||0) + 1;
+  all[slug] = s;
+  saveState(all);
+  return s;
+}
+
+function getFila() {
+  const all = loadState();
+  const hoje = new Date().toISOString().substring(0,10);
+  const devidos = [];
+  const novos = [];
+  for (const [slug,obra,autor,front,back] of CARDAPIO_REV) {
+    const s = all[slug];
+    if (!s) {
+      novos.push({slug,obra,autor,front,back,reason:'novo'});
+    } else if (s.proxima_data && s.proxima_data <= hoje) {
+      devidos.push({slug,obra,autor,front,back,reason:'devido',ef:s.fsrs_difficulty,intervalo:s.intervalo});
+    }
+  }
+  return [...devidos, ...novos.slice(0, 5)]; // max 5 novos por sessão
+}
+
+// === UI ===
+let fila = [];
+let idx = 0;
+let sessionCount = 0;
+
+function loadCard() {
+  if (idx >= fila.length) {
+    document.getElementById('card').style.display = 'none';
+    document.getElementById('actions').style.display = 'none';
+    document.getElementById('queue-info').style.display = 'none';
+    document.getElementById('empty-state').style.display = 'block';
+    const all = loadState();
+    const todasDatas = Object.values(all).map(s => s.proxima_data).filter(Boolean).sort();
+    if (todasDatas.length) {
+      document.getElementById('next-date').textContent = '★ próxima revisão: ' + todasDatas[0];
+    }
+    return;
+  }
+  const c = fila[idx];
+  document.getElementById('obra-titulo').textContent = c.obra;
+  document.getElementById('obra-autor').textContent = c.autor;
+  document.getElementById('frente-q').textContent = c.front;
+  document.getElementById('verso-a').textContent = c.back;
+  document.getElementById('card').classList.remove('show-back');
+  document.getElementById('card').classList.add('show-front');
+  document.getElementById('queue-info').innerHTML = `<b>${idx+1}</b> de <b>${fila.length}</b> · ${c.reason === 'novo' ? 'novo card' : 'card devido'}`;
+}
+
+function virar() {
+  document.getElementById('card').classList.remove('show-front');
+  document.getElementById('card').classList.add('show-back');
+}
+
+function responder(q) {
+  const c = fila[idx];
+  const s = fsrsReview(c.slug, q);
+  sessionCount++;
+  document.getElementById('rev-count').textContent = sessionCount;
+  document.getElementById('fsrs-ef').textContent = s.fsrs_difficulty.toFixed(1);
+  document.getElementById('next-rev').textContent = s.intervalo + 'd';
+  if (q === 1) {
+    // Again · re-enfileirar no fim
+    fila.push(c);
+  }
+  idx++;
+  setTimeout(loadCard, 250);
+}
+
+// Init
+fila = getFila();
+loadCard();
+const all = loadState();
+document.getElementById('stats-mini').textContent = `${Object.keys(all).length}/30 cards`;
+</script>
+</body>
+</html>
