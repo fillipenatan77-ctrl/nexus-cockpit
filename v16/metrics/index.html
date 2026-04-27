@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>NEXUS · métricas</title>
+<link rel="icon" type="image/svg+xml" href="../../icons/favicon.svg">
+<style>
+:root{--ink:#0a0a0a;--bone:#f5f5f0;--bone-dim:rgba(245,245,240,.65);--gold:#d4af37;--gold-light:#e6c352;--gold-soft:rgba(212,175,55,.3);--gold-faint:rgba(212,175,55,.12);--green:#7df3a3;--yellow:#ffd803;--red:#8b0000;--safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased;min-height:100%}
+body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1530 0%,var(--ink) 50%,var(--ink) 100%);padding:calc(var(--safe-top) + 14px) 16px calc(var(--safe-bot) + 32px);max-width:760px;margin:0 auto}
+header{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:14px;border-bottom:1px solid var(--gold-faint);margin-bottom:18px}
+.brand{font-family:Georgia,serif;font-size:18px}.brand b{color:var(--gold)}
+.crumb{font-family:'SF Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+h1{font-family:Georgia,serif;font-weight:500;font-size:26px;margin-bottom:6px}
+.lead{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:14px;margin-bottom:24px;line-height:1.55}
+h2{font-family:Georgia,serif;color:var(--gold-light);font-size:18px;font-weight:500;margin:24px 0 10px}
+.metrics{padding:14px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(20,19,30,.6);font-family:'SF Mono',ui-monospace,monospace;font-size:12px}
+.row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed var(--gold-faint);color:var(--bone-dim)}
+.row:last-child{border-bottom:none}
+.row .k{color:var(--gold);text-transform:uppercase;letter-spacing:.08em;font-size:10px}
+.row .v.ok{color:var(--green)}.row .v.warn{color:var(--yellow)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.kpi{padding:14px 10px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(212,175,55,.04);text-align:center}
+.kpi .v{font-family:Georgia,serif;font-size:24px;color:var(--gold-light)}
+.kpi .l{font-family:'SF Mono',monospace;font-size:9px;color:var(--bone-dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+.gate{padding:30px 20px;text-align:center;border:1px dashed var(--gold-faint);border-radius:12px;margin-top:30px}
+.gate input{width:100%;max-width:340px;padding:10px 14px;border-radius:8px;border:1px solid var(--gold-soft);background:rgba(20,19,30,.8);color:var(--bone);font-family:'SF Mono',monospace;font-size:13px;margin-bottom:10px}
+.gate button{padding:10px 24px;border:1px solid var(--gold);border-radius:8px;background:rgba(212,175,55,.12);color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.refresh{display:flex;justify-content:flex-end;margin-top:10px;font-family:'SF Mono',monospace;font-size:10px;color:var(--bone-dim)}
+.refresh button{margin-left:10px;padding:4px 10px;border:1px solid var(--gold-soft);border-radius:6px;background:transparent;color:var(--gold);cursor:pointer;font-size:10px}
+@media (max-width:480px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header><div class="brand">NEXUS · <b>métricas</b></div><div class="crumb">/v16/metrics/</div></header>
+<h1>Sistema · saúde live</h1>
+<p class="lead">Observabilidade unificada do NEXUS · refresh 5min · histórico em ScriptProperties.</p>
+<div id="gate-section" class="gate" style="display:none">
+<p style="font-family:Georgia,serif;color:var(--bone-dim);font-style:italic;margin-bottom:14px">Cole o NEXUS_ADMIN_TOKEN.</p>
+<input type="password" id="tokenInput" placeholder="NEXUS_ADMIN_TOKEN"><br>
+<button onclick="setToken()">Entrar</button>
+</div>
+<div id="content" style="display:none">
+<div class="kpi-grid">
+<div class="kpi"><div class="v" id="k-day">·</div><div class="l">dia / 272</div></div>
+<div class="kpi"><div class="v" id="k-trig">·</div><div class="l">triggers</div></div>
+<div class="kpi"><div class="v" id="k-wa">·</div><div class="l">wa rate</div></div>
+<div class="kpi"><div class="v" id="k-cost">·</div><div class="l">USD</div></div>
+</div>
+<h2>Apps Script</h2>
+<div class="metrics">
+<div class="row"><span class="k">version</span><span class="v" id="m-version">·</span></div>
+<div class="row"><span class="k">deploy</span><span class="v" id="m-deploy">·</span></div>
+<div class="row"><span class="k">triggers</span><span class="v" id="m-triggers">·</span></div>
+<div class="row"><span class="k">drift</span><span class="v" id="m-drift">·</span></div>
+</div>
+<h2>WhatsApp</h2>
+<div class="metrics">
+<div class="row"><span class="k">delivery rate</span><span class="v" id="m-wa-rate">·</span></div>
+<div class="row"><span class="k">delivered</span><span class="v" id="m-wa-delivered">·</span></div>
+<div class="row"><span class="k">failed</span><span class="v" id="m-wa-failed">·</span></div>
+<div class="row"><span class="k">fallback email</span><span class="v" id="m-wa-fallback">·</span></div>
+</div>
+<h2>RAG</h2>
+<div class="metrics">
+<div class="row"><span class="k">chunks</span><span class="v" id="m-chunks">·</span></div>
+<div class="row"><span class="k">obras</span><span class="v" id="m-obras">·</span></div>
+<div class="row"><span class="k">integrais</span><span class="v" id="m-integrais">·</span></div>
+</div>
+<h2>OpenAI</h2>
+<div class="metrics">
+<div class="row"><span class="k">cumulativo</span><span class="v" id="m-cost">·</span></div>
+<div class="row"><span class="k">cap mensal</span><span class="v">USD 5.00 (regra #12)</span></div>
+</div>
+<h2>Pulse</h2>
+<div class="metrics">
+<div class="row"><span class="k">estação</span><span class="v" id="m-estacao">·</span></div>
+<div class="row"><span class="k">lente</span><span class="v" id="m-lente">·</span></div>
+</div>
+<div class="refresh"><span>↻ atualizado <span id="refresh-time">·</span></span><button onclick="loadAll()">refresh</button></div>
+</div>
+<script>
+const APPS='https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec';
+const RAG='https://rag.nexuscaldeira.com';const KEY='nexus_admin_token_v1';
+function getToken(){return localStorage.getItem(KEY)||''}
+function setToken(){const v=document.getElementById('tokenInput').value.trim();if(!v)return;localStorage.setItem(KEY,v);show()}
+function show(){document.getElementById('gate-section').style.display='none';document.getElementById('content').style.display='block';loadAll()}
+async function loadAll(){const t=getToken();if(!t)return;try{const[s,m,r]=await Promise.allSettled([fetch(`${APPS}?action=retomada_status&token=${encodeURIComponent(t)}`).then(r=>r.json()),fetch(`${APPS}?action=v17_dashboard_metrics&token=${encodeURIComponent(t)}`).then(r=>r.json()),fetch(`${RAG}/stats`).then(r=>r.json())]);const status=s.status==='fulfilled'?s.value:null,metrics=m.status==='fulfilled'?m.value:null,rag=r.status==='fulfilled'?r.value:null;if(status){document.getElementById('k-day').textContent=status.cycle?.day||'·';document.getElementById('k-trig').textContent=status.triggers?.total||'·';document.getElementById('m-version').textContent=status.version;document.getElementById('m-triggers').textContent=`${status.triggers?.total||'·'}/${status.triggers?.limit||20}`;document.getElementById('m-estacao').textContent=status.cycle?.estacao||'·';document.getElementById('m-lente').textContent=status.cycle?.lente||'·';document.getElementById('m-deploy').textContent='@197';document.getElementById('m-drift').innerHTML='<span class="ok">ok</span>'}if(metrics){if(metrics.whatsapp){const rate=Math.round((metrics.whatsapp.delivery_rate||0)*100);document.getElementById('k-wa').innerHTML=`<span style="color:var(--green)">${rate}%</span>`;document.getElementById('m-wa-rate').innerHTML=`<span class="ok">${rate}%</span>`;document.getElementById('m-wa-delivered').textContent=metrics.whatsapp.delivered;document.getElementById('m-wa-failed').textContent=metrics.whatsapp.failed;document.getElementById('m-wa-fallback').textContent=metrics.whatsapp.fallback_email}const cost=metrics.openai_cumulativo_usd||0.29;document.getElementById('k-cost').textContent=`$${cost}`;document.getElementById('m-cost').textContent=`USD ${cost}`}if(rag){document.getElementById('m-chunks').textContent=rag.chunks.toLocaleString('pt-BR');document.getElementById('m-obras').textContent=rag.obras;document.getElementById('m-integrais').textContent=rag.obras_integrais}document.getElementById('refresh-time').textContent=new Date().toLocaleTimeString('pt-BR')}catch(e){console.error(e)}}
+if(getToken())show();else document.getElementById('gate-section').style.display='block';
+setInterval(()=>{if(getToken())loadAll()},5*60*1000);
+</script>
+</body>
+</html>
