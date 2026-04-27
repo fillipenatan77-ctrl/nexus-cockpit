@@ -1,159 +1,20 @@
 {
-  "projeto": "NEXUS",
-  "versao": "v16.0",
-  "ciclo": {
-    "dia": 26,
-    "total": 272,
-    "inicio": "2026-04-02",
-    "fim": "2026-12-29",
-    "estacao_idx": 7,
-    "estacao_nome": "Coroa Tríplice"
+  "ok": true,
+  "version": "v17.7",
+  "updated_at_iso": "2026-04-27T17:12:03Z",
+  "updated_at_brt": "Monday · 27 de April de 2026 · 14:11 BRT",
+  "cycle_day": 26,
+  "cycle_total": 272,
+  "lente_do_dia": "liderança",
+  "rag": {
+    "url": "https://rag.nexuscaldeira.com",
+    "chunks_total": 0,
+    "obras_integrais": 120
   },
   "endpoints": {
-    "hub_publico": "https://nexuscaldeira.com",
-    "hub_publico_canonico": true,
-    "_nota_github_io": "URL github.io/nexus-cockpit/home descontinuada · v15.AX · usar nexuscaldeira.com",
-    "rag_endpoints": [
-      "/health",
-      "/stats",
-      "/ask",
-      "/citacao",
-      "/embed",
-      "/admin/ingest_chunks",
-      "/admin/delete_sources"
-    ],
-    "apps_script": "https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec",
-    "github": {
-      "privado": "https://github.com/fillipenatan77-ctrl/NEXUS",
-      "publico": "https://github.com/fillipenatan77-ctrl/nexus-cockpit"
-    },
-    "drive_backup": "G:\\Meu Drive\\NEXUS\\",
-    "primordia_ics": "https://nexuscaldeira.com/primordia.ics",
-    "novidades_json": "https://nexuscaldeira.com/novidades.json",
     "rag_url": "https://rag.nexuscaldeira.com",
-    "rag_url_type": "named_tunnel_persistent",
-    "gcp_project": "nexus-operator-hub"
-  },
-  "dominio": {
-    "principal": "nexuscaldeira.com",
-    "registrado_em": "2026-04-25",
-    "expira_em": "2027-04-25",
-    "registrar": "Cloudflare Registrar",
-    "dns_provider": "Cloudflare",
-    "subdominios_ativos": [
-      "@",
-      "www",
-      "rag"
-    ],
-    "subdominios_reservados": [
-      "api",
-      "docs"
-    ]
-  },
-  "rag": {
-    "collection": "nexus_acervo_v4",
-    "embed_model": "text-embedding-3-small",
-    "embed_dims": 1536,
-    "embed_provider": "openai",
-    "ingestao_em_curso": false,
-    "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
-    "estado_aprox": {
-      "chunks": 104024,
-      "obras": 146,
-      "integrais": 120,
-      "cardapio_30": 30,
-      "cardapio_30_trio_completo": 30
-    },
-    "endpoints_v17": {
-      "ask_hybrid": "/ask_hybrid · BM25 + dense · RRF k=60",
-      "ask_reranked": "/ask_reranked · 2-stage · 30 candidates → heuristic rerank top 5",
-      "bm25_rebuild": "/bm25/rebuild · admin"
-    }
-  },
-  "infra": {
-    "apps_script_deploy": "@196",
-    "apps_script_deploy_label": "v17.7-saneamento.3.1 · Onda 6 consolidada · drift stem-aware · 2026-04-27",
-    "triggers_meta": 13,
-    "triggers_status": "CONGELADO em 13 (regra v16.0 #4)",
-    "pwa_paginas": 33,
-    "watchdog_scheduled": true,
-    "watchdog_versao": "v2",
-    "tunnel_keeper": "named_tunnel_persistent",
-    "chroma_v4_status": "ativo",
-    "scheduled_tasks_v16": {
-      "NEXUS_Watchdog_v2": "5min",
-      "NEXUS_Chroma_Snapshot": "Sun-22:00",
-      "NEXUS_Drive_Watcher": "AtStartup",
-      "NEXUS_Drive_Watcher_Docs": "AtStartup",
-      "NEXUS_Gmail_Digest_Manha": "08:00",
-      "NEXUS_Gmail_Digest_Tarde": "18:00",
-      "NEXUS_Contatos_Audit": "Mon-07:30"
-    },
-    "google_oauth": {
-      "client_type": "Desktop",
-      "scopes": 9,
-      "scopes_list": [
-        "gmail.modify",
-        "gmail.send",
-        "calendar",
-        "tasks",
-        "drive",
-        "contacts",
-        "documents",
-        "spreadsheets",
-        "presentations"
-      ]
-    },
-    "custo_openai_cumulativo_usd": 0.29,
-    "custo_openai_mensal_estimado_usd": 0.05
-  },
-  "principios_vigentes_v16_0": [
-    "Apps Script CONGELADO em 13 triggers · novas integrações em Python local (regra inviolavel #4)",
-    "WhatsApp via Apps Script nexus_notify (canônico) · uazapi direto (fallback)",
-    "Embeddings = OpenAI text-embedding-3-small 1536d · Ollama é fallback offline",
-    "Categorias acervo = 8 + _DERIVADOS + _ARQUIVO (rígidas)",
-    "Backup 3-2-1: local + OneDrive + GitHub + snapshot semanal",
-    "URL pública única: nexuscaldeira.com · subdomínios fixos imutáveis",
-    "Mobile-first · iPhone interface primária · PWA complemento",
-    "Bandeira de profundidade visível: 🟢 RAG-INTEGRAL · ✦ canônica · 🟡 amostra · 🔴 inferência",
-    "PowerShell 7 ADMINISTRADOR padrão · Git Bash p/ background detached",
-    "Cautela subjetiva · 4 vetores (imagem · persuasão · impacto · eficácia) · sem regra de proteção",
-    "Diferenças teóricas reais expostas (Freud × Klein × Lacan · Heidegger × Levinas)",
-    "Pasta NEXUS em backup tempo real Google Drive (sync ativo)"
-  ],
-  "frentes_v16_0": {
-    "1_obras_integrais": {
-      "status": "yellow",
-      "desc": "5 OCRs Shakespeare em background · Suma partition pendente"
-    },
-    "2_canonizacao_docs": {
-      "status": "green",
-      "desc": "5 pilares v16.0 · 68→31 docs"
-    },
-    "3_system_prompt_v67": {
-      "status": "green",
-      "desc": "v6.7 canonical · 19 docs canônicos integralizados"
-    },
-    "4_drive_watcher": {
-      "status": "green",
-      "desc": "pipeline atomico ativo"
-    },
-    "5_google_ecosystem": {
-      "status": "green",
-      "desc": "10 modulos · 8 APIs · 4 tasks ativas"
-    },
-    "6_pedagogia_mobile": {
-      "status": "yellow",
-      "desc": "em desenvolvimento"
-    },
-    "7_pwa_5_telas": {
-      "status": "yellow",
-      "desc": "em desenvolvimento"
-    },
-    "8_backup_watchdog": {
-      "status": "green",
-      "desc": "Watchdog_v2 + snapshot semanal ativos"
-    }
-  },
-  "rag_url_updated_at": "2026-04-27T13:38:40.8982415-03:00"
+    "apps_script": "https://script.google.com/macros/s/AKfycbzXORWmmf2UjRwQUSFt7xz1na_b2bzZlL6128I5QJFcaxfao-5ihJ6JPe4mUrEQ7KbJ/exec",
+    "hub": "https://nexuscaldeira.com",
+    "v16_hub": "https://nexuscaldeira.com/v16/"
+  }
 }
