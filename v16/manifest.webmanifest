@@ -1,23 +1,31 @@
 {
-  "name": "NEXUS · v16.0",
+  "name": "NEXUS · biblioteca viva",
   "short_name": "NEXUS",
-  "description": "Cockpit pessoal NEXUS v16.0 · 5 telas mobile-first · Hoje · Acervo · Glossário · Diário · Prompt",
-  "start_url": "./index.html",
-  "scope": "./",
+  "description": "Cockpit pessoal NEXUS · acervo de 30 obras canônicas + RAG + cards + agenda + diário · mobile-first · offline-first",
+  "id": "/v16/",
+  "start_url": "/v16/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
   "orientation": "portrait-primary",
   "background_color": "#0F0E17",
-  "theme_color": "#B8935A",
-  "categories": ["productivity", "education", "lifestyle"],
+  "theme_color": "#0F0E17",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["productivity", "education", "books", "lifestyle"],
+  "prefer_related_applications": false,
   "icons": [
-    { "src": "../icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "../icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+    { "src": "../icons/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "../icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "../icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "../icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "../icons/apple-touch-icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
   ],
   "shortcuts": [
-    {"name": "Buscar acervo", "url": "./index.html?tab=acervo", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
-    {"name": "Diário", "url": "./index.html?tab=diario", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
-    {"name": "Cards 30", "url": "./cards/", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
-    {"name": "Agenda 7d", "url": "./agenda/", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]},
-    {"name": "System Prompt v6.7", "url": "./index.html?tab=prompt", "icons": [{"src":"../icons/icon-192.png","sizes":"192x192"}]}
+    { "name": "Cards 30 obras", "short_name": "Cards", "url": "/v16/cards/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Buscar acervo", "short_name": "RAG", "url": "/v16/?tab=acervo", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Agenda 7d", "short_name": "Agenda", "url": "/v16/agenda/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Sugestões obras", "short_name": "Sugestões", "url": "/v16/sugestoes/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] }
   ]
 }

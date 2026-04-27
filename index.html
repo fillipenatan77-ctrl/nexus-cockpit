@@ -3,23 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta http-equiv="refresh" content="0;url=/home/">
-<title>NEXUS</title>
-<link rel="manifest" href="home/manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta http-equiv="refresh" content="0;url=/v16/">
+<title>NEXUS · biblioteca viva</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NEXUS">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+<link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
 <style>
-html,body{margin:0;padding:0;background:#0F0E17;color:#F0EAE4;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
-.box{padding:2rem}
-h1{font-family:Georgia,serif;font-size:2rem;color:#B8935A;margin:0 0 1rem}
-a{color:#B8935A}
+html,body{margin:0;padding:0;background:#0F0E17;color:#F0EAE4;font-family:-apple-system,system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at center,#1a1530 0%,#0F0E17 70%)}
+.box{padding:2rem;max-width:380px}
+.mark{font-family:Georgia,serif;font-size:64px;color:#B8935A;line-height:1;margin-bottom:8px;text-shadow:0 0 20px rgba(184,147,90,.4)}
+h1{font-family:Georgia,serif;font-size:24px;font-weight:500;color:#F0EAE4;margin:0 0 6px;letter-spacing:.04em}
+.sub{font-family:Georgia,serif;font-style:italic;font-size:14px;color:rgba(240,234,228,.6);margin-bottom:20px}
+.spinner{width:24px;height:24px;border:2px solid rgba(184,147,90,.2);border-top-color:#B8935A;border-radius:50%;animation:s 1s linear infinite;margin:18px auto}
+@keyframes s{to{transform:rotate(360deg)}}
+a{color:#B8935A;text-decoration:none;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;display:inline-block;margin-top:14px;padding:10px 16px;border:1px solid rgba(184,147,90,.4);border-radius:999px}
+a:active{background:rgba(184,147,90,.1)}
 </style>
-<script>window.location.replace('/home/');</script>
+<script>
+// Redirect imediato para o hub canônico v16
+setTimeout(() => window.location.replace('/v16/'), 100);
+</script>
 </head>
 <body>
   <div class="box">
+    <div class="mark">N</div>
     <h1>NEXUS</h1>
-    <p>Redirecionando para o hub…</p>
-    <p><a href="/home/">Acessar agora</a></p>
+    <div class="sub">biblioteca viva</div>
+    <div class="spinner"></div>
+    <a href="/v16/">→ entrar no hub</a>
   </div>
 </body>
 </html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXUS · sugestões de obras</title>
+<meta name="theme-color" content="#0F0E17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12);--green:#7df3a3;--red:#e53170}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh;line-height:1.5}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+.wrap{max-width:760px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;align-items:center;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 22px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:12px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone-dim);max-width:540px;margin-left:auto;margin-right:auto}
+.fluxo{background:rgba(184,147,90,.05);border:1px solid var(--gold-soft);border-radius:14px;padding:18px;margin:18px 0}
+.fluxo h2{font-family:Georgia,serif;font-size:16px;color:var(--gold-light);margin-bottom:10px}
+.fluxo ol{padding-left:22px;font-size:13px;line-height:1.7;color:var(--bone-dim)}
+.fluxo code{font-family:'SF Mono',monospace;font-size:11px;background:var(--ink-1);padding:2px 6px;border-radius:4px;color:var(--gold)}
+.section-h{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:24px 0 10px;opacity:.85}
+.tier{padding:14px 16px;margin-bottom:8px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,.04)}
+.tier .titulo{font-family:Georgia,serif;font-size:16px;font-weight:500;color:var(--bone);line-height:1.2}
+.tier .autor{font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone-dim);margin-top:3px}
+.tier .razao{font-family:Georgia,serif;font-size:12px;color:var(--bone-dim);margin-top:8px;line-height:1.55;padding-top:8px;border-top:1px solid var(--gold-faint)}
+.tier .meta{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.tier .meta .chip{font-family:'SF Mono',monospace;font-size:9px;padding:3px 8px;border-radius:4px;background:var(--gold-faint);color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+.tier .meta .chip.tag-p1{background:rgba(125,243,163,.15);color:var(--green)}
+.tier .meta .chip.tag-p2{background:rgba(255,216,3,.15);color:#ffd803}
+.tier .meta .chip.tag-tier{background:var(--gold);color:var(--ink)}
+.scribd{background:rgba(229,49,112,.08);border:1px dashed rgba(229,49,112,.3);border-radius:12px;padding:16px;margin:18px 0;font-size:13px;line-height:1.6;color:var(--bone-dim)}
+.scribd h3{font-family:Georgia,serif;color:var(--red);font-size:14px;margin-bottom:6px}
+.foot{margin-top:30px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ obras prioritárias · próximas a ingerir</div>
+    <h1>Sugestões NEXUS</h1>
+    <p class="lead">Análise das lacunas do acervo + obras canônicas faltantes. Coloque o PDF em <code>_ENTRADAS_NEXUS</code> e o pipeline atómico indexa em ~2-5min.</p>
+  </header>
+
+  <div class="fluxo">
+    <h2>📥 fluxo de ingestão automática</h2>
+    <ol>
+      <li>Baixe o PDF (legalmente · domínio público ou pessoal).</li>
+      <li>Coloque em <code>C:\NEXUS\_ENTRADAS_NEXUS\PDFs\</code></li>
+      <li><b>NEXUS_Drive_Watcher</b> (Scheduled Task · startup) detecta automaticamente.</li>
+      <li>Pipeline atómico: extract → chunk → embed (1536d OpenAI) → upsert Chroma → ficha CAIR + card SVG.</li>
+      <li>Em ~2-5min a obra está 🟢 indexada no RAG · acessível via Cortex iOS + comando <code>/citacao</code> WhatsApp.</li>
+    </ol>
+  </div>
+
+  <div class="scribd">
+    <h3>📚 sobre Scribd</h3>
+    <p><b>Scribd não tem API pública</b> para download programático e seus Termos de Uso proíbem scraping automatizado. <b>Solução pragmática:</b> use sua conta Scribd como <i>motor de descoberta</i> — explore obras na interface oficial, faça download manual quando legalmente disponível (domínio público ou licença pessoal), e coloque o PDF em <code>_ENTRADAS_NEXUS</code>. Nada de automação contra ToS.</p>
+  </div>
+
+  <!-- TIER A · canônicas faltantes (alta prioridade) -->
+  <div class="section-h">tier A · canônicas faltantes (alto valor pedagógico)</div>
+
+  <div class="tier">
+    <div class="titulo">Marco Aurélio · Meditações</div>
+    <div class="autor">tradução Mário da Gama Kury (Anchor) ou Edipro</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 estoicismo</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B08 filosofia</span>
+    </div>
+    <div class="razao">Vértice estoico clássico que falta no cardápio · completa o triângulo Epicteto/Sêneca/Aurélio. Curto (~250p) · alto rendimento de chunks.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Klein · Inveja e Gratidão</div>
+    <div class="autor">Melanie Klein · 1957</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 psicanálise</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B04</span>
+    </div>
+    <div class="razao">Klein é referência crítica para o eixo psicanalítico (anti-ego psychology). Lacan dialoga constantemente. Cobre lacuna do acervo entre Freud e Lacan.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Winnicott · O Brincar e a Realidade</div>
+    <div class="autor">D.W. Winnicott · 1971</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 psicanálise</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B04</span>
+    </div>
+    <div class="razao">Objeto transicional · espaço potencial. Winnicott é leitura obrigatória pós-Klein. Falta no acervo.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Cialdini · Pré-Suasão</div>
+    <div class="autor">Robert Cialdini · 2016</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 persuasão</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B07</span>
+    </div>
+    <div class="razao">Sequência canônica de Influence (que já temos). Pré-Suasão trata do momento ANTES da persuasão · como preparar o solo.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Greene · 48 Leis do Poder</div>
+    <div class="autor">Robert Greene · 1998</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 estratégia</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B07</span>
+    </div>
+    <div class="razao">Já temos Greene · Sedução e · Leis da Natureza Humana (parcial). 48 Leis é o canônico Greene. Alta densidade de chunks esperada.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Yates · A Arte da Memória (completo)</div>
+    <div class="autor">Frances A. Yates · 1966</div>
+    <div class="meta">
+      <span class="chip tag-p1">P1 mnemônica</span>
+      <span class="chip tag-tier">tier A</span>
+      <span class="chip">B02</span>
+    </div>
+    <div class="razao">B02 está com apenas 4 obras (3 O'Brien + Palácio 84p). Yates completo (10MB) é a referência acadêmica do palácio da memória renascentista. JÁ existe na pasta <code>30_CONTEUDOS/07_Memorizacao/Yates/</code> — só falta indexar.</div>
+  </div>
+
+  <!-- TIER B · expansão temática -->
+  <div class="section-h">tier B · expansão temática (consolida trilhas)</div>
+
+  <div class="tier">
+    <div class="titulo">Jung · Tipos Psicológicos · ou · O Eu e o Inconsciente</div>
+    <div class="autor">C.G. Jung · 1921 · Editora Vozes</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2</span>
+      <span class="chip">B04 abertura</span>
+    </div>
+    <div class="razao">Lacuna conceitual junguiana · contraponto crítico ao freudianismo. Vai abrir nova subtrilha em B04.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Clausewitz · Da Guerra</div>
+    <div class="autor">Carl von Clausewitz · 1832</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 estratégia</span>
+      <span class="chip">B07</span>
+    </div>
+    <div class="razao">Complementa Sun Tzu · Maquiavel. Estratégia ocidental moderna. Importante para discussões institucionais.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Heidegger · Ser e Tempo</div>
+    <div class="autor">Martin Heidegger · 1927</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 filosofia</span>
+      <span class="chip">B08</span>
+    </div>
+    <div class="razao">Pilar da filosofia continental · entra em diálogo com Aristóteles, Aquino, Arendt já presentes. Texto denso · leitura aprofundada.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Beauvoir · O Segundo Sexo</div>
+    <div class="autor">Simone de Beauvoir · 1949</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 filosofia</span>
+      <span class="chip">B08+B05</span>
+    </div>
+    <div class="razao">Filosofia existencialista aplicada · contraponto a Arendt. Essencial para análise institucional contemporânea.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Ricoeur · A Memória, a História, o Esquecimento</div>
+    <div class="autor">Paul Ricoeur · 2000</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 filosofia</span>
+      <span class="chip">B02+B08</span>
+    </div>
+    <div class="razao">Cruzamento poderoso B02 (memória) com B08 (filosofia). Hermenêutica da memória pessoal e coletiva.</div>
+  </div>
+
+  <!-- TIER C · profissional / institucional -->
+  <div class="section-h">tier C · profissional · MPMG/PMMG</div>
+
+  <div class="tier">
+    <div class="titulo">Cialdini · Yes! 50 Scientifically Proven Ways</div>
+    <div class="autor">Cialdini, Goldstein, Martin · 2008</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 persuasão aplicada</span>
+      <span class="chip">B07</span>
+    </div>
+    <div class="razao">Aplicação prática dos 6 princípios. Útil para audiências/debates institucionais. Cobertura B07 reforçada.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Heath/Heath · Decisive · How to Make Better Choices</div>
+    <div class="autor">Chip Heath, Dan Heath · 2013</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 decisão</span>
+      <span class="chip">B03 cognição</span>
+    </div>
+    <div class="razao">Frameworks de decisão · WRAP. Aplicação direta em parecer institucional.</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Voss · Never Split the Difference</div>
+    <div class="autor">Chris Voss · 2016</div>
+    <div class="meta">
+      <span class="chip tag-p2">P2 negociação</span>
+      <span class="chip">B05+B07</span>
+    </div>
+    <div class="razao">Negociação tática · técnicas de espelhamento e rotulagem. Cobertura prática que CNV/Difficult Conversations não cobrem.</div>
+  </div>
+
+  <div class="section-h">tier D · acessório · domínio público</div>
+
+  <div class="tier">
+    <div class="titulo">Plutarco · Vidas Paralelas</div>
+    <div class="autor">Plutarco · ~100 d.C. · domínio público</div>
+    <div class="meta">
+      <span class="chip">P3</span>
+      <span class="chip">B06+B08</span>
+    </div>
+    <div class="razao">Tradição biográfica clássica · biografias paralelas Roma/Grécia. Útil para análise comparativa de tipos humanos. Disponível em domínio público (Project Gutenberg).</div>
+  </div>
+
+  <div class="tier">
+    <div class="titulo">Cícero · De Oratore</div>
+    <div class="autor">Cícero · 55 a.C. · domínio público</div>
+    <div class="meta">
+      <span class="chip">P3</span>
+      <span class="chip">B07+B05</span>
+    </div>
+    <div class="razao">Retórica clássica · base de toda persuasão ocidental. Domínio público.</div>
+  </div>
+
+  <div class="section-h">prioridades hoje (resumo executivo)</div>
+
+  <div class="fluxo">
+    <p style="font-family:Georgia,serif;font-size:14px;color:var(--bone);line-height:1.65">
+      <b style="color:var(--gold)">Top 3 imediatas</b> que mais aumentam densidade do acervo:
+    </p>
+    <ol style="font-family:Georgia,serif;font-size:14px;line-height:1.7;color:var(--bone-dim);padding-left:22px;margin-top:8px">
+      <li><b>Yates · Arte da Memória</b> (já no PC · só falta indexar · próxima ingestão)</li>
+      <li><b>Marco Aurélio · Meditações</b> (vai fechar tríade estoica do cardápio)</li>
+      <li><b>Klein · Inveja e Gratidão</b> (cobre lacuna psicanalítica B04)</li>
+    </ol>
+  </div>
+
+  <div class="foot">NEXUS v16 · <a href="../">v16</a> · <a href="../cards/">cards</a> · <a href="../audit/">audit</a> · <a href="../status/">status</a></div>
+</div>
+</body>
+</html>

@@ -2,299 +2,281 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="NEXUS">
 <meta name="theme-color" content="#0F0E17">
-<title>NEXUS · v16.0</title>
+<title>NEXUS · biblioteca viva</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="../icons/apple-touch-icon-180.png">
 <link rel="apple-touch-icon" sizes="192x192" href="../icons/icon-192.png">
 <link rel="apple-touch-icon" sizes="512x512" href="../icons/icon-512.png">
+<link rel="icon" type="image/svg+xml" href="../icons/favicon.svg">
 <style>
-:root {
-  --bg: #0F0E17;
-  --bg-card: #1a1830;
-  --bg-card-2: #232142;
-  --fg: #FFFFFE;
-  --fg-dim: #A7A9BE;
-  --accent: #FF8906;
-  --accent-2: #F25F4C;
-  --green: #2CB67D;
-  --yellow: #FFD803;
-  --red: #E53170;
-  --border: #2a2548;
-  --safe-top: env(safe-area-inset-top);
-  --safe-bottom: env(safe-area-inset-bottom);
+:root{
+  --ink:#0F0E17; --ink-1:#14131E; --ink-2:#1a1830;
+  --bone:#F0EAE4; --bone-dim:rgba(240,234,228,.65); --bone-faint:rgba(240,234,228,.4);
+  --gold:#B8935A; --gold-light:#D4A668; --gold-soft:rgba(184,147,90,.3); --gold-faint:rgba(184,147,90,.12);
+  --green:#7df3a3; --yellow:#ffd803; --red:#e53170;
+  --safe-top:env(safe-area-inset-top); --safe-bot:env(safe-area-inset-bottom);
+  --safe-l:env(safe-area-inset-left); --safe-r:env(safe-area-inset-right);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; }
-html, body {
-  background: var(--bg);
-  color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
-  -webkit-font-smoothing: antialiased;
-}
-#app {
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  padding-top: var(--safe-top);
-}
-header {
-  padding: 16px 20px 12px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg);
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-}
-header h1 {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-header .v { font-size: 11px; color: var(--fg-dim); text-transform: uppercase; letter-spacing: 0.1em; }
-main {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 16px 20px 100px;
-}
-nav.tabs {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  background: rgba(15, 14, 23, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--border);
-  padding-bottom: var(--safe-bottom);
-}
-nav.tabs button {
-  background: transparent;
-  border: 0;
-  color: var(--fg-dim);
-  font-size: 11px;
-  font-weight: 500;
-  padding: 10px 4px 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-nav.tabs button.active { color: var(--accent); }
-nav.tabs button .ic { font-size: 22px; line-height: 1; }
-.section { display: none; animation: fadeIn 0.25s ease; }
-.section.active { display: block; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.card {
-  background: var(--bg-card);
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 14px;
-  border: 1px solid var(--border);
-}
-.card h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-dim); margin-bottom: 10px; }
-.card h3 { font-size: 18px; margin-bottom: 8px; line-height: 1.3; }
-.chip {
-  display: inline-block;
-  background: var(--bg-card-2);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  color: var(--fg-dim);
-  margin-right: 6px;
-  margin-bottom: 6px;
-}
-.chip.green { background: rgba(44, 182, 125, 0.2); color: var(--green); }
-.chip.yellow { background: rgba(255, 216, 3, 0.2); color: var(--yellow); }
-.chip.red { background: rgba(229, 49, 112, 0.2); color: var(--red); }
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--accent);
-  color: #1a1a1a;
-  border: 0;
-  border-radius: 12px;
-  padding: 12px 18px;
-  font-size: 15px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 6px 6px 0 0;
-}
-.btn.ghost { background: var(--bg-card-2); color: var(--fg); border: 1px solid var(--border); }
-.btn.full { display: flex; width: 100%; justify-content: center; }
-input, textarea {
-  width: 100%;
-  background: var(--bg-card-2);
-  border: 1px solid var(--border);
-  color: var(--fg);
-  padding: 12px 14px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-family: inherit;
-  margin-bottom: 10px;
-}
-textarea { min-height: 80px; resize: vertical; }
-.cite { font-style: italic; color: var(--fg-dim); padding: 12px 0; border-left: 3px solid var(--accent); padding-left: 14px; margin: 10px 0; }
-.list-item {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-.list-item:last-child { border-bottom: 0; }
-.list-item .ti { font-weight: 600; }
-.list-item .me { color: var(--fg-dim); font-size: 13px; }
-pre {
-  background: var(--bg-card-2);
-  padding: 12px;
-  border-radius: 8px;
-  overflow-x: auto;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 12px;
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-.hint { font-size: 12px; color: var(--fg-dim); margin-top: 8px; }
-details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
-.tag { font-size: 11px; padding: 2px 6px; border-radius: 4px; background: var(--bg-card-2); color: var(--fg-dim); }
-.bandeira { font-size: 18px; vertical-align: middle; }
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;height:100%;overflow:hidden;overscroll-behavior:none}
+body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1530 0%,var(--ink) 50%,var(--ink) 100%)}
+
+#app{display:flex;flex-direction:column;height:100dvh;padding-top:var(--safe-top);padding-left:var(--safe-l);padding-right:var(--safe-r)}
+
+/* === HEADER · brand bar === */
+header.brand{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 10px;border-bottom:1px solid var(--gold-faint);background:rgba(15,14,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10}
+header.brand .logo{display:flex;align-items:center;gap:10px}
+header.brand .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#0F0E17 0%,#14131E 100%);border:1px solid var(--gold-soft);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:22px;font-weight:600;color:var(--gold);letter-spacing:-2px}
+header.brand .logo .name{font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;color:var(--bone)}
+header.brand .logo .name b{color:var(--gold);font-weight:600}
+header.brand .meta{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold);opacity:.75;text-align:right;text-transform:uppercase;line-height:1.3}
+header.brand .meta .date{color:var(--bone-dim);font-size:10px}
+
+/* === MAIN scroll === */
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(var(--safe-bot) + 96px)}
+main::-webkit-scrollbar{display:none}
+
+.section{display:none;animation:fade .25s ease}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+/* === HERO CARD === */
+.hero{position:relative;padding:22px 20px;margin-bottom:14px;border:1px solid var(--gold-soft);border-radius:18px;background:linear-gradient(135deg,rgba(184,147,90,.10) 0%,rgba(15,14,23,.6) 60%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:160%;background:radial-gradient(ellipse,rgba(184,147,90,.18) 0%,transparent 60%);pointer-events:none}
+.hero .eyebrow{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;opacity:.85;margin-bottom:6px}
+.hero h1{font-family:Georgia,serif;font-size:24px;font-weight:500;line-height:1.2;color:var(--bone);margin-bottom:6px}
+.hero .sub{font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone-dim);line-height:1.5}
+.hero .citacao{margin-top:14px;padding-top:12px;border-top:1px solid var(--gold-faint);font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--bone-dim);line-height:1.55}
+.hero .citacao .src{display:block;margin-top:6px;font-style:normal;font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.75}
+
+/* === KPI strip === */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.kpi-mini{padding:10px 8px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center}
+.kpi-mini .v{font-family:Georgia,serif;font-size:18px;color:var(--gold-light);line-height:1}
+.kpi-mini .k{font-family:'SF Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);margin-top:3px}
+
+/* === Quick actions === */
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:18px}
+.quick{display:flex;flex-direction:column;align-items:flex-start;padding:14px 16px;border:1px solid var(--gold-faint);border-radius:14px;background:linear-gradient(180deg,rgba(184,147,90,.05) 0%,rgba(15,14,23,.4) 100%);text-decoration:none;color:var(--bone);transition:.18s;min-height:84px;position:relative}
+.quick:active{transform:scale(.98);border-color:var(--gold-soft);background:rgba(184,147,90,.10)}
+.quick .ic{font-size:22px;margin-bottom:6px}
+.quick .lbl{font-family:Georgia,serif;font-size:15px;font-weight:500;line-height:1.15}
+.quick .hint{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--gold);opacity:.65;margin-top:4px;text-transform:uppercase}
+.quick.primary{grid-column:span 2;background:linear-gradient(135deg,rgba(184,147,90,.16) 0%,rgba(15,14,23,.5) 70%);border-color:var(--gold-soft)}
+.quick.primary .lbl{font-size:17px;color:var(--gold-light)}
+
+/* === Lista obras integrais (cardápio) === */
+.section-h{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin:20px 0 10px;opacity:.85;display:flex;justify-content:space-between;align-items:center}
+.section-h a{color:var(--gold);font-size:9px;letter-spacing:.1em;text-decoration:none;opacity:.7}
+
+.obras-h-scroll{display:flex;gap:10px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 0 6px;margin:0 -16px;padding-left:16px;padding-right:16px;scroll-snap-type:x mandatory}
+.obras-h-scroll::-webkit-scrollbar{display:none}
+.obra-card{flex:0 0 132px;display:flex;flex-direction:column;border:1px solid var(--gold-faint);border-radius:10px;overflow:hidden;background:var(--ink-1);text-decoration:none;color:var(--bone);scroll-snap-align:start;transition:.18s}
+.obra-card:active{transform:scale(.98)}
+.obra-card img{width:100%;aspect-ratio:1080/1350;object-fit:cover;display:block}
+.obra-card .meta{padding:6px 8px 7px;font-family:Georgia,serif;font-size:11px;line-height:1.2;color:var(--bone)}
+.obra-card .autor{font-family:Georgia,serif;font-style:italic;font-size:9px;color:var(--bone-faint);margin-top:2px}
+
+/* === Card grupo (info) === */
+.card{padding:14px 16px;margin-bottom:10px;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(184,147,90,.04)}
+.card h2{font-family:Georgia,serif;font-size:15px;font-weight:600;color:var(--gold-light);margin-bottom:6px}
+.card p{font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);line-height:1.55}
+.card .row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--gold-faint);font-size:13px}
+.card .row:last-child{border:none}
+.card .row .lab{font-family:'SF Mono',monospace;font-size:11px;color:var(--bone-dim);text-transform:uppercase;letter-spacing:.05em}
+.card .row .v{font-family:Georgia,serif;color:var(--bone)}
+
+/* === Botões inline === */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 16px;border-radius:10px;font-family:'SF Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold-soft);background:rgba(184,147,90,.1);color:var(--gold);cursor:pointer;text-decoration:none;transition:.15s;width:auto}
+.btn.full{display:flex;width:100%;margin-top:8px}
+.btn:active{transform:scale(.98);background:rgba(184,147,90,.18)}
+.btn.primary{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn.ghost{background:transparent}
+
+input,textarea{width:100%;padding:12px 14px;background:var(--ink-1);border:1px solid var(--gold-faint);border-radius:10px;color:var(--bone);font-size:15px;font-family:inherit;-webkit-user-select:text;user-select:text}
+input:focus,textarea:focus{outline:none;border-color:var(--gold-soft)}
+textarea{min-height:90px;resize:vertical}
+
+/* === Bottom nav === */
+nav.tabs{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(15,14,23,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid var(--gold-faint);padding-bottom:var(--safe-bot);padding-left:var(--safe-l);padding-right:var(--safe-r);z-index:30}
+nav.tabs button{background:transparent;border:none;padding:10px 6px 8px;color:var(--bone-faint);font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;transition:.15s}
+nav.tabs button .ic{font-size:20px;line-height:1}
+nav.tabs button.active{color:var(--gold)}
+nav.tabs button.active .ic{filter:drop-shadow(0 0 4px var(--gold))}
+
+/* RAG result cards */
+.results .rcard{padding:12px 14px;margin-bottom:8px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04)}
+.results .rcard .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.results .rcard .chip{font-family:'SF Mono',monospace;font-size:9px;padding:2px 7px;border-radius:4px;background:var(--gold-faint);color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+.results .rcard .cite{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--bone-dim);line-height:1.55;margin-top:4px}
+
+.offline-banner{display:none;padding:8px 14px;background:rgba(229,49,112,.15);border:1px solid rgba(229,49,112,.4);border-radius:8px;margin-bottom:10px;font-family:'SF Mono',monospace;font-size:11px;color:var(--red)}
+body.offline .offline-banner{display:block}
+
+.list-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border:1px solid var(--gold-faint);border-radius:10px;margin-bottom:6px;background:rgba(184,147,90,.03);text-decoration:none;color:var(--bone)}
+.list-item:active{transform:scale(.99);border-color:var(--gold-soft)}
+.list-item .t{font-family:Georgia,serif;font-size:14px}
+.list-item .t .a{display:block;font-style:italic;font-size:11px;color:var(--bone-faint);margin-top:2px}
+.list-item .c{font-family:'SF Mono',monospace;font-size:9px;color:var(--gold);opacity:.7;text-align:right;flex-shrink:0;margin-left:8px;text-transform:uppercase}
 </style>
 </head>
 <body>
+
 <div id="app">
-<header>
-  <div>
-    <h1>NEXUS</h1>
-    <div class="v">v16.0 · <span id="cycle">dia ?/272</span></div>
+
+<header class="brand">
+  <div class="logo">
+    <div class="mark">N</div>
+    <div class="name"><b>NEXUS</b> · biblioteca viva</div>
   </div>
-  <div id="status" class="chip green">●</div>
+  <div class="meta">
+    <span id="cycle-badge">v16.0</span><br>
+    <span class="date" id="hoje-date">—</span>
+  </div>
 </header>
 
 <main>
-  <!-- HOJE -->
+  <div class="offline-banner">⚠ offline · servindo cache</div>
+
+  <!-- ============ TAB: HOJE ============ -->
   <section class="section active" data-tab="hoje">
-    <div class="card" id="install-banner" style="display:none;background:linear-gradient(135deg,#B8935A22 0%,#1a1830 100%);border:1px solid #B8935A55">
-      <h2 style="color:#B8935A">📲 Instale o NEXUS</h2>
-      <p style="font-size:14px;line-height:1.55">Safari → toque em <b>Compartilhar</b> (☐↑) → role até <b>Adicionar à Tela de Início</b> → confirme.</p>
-      <p class="hint">App instalado funciona offline · 30 obras + cards + fichas pré-cacheadas (SW v4).</p>
-      <button class="btn ghost" onclick="document.getElementById('install-banner').style.display='none'">Já instalei · ocultar</button>
-    </div>
 
-    <div class="card">
-      <h2>🌅 Hoje</h2>
-      <h3 id="hoje-titulo">Carregando…</h3>
-      <div id="hoje-meta" class="hint"></div>
-      <div class="cite" id="hoje-citacao">—</div>
-      <div id="hoje-mergulho"></div>
-    </div>
-    <div class="card">
-      <h2>Ações rápidas</h2>
-      <a class="btn full" href="https://nexuscaldeira.com/cortex/" target="_blank">💬 Cortex iOS</a>
-      <a class="btn ghost full" href="https://nexuscaldeira.com/wpp/" target="_blank">💚 Biblioteca Viva</a>
-      <button class="btn ghost full" onclick="show('acervo')">🔍 Buscar no acervo</button>
-    </div>
-    <div class="card">
-      <h2>Sistema</h2>
-      <div id="sysinfo">Verificando…</div>
-    </div>
-
-    <div class="card">
-      <h2>🧭 Sub-rotas v16</h2>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">
-        <a class="btn ghost" href="cards/">🎴 Cards 30</a>
-        <a class="btn ghost" href="agenda/">📅 Agenda 7d</a>
-        <a class="btn ghost" href="audit/">🩺 Audit</a>
-        <a class="btn ghost" href="fichas/">📚 Fichas</a>
-        <a class="btn ghost" href="pulse/">💓 Pulse</a>
+    <!-- HERO · obra do dia + citação -->
+    <div class="hero">
+      <div class="eyebrow"><span id="lente-tag">domingo · síntese</span> · <span id="ciclo-tag">dia ?/272</span></div>
+      <h1 id="hoje-titulo">Carregando obra do dia…</h1>
+      <div class="sub" id="hoje-meta">—</div>
+      <div class="citacao" id="hoje-citacao" style="display:none">
+        <span id="cita-text"></span>
+        <span class="src" id="cita-src"></span>
       </div>
     </div>
+
+    <!-- KPIs -->
+    <div class="kpis">
+      <div class="kpi-mini"><div class="v" id="kpi-chunks">…</div><div class="k">chunks</div></div>
+      <div class="kpi-mini"><div class="v" id="kpi-obras">…</div><div class="k">obras</div></div>
+      <div class="kpi-mini"><div class="v" id="kpi-int">…</div><div class="k">integrais</div></div>
+      <div class="kpi-mini"><div class="v">30</div><div class="k">cardápio</div></div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-grid">
+      <a class="quick primary" href="cards/">
+        <span class="ic">🎴</span>
+        <span class="lbl">Cards das 30 obras</span>
+        <span class="hint">galeria visual · trio completo</span>
+      </a>
+      <a class="quick" href="agenda/">
+        <span class="ic">📅</span>
+        <span class="lbl">Agenda</span>
+        <span class="hint">7 dias</span>
+      </a>
+      <a class="quick" href="fichas/">
+        <span class="ic">📖</span>
+        <span class="lbl">Fichas CAIR</span>
+        <span class="hint">30 obras</span>
+      </a>
+      <a class="quick" href="pulse/">
+        <span class="ic">💓</span>
+        <span class="lbl">Pulses</span>
+        <span class="hint">40 mensagens</span>
+      </a>
+      <a class="quick" href="status/">
+        <span class="ic">🩺</span>
+        <span class="lbl">Status sistema</span>
+        <span class="hint">live · 6 camadas</span>
+      </a>
+      <a class="quick" href="sugestoes/">
+        <span class="ic">📚</span>
+        <span class="lbl">Sugestões obras</span>
+        <span class="hint">próximas a ingerir</span>
+      </a>
+    </div>
+
+    <!-- Cardápio · scroll horizontal -->
+    <div class="section-h">cardápio · 30 obras <a href="cards/">ver todas →</a></div>
+    <div class="obras-h-scroll" id="obras-scroll"></div>
+
+    <!-- Sistema status compacto -->
+    <div class="section-h">sistema</div>
+    <div class="card">
+      <div id="sysinfo">checando…</div>
+    </div>
+
   </section>
 
-  <!-- ACERVO -->
+  <!-- ============ TAB: ACERVO ============ -->
   <section class="section" data-tab="acervo">
     <div class="card">
-      <h2>🔍 Busca RAG</h2>
-      <input id="q" placeholder="Pergunte ao acervo · ex: o que é Nachträglichkeit?" enterkeyhint="search">
-      <button class="btn full" onclick="ragAsk()">Buscar</button>
-      <div class="hint">60.561 chunks · 77 obras integrais · OpenAI 1536d</div>
+      <h2>🔍 buscar no acervo</h2>
+      <p style="margin-bottom:10px">Pergunte ao RAG · 63.526 chunks · 1536d OpenAI</p>
+      <input id="q" placeholder="ex: o que é Nachträglichkeit?" enterkeyhint="search">
+      <button class="btn primary full" onclick="ragAsk()">buscar</button>
     </div>
-    <div id="results"></div>
+    <div id="results" class="results"></div>
+
+    <div class="section-h">obras integrais (74)</div>
+    <div id="obras-list" style="margin-bottom:14px"></div>
   </section>
 
-  <!-- GLOSSÁRIO -->
+  <!-- ============ TAB: GLOSSÁRIO ============ -->
   <section class="section" data-tab="glossario">
     <div class="card">
-      <h2>📖 Glossário</h2>
-      <input id="gloss-q" placeholder="Filtrar termo · ex: recalque" oninput="filterGloss()">
+      <h2>📖 glossário</h2>
+      <input id="gloss-q" placeholder="filtrar termo · ex: recalque" oninput="filterGloss()">
     </div>
     <div id="gloss-list"></div>
   </section>
 
-  <!-- DIÁRIO -->
+  <!-- ============ TAB: DIÁRIO ============ -->
   <section class="section" data-tab="diario">
     <div class="card">
-      <h2>📓 Nova entrada</h2>
-      <textarea id="diario-text" placeholder="Insight · decisão · pergunta..."></textarea>
-      <button class="btn full" onclick="diarioSave()">Registrar</button>
-      <div class="hint">Salva via Apps Script no Diário NEXUS</div>
+      <h2>📓 nova entrada</h2>
+      <textarea id="diario-text" placeholder="insight · decisão · pergunta…"></textarea>
+      <button class="btn primary full" onclick="diarioSave()">registrar</button>
     </div>
     <div class="card">
-      <h2>Últimas entradas</h2>
-      <div id="diario-list">Carregando…</div>
+      <h2>✦ comandos rápidos · WhatsApp</h2>
+      <p>/contato · /agenda-hoje · /email-pendentes · /task · /briefing · /prep · /dia</p>
     </div>
   </section>
 
-  <!-- PROMPT v6.7 -->
+  <!-- ============ TAB: PROMPT ============ -->
   <section class="section" data-tab="prompt">
     <div class="card">
-      <h2>⚙️ System Prompt v6.7</h2>
-      <p>Para Cortex iOS · Custom Instructions do Project NEXUS Cortex</p>
-      <button class="btn full" onclick="copyPrompt()">📋 Copiar tudo</button>
-      <a class="btn ghost full" href="https://nexuscaldeira.com/prompt-v67.md" target="_blank">Ver texto completo</a>
+      <h2>⚙️ system prompt v6.7</h2>
+      <p>Cortex iOS · Custom Instructions do Project NEXUS.</p>
+      <button class="btn primary full" onclick="copyPrompt()">📋 copiar tudo</button>
+      <a class="btn ghost full" href="../prompt-v67.md" target="_blank">ver arquivo</a>
     </div>
     <div class="card">
-      <h2>Resumo · 17 regras invioláveis v16.0</h2>
-      <details><summary>Ver lista</summary>
-      <ol style="padding-left:20px;font-size:14px;line-height:1.7;color:var(--fg-dim)">
-        <li>RAG é fonte canônica · probe semântica obrigatória</li>
-        <li>Bandeira de profundidade visível (🟢/✦/🟡/🔴)</li>
-        <li>Pipeline atómico para toda obra adicionada</li>
-        <li><b>Apps Script CONGELADO em 13 triggers</b></li>
-        <li>WhatsApp via nexus_notify (canônico) · uazapi direto = fallback</li>
-        <li>OpenAI text-embedding-3-small 1536d · Ollama é fallback offline</li>
-        <li>8 categorias rígidas + _DERIVADOS + _ARQUIVO</li>
-        <li>Backup 3-2-1: local + OneDrive + GitHub + snapshot semanal</li>
-        <li>URL única nexuscaldeira.com · subdomínios fixos</li>
-        <li>Mobile-first · iPhone primário · PWA complemento</li>
-        <li>Frente fechada = probe 🟢 + Scheduled Task ativa + GUIA atualizado</li>
-        <li>Custo OpenAI mensal target &lt; USD 5</li>
-        <li>_ENTRADAS_NEXUS é única porta de entrada</li>
-        <li>.env em 70_APP/cortex · gitignored</li>
-        <li>ESTADO_ATUAL.md + FILA atualizados a cada Frente</li>
-        <li>Diferenças teóricas reais expostas</li>
-        <li>Cautela subjetiva · 4 vetores · sem regra · critério é Fillipe</li>
-      </ol>
-      </details>
+      <h2>📊 ciclo PRIMORDIA</h2>
+      <div class="row"><span class="lab">dia</span><span class="v" id="prompt-dia">?/272</span></div>
+      <div class="row"><span class="lab">estação</span><span class="v" id="prompt-estacao">?</span></div>
+      <div class="row"><span class="lab">apps script</span><span class="v">@175</span></div>
+      <div class="row"><span class="lab">cardápio</span><span class="v">30/30</span></div>
     </div>
     <div class="card">
-      <h2>74 Skills</h2>
-      <p style="color:var(--fg-dim);font-size:14px">Núcleo: nexus-retomar · nexus-status · grade-10-pontos · mapa-influencia · conversa-dificil · investigacao · fichamento-obra · nexus-final-check</p>
-      <a class="btn ghost full" href="https://github.com/fillipenatan77-ctrl/NEXUS/blob/main/00_HUB/SKILLS_NEXUS_MAPA_v16.md" target="_blank">Mapa completo (v16)</a>
+      <h2>🌐 endpoints</h2>
+      <p style="line-height:1.8">
+        <a class="btn ghost" style="margin:2px" href="../prompt-v67.md">prompt</a>
+        <a class="btn ghost" style="margin:2px" href="../pulses.json">pulses</a>
+        <a class="btn ghost" style="margin:2px" href="../home/health.json">health</a>
+        <a class="btn ghost" style="margin:2px" href="https://rag.nexuscaldeira.com/health">rag</a>
+      </p>
+    </div>
+    <div class="card">
+      <h2>🛠 instalar no iPhone</h2>
+      <p>Safari · ☐↑ Compartilhar → Adicionar à Tela de Início. App vira ícone NEXUS na home.</p>
     </div>
   </section>
+
 </main>
 
 <nav class="tabs">
@@ -302,8 +284,9 @@ details summary { cursor: pointer; padding: 8px 0; font-weight: 600; }
   <button data-tab="acervo" onclick="show('acervo')"><span class="ic">🔍</span>Acervo</button>
   <button data-tab="glossario" onclick="show('glossario')"><span class="ic">📖</span>Glossário</button>
   <button data-tab="diario" onclick="show('diario')"><span class="ic">📓</span>Diário</button>
-  <button data-tab="prompt" onclick="show('prompt')"><span class="ic">⚙️</span>Prompt</button>
+  <button data-tab="prompt" onclick="show('prompt')"><span class="ic">⚙</span>Prompt</button>
 </nav>
+
 </div>
 
 <script>
@@ -312,153 +295,263 @@ const APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbxLeb75T98CoHNIjFoA
 const HEALTH_URL = "../home/health.json";
 
 const ESTACOES = ["Limiar","Forja","Vento","Sentinela","Bússola Inversa","Reservatório","Tear","Espelho","Vento de Costas","Aurora","Cofre","Fronteira","Encruzilhada","Pulso","Constelação","Travessia","Síntese","Selo"];
-const LENTES_DIA = ["foco","escuta","decisão","memória","palavra","desejo","limite","poder","linguagem","tempo","corpo","sombra","vínculo","sentido","ação","silêncio"];
+const LENTES_DIA = ["domingo · síntese","segunda · liderança","terça · PNL","quarta · estoica","quinta · psicanálise","sexta · memorização","sábado · motivacional"];
 
+// Cardápio 30 (slug · titulo · autor)
+const CARDAPIO_30 = [
+  ['freud-sonhos','Interpretação dos Sonhos','Freud'],
+  ['bandler-padroes','Padrões de Magia','Bandler/Grinder'],
+  ['bandler-magia','Estrutura da Magia II','Bandler/Grinder'],
+  ['bandler-reframing','Reframing','Bandler/Grinder'],
+  ['rosen-erickson','Voz Ensinante','Rosen'],
+  ['hamlet','Hamlet','Shakespeare'],
+  ['romeu-julieta','Romeu e Julieta','Shakespeare'],
+  ['rei-lear','Rei Lear','Shakespeare'],
+  ['allen-persuasao','Técnicas Proibidas','Allen'],
+  ['maquiavel-got','Maquiavel & GoT','(compilação)'],
+  ['goleman-ie','Inteligência Emocional','Goleman'],
+  ['obrien-memoria-v1','Perfect Memory v1',"O'Brien"],
+  ['obrien-memoria-v2','Memory Vol 2',"O'Brien"],
+  ['obrien-memoria-v3','Memory Vol 3',"O'Brien"],
+  ['suy-lacan','Amor e Desejo','Suy'],
+  ['neves-freud','Citações Freud','Neves'],
+  ['cialdini-influence','Influence','Cialdini'],
+  ['greene-seducao','Arte da Sedução','Greene'],
+  ['kahneman-rapido-devagar','Rápido e Devagar','Kahneman'],
+  ['aristoteles-fisica','Física I-II','Aristóteles'],
+  ['arendt-condicao','Condição Humana','Arendt'],
+  ['suma-i','Suma · Parte I','Aquino'],
+  ['suma-ii-1','Suma · I-II','Aquino'],
+  ['suma-ii-2','Suma · II-II','Aquino'],
+  ['suma-iii','Suma · Parte III','Aquino'],
+  ['sun-tzu','A Arte da Guerra','Sun Tzu'],
+  ['lacan-sem21','Seminário 21','Lacan'],
+  ['epicteto-portico','Pórtico','Epicteto'],
+  ['seneca-lucilio','Cartas a Lucílio','Sêneca'],
+  ['ferreira-500-freud','500 Frases','Ferreira'],
+];
+
+// Citações canônicas (1 por dia · rotador 30)
+const CITACOES = [
+  ['Tudo o que se move é movido por outro.','Aquino · Suma I, q.2 a.3'],
+  ['Conhece-te a ti mesmo e ao inimigo: em mil batalhas, sem perigo.','Sun Tzu · cap. III'],
+  ['As armas de influência derivam seu poder dos atalhos psicológicos universais.','Cialdini'],
+  ['Toda a vida deve-se aprender a morrer.','Sêneca · ep. LXXXII'],
+  ['A ação inscreve o homem, plural e revelado, no espaço público.','Arendt · cap. V'],
+  ['Das coisas, umas dependem de nós, outras não dependem.','Epicteto · Manual §1'],
+  ['O sintoma é uma satisfação disfarçada do desejo recalcado.','Freud (compilação Ferreira)'],
+  ['Natureza é princípio interno de movimento e de repouso.','Aristóteles · Física II.1'],
+  ['Os não-enganados erram. Renunciar à ficção do pai é vagar sem norte.','Lacan · Sem 21'],
+  ['A sedução é o ato lento de fazer o outro descobrir-se em estado novo.','Greene'],
+  ['O Sistema 2 endossa, por preguiça, aquilo que o Sistema 1 produziu.','Kahneman'],
+  ['A prudência aplica princípios universais a circunstâncias singulares.','Aquino · II-II q.47'],
+  ['O Verbo se fez carne para que o homem, pela graça, se fizesse Deus.','Aquino · III q.1'],
+  ['A bem-aventurança última consiste na contemplação da essência divina.','Aquino · I-II q.3'],
+  ['Eu não posso ser uma coisa só.','Pessoa (cardápio expansivo)'],
+  ['To be or not to be: that is the question.','Hamlet · III.i'],
+  ['Reframing é a arte de mudar a moldura sem mudar o conteúdo.','Bandler/Grinder'],
+  ['A linguagem hipnótica trabalha pela ambiguidade calculada.','Erickson via Rosen'],
+  ['A inteligência emocional começa onde o sequestro de amígdala termina.','Goleman'],
+  ['O palácio da memória é uma arquitetura mental para o resgate ordenado.','O\'Brien'],
+  ['O amor é dar o que não se tem a quem não é.','Lacan via Suy'],
+  ['Os fins justificam os meios — quando o estado está em risco.','Maquiavel'],
+  ['What\'s in a name? That which we call a rose by any other name would smell as sweet.','Romeu e Julieta'],
+  ['Nothing will come of nothing.','Rei Lear'],
+  ['A pulsão é o eco no corpo do fato de que há um dito.','Lacan'],
+  ['Nada na natureza humana muda · só o cenário muda.','Greene · Leis da Natureza Humana'],
+  ['Compromisso e coerência: o sujeito age para confirmar o que disse antes.','Cialdini'],
+  ['Imagem · persuasão · impacto · eficácia: os quatro vetores da regra 17.','NEXUS'],
+  ['Auditoria honesta supera vontade de inflar números.','NEXUS · regra 16'],
+  ['Cardápio de 30 cobre rotação anual com 12+ ciclos.','NEXUS · v16.0'],
+];
+
+// Helpers
 function show(tab) {
   document.querySelectorAll(".section").forEach(s => s.classList.toggle("active", s.dataset.tab === tab));
   document.querySelectorAll("nav.tabs button").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
   if (tab === "glossario" && !window._glossLoaded) loadGloss();
-  if (tab === "diario" && !window._diarioLoaded) loadDiario();
+  if (tab === "acervo" && !window._obrasLoaded) loadObrasList();
 }
 
-async function loadHealth() {
+function fmtDate(d) {
+  const meses = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const dias = ['dom','seg','ter','qua','qui','sex','sáb'];
+  return `${dias[d.getDay()]} · ${d.getDate()} ${meses[d.getMonth()]}`;
+}
+
+// === HOJE · render principal ===
+function renderHoje(dia, est) {
+  const idx = (dia - 1) % CARDAPIO_30.length;
+  const obra = CARDAPIO_30[idx];
+  const lente = LENTES_DIA[new Date().getDay()];
+  document.getElementById('lente-tag').textContent = lente;
+  document.getElementById('ciclo-tag').textContent = `dia ${dia}/272`;
+  document.getElementById('cycle-badge').textContent = `dia ${dia}`;
+  document.getElementById('hoje-date').textContent = fmtDate(new Date());
+  document.getElementById('hoje-titulo').textContent = obra[1];
+  document.getElementById('hoje-meta').textContent = `${obra[2]} · estação ${ESTACOES[est] || '—'}`;
+
+  const cIdx = (dia - 1) % CITACOES.length;
+  const c = CITACOES[cIdx];
+  document.getElementById('cita-text').textContent = '"' + c[0] + '"';
+  document.getElementById('cita-src').textContent = '— ' + c[1];
+  document.getElementById('hoje-citacao').style.display = 'block';
+  document.getElementById('prompt-dia').textContent = `${dia}/272`;
+  document.getElementById('prompt-estacao').textContent = ESTACOES[est] || '?';
+}
+
+// === Cardápio scroll horizontal ===
+function renderObrasScroll() {
+  const wrap = document.getElementById('obras-scroll');
+  wrap.innerHTML = CARDAPIO_30.map(([slug, titulo, autor]) => `
+    <a class="obra-card" href="../c/${slug}/">
+      <img src="../cards/${slug}.svg" alt="${titulo}" loading="lazy" onerror="this.style.background='var(--ink-2)'">
+      <div class="meta"><div>${titulo}</div><div class="autor">${autor}</div></div>
+    </a>
+  `).join('');
+}
+
+// === Lista obras (acervo) ===
+async function loadObrasList() {
+  window._obrasLoaded = true;
+  const el = document.getElementById('obras-list');
+  el.innerHTML = '<div class="card"><p style="opacity:.6">carregando…</p></div>';
   try {
-    const r = await fetch(HEALTH_URL + "?_=" + Date.now());
+    const r = await fetch(RAG + '/stats?_=' + Date.now(), { cache: 'no-store' });
     const d = await r.json();
-    const dia = d.ciclo.dia;
-    const estIdx = d.ciclo.estacao_idx;
-    document.getElementById("cycle").textContent = `dia ${dia}/${d.ciclo.total}`;
-    document.getElementById("hoje-titulo").textContent = `${ESTACOES[estIdx]} · lente: ${LENTES_DIA[dia % LENTES_DIA.length]}`;
-    document.getElementById("hoje-meta").textContent = `Estação ${estIdx+1}/18 · ciclo ${d.ciclo.inicio} → ${d.ciclo.fim}`;
-    const c = d.rag;
-    document.getElementById("sysinfo").innerHTML = `
-      <div class="chip green">RAG ${c.estado_aprox.chunks.toLocaleString()} chunks</div>
-      <div class="chip green">${c.estado_aprox.integrais} obras 🟢</div>
-      <div class="chip green">Apps Script ${d.infra.apps_script_deploy}</div>
-      <div class="chip yellow">Frente 1: ${d.frentes_v16_0?.["1_obras_integrais"]?.desc || "-"}</div>
-    `;
-    sugestaoDoDia(dia);
+    el.innerHTML = (d.top_obras || []).slice(0, 30).map(o => `
+      <div class="list-item">
+        <div class="t">${(o.source || '').replace('.pdf','').substring(0, 50)}</div>
+        <div class="c">${o.count}<br>chunks</div>
+      </div>
+    `).join('');
   } catch (e) {
-    document.getElementById("sysinfo").innerHTML = `<div class="chip red">offline</div>`;
+    el.innerHTML = '<div class="card"><p style="color:var(--red)">RAG offline · ' + e.message + '</p></div>';
   }
 }
 
-const SUGESTOES_16 = [
-  ["Freud · Interpretação dos Sonhos", "trecho integral comentado · /citacao Freud"],
-  ["Mapa conceitual: o desejo em Lacan", "5 conceitos centrais · grafo"],
-  ["Klein × Lacan · objeto a", "disputa teórica · base bibliográfica"],
-  ["MPMG · caso real", "aplicação operacional · conectar autor"],
-  ["Cápsula 300 chars", "WhatsApp-ready · /capsula"],
-  ["Trilha 7 dias · Stoicismo", "sequência encadeada"],
-  ["Glossário · 5 termos", "ipsis litteris"],
-  ["Pergunta socrática", "3 perguntas · sem resposta direta"],
-  ["Pomodoro NEXUS", "25min foco + 5min reflexão"],
-  ["Lab decisões", "dilema → 4 perspectivas + viés"],
-  ["Conversa difícil simulada", "interlocutor X · roteiro"],
-  ["Memory palace", "Yates/O'Brien · 5 imagens-loci"],
-  ["Card visual 1080×1920", "prompt SVG"],
-  ["Insight cruzado", "2 obras · campos distintos"],
-  ["Audio aula", "TTS · 3-5 min"],
-  ["Quiz cold-reading", "5 perguntas Mentalist"]
-];
-function sugestaoDoDia(dia) {
-  const [titulo, hint] = SUGESTOES_16[dia % 16];
-  document.getElementById("hoje-mergulho").innerHTML = `
-    <div style="margin-top:12px"><b>📖 Mergulho do dia:</b> ${titulo}</div>
-    <div class="hint">${hint}</div>
-  `;
+// === Sistema status ===
+async function loadHealth() {
+  try {
+    const r = await fetch(HEALTH_URL + "?_=" + Date.now(), { cache: 'no-store' });
+    const d = await r.json();
+    const dia = d.ciclo.dia, est = d.ciclo.estacao_idx;
+    renderHoje(dia, est);
+    const c = d.rag;
+    document.getElementById('kpi-chunks').textContent = (c.estado_aprox.chunks || 0).toLocaleString('pt-BR');
+    document.getElementById('kpi-obras').textContent = c.estado_aprox.obras || '?';
+    document.getElementById('kpi-int').textContent = c.estado_aprox.integrais || '?';
+    document.getElementById('sysinfo').innerHTML = `
+      <div class="row"><span class="lab">RAG</span><span class="v">🟢 ${c.estado_aprox.chunks.toLocaleString('pt-BR')} chunks</span></div>
+      <div class="row"><span class="lab">obras integrais</span><span class="v">${c.estado_aprox.integrais}</span></div>
+      <div class="row"><span class="lab">apps script</span><span class="v">${d.infra.apps_script_deploy}</span></div>
+      <div class="row"><span class="lab">cardápio</span><span class="v">30/30 trio</span></div>
+    `;
+    document.body.classList.remove('offline');
+  } catch (e) {
+    // Fallback offline · usa data atual + último cache
+    const inicio = new Date('2026-04-02');
+    const hoje = new Date();
+    const diaAprox = Math.floor((hoje - inicio) / 86400000) + 1;
+    renderHoje(diaAprox, Math.min(17, Math.floor((diaAprox - 1) / 16)));
+    document.getElementById('kpi-chunks').textContent = '63.526';
+    document.getElementById('kpi-obras').textContent = '82';
+    document.getElementById('kpi-int').textContent = '74';
+    document.getElementById('sysinfo').innerHTML = '<div class="row"><span class="lab">status</span><span class="v" style="color:var(--yellow)">offline · cache</span></div>';
+    document.body.classList.add('offline');
+  }
 }
 
+// === RAG ask ===
 async function ragAsk() {
-  const q = document.getElementById("q").value.trim();
+  const q = document.getElementById('q').value.trim();
   if (!q) return;
-  const out = document.getElementById("results");
-  out.innerHTML = `<div class="card"><h2>Buscando…</h2></div>`;
+  const out = document.getElementById('results');
+  out.innerHTML = '<div class="card"><p>buscando…</p></div>';
   try {
-    const r = await fetch(RAG + "/ask", {
-      method: "POST",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({q, top_k: 5})
-    });
+    const r = await fetch(RAG + "/ask", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({q, top_k: 5}) });
     const d = await r.json();
-    out.innerHTML = "";
+    out.innerHTML = '';
     (d.results || []).forEach(h => {
-      const score = (h.score || 0).toFixed(2);
       const flag = h.score > 0.5 ? "🟢" : (h.score > 0.3 ? "🟡" : "🔴");
-      out.innerHTML += `
-        <div class="card">
-          <div class="chip">${h.autor || "?"}</div>
-          <div class="chip">${h.titulo || h.obra || "?"}</div>
-          <div class="chip">${flag} ${score}</div>
-          ${h.page_start ? `<div class="chip">p. ${h.page_start}-${h.page_end}</div>` : ""}
-          <div class="cite">${(h.text || "").slice(0, 600)}…</div>
+      out.innerHTML += `<div class="rcard">
+        <div class="chips">
+          <span class="chip">${(h.autor || '?').substring(0, 20)}</span>
+          <span class="chip">${flag} ${(h.score || 0).toFixed(2)}</span>
+          ${h.page_start ? '<span class="chip">p.' + h.page_start + '</span>' : ''}
         </div>
-      `;
+        <div class="cite">${(h.text || '').substring(0, 400)}…</div>
+      </div>`;
     });
-    if (!d.results || !d.results.length) out.innerHTML = `<div class="card"><h2>Sem resultados</h2></div>`;
+    if (!d.results || !d.results.length) out.innerHTML = '<div class="card"><p>sem resultados</p></div>';
   } catch (e) {
-    out.innerHTML = `<div class="card"><h2 class="red">Erro</h2><pre>${e.message}</pre></div>`;
+    out.innerHTML = '<div class="card"><p style="color:var(--red)">erro · ' + e.message + '</p></div>';
   }
 }
 document.getElementById("q")?.addEventListener("keydown", e => { if (e.key === "Enter") ragAsk(); });
 
+// === Glossário ===
 async function loadGloss() {
   window._glossLoaded = true;
   try {
     const r = await fetch("../home/glossario.json?_=" + Date.now()).catch(() => null);
     if (!r || !r.ok) {
-      document.getElementById("gloss-list").innerHTML = `<div class="card"><p>Glossário ainda não publicado · use Cortex /glossario</p></div>`;
+      document.getElementById('gloss-list').innerHTML = '<div class="card"><p>glossário ainda não publicado · use Cortex /glossario</p></div>';
       return;
     }
     window._gloss = await r.json();
     renderGloss(window._gloss);
   } catch (e) {
-    document.getElementById("gloss-list").innerHTML = `<div class="card red">Erro: ${e.message}</div>`;
+    document.getElementById('gloss-list').innerHTML = '<div class="card"><p style="color:var(--red)">erro: ' + e.message + '</p></div>';
   }
 }
 function renderGloss(items) {
-  const out = items.map(it => `
+  document.getElementById('gloss-list').innerHTML = (items || []).slice(0, 40).map(it => `
     <div class="card">
-      <h3>${it.termo}</h3>
-      <div class="chip">${it.autor || "?"}</div>
-      <div class="chip">${it.campo || "?"}</div>
-      <p style="margin-top:8px">${it.definicao || ""}</p>
+      <h2>${it.termo}</h2>
+      <p><b style="color:var(--gold)">${it.autor || '?'}</b> · ${it.campo || '?'}</p>
+      <p style="margin-top:6px">${it.definicao || ''}</p>
     </div>
-  `).join("");
-  document.getElementById("gloss-list").innerHTML = out || `<div class="card">Vazio</div>`;
+  `).join('') || '<div class="card"><p>vazio</p></div>';
 }
 function filterGloss() {
-  const q = document.getElementById("gloss-q").value.toLowerCase();
+  const q = document.getElementById('gloss-q').value.toLowerCase();
   if (!window._gloss) return;
-  renderGloss(window._gloss.filter(it => (it.termo + " " + (it.autor||"") + " " + (it.definicao||"")).toLowerCase().includes(q)));
+  renderGloss(window._gloss.filter(it => (it.termo + " " + (it.autor||'') + " " + (it.definicao||'')).toLowerCase().includes(q)));
 }
 
-async function loadDiario() {
-  window._diarioLoaded = true;
-  document.getElementById("diario-list").innerHTML = `<div class="hint">Funcionalidade plena via Cortex /diario</div>`;
-}
+// === Diário ===
 async function diarioSave() {
-  const text = document.getElementById("diario-text").value.trim();
+  const text = document.getElementById('diario-text').value.trim();
   if (!text) return;
-  alert("Para registrar permanentemente, use: WhatsApp /diario " + text + " · ou Cortex iOS");
+  alert("Para registrar permanentemente, use:\nWhatsApp /diario " + text + "\nou Cortex iOS");
 }
 
+// === Copy prompt ===
 async function copyPrompt() {
   try {
-    const r = await fetch("https://nexuscaldeira.com/prompt-v67.md?_=" + Date.now());
+    const r = await fetch("../prompt-v67.md?_=" + Date.now());
     const txt = await r.text();
     await navigator.clipboard.writeText(txt);
-    alert("System Prompt v6.7 copiado · cole nas Custom Instructions do Cortex iOS");
+    alert("✅ System Prompt v6.7 copiado · cole nas Custom Instructions do Cortex iOS");
   } catch (e) {
-    alert("Falha: " + e.message + "\nAbra: nexuscaldeira.com/prompt-v67.md");
+    alert("falha · abra: nexuscaldeira.com/prompt-v67.md");
   }
 }
 
+// === SW ===
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("../sw.js").catch(() => {});
 }
 
+// === Connection check ===
+window.addEventListener('online', () => { document.body.classList.remove('offline'); loadHealth(); });
+window.addEventListener('offline', () => document.body.classList.add('offline'));
+
+// Init
+renderObrasScroll();
 loadHealth();
 </script>
+
 </body>
 </html>

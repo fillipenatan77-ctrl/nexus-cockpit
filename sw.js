@@ -1,6 +1,6 @@
-// NEXUS Home · Service Worker v4 (v16.0 Onda 3.4 · offline total · 30 fichas + 30 cards + /v16/ + páginas)
-const CACHE = 'nexus-home-v4';
-const RUNTIME = 'nexus-runtime-v4';
+// NEXUS · Service Worker v5 (v16.0 hub premium · 30 obras + dashboard + offline-first)
+const CACHE = 'nexus-home-v5';
+const RUNTIME = 'nexus-runtime-v5';
 
 // 16 obras integrais (slugs e arquivos canônicos)
 const OBRAS_FILES = [
