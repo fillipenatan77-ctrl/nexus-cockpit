@@ -58,9 +58,9 @@
     "ingestao_em_curso": false,
     "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
     "estado_aprox": {
-      "chunks": 63526,
-      "obras": 82,
-      "integrais": 74,
+      "chunks": 64552,
+      "obras": 88,
+      "integrais": 78,
       "cardapio_30": 30,
       "cardapio_30_trio_completo": 30
     }
