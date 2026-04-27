@@ -105,6 +105,12 @@ main{flex:1;display:flex;flex-direction:column;align-items:center;justify-conten
     <div class="next-date" id="next-date"></div>
     <div style="margin-top:24px"><a class="crumb" href="../">voltar ao hub</a></div>
   </div>
+
+  <!-- Footer · export Anki .csv + reset state -->
+  <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--gold-faint);display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+    <button class="btn-q q3" style="padding:10px 14px;font-size:9px" onclick="exportAnki()">⬇ exportar Anki (.csv)</button>
+    <button class="btn-q q1" style="padding:10px 14px;font-size:9px" onclick="resetState()">↺ reset progresso</button>
+  </div>
 </main>
 
 <div class="session-bar" id="session-bar">
@@ -304,6 +310,31 @@ function responder(q) {
   }
   idx++;
   setTimeout(loadCard, 250);
+}
+
+// Export Anki · CSV format compatible with Anki desktop import (Front;Back;Tags)
+function exportAnki() {
+  const rows = [['#separator:semicolon','#html:false','#tags column:3'].join('\n')];
+  rows.push('Front;Back;Tags');
+  for (const [slug,obra,autor,front,back] of CARDAPIO_REV) {
+    const f = front.replace(/;/g,',').replace(/\n/g,' ');
+    const b = (back + '\\n— ' + autor + ', ' + obra).replace(/;/g,',').replace(/\n/g,' ');
+    const tags = 'NEXUS ' + slug;
+    rows.push([f,b,tags].join(';'));
+  }
+  const csv = rows.join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'NEXUS_FSRS_' + new Date().toISOString().substring(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function resetState() {
+  if (!confirm('Resetar todo progresso FSRS-5? Não pode ser desfeito.')) return;
+  localStorage.removeItem(STORE_KEY);
+  location.reload();
 }
 
 // Init

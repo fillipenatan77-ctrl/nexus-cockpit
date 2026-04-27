@@ -520,6 +520,18 @@ async function ragAsk() {
 }
 document.getElementById("q")?.addEventListener("keydown", e => { if (e.key === "Enter") ragAsk(); });
 
+// === Web Vitals RUM lite (LCP · CLS · INP) · console-only · zero deps ===
+(function rumLite(){
+  if (!('PerformanceObserver' in window)) return;
+  const M = { lcp:0, cls:0, inp:0, ttfb:0 };
+  try { const nav = performance.getEntriesByType('navigation')[0]; if(nav) M.ttfb = Math.round(nav.responseStart - nav.requestStart); } catch(_){ }
+  try { new PerformanceObserver((list)=>{ const e = list.getEntries().pop(); if(e) M.lcp = Math.round(e.startTime); }).observe({type:'largest-contentful-paint', buffered:true}); } catch(_){ }
+  try { let cls=0; new PerformanceObserver((list)=>{ for(const e of list.getEntries()) if(!e.hadRecentInput) cls += e.value; M.cls = +cls.toFixed(3); }).observe({type:'layout-shift', buffered:true}); } catch(_){ }
+  try { let max=0; new PerformanceObserver((list)=>{ for(const e of list.getEntries()) if(e.duration>max) max = e.duration; M.inp = Math.round(max); }).observe({type:'event', buffered:true, durationThreshold:40}); } catch(_){ }
+  // dump em window.NEXUS_RUM 8s após load (DevTools inspectionável)
+  addEventListener('load', ()=>setTimeout(()=>{ window.NEXUS_RUM = {...M, ts:new Date().toISOString(), path:location.pathname}; console.log('NEXUS RUM:', window.NEXUS_RUM); }, 8000));
+})();
+
 // === Voice UI · Web Speech API · pt-BR ===
 (function initVoiceUI(){
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
