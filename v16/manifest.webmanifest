@@ -23,6 +23,7 @@
     { "src": "../icons/apple-touch-icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
   ],
   "shortcuts": [
+    { "name": "NEXVS · 24 telas live", "short_name": "NEXVS", "url": "/v16/standalone/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Cards 30 obras", "short_name": "Cards", "url": "/v16/cards/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Buscar acervo", "short_name": "RAG", "url": "/v16/?tab=acervo", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Agenda 7d", "short_name": "Agenda", "url": "/v16/agenda/", "icons": [{ "src": "../icons/icon-192.png", "sizes": "192x192" }] },
