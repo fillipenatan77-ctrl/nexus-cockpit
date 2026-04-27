@@ -22,7 +22,7 @@
       "/admin/ingest_chunks",
       "/admin/delete_sources"
     ],
-    "apps_script": "https://script.google.com/macros/s/AKfycbxLeb75T98CoHNIjFoATUFZnSDWHa_3kcjb_w94aPaR-yrQLQnwpv0HzzEXhrHCo8XB/exec",
+    "apps_script": "https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec",
     "github": {
       "privado": "https://github.com/fillipenatan77-ctrl/NEXUS",
       "publico": "https://github.com/fillipenatan77-ctrl/nexus-cockpit"
