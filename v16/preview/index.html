@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXUS · preview iOS 26 · v17.0</title>
+<meta name="theme-color" content="#0F0E17">
+<style>
+:root{--ink:#0F0E17;--bone:#F0EAE4;--gold:#B8935A}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text',sans-serif;min-height:100vh}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+.wrap{max-width:1400px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;gap:8px;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid rgba(184,147,90,.3);border-radius:999px}
+header{margin:18px 0 24px;text-align:center}
+.eyebrow{font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:8px}
+h1{font-family:Georgia,serif;font-size:30px;font-weight:400;line-height:1.1}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:rgba(240,234,228,.6);max-width:540px;margin-left:auto;margin-right:auto}
+.stage{display:flex;flex-wrap:wrap;gap:30px;justify-content:center;align-items:flex-start;margin-top:30px}
+.label{margin-top:14px;text-align:center;font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);opacity:.75}
+.slot{display:flex;flex-direction:column;align-items:center}
+.foot{margin-top:60px;text-align:center;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.15em;color:var(--gold);opacity:.5;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 6px;text-decoration:none}
+@media (max-width:768px){.stage{gap:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ preview iOS 26 · liquid glass · NEXUS v17.0</div>
+    <h1>Preview · 3 telas NEXUS</h1>
+    <p class="lead">Components iOS 26 (Claude Design) aplicados aos tokens NEXUS · preview live com React.</p>
+  </header>
+
+  <div id="root" class="stage"></div>
+
+  <div class="foot">
+    NEXUS v17 · <a href="../">v16</a> · <a href="../design/">design system</a> · <a href="../cards/">cards</a>
+  </div>
+</div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+// Inline iOS components (runtime · sem import)
+const { useState } = React;
+
+function IOSStatusBar({ dark = false, time = '9:41' }) {
+  const c = dark ? '#fff' : '#000';
+  return (
+    <div style={{display:'flex',gap:154,alignItems:'center',justifyContent:'center',padding:'21px 24px 19px',boxSizing:'border-box',position:'relative',zIndex:20,width:'100%'}}>
+      <div style={{flex:1,height:22,display:'flex',alignItems:'center',justifyContent:'center',paddingTop:1.5}}>
+        <span style={{fontFamily:'-apple-system,"SF Pro",system-ui',fontWeight:590,fontSize:17,lineHeight:'22px',color:c}}>{time}</span>
+      </div>
+      <div style={{flex:1,height:22,display:'flex',alignItems:'center',justifyContent:'center',gap:7,paddingTop:1,paddingRight:1}}>
+        <svg width="19" height="12" viewBox="0 0 19 12">
+          <rect x="0" y="7.5" width="3.2" height="4.5" rx="0.7" fill={c}/>
+          <rect x="4.8" y="5" width="3.2" height="7" rx="0.7" fill={c}/>
+          <rect x="9.6" y="2.5" width="3.2" height="9.5" rx="0.7" fill={c}/>
+          <rect x="14.4" y="0" width="3.2" height="12" rx="0.7" fill={c}/>
+        </svg>
+        <svg width="17" height="12" viewBox="0 0 17 12">
+          <path d="M8.5 3.2C10.8 3.2 12.9 4.1 14.4 5.6L15.5 4.5C13.7 2.7 11.2 1.5 8.5 1.5C5.8 1.5 3.3 2.7 1.5 4.5L2.6 5.6C4.1 4.1 6.2 3.2 8.5 3.2Z" fill={c}/>
+          <path d="M8.5 6.8C9.9 6.8 11.1 7.3 12 8.2L13.1 7.1C11.8 5.9 10.2 5.1 8.5 5.1C6.8 5.1 5.2 5.9 3.9 7.1L5 8.2C5.9 7.3 7.1 6.8 8.5 6.8Z" fill={c}/>
+          <circle cx="8.5" cy="10.5" r="1.5" fill={c}/>
+        </svg>
+        <svg width="27" height="13" viewBox="0 0 27 13">
+          <rect x="0.5" y="0.5" width="23" height="12" rx="3.5" stroke={c} strokeOpacity="0.35" fill="none"/>
+          <rect x="2" y="2" width="20" height="9" rx="2" fill={c}/>
+          <path d="M25 4.5V8.5C25.8 8.2 26.5 7.2 26.5 6.5C26.5 5.8 25.8 4.8 25 4.5Z" fill={c} fillOpacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function IOSGlassPill({ children, dark = false, style = {} }) {
+  return (
+    <div style={{height:44,minWidth:44,borderRadius:9999,position:'relative',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:dark?'0 2px 6px rgba(0,0,0,0.35)':'0 1px 3px rgba(0,0,0,0.07)',...style}}>
+      <div style={{position:'absolute',inset:0,borderRadius:9999,backdropFilter:'blur(12px) saturate(180%)',WebkitBackdropFilter:'blur(12px) saturate(180%)',background:dark?'rgba(120,120,128,0.28)':'rgba(255,255,255,0.5)'}}/>
+      <div style={{position:'absolute',inset:0,borderRadius:9999,boxShadow:dark?'inset 1.5px 1.5px 1px rgba(255,255,255,0.15)':'inset 1.5px 1.5px 1px rgba(255,255,255,0.7), inset -1px -1px 1px rgba(255,255,255,0.4)',border:dark?'0.5px solid rgba(255,255,255,0.15)':'0.5px solid rgba(0,0,0,0.06)'}}/>
+      <div style={{position:'relative',zIndex:1,display:'flex',alignItems:'center',padding:'0 4px'}}>{children}</div>
+    </div>
+  );
+}
+
+function IOSNavBar({ title='Title', dark=false }) {
+  const muted = dark?'rgba(255,255,255,0.6)':'#404040';
+  const text = dark?'#fff':'#000';
+  return (
+    <div style={{display:'flex',flexDirection:'column',gap:10,paddingTop:62,paddingBottom:10,position:'relative',zIndex:5}}>
+      <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'0 16px'}}>
+        <IOSGlassPill dark={dark}><div style={{width:36,height:36,display:'flex',alignItems:'center',justifyContent:'center'}}><svg width="12" height="20" viewBox="0 0 12 20" fill="none" style={{marginLeft:-1}}><path d="M10 2L2 10l8 8" stroke={muted} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg></div></IOSGlassPill>
+        <IOSGlassPill dark={dark}><div style={{width:36,height:36,display:'flex',alignItems:'center',justifyContent:'center'}}><svg width="22" height="6" viewBox="0 0 22 6"><circle cx="3" cy="3" r="2.5" fill={muted}/><circle cx="11" cy="3" r="2.5" fill={muted}/><circle cx="19" cy="3" r="2.5" fill={muted}/></svg></div></IOSGlassPill>
+      </div>
+      <div style={{padding:'0 16px',fontFamily:'Georgia,serif',fontSize:34,fontWeight:600,lineHeight:'41px',color:'#B8935A',letterSpacing:0.4}}>{title}</div>
+    </div>
+  );
+}
+
+function IOSListRow({ title, detail, icon, chevron=true, isLast=false, dark=false }) {
+  const text = dark?'#fff':'#000';
+  const sec = dark?'rgba(235,235,245,0.6)':'rgba(60,60,67,0.6)';
+  const ter = dark?'rgba(235,235,245,0.3)':'rgba(60,60,67,0.3)';
+  const sep = dark?'rgba(84,84,88,0.65)':'rgba(60,60,67,0.12)';
+  return (
+    <div style={{display:'flex',alignItems:'center',minHeight:52,padding:'0 16px',position:'relative',fontFamily:'Georgia,serif',fontSize:16,letterSpacing:-0.2}}>
+      {icon && <div style={{width:30,height:30,borderRadius:7,background:icon,marginRight:12,flexShrink:0}}/>}
+      <div style={{flex:1,color:text}}>{title}</div>
+      {detail && <span style={{color:sec,marginRight:6,fontFamily:"'SF Mono',monospace",fontSize:11,letterSpacing:'.05em'}}>{detail}</span>}
+      {chevron && <svg width="8" height="14" viewBox="0 0 8 14" style={{flexShrink:0}}><path d="M1 1l6 6-6 6" stroke={ter} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+      {!isLast && <div style={{position:'absolute',bottom:0,right:0,left:icon?58:16,height:0.5,background:sep}}/>}
+    </div>
+  );
+}
+
+function IOSList({ header, children, dark=false }) {
+  const hc = dark?'rgba(235,235,245,0.6)':'rgba(60,60,67,0.6)';
+  const bg = dark?'#1C1C1E':'#fff';
+  return (
+    <div>
+      {header && <div style={{fontFamily:"'SF Mono',monospace",fontSize:11,color:hc,textTransform:'uppercase',padding:'8px 36px 6px',letterSpacing:'.18em'}}>{header}</div>}
+      <div style={{background:bg,borderRadius:26,margin:'0 16px',overflow:'hidden'}}>{children}</div>
+    </div>
+  );
+}
+
+function IOSDevice({ children, width=380, height=820, dark=false, title }) {
+  return (
+    <div style={{width,height,borderRadius:48,overflow:'hidden',position:'relative',background:dark?'#0F0E17':'#F2F2F7',boxShadow:'0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(184,147,90,0.2)',fontFamily:'-apple-system,system-ui,sans-serif',WebkitFontSmoothing:'antialiased'}}>
+      <div style={{position:'absolute',top:11,left:'50%',transform:'translateX(-50%)',width:126,height:37,borderRadius:24,background:'#000',zIndex:50}}/>
+      <div style={{position:'absolute',top:0,left:0,right:0,zIndex:10}}><IOSStatusBar dark={dark}/></div>
+      <div style={{height:'100%',display:'flex',flexDirection:'column'}}>
+        {title!==undefined && <IOSNavBar title={title} dark={dark}/>}
+        <div style={{flex:1,overflow:'auto'}}>{children}</div>
+      </div>
+      <div style={{position:'absolute',bottom:0,left:0,right:0,zIndex:60,height:34,display:'flex',justifyContent:'center',alignItems:'flex-end',paddingBottom:8,pointerEvents:'none'}}>
+        <div style={{width:139,height:5,borderRadius:100,background:dark?'rgba(255,255,255,0.7)':'rgba(0,0,0,0.25)'}}/>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// 3 telas NEXUS · usando os components com tokens NEXUS
+// ============================================================
+
+function TelaHoje() {
+  const goldGrad = 'linear-gradient(135deg, #D4A668, #B8935A, #7d6644)';
+  return (
+    <IOSDevice title="NEXUS" dark>
+      <div style={{padding:'0 16px 16px'}}>
+        <div style={{padding:'18px 20px',borderRadius:18,background:'linear-gradient(135deg,rgba(184,147,90,.15) 0%,rgba(15,14,23,.5) 70%)',border:'1px solid rgba(184,147,90,.3)',marginBottom:14}}>
+          <div style={{fontFamily:"'SF Mono',monospace",fontSize:10,letterSpacing:'.22em',color:'#B8935A',textTransform:'uppercase',marginBottom:6}}>domingo · síntese · dia 25/272</div>
+          <div style={{fontFamily:'Georgia,serif',fontSize:22,fontWeight:500,color:'#F0EAE4',lineHeight:1.2,marginBottom:4}}>Marco Aurélio · Meditações</div>
+          <div style={{fontFamily:'Georgia,serif',fontSize:13,fontStyle:'italic',color:'rgba(240,234,228,.65)'}}>366 chunks · estação 5 Bússola Inversa</div>
+          <div style={{marginTop:12,paddingTop:10,borderTop:'1px solid rgba(184,147,90,.2)',fontFamily:'Georgia,serif',fontStyle:'italic',fontSize:13,color:'rgba(240,234,228,.7)',lineHeight:1.5}}>
+            "Tudo o que se move é movido por outro."
+            <div style={{marginTop:5,fontStyle:'normal',fontFamily:"'SF Mono',monospace",fontSize:9,letterSpacing:'.12em',color:'#B8935A',opacity:.75,textTransform:'uppercase'}}>— Aquino · Suma I, q.2</div>
+          </div>
+        </div>
+      </div>
+      <IOSList header="Cardápio · 30 obras" dark>
+        <IOSListRow title="Marco Aurélio · Meditações" detail="366" icon={goldGrad} dark/>
+        <IOSListRow title="Cialdini · Influence" detail="271" icon={goldGrad} dark/>
+        <IOSListRow title="Greene · Sedução" detail="1.746" icon={goldGrad} dark/>
+        <IOSListRow title="Aquino · Suma I" detail="4.398" icon={goldGrad} dark/>
+        <IOSListRow title="Lacan · Sem 21" detail="196" icon={goldGrad} isLast dark/>
+      </IOSList>
+      <div style={{height:14}}/>
+      <IOSList header="KPIs sistema" dark>
+        <IOSListRow title="chunks RAG" detail="64.552" dark chevron={false}/>
+        <IOSListRow title="obras integrais" detail="78" dark chevron={false}/>
+        <IOSListRow title="apps script" detail="@176" dark chevron={false}/>
+        <IOSListRow title="trio completo" detail="30/30" isLast dark chevron={false}/>
+      </IOSList>
+    </IOSDevice>
+  );
+}
+
+function TelaAcervo() {
+  const goldGrad = 'linear-gradient(135deg, #D4A668, #B8935A, #7d6644)';
+  return (
+    <IOSDevice title="Acervo" dark>
+      <div style={{padding:'0 16px 14px'}}>
+        <div style={{padding:'14px 16px',borderRadius:14,background:'rgba(184,147,90,.06)',border:'1px solid rgba(184,147,90,.15)'}}>
+          <div style={{fontFamily:"'SF Mono',monospace",fontSize:10,letterSpacing:'.18em',color:'#B8935A',textTransform:'uppercase',opacity:.85,marginBottom:8}}>buscar · 2-stage hybrid + reranked</div>
+          <input placeholder="ex: Nachträglichkeit?" style={{width:'100%',padding:'10px 12px',background:'#14131E',border:'1px solid rgba(184,147,90,.2)',borderRadius:10,color:'#F0EAE4',fontSize:14,fontFamily:'Georgia,serif',outline:'none',boxSizing:'border-box'}}/>
+        </div>
+      </div>
+      <IOSList header="Top 5 resultados · probe 'recalque'" dark>
+        <IOSListRow title="Lacan · Sem 21 · Non-Dupes" detail="🟢 0.578" icon={goldGrad} dark/>
+        <IOSListRow title="Ferreira · Lacan e Joyce" detail="🟢 0.577" icon={goldGrad} dark/>
+        <IOSListRow title="Lacan/Joyce · Simbólico" detail="🟢 0.576" icon={goldGrad} dark/>
+        <IOSListRow title="Neves · Citações Freud" detail="🟢 0.553" icon={goldGrad} dark/>
+        <IOSListRow title="Freud · Interpretação" detail="🟢 0.541" icon={goldGrad} isLast dark/>
+      </IOSList>
+    </IOSDevice>
+  );
+}
+
+function TelaPrompt() {
+  return (
+    <IOSDevice title="System v6.7" dark>
+      <div style={{padding:'8px 16px 14px'}}>
+        <div style={{padding:'16px',borderRadius:14,background:'rgba(184,147,90,.08)',border:'1px solid rgba(184,147,90,.25)'}}>
+          <div style={{fontFamily:'Georgia,serif',fontSize:15,fontWeight:600,color:'#D4A668',marginBottom:6}}>⚙️ system prompt v6.7</div>
+          <div style={{fontFamily:'Georgia,serif',fontSize:12,color:'rgba(240,234,228,.65)',marginBottom:10,lineHeight:1.5}}>Cortex iOS · Custom Instructions do Project NEXUS · 31.136 bytes</div>
+          <button style={{width:'100%',padding:'11px',borderRadius:10,background:'#B8935A',color:'#0F0E17',border:'none',fontFamily:"'SF Mono',monospace",fontSize:11,letterSpacing:'.1em',textTransform:'uppercase',fontWeight:600}}>📋 copiar tudo</button>
+        </div>
+      </div>
+      <IOSList header="Ciclo PRIMORDIA" dark>
+        <IOSListRow title="dia" detail="25/272" dark chevron={false}/>
+        <IOSListRow title="estação" detail="Bússola Inversa" dark chevron={false}/>
+        <IOSListRow title="apps script" detail="@176" dark chevron={false}/>
+        <IOSListRow title="cardápio trio" detail="30/30" isLast dark chevron={false}/>
+      </IOSList>
+      <div style={{height:14}}/>
+      <IOSList header="Endpoints v17" dark>
+        <IOSListRow title="/ask_reranked" detail="2-stage" dark/>
+        <IOSListRow title="/ask_hybrid" detail="BM25+dense" dark/>
+        <IOSListRow title="/bm25/rebuild" detail="admin" isLast dark/>
+      </IOSList>
+    </IOSDevice>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <div className="slot"><TelaHoje/><div className="label">01 · hoje</div></div>
+      <div className="slot"><TelaAcervo/><div className="label">02 · acervo</div></div>
+      <div className="slot"><TelaPrompt/><div className="label">03 · prompt</div></div>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

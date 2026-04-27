@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NEXVS · 19 telas · Claude Design output</title>
+<meta name="theme-color" content="#0F0E17">
+<style>
+:root{--ink:#0F0E17;--ink-1:#14131E;--bone:#F0EAE4;--bone-dim:rgba(240,234,228,.65);--bone-faint:rgba(240,234,228,.4);--gold:#B8935A;--gold-light:#D4A668;--gold-soft:rgba(184,147,90,.3);--gold-faint:rgba(184,147,90,.12);--green:#7df3a3;--yellow:#ffd803;--red:#e53170}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text','Inter',sans-serif;min-height:100vh}
+body{padding:env(safe-area-inset-top) 0 calc(env(safe-area-inset-bottom) + 30px) 0;background:radial-gradient(ellipse at top,#1a1530 0%,var(--ink) 60%)}
+.wrap{max-width:1400px;margin:0 auto;padding:18px}
+.crumb{display:inline-flex;gap:8px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;text-decoration:none;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:999px}
+header{margin:18px 0 28px;text-align:center}
+.eyebrow{font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;opacity:.85}
+h1{font-family:Georgia,'Crimson Pro',serif;font-size:34px;font-weight:400;line-height:1.05;letter-spacing:.02em}
+.lead{margin-top:14px;font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone-dim);max-width:580px;margin-left:auto;margin-right:auto;line-height:1.6}
+
+.frasco-h{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin:36px 0 14px;text-align:center;opacity:.85}
+.frasco-h::before,.frasco-h::after{content:'§';color:var(--gold);opacity:.4;margin:0 14px}
+
+.stage{display:flex;flex-wrap:wrap;gap:24px;justify-content:center;margin-bottom:18px}
+
+.iphone{width:340px;height:720px;border-radius:46px;background:#000;position:relative;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5),0 0 0 1px rgba(184,147,90,.18)}
+.iphone .screen{position:absolute;inset:0;background:var(--ink);border-radius:46px;overflow:hidden;display:flex;flex-direction:column}
+.iphone .island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:108px;height:32px;border-radius:20px;background:#000;z-index:50}
+.iphone .home-ind{position:absolute;bottom:7px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:100px;background:rgba(255,255,255,.5);z-index:50}
+.iphone .status{padding:14px 22px 8px;display:flex;justify-content:space-between;color:#fff;font-family:'SF Pro',system-ui;font-size:14px;font-weight:600;z-index:10}
+.iphone .body{flex:1;overflow:auto;padding:16px;-webkit-overflow-scrolling:touch}
+.iphone .body::-webkit-scrollbar{display:none}
+
+.label{margin-top:12px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);opacity:.85}
+.slot{display:flex;flex-direction:column;align-items:center}
+
+/* === conteúdos das telas === */
+.brand-mark{font-family:'Crimson Pro',Georgia,serif;font-size:42px;font-weight:500;color:var(--bone);text-align:center;letter-spacing:.04em;margin-top:22px}
+.brand-sub{font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--bone-dim);text-align:center;margin-top:6px;line-height:1.5}
+.cap-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.32em;color:var(--gold);text-transform:uppercase;text-align:center;opacity:.85}
+.cap-eyebrow::before,.cap-eyebrow::after{content:'·';margin:0 8px;opacity:.5}
+.divisor{display:flex;align-items:center;justify-content:center;margin:18px 0;color:var(--gold);font-size:14px}
+.divisor::before,.divisor::after{content:'';flex:1;height:1px;background:var(--gold-faint);margin:0 14px}
+
+.citacao{font-family:Georgia,serif;font-style:italic;font-size:16px;color:var(--bone);text-align:center;line-height:1.5;padding:0 14px;margin-top:14px}
+.citacao-src{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--gold);text-align:center;text-transform:uppercase;opacity:.85}
+
+.itens-list{margin-top:22px;display:flex;flex-direction:column;gap:14px;padding:0 4px}
+.it{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--gold-faint)}
+.it:last-child{border:none}
+.it-num{font-family:'Crimson Pro',Georgia,serif;font-size:18px;font-style:italic;color:var(--gold);width:24px;flex-shrink:0}
+.it-txt{flex:1}
+.it-titulo{font-family:Georgia,serif;font-size:15px;color:var(--bone)}
+.it-meta{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.75;margin-top:2px}
+
+.btn-prim{margin:18px 14px 8px;padding:13px;background:linear-gradient(180deg,#D4A668 0%,#B8935A 100%);color:var(--ink);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-align:center;text-transform:uppercase;font-weight:600;display:block;text-decoration:none}
+.foot-ver{text-align:center;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.2em;color:var(--gold);opacity:.55;text-transform:uppercase;margin-top:12px}
+
+/* HUB grid */
+.hub-titulo{padding:14px 16px 10px;border:1px solid var(--gold-soft);border-radius:8px;background:linear-gradient(135deg,rgba(184,147,90,.08) 0%,rgba(15,14,23,.6) 100%);margin-bottom:14px}
+.hub-titulo .pergunta{font-family:Georgia,serif;font-size:14px;font-style:italic;color:var(--bone);line-height:1.5;margin-bottom:8px}
+.hub-titulo .meta{display:flex;justify-content:space-between;align-items:center}
+.hub-titulo .tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+.hub-titulo .auto{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--bone-dim)}
+.hub-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hub-tile{padding:14px 12px;border:1px solid var(--gold-faint);border-radius:8px;background:rgba(184,147,90,.04);min-height:88px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+.hub-tile.active{border-color:var(--gold-soft);background:rgba(184,147,90,.08)}
+.hub-tile .ic{font-family:'Crimson Pro',Georgia,serif;font-size:18px;color:var(--gold);width:24px;height:24px;display:flex;align-items:center;justify-content:center;border:1px solid var(--gold-soft);border-radius:6px}
+.hub-tile .lbl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-top:auto;opacity:.85}
+.hub-tile .titulo{font-family:Georgia,serif;font-size:13px;font-style:italic;color:var(--bone);margin-top:4px;line-height:1.3}
+
+.tabs-bot{display:flex;justify-content:space-around;padding:12px 8px 0;border-top:1px solid var(--gold-faint);margin-top:auto}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-faint)}
+.tab .ic{font-family:'Crimson Pro',Georgia,serif;font-size:14px;color:var(--bone-faint)}
+.tab.active{color:var(--gold)}
+.tab.active .ic{color:var(--gold)}
+
+.pill-row{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.pill{padding:7px 14px;border:1px solid var(--gold-soft);border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;background:transparent}
+
+.foot{margin-top:60px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gold);opacity:.55;text-transform:uppercase}
+.foot a{color:var(--gold);margin:0 8px;text-decoration:none}
+
+@media (max-width:768px){.iphone{width:300px;height:640px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="../" class="crumb">← v16</a>
+
+  <header>
+    <div class="eyebrow">§ NEXVS · 19 telas · Claude Design output</div>
+    <h1>NEXVS · arquitetura cognitiva</h1>
+    <p class="lead">Output do Claude Design (Opus 4.7) aplicado aos tokens canônicos NEXUS · 19 telas em 6 frascos · Inter + Georgia + JetBrains Mono · ouro #B8935A sobre tinta #0F0E17.</p>
+  </header>
+
+  <div class="frasco-h">I · Entrada · primeiro contato com o sistema</div>
+  <div class="stage">
+    <!-- Onboarding -->
+    <div class="slot">
+      <div class="iphone">
+        <div class="island"></div>
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>●●●●● 📶 ⏱ 🔋</span></div>
+          <div class="body">
+            <div class="cap-eyebrow">VI · CAMADA</div>
+            <div class="brand-mark">NEXVS·</div>
+            <div class="brand-sub">arquitetura cognitiva<br>de Fillipe Caldeira</div>
+            <div class="divisor">+</div>
+            <div class="citacao">"O acervo, o oráculo e o<br>operador — uma só arquitetura."</div>
+            <div class="itens-list">
+              <div class="it"><div class="it-num">I</div><div class="it-txt"><div class="it-titulo">Acervo</div><div class="it-meta">88 obras · 64.552 chunks</div></div></div>
+              <div class="it"><div class="it-num">II</div><div class="it-txt"><div class="it-titulo">Oráculo</div><div class="it-meta">consulta canônica com bandeiras</div></div></div>
+              <div class="it"><div class="it-num">III</div><div class="it-txt"><div class="it-titulo">Trilhas</div><div class="it-meta">8 blocos pedagógicos · CAIR</div></div></div>
+              <div class="it"><div class="it-num">IV</div><div class="it-txt"><div class="it-titulo">Operador</div><div class="it-meta">13 triggers · 17 regras</div></div></div>
+            </div>
+            <a class="btn-prim" href="../">entrar no sistema</a>
+            <div class="foot-ver">v17.0 · dia 25 / 272 · ciclo PRIMORDIA</div>
+          </div>
+          <div class="home-ind"></div>
+        </div>
+      </div>
+      <div class="label">01 · onboarding</div>
+    </div>
+
+    <!-- Hub home -->
+    <div class="slot">
+      <div class="iphone">
+        <div class="island"></div>
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>●●●●● 📶 ⏱ 🔋</span></div>
+          <div class="body">
+            <div class="cap-eyebrow">VI · CAMADA · OPERADOR AGENTIC</div>
+            <div class="brand-mark" style="font-size:32px">NEXVS·</div>
+            <div class="brand-sub" style="font-size:11px">a arquitetura cognitiva de Fillipe Caldeira</div>
+            <div style="display:flex;gap:6px;justify-content:center;margin-top:10px">
+              <span class="pill" style="padding:4px 10px;font-size:8px">● RAG · 64.552 chunks · dia 25/272</span>
+            </div>
+            <div class="hub-titulo" style="margin-top:16px">
+              <div class="meta" style="margin-bottom:6px"><span class="tag">ORÁCULO · PERGUNTA DO DIA</span><span class="auto">04:12</span></div>
+              <div class="pergunta">"O que distingue, em Hadot, exercício espiritual de mera prática reflexiva?"</div>
+              <div class="meta"><span class="tag">● RAG · INTEGRAL · B03 · sabedoria antiga</span></div>
+            </div>
+            <div class="hub-grid">
+              <div class="hub-tile">
+                <div class="ic">◐</div>
+                <div class="lbl">HOJE</div>
+                <div class="titulo">estações · trilhas</div>
+              </div>
+              <div class="hub-tile">
+                <div class="ic">§</div>
+                <div class="lbl">ACERVO</div>
+                <div class="titulo">88 obras</div>
+              </div>
+              <div class="hub-tile active">
+                <div class="ic">✦</div>
+                <div class="lbl">ORÁCULO</div>
+                <div class="titulo">consulta RAG</div>
+              </div>
+              <div class="hub-tile">
+                <div class="ic">◇</div>
+                <div class="lbl">CARDS</div>
+                <div class="titulo">3.842 fichas</div>
+              </div>
+            </div>
+            <div class="tabs-bot">
+              <div class="tab active"><span class="ic">◯</span>HUB</div>
+              <div class="tab"><span class="ic">✦</span>ORÁCULO</div>
+              <div class="tab"><span class="ic">§</span>ACERVO</div>
+              <div class="tab"><span class="ic">◐</span>HOJE</div>
+              <div class="tab"><span class="ic">◇</span>SISTEMA</div>
+            </div>
+          </div>
+          <div class="home-ind"></div>
+        </div>
+      </div>
+      <div class="label">02 · hub · home</div>
+    </div>
+
+    <!-- Citação do dia -->
+    <div class="slot">
+      <div class="iphone">
+        <div class="island"></div>
+        <div class="screen">
+          <div class="status"><span>9:41</span><span>●●●●● 📶 ⏱ 🔋</span></div>
+          <div class="body" style="display:flex;flex-direction:column">
+            <div class="cap-eyebrow" style="margin-top:4px">CITAÇÃO DO DIA · 26 ABR</div>
+            <div class="divisor"></div>
+            <div class="citacao" style="font-size:18px;padding:0 18px;line-height:1.55">"Vive como se devesses morrer agora. Não desperdices o que sobra da vida em pensamentos sobre os outros."</div>
+            <div class="citacao-src" style="margin-top:22px">MARCO AURÉLIO · MEDITAÇÕES · II.4</div>
+            <div class="divisor" style="margin:24px 14px"></div>
+            <div class="pill-row">
+              <div class="pill">↻ NOVA</div>
+              <div class="pill">♡ SALVAR</div>
+              <div class="pill">↗ FONTE</div>
+            </div>
+            <div style="flex:1"></div>
+            <div class="tabs-bot" style="margin-bottom:6px">
+              <div class="tab"><span class="ic">◯</span>HUB</div>
+              <div class="tab"><span class="ic">✦</span>ORÁCULO</div>
+              <div class="tab"><span class="ic">§</span>ACERVO</div>
+              <div class="tab active"><span class="ic">◐</span>HOJE</div>
+              <div class="tab"><span class="ic">◇</span>SISTEMA</div>
+            </div>
+          </div>
+          <div class="home-ind"></div>
+        </div>
+      </div>
+      <div class="label">03 · citação do dia</div>
+    </div>
+  </div>
+
+  <div class="frasco-h">II · Oráculo · IV · Operação · V · Sistema</div>
+  <div style="text-align:center;margin:18px 0 30px;font-family:Georgia,serif;font-style:italic;font-size:14px;color:var(--bone-dim);max-width:520px;margin-left:auto;margin-right:auto;line-height:1.6">
+    16 telas adicionais geradas via Claude Design · projeto <code style="color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--ink-1);padding:1px 6px;border-radius:4px">73d1f864-8234-493e-8030-8b3838a116db</code> · GitHub conectado · output exportável como código React/HTML · pode ser merged neste repo via PR.
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;max-width:900px;margin:0 auto">
+    <div style="padding:14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85">II · Oráculo</div><div style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);margin-top:6px">consulta · 5 telas</div></div>
+    <div style="padding:14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85">III · Pedagogia</div><div style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);margin-top:6px">trilhas · 4 telas</div></div>
+    <div style="padding:14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85">IV · Acervo</div><div style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);margin-top:6px">galeria · 4 telas</div></div>
+    <div style="padding:14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85">V · Operação</div><div style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);margin-top:6px">triggers · 2 telas</div></div>
+    <div style="padding:14px;border:1px solid var(--gold-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center"><div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;opacity:.85">VI · Sistema</div><div style="font-family:Georgia,serif;font-size:13px;color:var(--bone-dim);margin-top:6px">prompt · 1 tela</div></div>
+  </div>
+
+  <div class="foot">
+    NEXVS · Claude Design output · <a href="../">v16 hub</a> · <a href="../design/">design system</a> · <a href="../preview/">preview iOS</a> · <a href="../cards/">cards</a>
+  </div>
+</div>
+</body>
+</html>
