@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0F0E17">
+<title>NEXUS · components · iOS.jsx</title>
+<link rel="icon" type="image/svg+xml" href="../../icons/favicon.svg">
+<style>
+:root{
+  --ink:#0F0E17; --ink-1:#14131E; --ink-2:#1a1830;
+  --bone:#F0EAE4; --bone-dim:rgba(240,234,228,.65); --bone-faint:rgba(240,234,228,.4);
+  --gold:#B8935A; --gold-light:#D4A668; --gold-soft:rgba(184,147,90,.3); --gold-faint:rgba(184,147,90,.12);
+  --green:#7df3a3; --yellow:#ffd803; --red:#e53170;
+  --safe-top:env(safe-area-inset-top); --safe-bot:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;min-height:100%}
+body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1530 0%,var(--ink) 50%,var(--ink) 100%);padding:calc(var(--safe-top) + 14px) 16px calc(var(--safe-bot) + 32px)}
+header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--gold-faint);margin-bottom:18px}
+.brand{font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;color:var(--bone)}
+.brand b{color:var(--gold);font-weight:600}
+.crumb{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.75}
+h1{font-family:Georgia,serif;font-weight:500;font-size:26px;color:var(--bone);margin-bottom:6px}
+.lead{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:14px;line-height:1.55;margin-bottom:24px;max-width:640px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.card{position:relative;border:1px solid var(--gold-soft);border-radius:14px;background:linear-gradient(135deg,rgba(184,147,90,.08) 0%,rgba(15,14,23,.6) 60%);padding:16px;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--gold)}
+.card .eyebrow{font-family:'SF Mono',monospace;font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;opacity:.85;margin-bottom:6px}
+.card .name{font-family:Georgia,serif;font-size:16px;color:var(--bone);margin-bottom:10px;line-height:1.25}
+.card .meta{font-family:'SF Mono',monospace;font-size:10px;color:var(--bone-dim);line-height:1.5}
+.card .meta .row{display:flex;justify-content:space-between;border-top:1px dashed var(--gold-faint);padding-top:6px;margin-top:6px}
+.card .meta .row:first-child{border-top:none;padding-top:0;margin-top:0}
+.card a.open{display:inline-block;margin-top:12px;padding:6px 12px;border:1px solid var(--gold-soft);border-radius:8px;font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold);text-decoration:none;text-transform:uppercase}
+.card a.open:hover{background:rgba(184,147,90,.12)}
+.empty{text-align:center;padding:60px 20px;color:var(--bone-dim);font-family:Georgia,serif;font-style:italic}
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--gold-faint);font-family:'SF Mono',monospace;font-size:10px;color:var(--bone-faint);text-align:center}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">NEXUS · <b>components</b></div>
+  <div class="crumb">/v16/components/</div>
+</header>
+
+<h1>Galeria de componentes</h1>
+<p class="lead">
+Componentes React experimentais e protótipos visuais do NEXUS v16.0.
+Esta galeria lista os <code>.jsx</code> hospedados em <code>/v16/components/</code>
+com link para preview standalone. Adicionado em 2026-04-27 (Onda 6).
+</p>
+
+<div class="grid">
+  <article class="card">
+    <div class="eyebrow">React · standalone</div>
+    <div class="name">iOS.jsx</div>
+    <div class="meta">
+      <div class="row"><span>Linhas</span><span>~333</span></div>
+      <div class="row"><span>Família</span><span>iOS HIG</span></div>
+      <div class="row"><span>Estado</span><span style="color:var(--green)">ativo</span></div>
+    </div>
+    <a class="open" href="../standalone/">abrir standalone →</a>
+  </article>
+</div>
+
+<footer>
+  NEXUS v16.0 · Onda 6.1 · 2026-04-27 · <a href="../">/v16/</a> · <a href="../../">root</a>
+</footer>
+
+</body>
+</html>

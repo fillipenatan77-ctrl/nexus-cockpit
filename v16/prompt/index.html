@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#0F0E17">
+<title>NEXUS · Cortex System Prompt</title>
+<link rel="icon" type="image/svg+xml" href="../../icons/favicon.svg">
+<style>
+:root{
+  --ink:#0F0E17; --ink-1:#14131E;
+  --bone:#F0EAE4; --bone-dim:rgba(240,234,228,.65); --bone-faint:rgba(240,234,228,.4);
+  --gold:#B8935A; --gold-light:#D4A668; --gold-soft:rgba(184,147,90,.3); --gold-faint:rgba(184,147,90,.12);
+  --green:#7df3a3; --yellow:#ffd803; --red:#e53170;
+  --safe-top:env(safe-area-inset-top); --safe-bot:env(safe-area-inset-bottom);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,'SF Pro Text','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;min-height:100%}
+body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1530 0%,var(--ink) 50%,var(--ink) 100%);padding:calc(var(--safe-top) + 14px) 16px calc(var(--safe-bot) + 32px)}
+header{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--gold-faint);margin-bottom:18px}
+.brand{font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;color:var(--bone)}
+.brand b{color:var(--gold);font-weight:600}
+.crumb{font-family:'SF Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;opacity:.75}
+h1{font-family:Georgia,serif;font-weight:500;font-size:26px;margin-bottom:6px}
+.lead{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:14px;line-height:1.55;margin-bottom:20px;max-width:640px}
+
+.tabs{display:flex;gap:8px;margin-bottom:14px;border-bottom:1px solid var(--gold-faint);padding-bottom:8px}
+.tab{padding:8px 14px;border:1px solid var(--gold-soft);border-radius:8px;background:rgba(184,147,90,.04);color:var(--bone-dim);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s}
+.tab.active{background:rgba(184,147,90,.18);color:var(--gold);border-color:var(--gold)}
+.tab .v{color:var(--gold-light);margin-right:6px;font-weight:600}
+.tab.canonical::after{content:'CANÔNICO';margin-left:6px;font-size:8px;letter-spacing:.2em;color:var(--green);background:rgba(125,243,163,.1);padding:2px 6px;border-radius:4px}
+
+.toolbar{display:flex;gap:8px;justify-content:flex-end;margin-bottom:10px}
+.toolbar button{padding:8px 14px;border:1px solid var(--gold-soft);border-radius:8px;background:rgba(184,147,90,.04);color:var(--gold);font-family:'SF Mono',monospace;font-size:11px;letter-spacing:.1em;cursor:pointer;text-transform:uppercase}
+.toolbar button:hover{background:rgba(184,147,90,.18)}
+.toolbar button.primary{background:rgba(125,243,163,.08);color:var(--green);border-color:rgba(125,243,163,.3)}
+
+.viewer{position:relative;border:1px solid var(--gold-faint);border-radius:12px;background:rgba(15,14,23,.8);padding:18px;min-height:420px;max-height:62vh;overflow:auto}
+.viewer pre{font-family:'SF Mono',ui-monospace,monospace;font-size:12px;line-height:1.65;color:var(--bone);white-space:pre-wrap;word-break:break-word}
+.viewer .loading{font-family:Georgia,serif;font-style:italic;color:var(--bone-faint);text-align:center;padding:60px 0}
+
+.diff-meta{margin-top:12px;padding:12px 16px;border:1px dashed var(--gold-faint);border-radius:10px;font-family:'SF Mono',monospace;font-size:11px;color:var(--bone-dim);line-height:1.7}
+.diff-meta .label{color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-size:9px;display:block;margin-bottom:4px}
+
+footer{margin-top:32px;padding-top:14px;border-top:1px solid var(--gold-faint);font-family:'SF Mono',monospace;font-size:10px;color:var(--bone-faint);text-align:center}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">NEXUS · <b>prompt</b></div>
+  <div class="crumb">/v16/prompt/</div>
+</header>
+
+<h1>Cortex iOS · System Prompt</h1>
+<p class="lead">
+System Prompt vivo do NEXUS para Custom Instructions Cortex iOS.
+Selecione a versão, copie o conteúdo e cole no app Cortex em <i>Configurações →
+Custom Instructions</i>. v6.8 é canônico desde 2026-04-27 (Onda 6.3).
+</p>
+
+<div class="tabs">
+  <button class="tab canonical active" data-v="v68" data-url="../../prompt-v68.md">
+    <span class="v">v6.8</span> 2026-04-27
+  </button>
+  <button class="tab" data-v="v67" data-url="../../prompt-v67.md">
+    <span class="v">v6.7</span> 2026-04-22
+  </button>
+</div>
+
+<div class="toolbar">
+  <button class="primary" id="copyBtn">📋 Copiar</button>
+  <button id="rawBtn">↗ Abrir raw</button>
+</div>
+
+<div class="viewer">
+  <div class="loading" id="loading">Carregando v6.8…</div>
+  <pre id="content" style="display:none"></pre>
+</div>
+
+<div class="diff-meta">
+  <span class="label">Mudanças v6.7 → v6.8 (Onda 6.3 · 2026-04-27)</span>
+  Lentes canônicas alinhadas (Liderança incorporada como 7º domínio) · auth dual
+  WEBHOOK_SECRET/NEXUS_ADMIN_TOKEN documentado · status canônicos WhatsApp
+  (delivered_uazapi · failed · fallback_email) · revogação Telegram absoluta ·
+  cycle calc canônico (base 2026-04-02 · 272 dias).
+</div>
+
+<footer>
+  NEXUS v16.0 · Onda 6.3 · prompt versioning · <a href="../">/v16/</a> · <a href="../../">root</a>
+</footer>
+
+<script>
+const tabs = document.querySelectorAll('.tab');
+const loading = document.getElementById('loading');
+const content = document.getElementById('content');
+const copyBtn = document.getElementById('copyBtn');
+const rawBtn = document.getElementById('rawBtn');
+let currentText = '';
+let currentUrl = '';
+
+async function loadVersion(url, label){
+  loading.style.display='block'; loading.textContent='Carregando '+label+'…';
+  content.style.display='none';
+  try{
+    const r=await fetch(url);
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    currentText=await r.text();
+    currentUrl=url;
+    loading.style.display='none';
+    content.style.display='block';
+    content.textContent=currentText;
+  }catch(e){
+    loading.textContent='Erro ao carregar '+label+': '+e.message+' (em desenvolvimento · v6.8 ainda em deploy)';
+    currentText='';
+  }
+}
+
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  loadVersion(t.dataset.url, t.dataset.v);
+}));
+
+copyBtn.addEventListener('click',async()=>{
+  if(!currentText) return;
+  try{
+    await navigator.clipboard.writeText(currentText);
+    copyBtn.textContent='✓ Copiado';
+    setTimeout(()=>copyBtn.textContent='📋 Copiar',1800);
+  }catch(e){
+    alert('Não foi possível copiar automaticamente. Selecione e use Cmd+C.');
+  }
+});
+
+rawBtn.addEventListener('click',()=>{ if(currentUrl) window.open(currentUrl,'_blank'); });
+
+// Load default
+loadVersion('../../prompt-v68.md','v6.8');
+</script>
+</body>
+</html>
