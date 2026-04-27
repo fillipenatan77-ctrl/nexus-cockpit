@@ -1,20 +1,32 @@
 {
   "ok": true,
-  "version": "v17.7",
-  "updated_at_iso": "2026-04-27T21:37:04Z",
-  "updated_at_brt": "Monday · 27 de April de 2026 · 18:36 BRT",
+  "version": "v18.7",
+  "updated_at_iso": "2026-04-27T18:50:00Z",
+  "updated_at_brt": "Monday · 27 de April de 2026 · 18:50 BRT",
   "cycle_day": 26,
   "cycle_total": 272,
-  "lente_do_dia": "liderança",
+  "estacao_atual": "Coroa Tríplice",
+  "lente_do_dia": "Liderança",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
-    "chunks_total": 0,
-    "obras_integrais": 120
+    "version": "v15.BX",
+    "chunks_total": 104024,
+    "obras": 146,
+    "obras_integrais": 120,
+    "cardapio_tier1": 16
+  },
+  "infra": {
+    "apps_script_deploy": "@200",
+    "triggers_meta": 13,
+    "skills_total": 84,
+    "regras_invioláveis": 28,
+    "custo_openai_cumulativo_usd": 0.29
   },
   "endpoints": {
     "rag_url": "https://rag.nexuscaldeira.com",
-    "apps_script": "https://script.google.com/macros/s/AKfycbzXORWmmf2UjRwQUSFt7xz1na_b2bzZlL6128I5QJFcaxfao-5ihJ6JPe4mUrEQ7KbJ/exec",
+    "apps_script": "https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec",
     "hub": "https://nexuscaldeira.com",
-    "v16_hub": "https://nexuscaldeira.com/v16/"
+    "v16_app_pwa": "https://nexuscaldeira.com/v16/app/",
+    "system_prompt_canonical": "https://nexuscaldeira.com/prompt-v610.md"
   }
 }
