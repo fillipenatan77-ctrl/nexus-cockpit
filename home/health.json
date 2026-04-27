@@ -2,12 +2,12 @@
   "projeto": "NEXUS",
   "versao": "v16.0",
   "ciclo": {
-    "dia": 25,
+    "dia": 26,
     "total": 272,
     "inicio": "2026-04-02",
     "fim": "2026-12-29",
-    "estacao_idx": 4,
-    "estacao_nome": "Bússola Inversa"
+    "estacao_idx": 7,
+    "estacao_nome": "Coroa Tríplice"
   },
   "endpoints": {
     "hub_publico": "https://nexuscaldeira.com",
@@ -58,7 +58,7 @@
     "ingestao_em_curso": false,
     "criterio_integral": "probe ≥3/5 queries · bandeira 🟢",
     "estado_aprox": {
-      "chunks": 64552,
+      "chunks": 108024,
       "obras": 88,
       "integrais": 78,
       "cardapio_30": 30,
@@ -71,8 +71,8 @@
     }
   },
   "infra": {
-    "apps_script_deploy": "@170",
-    "apps_script_deploy_label": "v16.0.1 PulseLoader · pool canonico nexuscaldeira.com/pulses.json",
+    "apps_script_deploy": "@193",
+    "apps_script_deploy_label": "v17.7-saneamento.2 · nexus_notify dual auth + cycle calc + v14 stubs + lentes canonicas + Telegram removed · 2026-04-27",
     "triggers_meta": 13,
     "triggers_status": "CONGELADO em 13 (regra v16.0 #4)",
     "pwa_paginas": 33,
@@ -155,5 +155,5 @@
       "desc": "Watchdog_v2 + snapshot semanal ativos"
     }
   },
-  "rag_url_updated_at": "2026-04-26T14:25:00-03:00"
+  "rag_url_updated_at": "2026-04-27T12:32:50-03:00"
 }
