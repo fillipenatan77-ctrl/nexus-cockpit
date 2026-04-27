@@ -1,0 +1,93 @@
+name: Hub Freshness · NEXUS v17.7
+# Atualiza data corrente · ciclo PRIMORDIA · stats RAG no hub
+# Cron 6h (00, 06, 12, 18 UTC = 21, 03, 09, 15 BRT) + workflow_dispatch manual
+
+on:
+  schedule:
+    - cron: '0 0,6,12,18 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compute date + cycle day + season
+        id: ctx
+        run: |
+          set -euo pipefail
+          NOW_BRT=$(TZ=America/Sao_Paulo date +"%A · %d de %B de %Y · %H:%M BRT")
+          NOW_ISO=$(TZ=America/Sao_Paulo date +"%Y-%m-%d")
+          # Ciclo PRIMORDIA: dia 1 = 2026-04-02 · 272 dias
+          CYCLE_START="2026-04-02"
+          CYCLE_DAY=$(( ( $(date -d "$NOW_ISO" +%s) - $(date -d "$CYCLE_START" +%s) ) / 86400 + 1 ))
+          # Lente do dia da semana (regra v6.7)
+          DOW=$(date -d "$NOW_ISO" +%u)  # 1=Seg ... 7=Dom
+          case $DOW in
+            1) LENTE="liderança";;
+            2) LENTE="PNL";;
+            3) LENTE="estoica";;
+            4) LENTE="psicanálise";;
+            5) LENTE="memorização";;
+            6) LENTE="motivacional";;
+            7) LENTE="síntese";;
+          esac
+          echo "now_brt=$NOW_BRT" >> "$GITHUB_OUTPUT"
+          echo "now_iso=$NOW_ISO" >> "$GITHUB_OUTPUT"
+          echo "cycle_day=$CYCLE_DAY" >> "$GITHUB_OUTPUT"
+          echo "lente=$LENTE" >> "$GITHUB_OUTPUT"
+
+      - name: Probe RAG stats (best-effort)
+        id: rag
+        continue-on-error: true
+        run: |
+          set +e
+          STATS=$(curl -fsS --max-time 30 https://rag.nexuscaldeira.com/stats || echo '{}')
+          CHUNKS=$(echo "$STATS" | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("chunks_total",0))' 2>/dev/null || echo 0)
+          OBRAS=$(echo "$STATS" | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("obras_integrais",0))' 2>/dev/null || echo 0)
+          echo "chunks=$CHUNKS" >> "$GITHUB_OUTPUT"
+          echo "obras_integrais=$OBRAS" >> "$GITHUB_OUTPUT"
+
+      - name: Update home/health.json
+        run: |
+          set -euo pipefail
+          mkdir -p home
+          cat > home/health.json <<EOF
+          {
+            "ok": true,
+            "version": "v17.7",
+            "updated_at_iso": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
+            "updated_at_brt": "${{ steps.ctx.outputs.now_brt }}",
+            "cycle_day": ${{ steps.ctx.outputs.cycle_day }},
+            "cycle_total": 272,
+            "lente_do_dia": "${{ steps.ctx.outputs.lente }}",
+            "rag": {
+              "url": "https://rag.nexuscaldeira.com",
+              "chunks_total": ${{ steps.rag.outputs.chunks || 0 }},
+              "obras_integrais": ${{ steps.rag.outputs.obras_integrais || 0 }}
+            },
+            "endpoints": {
+              "rag_url": "https://rag.nexuscaldeira.com",
+              "apps_script": "https://script.google.com/macros/s/AKfycbzXORWmmf2UjRwQUSFt7xz1na_b2bzZlL6128I5QJFcaxfao-5ihJ6JPe4mUrEQ7KbJ/exec",
+              "hub": "https://nexuscaldeira.com",
+              "v16_hub": "https://nexuscaldeira.com/v16/"
+            }
+          }
+          EOF
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          git config user.name "NEXUS Hub Freshness Bot"
+          git config user.email "fillipenatan77+bot@gmail.com"
+          git add home/health.json
+          if git diff --cached --quiet; then
+            echo "Sem mudanças · skip commit"
+            exit 0
+          fi
+          git commit -m "chore: hub freshness · ${{ steps.ctx.outputs.now_brt }} · dia ${{ steps.ctx.outputs.cycle_day }}/272 · lente ${{ steps.ctx.outputs.lente }} · ${{ steps.rag.outputs.chunks }} chunks"
+          git push
