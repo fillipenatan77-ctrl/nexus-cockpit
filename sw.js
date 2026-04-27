@@ -1,6 +1,6 @@
-// NEXUS · Service Worker v5 (v16.0 hub premium · 30 obras + dashboard + offline-first)
-const CACHE = 'nexus-home-v5';
-const RUNTIME = 'nexus-runtime-v5';
+// NEXUS · Service Worker v6 (v17.10 · /v16/revisar/ + Voice UI + offline-first)
+const CACHE = 'nexus-home-v6';
+const RUNTIME = 'nexus-runtime-v6';
 
 // 16 obras integrais (slugs e arquivos canônicos)
 const OBRAS_FILES = [
@@ -58,6 +58,8 @@ const SHELL = [
   '/v16/audit/',
   '/v16/fichas/',
   '/v16/pulse/',
+  '/v16/revisar/',
+  '/v16/standalone/',
   '/pulses.json',
   '/prompt-v67.md'
 ];
