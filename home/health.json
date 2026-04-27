@@ -1,8 +1,8 @@
 {
   "ok": true,
-  "version": "v18.7",
-  "updated_at_iso": "2026-04-27T18:50:00Z",
-  "updated_at_brt": "Monday · 27 de April de 2026 · 18:50 BRT",
+  "version": "v18.8",
+  "updated_at_iso": "2026-04-27T23:05:00Z",
+  "updated_at_brt": "Monday · 27 de April de 2026 · 20:05 BRT",
   "cycle_day": 26,
   "cycle_total": 272,
   "estacao_atual": "Coroa Tríplice",
@@ -27,6 +27,30 @@
     "apps_script": "https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec",
     "hub": "https://nexuscaldeira.com",
     "v16_app_pwa": "https://nexuscaldeira.com/v16/app/",
-    "system_prompt_canonical": "https://nexuscaldeira.com/prompt-v610.md"
+    "system_prompt_canonical": "https://nexuscaldeira.com/prompt-v610.md",
+    "api_proxy": "https://api.nexuscaldeira.com/",
+    "r2_acervo": "https://nexus-acervo.r2.cloudflarestorage.com/"
+  },
+  "cloudflare": {
+    "account_id": "0a428501735b6b6eab7c1cd869ac116f",
+    "kv_namespace": {
+      "name": "NEXUS_RL",
+      "id": "8010ea2cbb9d40a5818fe0c0766a90df",
+      "status": "active"
+    },
+    "d1_database": {
+      "name": "nexus-diario",
+      "id": "aa14b84c-25ee-40f7-9419-8f8d55d9a853",
+      "tables": ["diario", "pulses", "contatos_pipeline_log", "wa_metrics", "fontes_abertas_log"],
+      "status": "active"
+    },
+    "worker": {
+      "name": "nexus-api-proxy",
+      "status": "pending_dashboard"
+    },
+    "r2_bucket": {
+      "name": "nexus-acervo",
+      "status": "pending_enable_r2"
+    }
   }
 }
