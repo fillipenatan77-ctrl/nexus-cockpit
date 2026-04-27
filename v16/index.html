@@ -472,14 +472,14 @@ async function loadHealth() {
   }
 }
 
-// === RAG ask ===
+// === RAG ask · v17.4 hybrid (dense + BM25 RRF k=60) ===
 async function ragAsk() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
   const out = document.getElementById('results');
-  out.innerHTML = '<div class="card"><p>buscando…</p></div>';
+  out.innerHTML = '<div class="card"><p>buscando hybrid (dense + BM25)…</p></div>';
   try {
-    const r = await fetch(RAG + "/ask", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({q, top_k: 5}) });
+    const r = await fetch(RAG + "/ask_hybrid", { method: "POST", headers: {"Content-Type":"application/json"}, body: JSON.stringify({q, top_k: 5}) });
     const d = await r.json();
     out.innerHTML = '';
     (d.results || []).forEach(h => {
