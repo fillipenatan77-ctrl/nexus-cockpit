@@ -63,6 +63,11 @@
       "integrais": 78,
       "cardapio_30": 30,
       "cardapio_30_trio_completo": 30
+    },
+    "endpoints_v17": {
+      "ask_hybrid": "/ask_hybrid · BM25 + dense · RRF k=60",
+      "ask_reranked": "/ask_reranked · 2-stage · 30 candidates → heuristic rerank top 5",
+      "bm25_rebuild": "/bm25/rebuild · admin"
     }
   },
   "infra": {
