@@ -71,8 +71,8 @@
     }
   },
   "infra": {
-    "apps_script_deploy": "@195",
-    "apps_script_deploy_label": "v17.7-saneamento.3 · Onda 6 consolidada · shim v99 + 3 nets + skill #83 + 5 evolucoes · 2026-04-27",
+    "apps_script_deploy": "@196",
+    "apps_script_deploy_label": "v17.7-saneamento.3.1 · Onda 6 consolidada · drift stem-aware · 2026-04-27",
     "triggers_meta": 13,
     "triggers_status": "CONGELADO em 13 (regra v16.0 #4)",
     "pwa_paginas": 33,
@@ -155,5 +155,5 @@
       "desc": "Watchdog_v2 + snapshot semanal ativos"
     }
   },
-  "rag_url_updated_at": "2026-04-27T13:35:55.2648979-03:00"
+  "rag_url_updated_at": "2026-04-27T13:38:40.8982415-03:00"
 }
