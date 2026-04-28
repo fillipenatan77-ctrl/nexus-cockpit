@@ -1,598 +1,189 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="NEXUS">
-<meta name="application-name" content="NEXUS">
-<meta name="theme-color" content="#0F0E17">
-<meta name="format-detection" content="telephone=no">
-<meta name="msapplication-TileColor" content="#0F0E17">
-<meta name="msapplication-tap-highlight" content="no">
-<meta name="description" content="NEXUS Hub Vivo · cockpit cloud-first · Apps Script @212 · Worker LIVE · 13 triggers compliant · 104.024 chunks RAG · canal direto blindado · v18.9-cloud-first-2026-04-28">
-<title>NEXUS · Hub Vivo</title>
-<link rel="manifest" href="/hub/manifest.json">
-<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png">
-<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
-<link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
-<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
-<meta property="og:title" content="NEXUS · Hub Vivo">
-<meta property="og:description" content="Cockpit cloud-first · 104k chunks · 7 lentes · v18.9">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://nexuscaldeira.com/hub/">
-<style>
-:root{
-  --ink:#0F0E17; --ink-1:#14131E; --ink-2:#1a1830;
-  --bone:#F5F1E8; --bone-dim:rgba(245,241,232,.65); --bone-faint:rgba(245,241,232,.4);
-  --bronze:#B8935A; --bronze-light:#D4A668; --bronze-soft:rgba(184,147,90,.3); --bronze-faint:rgba(184,147,90,.12);
-  --green:#7df3a3; --yellow:#ffd803; --red:#e53170; --violet:#b794f4;
-  --safe-top:env(safe-area-inset-top,0px);
-  --safe-bot:env(safe-area-inset-bottom,0px);
-  --safe-l:env(safe-area-inset-left,0px);
-  --safe-r:env(safe-area-inset-right,0px)
-}
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
-html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;height:100%;overflow:hidden;overscroll-behavior:none}
-body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1830 0%,var(--ink) 50%,var(--ink) 100%)}
-#app{display:flex;flex-direction:column;height:100dvh;padding-top:calc(var(--safe-top) + 8px);padding-left:var(--safe-l);padding-right:var(--safe-r)}
-header.brand{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 12px;border-bottom:1px solid var(--bronze-faint);background:rgba(15,14,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10;will-change:transform}
-header.brand .logo{display:flex;align-items:center;gap:10px}
-header.brand .logo .mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0F0E17 0%,#1a1830 100%);border:1px solid var(--bronze-soft);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:24px;color:var(--bronze);letter-spacing:-2px}
-header.brand .logo .name{font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;color:var(--bone)}
-header.brand .logo .name b{color:var(--bronze);font-weight:600}
-header.brand .meta{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;color:var(--bronze);opacity:.85;text-align:right;text-transform:uppercase;line-height:1.3}
-header.brand .meta .date{color:var(--bone-dim);font-size:10px}
-header.brand .meta .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);margin-right:4px;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(var(--safe-bot) + 100px)}
-main::-webkit-scrollbar{display:none}
-.section{display:none;animation:fade .25s ease}
-.section.active{display:block}
-@keyframes fade{from{opacity:0;transform:translate3d(0,4px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-.hero{position:relative;padding:24px 22px;margin-bottom:14px;border:1px solid var(--bronze-soft);border-radius:18px;background:linear-gradient(135deg,rgba(184,147,90,.12) 0%,rgba(15,14,23,.6) 60%);overflow:hidden}
-.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:160%;background:radial-gradient(ellipse,rgba(184,147,90,.18) 0%,transparent 60%)}
-.hero .eyebrow{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.22em;color:var(--bronze);text-transform:uppercase;opacity:.85;margin-bottom:8px;position:relative;z-index:1}
-.hero h1{font-family:Georgia,serif;font-size:26px;font-weight:500;line-height:1.25;color:var(--bone);margin-bottom:8px;position:relative;z-index:1}
-.hero .lente-tag{display:inline-block;padding:4px 10px;border:1px solid var(--bronze-soft);border-radius:6px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px;color:var(--bronze);letter-spacing:.08em;margin-bottom:14px;position:relative;z-index:1}
-.hero .micro{margin-top:14px;padding:14px;border-radius:10px;background:rgba(184,147,90,.06);border:1px dashed var(--bronze-faint);font-family:Georgia,serif;font-size:14px;line-height:1.6;color:var(--bone);position:relative;z-index:1}
-.hero .micro .label{font-family:'SF Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.18em;color:var(--bronze);text-transform:uppercase;display:block;margin-bottom:4px}
-.hero .reframe{margin-top:12px;padding-top:12px;border-top:1px solid var(--bronze-faint);font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--bone-dim);line-height:1.55;position:relative;z-index:1}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
-.kpi-mini{padding:10px 8px;border:1px solid var(--bronze-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center}
-.kpi-mini .v{font-family:Georgia,serif;font-size:18px;color:var(--bronze-light)}
-.kpi-mini .l{font-family:'SF Mono',ui-monospace,monospace;font-size:8.5px;color:var(--bone-dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
-h2{font-family:Georgia,serif;font-weight:500;font-size:16px;color:var(--bronze-light);margin:18px 0 10px;letter-spacing:.04em}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:8px}
-.tile{position:relative;padding:14px;border:1px solid var(--bronze-soft);border-radius:12px;background:linear-gradient(135deg,rgba(184,147,90,.06) 0%,rgba(15,14,23,.5) 60%);text-decoration:none;color:var(--bone);transition:transform .15s;min-height:88px;display:flex;flex-direction:column;justify-content:space-between}
-.tile:active{transform:scale(.97)}
-.tile .ic{font-family:Georgia,serif;font-size:22px;color:var(--bronze);margin-bottom:6px}
-.tile .t{font-family:Georgia,serif;font-size:15px;color:var(--bone)}
-.tile .s{font-family:'SF Mono',ui-monospace,monospace;font-size:9.5px;color:var(--bone-dim);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
-.metrics{padding:14px;border:1px solid var(--bronze-faint);border-radius:12px;background:rgba(20,19,30,.6);margin-bottom:8px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px}
-.metrics .row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--bronze-faint);color:var(--bone-dim);gap:8px}
-.metrics .row:last-child{border-bottom:none}
-.metrics .row .k{color:var(--bronze);text-transform:uppercase;letter-spacing:.08em;font-size:10px;flex-shrink:0}
-.metrics .row .v{text-align:right;word-break:break-word}
-.metrics .row .v.ok{color:var(--green)}
-.metrics .row .v.warn{color:var(--yellow)}
-.metrics .row .v.err{color:var(--red)}
-.cron-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--bronze-faint);border-radius:8px;background:rgba(20,19,30,.4);margin-bottom:6px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px}
-.cron-row .name{color:var(--bone)}
-.cron-row .schedule{color:var(--bronze);font-size:9px;letter-spacing:.06em;text-transform:uppercase}
-.cron-row .status{font-size:14px}
-.obra-card{padding:14px;border:1px solid var(--bronze-faint);border-radius:10px;background:rgba(184,147,90,.03);margin-bottom:8px}
-.obra-card .titulo{font-family:Georgia,serif;font-size:14px;color:var(--bone);margin-bottom:4px}
-.obra-card .autor{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bronze);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.tag{display:inline-block;padding:2px 8px;border:1px solid var(--bronze-faint);border-radius:4px;font-family:'SF Mono',ui-monospace,monospace;font-size:9px;color:var(--bronze);letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
-.tag.green{border-color:rgba(125,243,163,.3);color:var(--green)}
-.tag.violet{border-color:rgba(183,148,244,.3);color:var(--violet)}
-nav.tabs{position:fixed;bottom:0;left:0;right:0;padding:6px 0 calc(var(--safe-bot) + 6px);background:rgba(15,14,23,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--bronze-faint);display:flex;justify-content:space-around;z-index:20;overflow-x:auto;-webkit-overflow-scrolling:touch}
-nav.tabs button{flex:0 0 auto;background:none;border:none;color:var(--bone-dim);font-family:'SF Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:48px;min-width:54px;will-change:transform}
-nav.tabs button .ic{font-family:Georgia,serif;font-size:16px;line-height:1}
-nav.tabs button.active{color:var(--bronze)}
-.auth-gate{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px 24px;text-align:center}
-.auth-gate h2{margin-bottom:14px;color:var(--bronze-light);font-size:24px}
-.auth-gate p{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:14px;line-height:1.55;margin-bottom:24px;max-width:300px}
-.auth-gate input{width:100%;max-width:320px;padding:14px 18px;border-radius:10px;border:1px solid var(--bronze-soft);background:rgba(20,19,30,.8);color:var(--bone);font-family:'SF Mono',ui-monospace,monospace;font-size:13px;outline:none;margin-bottom:12px}
-.auth-gate input:focus{border-color:var(--bronze)}
-.auth-gate button{padding:12px 28px;border:1px solid var(--bronze);border-radius:10px;background:rgba(184,147,90,.12);color:var(--bronze);font-family:'SF Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
-.auth-gate .hint{margin-top:18px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bone-faint);line-height:1.5}
-.offline-banner{padding:8px 14px;background:rgba(229,49,112,.15);border:1px solid rgba(229,49,112,.4);border-radius:8px;margin-bottom:10px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px;color:var(--yellow);display:none}
-.offline-banner.show{display:block}
-.btn-action{width:100%;padding:14px;border:1px solid var(--bronze-soft);border-radius:10px;background:rgba(184,147,90,.08);color:var(--bronze);font-family:'SF Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:10px;cursor:pointer}
-.btn-action:active{transform:scale(.98)}
-.btn-danger{border-color:rgba(229,49,112,.4);color:var(--red);background:transparent}
-.push-banner{padding:14px;border:1px solid var(--bronze-soft);border-radius:12px;background:rgba(184,147,90,.06);margin-bottom:14px;display:none}
-.push-banner.show{display:block}
-.push-banner h3{font-family:Georgia,serif;font-size:14px;color:var(--bronze-light);margin-bottom:6px}
-.push-banner p{font-family:Georgia,serif;font-style:italic;font-size:12px;color:var(--bone-dim);margin-bottom:10px;line-height:1.5}
-.push-banner .actions{display:flex;gap:8px}
-.push-banner button{flex:1;padding:8px;border-radius:8px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--bronze-soft)}
-.push-banner button.allow{background:var(--bronze);color:var(--ink);border-color:var(--bronze)}
-.push-banner button.skip{background:transparent;color:var(--bone-dim)}
-</style>
+  <meta charset="utf-8">
+  <title>NEXUS · v19.0</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0a0a0a; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+    #__bundler_loading { position: fixed; bottom: 20px; right: 20px; font: 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif; color: #666; background: #fff; padding: 8px 14px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.12); z-index: 10000; }
+    #__bundler_thumbnail { position: fixed; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #0a0a0a; z-index: 9999; }
+    #__bundler_thumbnail svg { width: 100%; height: 100%; object-fit: contain; }
+    #__bundler_placeholder { color: #999; font-size: 14px; }
+  </style>
+  <noscript>
+    <style>#__bundler_loading { display: none; }</style>
+    <div style="position:fixed;bottom:12px;left:12px;font:13px/1.4 -apple-system,BlinkMacSystemFont,sans-serif;color:#999;background:rgba(255,255,255,0.9);padding:6px 12px;border-radius:6px;box-shadow:0 1px 4px rgba(0,0,0,0.08);z-index:10000;">
+      This page requires JavaScript to display.
+    </div>
+  </noscript>
 </head>
 <body>
-<div id="app">
-
-<section id="gate" class="auth-gate">
-  <div style="font-family:Georgia,serif;font-size:48px;color:var(--bronze);margin-bottom:12px;letter-spacing:-3px;text-shadow:0 0 24px rgba(184,147,90,.4)">N</div>
-  <h2>NEXUS</h2>
-  <p>Hub Vivo · v18.9 cloud-first · 7 lentes do ciclo PRIMORDIA. Cole seu <code>NEXUS_ADMIN_TOKEN</code>.</p>
-  <input id="tokenInput" type="password" placeholder="NEXUS_ADMIN_TOKEN">
-  <button onclick="setToken()">Entrar</button>
-  <div class="hint">v18.9-cloud-first-2026-04-28<br>API: api.nexuscaldeira.com<br>Apps Script @212 · Worker LIVE · 13 triggers compliant</div>
-</section>
-
-<header class="brand" style="display:none" id="hdr">
-  <div class="logo"><div class="mark">N</div><div class="name">NEXUS · <b>Hub Vivo</b></div></div>
-  <div class="meta"><div><span class="live"></span><span id="hdr-day">DAY ··</span></div><div class="date" id="hdr-date">··/··</div></div>
-</header>
-
-<main id="main" style="display:none">
-<div class="offline-banner" id="offline">⚠️ modo offline · cache local</div>
-
-<div class="push-banner" id="pushBanner">
-  <h3>Receber pulses NEXUS no iPhone</h3>
-  <p>Notificações nativas iOS · sem WhatsApp · entrega direto na tela. Você pode mudar depois nos ajustes.</p>
-  <div class="actions">
-    <button class="allow" onclick="enablePush()">Permitir</button>
-    <button class="skip" onclick="skipPush()">Depois</button>
-  </div>
+  <div id="__bundler_thumbnail">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="g1" cx="50%" cy="40%" r="60%">
+        <stop offset="0%" stop-color="#1a1428" stop-opacity="1"></stop>
+        <stop offset="100%" stop-color="#0a0a0a" stop-opacity="1"></stop>
+      </radialGradient>
+    </defs>
+    <rect width="1200" height="800" fill="url(#g1)"></rect>
+    <circle cx="600" cy="380" r="180" fill="none" stroke="#d4af37" stroke-width="3" opacity="0.85"></circle>
+    <circle cx="600" cy="380" r="110" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.4"></circle>
+    <circle cx="600" cy="380" r="14" fill="#d4af37"></circle>
+    <text x="600" y="600" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="72" fill="#f5f5f0">NEXUS</text>
+    <text x="600" y="660" text-anchor="middle" font-family="ui-monospace, monospace" font-size="22" fill="#7a7a72" letter-spacing="6">v18.9 · CLOUD-FIRST</text>
+  </svg>
 </div>
+  <div id="__bundler_loading">Unpacking...</div>
 
-<!-- TAB 1: HOJE -->
-<section class="section active" data-tab="hoje">
-  <div class="hero">
-    <div class="eyebrow" id="hero-eyebrow">CICLO PRIMORDIA · COROA TRÍPLICE</div>
-    <h1 id="hero-title">Liderança</h1>
-    <div class="lente-tag" id="hero-lente">agência sem imposição</div>
-    <div class="micro"><span class="label">microcomando do dia</span><div id="hero-micro">Identifique 1 dicotomia controle vs. influência · 3 min.</div></div>
-    <div class="reframe" id="hero-reframe">⤳ Onde estou exigindo? · onde estou convidando?</div>
-  </div>
-  <div class="kpis">
-    <div class="kpi-mini"><div class="v" id="k-day">27</div><div class="l">dia/272</div></div>
-    <div class="kpi-mini"><div class="v" id="k-chunks">104k</div><div class="l">chunks</div></div>
-    <div class="kpi-mini"><div class="v" id="k-obras">146</div><div class="l">obras</div></div>
-    <div class="kpi-mini"><div class="v" id="k-trig">13/13</div><div class="l">triggers</div></div>
-  </div>
-  <h2>Acesso rápido</h2>
-  <div class="grid">
-    <a class="tile" href="https://nexuscaldeira.com/v16/pulse/" target="_blank"><div><span class="ic">⟁</span><div class="t">Pulse</div></div><div class="s">lente · cards</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/diario/" target="_blank"><div><span class="ic">⌖</span><div class="t">Diário</div></div><div class="s">22h30 BRT</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/prompt/" target="_blank"><div><span class="ic">∎</span><div class="t">Cortex</div></div><div class="s">v6.10</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/metrics/" target="_blank"><div><span class="ic">⊠</span><div class="t">Métricas</div></div><div class="s">live</div></a>
-  </div>
-  <h2>Estado atual</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">ciclo</span><span class="v">PRIMORDIA</span></div>
-    <div class="row"><span class="k">estação</span><span class="v" id="hoje-estacao">Coroa Tríplice</span></div>
-    <div class="row"><span class="k">lente</span><span class="v" id="hoje-lente">Liderança</span></div>
-    <div class="row"><span class="k">próxima</span><span class="v" id="hoje-proxima">PNL/Linguagem</span></div>
-    <div class="row"><span class="k">bootstrap</span><span class="v ok" id="hoje-bootstrap">v18.9-cloud-first</span></div>
-  </div>
-</section>
+  <script>
+    
+document.addEventListener('DOMContentLoaded', async function() {
+  const loading = document.getElementById('__bundler_loading');
+  function setStatus(msg) { if (loading) loading.textContent = msg; }
 
-<!-- TAB 2: LÍNGUA -->
-<section class="section" data-tab="lingua">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">LINGUAGEM DE AUTORIDADE</div>
-    <h1 style="font-size:20px">PNL + IE + Persuasão</h1>
-    <div class="reframe">3 modos canônicos · checklist 20s · 4 vetores regra #16</div>
-  </div>
-  <h2>Modos canônicos</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">informar</span><span class="v">estado → fato → consequência</span></div>
-    <div class="row"><span class="k">considerar</span><span class="v">hipótese · convite ao raciocínio</span></div>
-    <div class="row"><span class="k">misto</span><span class="v">informa primeiro · convida depois</span></div>
-  </div>
-  <h2>Checklist 20s · cold reading</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">tom</span><span class="v">grave · pausado · uniforme</span></div>
-    <div class="row"><span class="k">olhar</span><span class="v">3-5s · não fixo</span></div>
-    <div class="row"><span class="k">verbo</span><span class="v">concreto · presente · sem "mas"</span></div>
-    <div class="row"><span class="k">silêncio</span><span class="v">pós-pergunta 4s mínimo</span></div>
-    <div class="row"><span class="k">postura</span><span class="v">ombros · respiração · sem espelho</span></div>
-    <div class="row"><span class="k">âncora</span><span class="v">1 metáfora corporal por turno</span></div>
-  </div>
-  <h2>4 vetores · regra #16</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">imagem</span><span class="v">presença, postura, símbolo</span></div>
-    <div class="row"><span class="k">persuasão</span><span class="v">linguagem hipnótica + repertório</span></div>
-    <div class="row"><span class="k">impacto</span><span class="v">leitura do interlocutor</span></div>
-    <div class="row"><span class="k">eficácia</span><span class="v">resultado mensurável</span></div>
-  </div>
-</section>
+  // Error sink persists across replaceWith since it's on window, not the DOM.
+  window.addEventListener('error', function(e) {
+    var p = document.body || document.documentElement;
+    var d = document.getElementById('__bundler_err') || p.appendChild(document.createElement('div'));
+    d.id = '__bundler_err';
+    d.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;font:12px/1.4 ui-monospace,monospace;background:#2a1215;color:#ff8a80;padding:10px 14px;border-radius:8px;border:1px solid #5c2b2e;z-index:99999;white-space:pre-wrap;max-height:40vh;overflow:auto';
+    d.textContent = (d.textContent ? d.textContent + String.fromCharCode(10) : '') +
+      '[bundle] ' + (e.message || e.type) +
+      (e.filename ? ' (' + e.filename.slice(0, 60) + ':' + e.lineno + ')' : '');
+  }, true);
 
-<!-- TAB 3: ESTUDO -->
-<section class="section" data-tab="estudo">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">LENTE DO DIA · ACERVO</div>
-    <h1 style="font-size:22px" id="estudo-titulo">Liderança</h1>
-    <div class="reframe" id="estudo-desc">agência sem imposição</div>
-  </div>
-  <h2>Citação canônica</h2>
-  <div class="metrics" style="font-family:Georgia,serif;font-size:15px;font-style:italic;line-height:1.6">
-    <div id="cit-quote">"O líder, na ausência de testemunhas, age igual."</div>
-    <div style="font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bronze);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;font-style:normal" id="cit-src">— Sêneca · paráfrase</div>
-  </div>
-  <h2>Acervo · 146 obras / 120 integrais</h2>
-  <div class="grid">
-    <a class="tile" href="https://nexuscaldeira.com/v16/cards/" target="_blank"><div><span class="ic">▤</span><div class="t">Cards</div></div><div class="s">9×16 SVG</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/fichas/" target="_blank"><div><span class="ic">▦</span><div class="t">Fichas</div></div><div class="s">CAIR</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/grafo/" target="_blank"><div><span class="ic">⌬</span><div class="t">Grafo</div></div><div class="s">conexões</div></a>
-    <a class="tile" href="https://nexuscaldeira.com/v16/revisar/" target="_blank"><div><span class="ic">⟲</span><div class="t">Revisar</div></div><div class="s">FSRS-5</div></a>
-  </div>
-  <h2>Eixos temáticos</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">filosofia</span><span class="v">estoicismo · ontologia · ética</span></div>
-    <div class="row"><span class="k">teologia</span><span class="v">aquino · suma · 28.640 chunks</span></div>
-    <div class="row"><span class="k">psicanálise</span><span class="v">freud · klein · lacan · ferenczi</span></div>
-    <div class="row"><span class="k">literatura</span><span class="v">shakespeare · dostoiévski</span></div>
-    <div class="row"><span class="k">pnl/ie</span><span class="v">bandler · grinder · goleman</span></div>
-    <div class="row"><span class="k">persuasão</span><span class="v">cialdini · greene · gallo</span></div>
-    <div class="row"><span class="k">memorização</span><span class="v">o'brien · yates · palácios</span></div>
-  </div>
-</section>
-
-<!-- TAB 4: CARDÁPIO -->
-<section class="section" data-tab="cardapio">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">CARDÁPIO TIER-1 · 16 OBRAS</div>
-    <h1 style="font-size:20px">Trio canônico</h1>
-    <div class="reframe">Curadoria · ciclo 272 dias · top obras por chunks</div>
-  </div>
-  <h2>Filosofia · Teologia</h2>
-  <div class="obra-card"><div class="titulo">Suma Teológica (Vol 3)</div><div class="autor">Tomás de Aquino · 13.542 chunks</div><span class="tag">teologia</span><span class="tag violet">canônico</span></div>
-  <div class="obra-card"><div class="titulo">Suma I + II.1 + II.2 + III</div><div class="autor">Tomás de Aquino · 12.900 chunks</div><span class="tag">teologia</span></div>
-  <div class="obra-card"><div class="titulo">A Condição Humana</div><div class="autor">Hannah Arendt · 1.073 chunks</div><span class="tag">filosofia</span><span class="tag green">política</span></div>
-  <div class="obra-card"><div class="titulo">Física (Livros I-II)</div><div class="autor">Aristóteles · 1.344 chunks</div><span class="tag">filosofia</span></div>
-  <h2>Psicanálise</h2>
-  <div class="obra-card"><div class="titulo">Obras Completas</div><div class="autor">Sigmund Freud · 12.548 chunks</div><span class="tag">psicanálise</span><span class="tag violet">canônico</span></div>
-  <div class="obra-card"><div class="titulo">Dicionário de Psicanálise</div><div class="autor">Roudinesco & Plon · 4.683 chunks</div><span class="tag">referência</span></div>
-  <div class="obra-card"><div class="titulo">Obras Completas (4 vols)</div><div class="autor">Sándor Ferenczi · 3.795 chunks</div><span class="tag">psicanálise</span></div>
-  <h2>Literatura</h2>
-  <div class="obra-card"><div class="titulo">Os Demônios · O Idiota · Crime e Castigo</div><div class="autor">Dostoiévski · 5.741 chunks</div><span class="tag">literatura</span><span class="tag violet">trilogia</span></div>
-  <h2>PNL · Persuasão · Cognição</h2>
-  <div class="obra-card"><div class="titulo">Influence (Expanded 2021)</div><div class="autor">Robert Cialdini · 1.568 chunks</div><span class="tag">persuasão</span></div>
-  <div class="obra-card"><div class="titulo">A Arte da Sedução</div><div class="autor">Robert Greene · 1.782 chunks</div><span class="tag">persuasão</span></div>
-  <div class="obra-card"><div class="titulo">Estrutura da Magia (Vols I-II)</div><div class="autor">Bandler & Grinder · 1.051 chunks</div><span class="tag">pnl</span></div>
-  <div class="obra-card"><div class="titulo">NLP at Work (4ed 2025)</div><div class="autor">Joseph O'Connor · 1.047 chunks</div><span class="tag">pnl</span></div>
-  <div class="obra-card"><div class="titulo">Inteligência Emocional</div><div class="autor">Daniel Goleman · 1.128 chunks</div><span class="tag">ie</span></div>
-  <div class="obra-card"><div class="titulo">Rápido e Devagar</div><div class="autor">Daniel Kahneman · 3.023 chunks</div><span class="tag">cognição</span></div>
-  <a class="btn-action" href="https://nexuscaldeira.com/v16/sugestoes/" target="_blank">▸ Cardápio completo (30 obras)</a>
-</section>
-
-<!-- TAB 5: REDE -->
-<section class="section" data-tab="rede">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">REDE · CONTATOS</div>
-    <h1 style="font-size:20px">Pipeline canônica</h1>
-    <div class="reframe">Skills #84-#88 · 2.198 contatos · WhatsApp autoritativa</div>
-  </div>
-  <h2>5 Skills ativas</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">#84 audit</span><span class="v ok">canônico · O(N)</span></div>
-    <div class="row"><span class="k">#85 cross-source</span><span class="v ok">UAZAPI /chat/check</span></div>
-    <div class="row"><span class="k">#86 screenshot</span><span class="v ok">drop folder</span></div>
-    <div class="row"><span class="k">#87 open-sources</span><span class="v warn">designed</span></div>
-    <div class="row"><span class="k">#88 purge top 100</span><span class="v ok">executado</span></div>
-  </div>
-  <h2>Threshold · regra #28</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">≥ 0.85</span><span class="v ok">HIGH-CONFIRMED</span></div>
-    <div class="row"><span class="k">0.55-0.85</span><span class="v ok">HIGH-LIKELY</span></div>
-    <div class="row"><span class="k">0.40-0.55</span><span class="v warn">MED-PROBABLE</span></div>
-    <div class="row"><span class="k">&lt; 0.40</span><span class="v">LOW · sem ação</span></div>
-  </div>
-  <h2>Fontes abertas · regra #29</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">linkedin</span><span class="v ok">público</span></div>
-    <div class="row"><span class="k">lattes cnpq</span><span class="v ok">público</span></div>
-    <div class="row"><span class="k">institucional</span><span class="v ok">público</span></div>
-    <div class="row"><span class="k">twitter/x</span><span class="v ok">público</span></div>
-    <div class="row"><span class="k">facebook/insta</span><span class="v ok">público</span></div>
-    <div class="row"><span class="k">rate limit</span><span class="v">1 req / 3s</span></div>
-  </div>
-</section>
-
-<!-- TAB 6: NOTURNO -->
-<section class="section" data-tab="noturno">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">DIÁRIO · 22h30 BRT</div>
-    <h1 style="font-size:20px">Pergunta noturna</h1>
-    <div class="reframe" id="noturno-pergunta">"Que verdade incômoda você empacotou em educação hoje?"</div>
-  </div>
-  <h2>Cron Worker · 22h30 → canal direto</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">trigger</span><span class="v ok">cron 30 1 * * * (UTC)</span></div>
-    <div class="row"><span class="k">canal</span><span class="v ok">+5531985276927 (direto)</span></div>
-    <div class="row"><span class="k">grupo legado</span><span class="v ok">ausente_OK · blindado</span></div>
-    <div class="row"><span class="k">storage</span><span class="v ok">D1 nexus-diario</span></div>
-  </div>
-  <h2>Banco · rotação 30 perguntas</h2>
-  <div class="metrics" style="font-size:11px;line-height:1.7">
-    <div class="row" style="display:block;border:none;padding:4px 0">"Qual decisão de hoje você tomou rápido demais?"</div>
-    <div class="row" style="display:block;border:none;padding:4px 0">"Onde você usou autoridade quando podia ter usado escuta?"</div>
-    <div class="row" style="display:block;border:none;padding:4px 0">"Que palavra circulou na sua cabeça e você não disse?"</div>
-    <div class="row" style="display:block;border:none;padding:4px 0">"Onde sua imagem ganhou e sua eficácia perdeu?"</div>
-    <div class="row" style="display:block;border:none;padding:4px 0">"Que afeto não-nomeado guiou uma escolha sua?"</div>
-    <div class="row" style="display:block;border:none;padding:4px 0">"Onde você confundiu firmeza com impaciência?"</div>
-  </div>
-  <a class="btn-action" href="https://nexuscaldeira.com/v16/diario/" target="_blank">▸ Diário completo</a>
-</section>
-
-<!-- TAB 7: SINAIS -->
-<section class="section" data-tab="sinais">
-  <div class="hero" style="padding:18px 20px">
-    <div class="eyebrow">SINAIS · SISTEMA LIVE</div>
-    <h1 style="font-size:20px">Saúde NEXUS</h1>
-    <div class="reframe">cloud-first by design · v18.9 · 29 regras consolidadas v19.0</div>
-  </div>
-  <h2>Apps Script · LIVE</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">version</span><span class="v ok" id="m-version">v18.9-cloud-first-2026-04-28</span></div>
-    <div class="row"><span class="k">deploy</span><span class="v" id="m-deploy">@212 canonical</span></div>
-    <div class="row"><span class="k">triggers</span><span class="v ok" id="m-triggers">13/13 compliant</span></div>
-    <div class="row"><span class="k">arquivos source</span><span class="v">28 canônicos (era 38)</span></div>
-    <div class="row"><span class="k">duplicates</span><span class="v ok">0</span></div>
-    <div class="row"><span class="k">drift</span><span class="v ok" id="m-drift">ok</span></div>
-  </div>
-  <h2>Cloudflare Worker · LIVE</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">domain</span><span class="v ok">api.nexuscaldeira.com</span></div>
-    <div class="row"><span class="k">version</span><span class="v ok" id="m-w-version">v2.0-cron</span></div>
-    <div class="row"><span class="k">version id</span><span class="v" style="font-size:9px">bbcbc5c2-774f-461a-9ce4</span></div>
-    <div class="row"><span class="k">kv</span><span class="v ok" id="m-w-kv">NEXUS_RL active</span></div>
-    <div class="row"><span class="k">d1</span><span class="v ok" id="m-w-d1">nexus-diario active</span></div>
-    <div class="row"><span class="k">r2</span><span class="v ok">nexus-acervo bucket</span></div>
-  </div>
-  <h2>5 Cron Triggers · ATIVOS</h2>
-  <div id="cron-list">
-    <div class="cron-row"><div><div class="name">Healthcheck</div><div class="schedule">*/30 min</div></div><div class="status">🟢</div></div>
-    <div class="cron-row"><div><div class="name">Morning pulse</div><div class="schedule">08h00 BRT</div></div><div class="status">🟢</div></div>
-    <div class="cron-row"><div><div class="name">Diário pergunta</div><div class="schedule">22h30 BRT</div></div><div class="status">🟢</div></div>
-    <div class="cron-row"><div><div class="name">Custo OpenAI</div><div class="schedule">23h00 BRT</div></div><div class="status">🟢</div></div>
-    <div class="cron-row"><div><div class="name">Weekly digest</div><div class="schedule">05h seg BRT</div></div><div class="status">🟢</div></div>
-  </div>
-  <h2>WhatsApp · canal direto blindado</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">canal</span><span class="v" id="m-wa-canal">5531***6927</span></div>
-    <div class="row"><span class="k">grupo legado</span><span class="v ok" id="m-wa-legado">ausente_OK</span></div>
-    <div class="row"><span class="k">delivery rate</span><span class="v ok" id="m-wa-rate">100%</span></div>
-    <div class="row"><span class="k">log entries</span><span class="v" id="m-wa-log">50/50 (cap)</span></div>
-    <div class="row"><span class="k">canal canônico</span><span class="v ok">v16_nexus_notify único</span></div>
-  </div>
-  <h2>RAG · Inteligência</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">chunks</span><span class="v" id="m-chunks">104.024</span></div>
-    <div class="row"><span class="k">obras</span><span class="v" id="m-obras">146</span></div>
-    <div class="row"><span class="k">integrais</span><span class="v" id="m-integrais">120</span></div>
-    <div class="row"><span class="k">embed</span><span class="v" id="m-embed">openai · 1536d</span></div>
-    <div class="row"><span class="k">domínio</span><span class="v ok">rag.nexuscaldeira.com</span></div>
-  </div>
-  <h2>Custo · regra #12</h2>
-  <div class="metrics">
-    <div class="row"><span class="k">cumulativo</span><span class="v ok" id="m-cost">USD 0.29</span></div>
-    <div class="row"><span class="k">cap mensal</span><span class="v">USD 5.00</span></div>
-    <div class="row"><span class="k">cloudflare</span><span class="v ok">free tier</span></div>
-  </div>
-  <h2>Endpoints canônicos</h2>
-  <div class="metrics" style="font-size:10px">
-    <div class="row"><span class="k">hub</span><span class="v">nexuscaldeira.com</span></div>
-    <div class="row"><span class="k">api</span><span class="v">api.nexuscaldeira.com</span></div>
-    <div class="row"><span class="k">rag</span><span class="v">rag.nexuscaldeira.com</span></div>
-    <div class="row"><span class="k">push</span><span class="v warn">api/push (preparado)</span></div>
-  </div>
-  <h2>Regras canônicas · v19.0 (29)</h2>
-  <div class="metrics" style="font-size:10px">
-    <div class="row"><span class="k">núcleo</span><span class="v">#1-#16</span></div>
-    <div class="row"><span class="k">onda 6</span><span class="v">#17-#25</span></div>
-    <div class="row"><span class="k">contatos</span><span class="v">#26-#27</span></div>
-    <div class="row"><span class="k">cloud-first</span><span class="v ok">#28-#29 (LIVE)</span></div>
-    <div class="row"><span class="k">credenciais</span><span class="v ok">#14 NÃO rotacionar</span></div>
-  </div>
-  <button class="btn-action" onclick="loadAll()">↻ refresh</button>
-  <button class="btn-action btn-danger" onclick="logout()">limpar token (logout)</button>
-</section>
-
-</main>
-
-<nav class="tabs" id="nav" style="display:none">
-  <button class="active" data-tab="hoje"><span class="ic">⊙</span>Hoje</button>
-  <button data-tab="lingua"><span class="ic">⊕</span>Língua</button>
-  <button data-tab="estudo"><span class="ic">⊞</span>Estudo</button>
-  <button data-tab="cardapio"><span class="ic">◆</span>Cardápio</button>
-  <button data-tab="rede"><span class="ic">⌬</span>Rede</button>
-  <button data-tab="noturno"><span class="ic">☾</span>Noturno</button>
-  <button data-tab="sinais"><span class="ic">⊠</span>Sinais</button>
-</nav>
-
-</div>
-
-<script>
-const API = 'https://api.nexuscaldeira.com';
-const APPS_FALLBACK = 'https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec';
-const RAG = 'https://rag.nexuscaldeira.com';
-const KEY = 'nexus_admin_token_v1';
-const CACHE_KEY = 'nexus_state_cache_v18_9';
-const PUSH_KEY = 'nexus_push_dismissed';
-
-const LENTES = [
-  {n:'Síntese Dominical',d:'integração da semana',r:'Se eu resumisse em 1 frase para mim mesmo daqui 1 ano · qual seria?',c:{q:'A vida é compreendida olhando para trás · vivida olhando para frente.',s:'— Kierkegaard'}},
-  {n:'Liderança',d:'agência sem imposição',r:'Onde estou exigindo? · onde estou convidando?',c:{q:'O líder, na ausência de testemunhas, age igual.',s:'— Sêneca · paráfrase'}},
-  {n:'PNL/Linguagem',d:'precisão verbal e reframing',r:'Substitua "sempre/nunca" por "neste contexto"',c:{q:'O mapa não é o território.',s:'— Korzybski'}},
-  {n:'Estoica',d:'dicotomia controle/aceitação',r:'O que aqui é meu domínio? · o que é evento?',c:{q:'Não é o que acontece, mas como respondemos.',s:'— Epicteto · Manual'}},
-  {n:'Psicanálise',d:'sintoma como saber',r:'O sintoma diz o quê?',c:{q:'O sintoma é uma metáfora.',s:'— Lacan'}},
-  {n:'Memorização',d:'palácio + repetição espaçada',r:'Esta info já tem ancoragem visual?',c:{q:'A memória não é armazém · é palácio.',s:'— Yates'}},
-  {n:'Motivacional',d:'arquitetura do desejo',r:'O que me move agora · medo ou desejo?',c:{q:'O que você procura está procurando você.',s:'— Rumi'}}
-];
-const MICROS = [
-  'Diga em voz alta sua próxima ação · 1 min.',
-  'Identifique 1 dicotomia controle vs. influência · 3 min.',
-  'Reformule mentalmente sem o "mas" · 2 min.',
-  'Visualize a próxima reunião como se já tivesse terminado bem · 4 min.',
-  'Ensine 1 conceito novo em 90 segundos para si mesmo.',
-  'Caminhe 2 min sem celular · 5 detalhes.',
-  'Liste 3 coisas que sabe que não sabe.'
-];
-const ESTACOES = ['Génese','Forja','Tessitura','Coroa Tríplice','Síntese','Espelho','Tribunal','Vértice'];
-
-let stateData = {};
-
-function getToken(){ return localStorage.getItem(KEY) || '' }
-function setToken(){
-  const v = document.getElementById('tokenInput').value.trim();
-  if(!v) return;
-  localStorage.setItem(KEY, v);
-  showApp();
-}
-function logout(){
-  if(confirm('Limpar token?')){
-    localStorage.removeItem(KEY);
-    localStorage.removeItem(CACHE_KEY);
-    location.reload();
-  }
-}
-function showApp(){
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('hdr').style.display = 'flex';
-  document.getElementById('main').style.display = 'block';
-  document.getElementById('nav').style.display = 'flex';
-  loadAll();
-  // Push banner: mostra após 30s se não dispensado
-  setTimeout(() => {
-    if(!localStorage.getItem(PUSH_KEY) && 'Notification' in window && Notification.permission === 'default') {
-      document.getElementById('pushBanner').classList.add('show');
+  try {
+    const manifestEl = document.querySelector('script[type="__bundler/manifest"]');
+    const templateEl = document.querySelector('script[type="__bundler/template"]');
+    if (!manifestEl || !templateEl) {
+      setStatus('Error: missing bundle data');
+      console.error('[bundler] Missing script tags — manifestEl:', !!manifestEl, 'templateEl:', !!templateEl);
+      return;
     }
-  }, 30000);
-}
 
-document.querySelectorAll('nav.tabs button').forEach(b => {
-  b.addEventListener('click', () => {
-    const t = b.dataset.tab;
-    document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x === b));
-    document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.dataset.tab === t));
-    document.getElementById('main').scrollTop = 0;
-  });
+    const manifest = JSON.parse(manifestEl.textContent);
+    let template = JSON.parse(templateEl.textContent);
+
+    const uuids = Object.keys(manifest);
+    setStatus('Unpacking ' + uuids.length + ' assets...');
+
+    const blobUrls = {};
+    await Promise.all(uuids.map(async (uuid) => {
+      const entry = manifest[uuid];
+      try {
+        const binaryStr = atob(entry.data);
+        const bytes = new Uint8Array(binaryStr.length);
+        for (let i = 0; i < binaryStr.length; i++) bytes[i] = binaryStr.charCodeAt(i);
+
+        let finalBytes = bytes;
+        if (entry.compressed) {
+          if (typeof DecompressionStream !== 'undefined') {
+            const ds = new DecompressionStream('gzip');
+            const writer = ds.writable.getWriter();
+            const reader = ds.readable.getReader();
+            writer.write(bytes);
+            writer.close();
+            const chunks = [];
+            let totalLen = 0;
+            while (true) {
+              const { done, value } = await reader.read();
+              if (done) break;
+              chunks.push(value);
+              totalLen += value.length;
+            }
+            finalBytes = new Uint8Array(totalLen);
+            let offset = 0;
+            for (const chunk of chunks) { finalBytes.set(chunk, offset); offset += chunk.length; }
+          } else {
+            console.warn('DecompressionStream not available, asset ' + uuid + ' may not render');
+          }
+        }
+
+        blobUrls[uuid] = URL.createObjectURL(new Blob([finalBytes], { type: entry.mime }));
+      } catch (err) {
+        console.error('Failed to decode asset ' + uuid + ':', err);
+        blobUrls[uuid] = URL.createObjectURL(new Blob([], { type: entry.mime }));
+      }
+    }));
+
+    const extResEl = document.querySelector('script[type="__bundler/ext_resources"]');
+    const extResources = extResEl ? JSON.parse(extResEl.textContent) : [];
+    const resourceMap = {};
+    for (const entry of extResources) {
+      if (blobUrls[entry.uuid]) resourceMap[entry.id] = blobUrls[entry.uuid];
+    }
+
+    setStatus('Rendering...');
+    for (const uuid of uuids) template = template.split(uuid).join(blobUrls[uuid]);
+
+    // Strip integrity + crossorigin — blob URLs from a file:// document inherit
+    // a null origin, so crossorigin forces a CORS fetch that SRI then rejects.
+    // The manifest bytes are ours; SRI protects against CDN compromise, not this.
+    template = template.replace(/\s+integrity="[^"]*"/gi, '').replace(/\s+crossorigin="[^"]*"/gi, '');
+
+    const resourceScript = '<script>window.__resources = ' +
+      JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
+      ';</' + 'script>';
+    // Inject after <head> so the DOCTYPE stays first; prepending the script
+    // would push the parser into quirks mode. DOMParser always emits a <head>
+    // (synthesizing one if the source HTML omitted it) but may carry
+    // attributes through, so match the full opening tag. slice() rather than
+    // replace() keeps us clear of $-pattern substitution in resourceScript.
+    const headOpen = template.match(/<head[^>]*>/i);
+    if (headOpen) {
+      const i = headOpen.index + headOpen[0].length;
+      template = template.slice(0, i) + resourceScript + template.slice(i);
+    }
+
+    // Parse the template and swap the root element. Scripts inserted via
+    // DOMParser/replaceWith are inert per spec — re-create each with
+    // createElement so they execute, awaiting onload for src scripts to
+    // preserve ordering (React before ReactDOM before Babel before text/babel).
+    const doc = new DOMParser().parseFromString(template, 'text/html');
+    document.documentElement.replaceWith(doc.documentElement);
+    const dead = Array.from(document.scripts);
+    for (const old of dead) {
+      const s = document.createElement('script');
+      for (const a of old.attributes) s.setAttribute(a.name, a.value);
+      s.textContent = old.textContent;
+      // text/babel scripts with a src: fetch and inline. transformScriptTags
+      // does XHR against the src, but blob:null/ from a file:// origin is
+      // silently dropped. Inlining makes it a plain inline babel script,
+      // which transformScriptTags handles unconditionally.
+      if ((s.type === 'text/babel' || s.type === 'text/jsx') && s.src) {
+        const r = await fetch(s.src);
+        s.textContent = await r.text();
+        s.removeAttribute('src');
+      }
+      const p = s.src ? new Promise(function(r) { s.onload = s.onerror = r; }) : null;
+      old.replaceWith(s);
+      if (p) await p;
+    }
+    // Babel standalone auto-transforms type=text/babel on DOMContentLoaded,
+    // which fired before we swapped the document. Trigger manually if present.
+    if (window.Babel && typeof window.Babel.transformScriptTags === 'function') {
+      window.Babel.transformScriptTags();
+    }
+  } catch (err) {
+    setStatus('Error unpacking: ' + err.message);
+    console.error('Bundle unpack error:', err);
+  }
 });
 
-async function fetchProxy(action, t){
-  try{
-    const r = await fetch(`${API}/proxy?action=${action}&token=${encodeURIComponent(t)}`);
-    if(r.ok) return r.json();
-    throw new Error('worker '+r.status);
-  } catch(e){
-    const r = await fetch(`${APPS_FALLBACK}?action=${action}&token=${encodeURIComponent(t)}`);
-    return r.json();
-  }
-}
+  </script>
 
-async function loadAll(){
-  const t = getToken();
-  if(!t) return;
-  document.getElementById('offline').classList.remove('show');
-  const [s, r, w, c, n] = await Promise.allSettled([
-    fetchProxy('status', t),
-    fetch(`${RAG}/stats`).then(r => r.json()),
-    fetch(`${API}/health`).then(r => r.json()),
-    fetch(`${API}/cron/status`).then(r => r.json()),
-    fetchProxy('v16_notify_test', t)
-  ]);
-  if(s.status === 'rejected'){
-    document.getElementById('offline').classList.add('show');
-    const cache = localStorage.getItem(CACHE_KEY);
-    if(cache){ stateData = JSON.parse(cache); render(); }
-    return;
-  }
-  stateData = {
-    status: s.status === 'fulfilled' ? s.value : null,
-    rag: r.status === 'fulfilled' ? r.value : null,
-    worker: w.status === 'fulfilled' ? w.value : null,
-    crons: c.status === 'fulfilled' ? c.value : null,
-    notifyTest: n.status === 'fulfilled' ? n.value : null,
-    ts: Date.now()
-  };
-  localStorage.setItem(CACHE_KEY, JSON.stringify(stateData));
-  render();
-}
+  <script type="__bundler/manifest">
+{}
+  </script>
 
-function render(){
-  const { status, rag, worker, crons, notifyTest } = stateData;
-  if(!status) return;
-  const day = status.cycleDay || 27;
-  const estIdx = Math.min(Math.floor((day - 1) / 34), 7);
-  const estacao = ESTACOES[estIdx] || 'Coroa Tríplice';
-  const ld = LENTES[(day - 1) % 7] || LENTES[1];
-  const dt = new Date();
-  document.getElementById('hdr-day').textContent = `DAY ${day}/272`;
-  document.getElementById('hdr-date').textContent = dt.toLocaleDateString('pt-BR');
-  document.getElementById('hero-eyebrow').textContent = `CICLO PRIMORDIA · ${estacao.toUpperCase()}`;
-  document.getElementById('hero-title').textContent = ld.n;
-  document.getElementById('hero-lente').textContent = ld.d;
-  document.getElementById('hero-micro').textContent = MICROS[(day - 1) % MICROS.length];
-  document.getElementById('hero-reframe').textContent = '⤳ ' + ld.r;
-  document.getElementById('k-day').textContent = day;
-  document.getElementById('hoje-estacao').textContent = estacao;
-  document.getElementById('hoje-lente').textContent = ld.n;
-  document.getElementById('hoje-proxima').textContent = LENTES[day % 7].n;
-  document.getElementById('hoje-bootstrap').textContent = status.bootstrapVersion || 'v18.9';
-  document.getElementById('estudo-titulo').textContent = ld.n;
-  document.getElementById('estudo-desc').textContent = ld.d;
-  document.getElementById('cit-quote').textContent = '"' + ld.c.q + '"';
-  document.getElementById('cit-src').textContent = ld.c.s;
-  document.getElementById('m-version').textContent = status.bootstrapVersion || '·';
-  if(rag){
-    document.getElementById('k-chunks').textContent = (rag.chunks/1000).toFixed(0)+'k';
-    document.getElementById('k-obras').textContent = rag.obras;
-    document.getElementById('m-chunks').textContent = rag.chunks.toLocaleString('pt-BR');
-    document.getElementById('m-obras').textContent = rag.obras;
-    document.getElementById('m-integrais').textContent = rag.obras_integrais;
-    document.getElementById('m-embed').textContent = `${rag.embed_provider||'openai'} · ${rag.embed_dims||1536}d`;
-  }
-  if(worker){
-    document.getElementById('m-w-version').textContent = worker.version || '·';
-  }
-  if(notifyTest){
-    document.getElementById('m-wa-canal').textContent = notifyTest.v15af_owner_phone || '·';
-    document.getElementById('m-wa-legado').textContent = notifyTest.nexus_biblioteca_phone_legacy || '·';
-  }
-}
+  <script type="__bundler/ext_resources">
+[]
+  </script>
 
-// Push notifications
-function skipPush(){
-  localStorage.setItem(PUSH_KEY, '1');
-  document.getElementById('pushBanner').classList.remove('show');
-}
-async function enablePush(){
-  if(!('Notification' in window) || !('serviceWorker' in navigator)){
-    alert('Push não suportado neste navegador. iOS 16.4+ requer instalação via Adicionar à Tela de Início.');
-    return;
-  }
-  const perm = await Notification.requestPermission();
-  if(perm === 'granted'){
-    const reg = await navigator.serviceWorker.ready;
-    // VAPID public key será injetada aqui no deploy final
-    // const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: VAPID_PUBLIC });
-    // await fetch(`${API}/push/subscribe`, { method: 'POST', body: JSON.stringify(sub), headers: {'X-Nexus-Token': getToken()} });
-    document.getElementById('pushBanner').classList.remove('show');
-    alert('Push habilitado · primeiras notificações em ~2h.');
-  }
-}
-
-// Service Worker
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/hub/sw.js').catch(()=>{});
-}
-if(getToken()) showApp();
-setInterval(() => { if(getToken()) loadAll(); }, 5*60*1000);
-window.addEventListener('online', () => { document.getElementById('offline').classList.remove('show'); loadAll(); });
-window.addEventListener('offline', () => document.getElementById('offline').classList.add('show'));
-</script>
+  <script type="__bundler/template">
+"<!DOCTYPE html>\n<html lang=\"pt-BR\"><head>\n<meta charset=\"utf-8\">\n<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no\">\n<meta name=\"theme-color\" content=\"#0a0a0a\">\n<meta name=\"apple-mobile-web-app-capable\" content=\"yes\">\n<meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\">\n<meta name=\"apple-mobile-web-app-title\" content=\"NEXUS v19\">\n<meta name=\"format-detection\" content=\"telephone=no\">\n<title>NEXUS · v19.0<\u002Ftitle>\n\n\n\n<link rel=\"apple-touch-icon\" href=\"data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'&gt;&lt;rect width='180' height='180' rx='40' fill='%230a0a0a'/&gt;&lt;circle cx='90' cy='90' r='52' fill='none' stroke='%23d4af37' stroke-width='3'/&gt;&lt;circle cx='90' cy='90' r='6' fill='%23d4af37'/&gt;&lt;text x='90' y='150' text-anchor='middle' font-family='Georgia' font-size='22' fill='%23f5f5f0' font-style='italic'&gt;NEXUS&lt;/text&gt;&lt;/svg&gt;\">\n<link rel=\"icon\" href=\"data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'&gt;&lt;rect width='64' height='64' rx='14' fill='%230a0a0a'/&gt;&lt;circle cx='32' cy='32' r='18' fill='none' stroke='%23d4af37' stroke-width='2'/&gt;&lt;circle cx='32' cy='32' r='3' fill='%23d4af37'/&gt;&lt;/svg&gt;\">\n\n<link rel=\"manifest\" href=\"data:application/manifest+json,{&quot;name&quot;:&quot;NEXUS Hub&quot;,&quot;short_name&quot;:&quot;NEXUS&quot;,&quot;start_url&quot;:&quot;.&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;orientation&quot;:&quot;portrait&quot;,&quot;background_color&quot;:&quot;%230a0a0a&quot;,&quot;theme_color&quot;:&quot;%230a0a0a&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;data:image/svg+xml;utf8,&lt;svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 192 192%27&gt;&lt;rect width=%27192%27 height=%27192%27 rx=%2742%27 fill=%27%230a0a0a%27/&gt;&lt;circle cx=%2796%27 cy=%2796%27 r=%2756%27 fill=%27none%27 stroke=%27%23d4af37%27 stroke-width=%273%27/&gt;&lt;/svg&gt;&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/svg+xml&quot;}]}\">\n\n<style>\n:root{\n  --ink:#0a0a0a;\n  --ink-2:#121214;\n  --ink-3:#1a1a1f;\n  --bone:#f5f5f0;\n  --bone-dim:#bdbdb4;\n  --bone-mute:#7a7a72;\n  --gold:#d4af37;\n  --gold-soft:rgba(212,175,55,.28);\n  --gold-glow:rgba(212,175,55,.08);\n  --green:#7df3a3;\n  --violet:#b794f4;\n  --red:#f47174;\n  --amber:#f4c674;\n  --serif:Georgia,'Times New Roman',serif;\n  --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;\n  --sys:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;\n  --safe-t:env(safe-area-inset-top);\n  --safe-b:env(safe-area-inset-bottom);\n  --safe-l:env(safe-area-inset-left);\n  --safe-r:env(safe-area-inset-right);\n}\n*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}\nhtml,body{margin:0;padding:0;background:var(--ink);color:var(--bone);font-family:var(--sys);font-size:15px;line-height:1.5;min-height:100vh;overscroll-behavior-y:none}\nbody{\n  background:\n    radial-gradient(ellipse 80% 50% at 50% -10%,rgba(183,148,244,.10),transparent 60%),\n    radial-gradient(ellipse 60% 40% at 100% 100%,rgba(212,175,55,.06),transparent 60%),\n    var(--ink);\n  background-attachment:fixed;\n  padding-top:var(--safe-t);\n  padding-left:var(--safe-l);\n  padding-right:var(--safe-r);\n  padding-bottom:calc(76px + var(--safe-b));\n}\nbutton,input{font:inherit;color:inherit}\na{color:var(--gold);text-decoration:none}\n\n/* === HEADER === */\nheader.top{\n  position:sticky;top:0;z-index:50;\n  padding:14px 18px 10px;\n  background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(10,10,10,.72) 70%,transparent);\n  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);\n  display:flex;align-items:center;gap:12px;\n}\n.brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}\n.brand .mark{width:32px;height:32px;border-radius:9px;border:1px solid var(--gold-soft);display:grid;place-items:center;background:var(--ink-2)}\n.brand .mark svg{width:18px;height:18px}\n.brand h1{font-family:var(--serif);font-style:italic;font-weight:400;font-size:19px;margin:0;letter-spacing:.3px}\n.brand .sub{font-family:var(--mono);font-size:10px;color:var(--bone-mute);letter-spacing:.08em;text-transform:uppercase;margin-top:1px}\n.hbtn{\n  border:1px solid var(--gold-soft);background:var(--ink-2);color:var(--bone-dim);\n  padding:7px 11px;border-radius:8px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;\n  cursor:pointer;transition:.15s;\n}\n.hbtn:active{background:var(--ink-3);transform:scale(.96)}\n.hbtn.live{color:var(--gold)}\n\n/* === OFFLINE BAR === */\n.offline-bar{\n  display:none;background:rgba(244,113,116,.12);border-bottom:1px solid rgba(244,113,116,.4);\n  color:var(--red);font-family:var(--mono);font-size:11px;text-align:center;padding:6px;\n  letter-spacing:.05em;\n}\nbody.offline .offline-bar{display:block}\n\n/* === AUTH GATE === */\n.gate{\n  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;\n  background:radial-gradient(ellipse at center,rgba(20,20,28,.98),rgba(10,10,10,1));\n  padding:24px;\n}\n.gate.hidden{display:none}\n.gate-card{\n  width:100%;max-width:380px;border:1px solid var(--gold-soft);border-radius:16px;\n  background:linear-gradient(180deg,rgba(26,26,31,.9),rgba(15,15,20,.9));\n  padding:28px 22px;text-align:center;\n  box-shadow:0 30px 80px rgba(0,0,0,.6),inset 0 1px 0 rgba(212,175,55,.1);\n}\n.gate .seal{width:54px;height:54px;margin:0 auto 14px;border-radius:14px;border:1px solid var(--gold-soft);display:grid;place-items:center;background:var(--ink-2)}\n.gate h2{font-family:var(--serif);font-style:italic;font-weight:400;font-size:24px;margin:0 0 4px}\n.gate p{color:var(--bone-mute);font-family:var(--mono);font-size:11px;letter-spacing:.06em;margin:0 0 22px;text-transform:uppercase}\n.gate input{\n  width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(212,175,55,.25);\n  background:rgba(10,10,10,.7);color:var(--bone);font-family:var(--mono);font-size:13px;\n  letter-spacing:.04em;margin-bottom:12px;outline:none;\n}\n.gate input:focus{border-color:var(--gold)}\n.gate button.enter{\n  width:100%;padding:13px;border-radius:10px;border:1px solid var(--gold);\n  background:linear-gradient(180deg,rgba(212,175,55,.18),rgba(212,175,55,.08));\n  color:var(--gold);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;\n}\n.gate button.enter:active{transform:scale(.98)}\n.gate .hint{margin-top:14px;font-size:10px;color:var(--bone-mute);font-family:var(--mono);letter-spacing:.06em}\n\n/* === LAYOUT === */\nmain{padding:6px 16px 12px;max-width:520px;margin:0 auto}\n.panel{display:none}\n.panel.active{display:block;animation:fade .25s ease}\n@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}\n\n.section-label{\n  font-family:var(--mono);font-size:10px;color:var(--bone-mute);\n  letter-spacing:.16em;text-transform:uppercase;margin:18px 4px 8px;\n  display:flex;align-items:center;gap:8px;\n}\n.section-label::after{content:\"\";flex:1;height:1px;background:linear-gradient(90deg,var(--gold-soft),transparent)}\n\n/* === CARDS === */\n.card{\n  border:1px solid var(--gold-soft);border-radius:14px;\n  background:linear-gradient(165deg,rgba(26,26,31,.85),rgba(20,16,28,.6));\n  padding:16px;margin-bottom:12px;\n  box-shadow:0 1px 0 rgba(255,255,255,.02) inset, 0 8px 24px -12px rgba(0,0,0,.6);\n}\n.card.hero{\n  background:linear-gradient(165deg,rgba(30,24,42,.9),rgba(15,12,22,.9));\n  border-color:rgba(212,175,55,.4);\n  position:relative;overflow:hidden;\n}\n.card.hero::before{\n  content:\"\";position:absolute;top:-40%;right:-20%;width:60%;height:140%;\n  background:radial-gradient(closest-side,rgba(183,148,244,.18),transparent 70%);\n  pointer-events:none;\n}\n.card h3{\n  font-family:var(--mono);font-size:10px;color:var(--bone-mute);\n  letter-spacing:.16em;text-transform:uppercase;margin:0 0 10px;font-weight:500;\n}\n.card .big{font-family:var(--serif);font-style:italic;font-size:30px;line-height:1.15;margin:2px 0 4px;font-weight:400}\n.card .lead{color:var(--bone-dim);font-size:14px;line-height:1.55}\n.card.hero .lead{color:var(--bone)}\n\n/* === KPIs === */\n.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0 4px}\n.kpi{\n  border:1px solid rgba(212,175,55,.18);border-radius:10px;\n  background:rgba(10,10,10,.55);padding:10px 8px;text-align:center;\n}\n.kpi .v{font-family:var(--serif);font-size:18px;color:var(--gold);font-weight:500;letter-spacing:-.01em}\n.kpi .k{font-family:var(--mono);font-size:9px;color:var(--bone-mute);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}\n\n/* === TILES 2 col === */\n.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}\n.tile{\n  border:1px solid var(--gold-soft);border-radius:12px;\n  background:linear-gradient(160deg,rgba(26,26,31,.7),rgba(15,15,20,.7));\n  padding:14px 12px;cursor:pointer;transition:.15s;\n}\n.tile:active{transform:scale(.97);background:rgba(30,30,38,.9)}\n.tile .num{font-family:var(--serif);color:var(--gold);font-size:22px;font-style:italic}\n.tile .lbl{font-size:13px;margin-top:2px}\n.tile .desc{font-family:var(--mono);font-size:10px;color:var(--bone-mute);margin-top:4px;letter-spacing:.04em}\n\n/* === METRIC ROWS === */\n.metrics{display:flex;flex-direction:column;gap:1px;margin-top:8px;border-radius:10px;overflow:hidden;background:rgba(0,0,0,.25)}\n.mrow{\n  display:flex;justify-content:space-between;align-items:center;\n  padding:11px 13px;background:rgba(20,20,26,.6);\n  font-family:var(--mono);font-size:12px;\n}\n.mrow .k{color:var(--bone-mute);letter-spacing:.04em;font-size:11px}\n.mrow .v{color:var(--bone);text-align:right}\n.mrow .v.gold{color:var(--gold)}\n.mrow .v.green{color:var(--green)}\n.mrow .v.violet{color:var(--violet)}\n.mrow .v.red{color:var(--red)}\n.mrow .v.amber{color:var(--amber)}\n\n/* === BADGES === */\n.badge{\n  display:inline-flex;align-items:center;gap:5px;\n  padding:3px 8px;border-radius:999px;\n  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;\n  border:1px solid currentColor;\n}\n.badge.gold{color:var(--gold)}\n.badge.green{color:var(--green)}\n.badge.violet{color:var(--violet)}\n.badge.red{color:var(--red)}\n.badge.amber{color:var(--amber)}\n.badge.mute{color:var(--bone-mute);border-color:rgba(122,122,114,.4)}\n.dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}\n\n/* === LISTS === */\n.list{display:flex;flex-direction:column;gap:8px;margin-top:8px}\n.li{\n  display:flex;justify-content:space-between;align-items:flex-start;gap:10px;\n  padding:11px 12px;border-radius:10px;border:1px solid rgba(212,175,55,.14);\n  background:rgba(15,15,20,.5);\n}\n.li .title{font-size:13px;font-weight:500}\n.li .sub{font-family:var(--mono);font-size:10px;color:var(--bone-mute);margin-top:2px;letter-spacing:.04em}\n.li .num{font-family:var(--mono);font-size:11px;color:var(--gold);white-space:nowrap}\n\n.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}\n.tag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-mute);padding:2px 7px;border-radius:6px;border:1px solid rgba(122,122,114,.25);background:rgba(0,0,0,.25)}\n.tag.philosophy{color:var(--violet);border-color:rgba(183,148,244,.3)}\n.tag.psicanalise{color:var(--gold);border-color:rgba(212,175,55,.3)}\n.tag.literatura{color:var(--bone-dim);border-color:rgba(189,189,180,.3)}\n.tag.persuasao{color:var(--green);border-color:rgba(125,243,163,.3)}\n.tag.pnl{color:var(--amber);border-color:rgba(244,198,116,.3)}\n\n/* === MODE PILLS === */\n.pills{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}\n.pill{\n  font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;\n  padding:6px 10px;border-radius:8px;border:1px solid var(--gold-soft);\n  background:rgba(10,10,10,.4);color:var(--bone-dim);\n}\n.pill.on{color:var(--gold);border-color:var(--gold);background:rgba(212,175,55,.08)}\n\n/* === CHECKLIST === */\n.check{display:flex;flex-direction:column;gap:6px;margin-top:8px}\n.check .ci{\n  display:flex;align-items:center;gap:9px;padding:9px 11px;\n  border:1px solid rgba(212,175,55,.14);border-radius:9px;background:rgba(15,15,20,.5);\n  font-size:13px;\n}\n.check .num{font-family:var(--mono);font-size:10px;color:var(--gold);min-width:18px}\n\n.quote{\n  font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.55;\n  padding:12px 14px;border-left:2px solid var(--gold);\n  background:rgba(212,175,55,.04);border-radius:0 8px 8px 0;color:var(--bone);\n}\n.quote cite{display:block;margin-top:6px;font-style:normal;font-family:var(--mono);font-size:10px;color:var(--bone-mute);letter-spacing:.08em;text-transform:uppercase}\n\n.code{\n  font-family:var(--mono);font-size:11px;color:var(--green);\n  background:rgba(0,0,0,.5);padding:9px 11px;border-radius:8px;\n  border:1px solid rgba(125,243,163,.15);\n  word-break:break-all;letter-spacing:.02em;\n}\n\n.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-soft),transparent);margin:14px 0}\n\n.row-actions{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}\n.btn{\n  flex:1;min-width:120px;padding:10px 12px;border-radius:9px;border:1px solid var(--gold-soft);\n  background:rgba(10,10,10,.6);color:var(--bone-dim);font-family:var(--mono);font-size:10px;\n  letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:.15s;\n}\n.btn:active{transform:scale(.97)}\n.btn.gold{color:var(--gold);border-color:var(--gold)}\n.btn.danger{color:var(--red);border-color:rgba(244,113,116,.4)}\n\n/* === BOTTOM TABS === */\nnav.tabs{\n  position:fixed;left:0;right:0;bottom:0;z-index:60;\n  padding:8px 8px calc(8px + var(--safe-b));\n  background:linear-gradient(0deg,rgba(10,10,10,.96),rgba(10,10,10,.85) 70%,transparent);\n  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);\n  display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;\n  scrollbar-width:none;\n  border-top:1px solid rgba(212,175,55,.15);\n}\nnav.tabs::-webkit-scrollbar{display:none}\nnav.tabs button{\n  flex:1 0 auto;min-width:64px;\n  display:flex;flex-direction:column;align-items:center;gap:3px;\n  padding:7px 10px;border-radius:10px;border:1px solid transparent;\n  background:transparent;color:var(--bone-mute);cursor:pointer;transition:.15s;\n}\nnav.tabs button .icn{font-family:var(--serif);font-style:italic;font-size:13px;line-height:1}\nnav.tabs button .lab{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase}\nnav.tabs button.active{color:var(--gold);background:rgba(212,175,55,.08);border-color:var(--gold-soft)}\n\n/* === STATUS LIGHT === */\n.statlight{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.06em}\n\n/* === MISC === */\n.muted{color:var(--bone-mute)}\n.mono{font-family:var(--mono)}\n.serif-it{font-family:var(--serif);font-style:italic}\n.center{text-align:center}\n.flex{display:flex;align-items:center;justify-content:space-between;gap:8px}\n.flex-c{display:flex;align-items:center;gap:8px}\n.spinner{display:inline-block;width:10px;height:10px;border:1.5px solid var(--gold-soft);border-top-color:var(--gold);border-radius:50%;animation:sp .8s linear infinite}\n@keyframes sp{to{transform:rotate(360deg)}}\n\n@media(max-width:380px){\n  .kpi-grid{grid-template-columns:repeat(2,1fr)}\n  .card .big{font-size:26px}\n}\n<\u002Fstyle>\n<\u002Fhead>\n<body>\n\n<!-- AUTH GATE -->\n<div class=\"gate\" id=\"gate\">\n  <div class=\"gate-card\">\n    <div class=\"seal\">\n      <svg width=\"28\" height=\"28\" viewBox=\"0 0 32 32\" fill=\"none\"><circle cx=\"16\" cy=\"16\" r=\"12\" stroke=\"#d4af37\" stroke-width=\"1.5\"><\u002Fcircle><circle cx=\"16\" cy=\"16\" r=\"2\" fill=\"#d4af37\"><\u002Fcircle><\u002Fsvg>\n    <\u002Fdiv>\n    <h2>NEXUS<\u002Fh2>\n    <p>v19.0 · cloud-first · dia 27/272<\u002Fp>\n    <input id=\"tokenInput\" type=\"password\" placeholder=\"NEXUS_ADMIN_TOKEN\" autocomplete=\"off\" autocapitalize=\"none\" spellcheck=\"false\">\n    <button class=\"enter\" id=\"enterBtn\">Entrar<\u002Fbutton>\n    <div class=\"hint\">Token armazenado localmente · regra #11 frente fechada<\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fdiv>\n\n<!-- TOPBAR -->\n<header class=\"top\">\n  <div class=\"brand\">\n    <div class=\"mark\"><svg viewBox=\"0 0 24 24\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"9\" stroke=\"#d4af37\" stroke-width=\"1.4\"><\u002Fcircle><circle cx=\"12\" cy=\"12\" r=\"1.6\" fill=\"#d4af37\"><\u002Fcircle><\u002Fsvg><\u002Fdiv>\n    <div>\n      <h1>NEXUS · Hub Vivo<\u002Fh1>\n      <div class=\"sub\">PMMG/MPMG · v19.0 · DIA <span id=\"hdrCycle\">27<\u002Fspan>/272<\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n  <button class=\"hbtn\" id=\"refreshBtn\" title=\"Sync\">↻ <span id=\"refreshLabel\">Sync<\u002Fspan><\u002Fbutton>\n  <button class=\"hbtn\" id=\"logoutBtn\" title=\"Sair\">⏻<\u002Fbutton>\n<\u002Fheader>\n\n<div class=\"offline-bar\">⌀ OFFLINE · usando cache localStorage(nexus_state_cache_v18_9)<\u002Fdiv>\n\n<main>\n\n<!-- ============ HOJE ============ -->\n<section class=\"panel active\" data-tab=\"hoje\">\n  <div class=\"card hero\">\n    <h3>Ciclo Primordia · <span id=\"cycleSeason\">Inverno · Destilação<\u002Fspan><\u002Fh3>\n    <div class=\"big\">Dia <span id=\"cycleDay\">27<\u002Fspan> <span class=\"muted\" style=\"font-size:.55em\">/ 272<\u002Fspan><\u002Fdiv>\n    <div class=\"lead\" id=\"lensLead\"><strong style=\"color:var(--gold)\">Estação Espelho<\u002Fstrong> · 9ª do ciclo · <strong style=\"color:var(--gold)\">PNL · Linguagem<\u002Fstrong> · mapa ≠ território · framing precede argumento<\u002Fdiv>\n    <div class=\"kpi-grid\">\n      <div class=\"kpi\"><div class=\"v\" id=\"kpiDay\">27<\u002Fdiv><div class=\"k\">dia<\u002Fdiv><\u002Fdiv>\n      <div class=\"kpi\"><div class=\"v\" id=\"kpiChunks\">104k<\u002Fdiv><div class=\"k\">chunks<\u002Fdiv><\u002Fdiv>\n      <div class=\"kpi\"><div class=\"v\" id=\"kpiObras\">146<\u002Fdiv><div class=\"k\">obras<\u002Fdiv><\u002Fdiv>\n      <div class=\"kpi\"><div class=\"v\" id=\"kpiCrons\">13<\u002Fdiv><div class=\"k\">triggers<\u002Fdiv><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Microcomando · 1–5 min<\u002Fh3>\n    <div class=\"lead serif-it\" id=\"microcmd\" style=\"font-size:17px\">reformule uma frase com “ainda” ou “considere” usando padrão Erickson<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Reframe da lente<\u002Fh3>\n    <div class=\"quote\" id=\"reframeBox\">A palavra escolhida fecha ou abre realidades. <cite id=\"reframeCite\">Korzybski · Mapa não é território<\u002Fcite><\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Operação plena · regra #16 · 4 vetores<\u002Fh3>\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">imagem<\u002Fspan><span class=\"v gold\">consistência simbólica<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">persuasão + linguagem<\u002Fspan><span class=\"v violet\">hipnótica · repertório denso<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">impacto<\u002Fspan><span class=\"v green\">memorável + acionável<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">eficácia<\u002Fspan><span class=\"v amber\">resultado mensurável<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Pulso do dia<\u002Fh3>\n    <div class=\"metrics\" id=\"pulseMetrics\">\n      <div class=\"mrow\"><span class=\"k\">bootstrap<\u002Fspan><span class=\"v gold mono\" id=\"pulseBoot\" style=\"font-size:10px\">v18.9.9.6-utf8-massa-pulses-refresh-2026-04-28<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">worker<\u002Fspan><span class=\"v\" id=\"pulseWorker\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>LIVE @bbcbc5c2<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">apps script<\u002Fspan><span class=\"v green\" id=\"pulseGAS\">@219 · 13 triggers compliant<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">audit_canonical<\u002Fspan><span class=\"v green\">7/7 COMPLIANT<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">rag<\u002Fspan><span class=\"v\" id=\"pulseRag\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>104.024 chunks<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">pulses<\u002Fspan><span class=\"v violet\">v19.0 · 40 pt-BR · @99c276b<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">canal direto<\u002Fspan><span class=\"v\" id=\"pulseChannel\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>BLINDADO · #5<\u002Fspan><\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ LÍNGUA ============ -->\n<section class=\"panel\" data-tab=\"lingua\">\n  <div class=\"section-label\">Modos canônicos<\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>INFORMAR · neutro factual<\u002Fh3>\n    <div class=\"serif-it\" style=\"font-size:16px;line-height:1.45\">fato + contexto + consequência observável<\u002Fdiv>\n    <div class=\"code\">microcomando: \"informar X em uma frase, sem juízo\"<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>CONSIDERAR · convite reflexivo<\u002Fh3>\n    <div class=\"serif-it\" style=\"font-size:16px;line-height:1.45\">premissa + reframe + abertura (\"considere que…\")<\u002Fdiv>\n    <div class=\"code\">microcomando: \"considere que… e veja o que muda\"<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>MISTO · fato → consideração<\u002Fh3>\n    <div class=\"serif-it\" style=\"font-size:16px;line-height:1.45\">factual ancora; reflexivo abre porta<\u002Fdiv>\n    <div class=\"code\">microcomando: \"isto é X; agora considere Y\"<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Cold reading · 20s<\u002Fdiv>\n  <div class=\"card\">\n    <h3>Checklist mínimo<\u002Fh3>\n    <div class=\"check\" id=\"coldCheck\"><\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Regra #16 · 4 vetores<\u002Fdiv>\n  <div class=\"card\">\n    <h3>Autonomia plena<\u002Fh3>\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">imagem<\u002Fspan><span class=\"v gold\">consistência simbólica<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">persuasão<\u002Fspan><span class=\"v violet\">framing + reframe<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">impacto<\u002Fspan><span class=\"v green\">memorável + acionável<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">eficácia<\u002Fspan><span class=\"v amber\">resultado mensurável<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ ESTUDO ============ -->\n<section class=\"panel\" data-tab=\"estudo\">\n  <div class=\"card hero\">\n    <h3>Lente atual · <span id=\"lensName2\">—<\u002Fspan><\u002Fh3>\n    <div class=\"big serif-it\" id=\"lensTitle\">—<\u002Fdiv>\n    <div class=\"lead\" id=\"lensDesc\">—<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Citação canônica<\u002Fh3>\n    <div class=\"quote\" id=\"canonQuote\">—<cite id=\"canonCite\">—<\u002Fcite><\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Acervo<\u002Fdiv>\n  <div class=\"tiles\">\n    <div class=\"tile\"><div class=\"num\">▢<\u002Fdiv><div class=\"lbl\">Cards<\u002Fdiv><div class=\"desc\">spaced repetition<\u002Fdiv><\u002Fdiv>\n    <div class=\"tile\"><div class=\"num\">▣<\u002Fdiv><div class=\"lbl\">Fichas CAIR<\u002Fdiv><div class=\"desc\">contexto · ato · ideia · ressonância<\u002Fdiv><\u002Fdiv>\n    <div class=\"tile\"><div class=\"num\">◈<\u002Fdiv><div class=\"lbl\">Grafo<\u002Fdiv><div class=\"desc\">obras · conceitos · pessoas<\u002Fdiv><\u002Fdiv>\n    <div class=\"tile\"><div class=\"num\">↻<\u002Fdiv><div class=\"lbl\">Revisar<\u002Fdiv><div class=\"desc\">FSRS-5 · fila do dia<\u002Fdiv><\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">7 eixos temáticos<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">1 · ontologia<\u002Fspan><span class=\"v gold\">ser · ato · forma<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">2 · psicanálise<\u002Fspan><span class=\"v gold\">freud · ferenczi · lacan<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">3 · linguagem<\u002Fspan><span class=\"v violet\">korzybski · pnl · framing<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">4 · poder<\u002Fspan><span class=\"v violet\">greene · cialdini · arendt<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">5 · cognição<\u002Fspan><span class=\"v green\">kahneman · goleman<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">6 · literatura<\u002Fspan><span class=\"v green\">dostoiévski · rumi<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">7 · prática<\u002Fspan><span class=\"v amber\">ritual · disciplina · rotação<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ CARDÁPIO ============ -->\n<section class=\"panel\" data-tab=\"cardapio\">\n  <div class=\"section-label\">Tier-1 · 16 obras · <span id=\"totalChunks\">—<\u002Fspan> chunks<\u002Fdiv>\n  <div class=\"list\" id=\"obrasList\"><\u002Fdiv>\n\n  <div class=\"section-label\">Filtros · tags<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"tags\">\n      <span class=\"tag philosophy\">filosofia<\u002Fspan>\n      <span class=\"tag psicanalise\">psicanálise<\u002Fspan>\n      <span class=\"tag literatura\">literatura<\u002Fspan>\n      <span class=\"tag persuasao\">persuasão<\u002Fspan>\n      <span class=\"tag pnl\">pnl<\u002Fspan>\n    <\u002Fdiv>\n    <div class=\"muted mono\" style=\"font-size:11px;margin-top:10px\">Embeddings: OpenAI text-embedding-3-small · 1536d · 120 obras integrais · 26 fragmentos<\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ REDE ============ -->\n<section class=\"panel\" data-tab=\"rede\">\n  <div class=\"card hero\">\n    <h3>Pipeline contatos · regra #28 + #29<\u002Fh3>\n    <div class=\"big serif-it\">WhatsApp autoritativa<\u002Fdiv>\n    <div class=\"lead\">Cross-source confirmation · fontes abertas como vetor de confirmação · nunca como descoberta primária.<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Skills<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">#84 · audit<\u002Fspan><span class=\"v gold\">audit pipeline<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#85 · cross-source<\u002Fspan><span class=\"v gold\">match WA × open<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#86 · screenshot<\u002Fspan><span class=\"v violet\">OCR + parse<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#87 · open-sources<\u002Fspan><span class=\"v violet\">consulta vetorial<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#88 · purge<\u002Fspan><span class=\"v red\">limpeza compliance<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Threshold · regra #28<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">≥ 0.85<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>HIGH-CONFIRMED<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">0.55 – 0.85<\u002Fspan><span class=\"v gold\"><span class=\"badge gold\"><span class=\"dot\"><\u002Fspan>HIGH-LIKELY<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">0.40 – 0.55<\u002Fspan><span class=\"v amber\"><span class=\"badge amber\"><span class=\"dot\"><\u002Fspan>MED-PROBABLE<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">&lt; 0.40<\u002Fspan><span class=\"v mute\"><span class=\"badge mute\"><span class=\"dot\"><\u002Fspan>LOW<\u002Fspan><\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Fontes abertas · regra #29<\u002Fh3>\n    <div class=\"lead\">Vetor de <em>confirmação cruzada<\u002Fem>. WhatsApp permanece a fonte autoritativa. Sem heurística inversa.<\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ NOTURNO ============ -->\n<section class=\"panel\" data-tab=\"noturno\">\n  <div class=\"card hero\">\n    <h3>Janela 22:30 BRT · regra #31<\u002Fh3>\n    <div class=\"big serif-it\" id=\"nightQ\">—<\u002Fdiv>\n    <div class=\"lead muted\">Pergunta reflexiva do dia · banco de rotação 30 itens · histórico em D1 cloud.<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Histórico · D1 cloud<\u002Fh3>\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">tabela<\u002Fspan><span class=\"v mono\">noturnos_v2<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">retenção<\u002Fspan><span class=\"v\">indefinida<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">backup R2<\u002Fspan><span class=\"v green\">diário 02:00<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">última entrada<\u002Fspan><span class=\"v gold\" id=\"lastNight\">—<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"card\">\n    <h3>Banco de perguntas<\u002Fh3>\n    <div class=\"check\" id=\"nightBank\"><\u002Fdiv>\n  <\u002Fdiv>\n<\u002Fsection>\n\n<!-- ============ SINAIS ============ -->\n<section class=\"panel\" data-tab=\"sinais\">\n  <div class=\"card hero\">\n    <h3>Stack canônico · v18.9<\u002Fh3>\n    <div class=\"big serif-it\">Cloud-first<\u002Fdiv>\n    <div class=\"lead\">Apps Script @212 · Cloudflare Worker · 5 Cron Triggers · KV+D1+R2<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Apps Script<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">deploy<\u002Fspan><span class=\"v gold\">@219<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">tag<\u002Fspan><span class=\"v mono\">v19.0-cloud-first-2026-04-28<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">triggers<\u002Fspan><span class=\"v green\">13 canonical · compliant · regra #4<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">audit_canonical<\u002Fspan><span class=\"v green\">7/7 COMPLIANT<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Worker · api.nexuscaldeira.com<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">version<\u002Fspan><span class=\"v gold mono\" id=\"workerVer\">nexus-api-proxy v2.0-cron @bbcbc5c2<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">KV<\u002Fspan><span class=\"v green\" id=\"bindKv\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>LIVE<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">D1<\u002Fspan><span class=\"v green\" id=\"bindD1\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>LIVE<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">R2<\u002Fspan><span class=\"v green\" id=\"bindR2\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>LIVE<\u002Fspan><\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">13 Triggers canonical<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\" id=\"cronList\">\n      <div class=\"mrow\"><span class=\"k\">cron-morning · 06:00<\u002Fspan><span class=\"v green\" id=\"cron1\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-noon · 12:00<\u002Fspan><span class=\"v green\" id=\"cron2\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-noturno · 22:30<\u002Fspan><span class=\"v green\" id=\"cron3\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-backup · 02:00<\u002Fspan><span class=\"v green\" id=\"cron4\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-rag-sync · */6h<\u002Fspan><span class=\"v green\" id=\"cron5\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-pulses · */15min<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>40 pt-BR<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-audit · 03:00<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>7/7<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-purge · 04:00<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>compliance<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-massa · 09:00<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>refresh<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-cardapio · 18:00<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-rede · *6h<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>cross-source<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-noite-banco · 21:00<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>rotacao<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">cron-heartbeat · */5min<\u002Fspan><span class=\"v green\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>pulse<\u002Fspan><\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Canal direto · regra #5<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">phone<\u002Fspan><span class=\"v mono gold\">+55 31 98527-6927<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">var<\u002Fspan><span class=\"v mono\">V15AF_OWNER_PHONE<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">status<\u002Fspan><span class=\"v green\" id=\"channelStat\"><span class=\"badge green\"><span class=\"dot\"><\u002Fspan>BLINDADO<\u002Fspan><\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n    <div class=\"row-actions\">\n      <button class=\"btn gold\" id=\"testChannelBtn\">v16_notify_test<\u002Fbutton>\n      <button class=\"btn\" id=\"purgaBtn\">v18.9 purga triggers<\u002Fbutton>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">RAG · rag.nexuscaldeira.com<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">chunks<\u002Fspan><span class=\"v gold\" id=\"ragChunks\">104.024<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">obras<\u002Fspan><span class=\"v\">146 · <span class=\"muted\">120 integrais<\u002Fspan><\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">embedding<\u002Fspan><span class=\"v mono\">text-embedding-3-small · 1536d<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">custo OpenAI<\u002Fspan><span class=\"v amber\">USD 0.29 / 5.00 · regra #12<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Endpoints canônicos<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"code\">GET api.nexuscaldeira.com/proxy?action=status<\u002Fdiv>\n    <div class=\"code\" style=\"margin-top:6px\">GET api.nexuscaldeira.com/health<\u002Fdiv>\n    <div class=\"code\" style=\"margin-top:6px\">GET api.nexuscaldeira.com/cron/status<\u002Fdiv>\n    <div class=\"code\" style=\"margin-top:6px\">GET rag.nexuscaldeira.com/stats<\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"section-label\">Regras blindadas · 29 v19.0<\u002Fdiv>\n  <div class=\"card\">\n    <div class=\"metrics\">\n      <div class=\"mrow\"><span class=\"k\">#4<\u002Fspan><span class=\"v\">13 triggers congelados<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#5<\u002Fspan><span class=\"v\">canal direto blindado<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#11<\u002Fspan><span class=\"v\">frente fechada<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#12<\u002Fspan><span class=\"v\">cap OpenAI USD 5/mês<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#16<\u002Fspan><span class=\"v\">autonomia plena<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#17<\u002Fspan><span class=\"v\">PowerShell admin<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#21<\u002Fspan><span class=\"v\">3 instâncias Claude<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#28<\u002Fspan><span class=\"v\">WhatsApp autoritativa<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#29<\u002Fspan><span class=\"v\">fontes abertas confirmação<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#30<\u002Fspan><span class=\"v\">cloud-first<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#31<\u002Fspan><span class=\"v\">janela dominical<\u002Fspan><\u002Fdiv>\n      <div class=\"mrow\"><span class=\"k\">#32<\u002Fspan><span class=\"v\">Claude Code agentic<\u002Fspan><\u002Fdiv>\n    <\u002Fdiv>\n  <\u002Fdiv>\n\n  <div class=\"row-actions\" style=\"margin-top:14px\">\n    <button class=\"btn danger\" id=\"logout2\">⏻ Logout · limpar token<\u002Fbutton>\n  <\u002Fdiv>\n  <div class=\"muted mono center\" style=\"font-size:10px;margin:14px 0 4px\">NEXUS · v19.0 · cloud-first · 2026-04-28<\u002Fdiv>\n<\u002Fsection>\n\n<\u002Fmain>\n\n<!-- BOTTOM NAV -->\n<nav class=\"tabs\" id=\"tabs\">\n  <button data-tab=\"hoje\" class=\"active\"><span class=\"icn\">☀<\u002Fspan><span class=\"lab\">Hoje<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"lingua\"><span class=\"icn\">L<\u002Fspan><span class=\"lab\">Língua<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"estudo\"><span class=\"icn\">▣<\u002Fspan><span class=\"lab\">Estudo<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"cardapio\"><span class=\"icn\">◈<\u002Fspan><span class=\"lab\">Cardápio<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"rede\"><span class=\"icn\">⌬<\u002Fspan><span class=\"lab\">Rede<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"noturno\"><span class=\"icn\">☾<\u002Fspan><span class=\"lab\">Noturno<\u002Fspan><\u002Fbutton>\n  <button data-tab=\"sinais\"><span class=\"icn\">⌁<\u002Fspan><span class=\"lab\">Sinais<\u002Fspan><\u002Fbutton>\n<\u002Fnav>\n\n<script>\n/* ===== CONST ===== */\nconst API='https://api.nexuscaldeira.com';\nconst RAG='https://rag.nexuscaldeira.com';\nconst TOKEN_KEY='nexus_admin_token_v1';\nconst CACHE_KEY='nexus_state_cache_v18_9';\nconst CYCLE_START=new Date('2026-04-02T00:00:00-03:00'); // ancora primordia v19.0 → hoje (2026-04-28) ≡ dia 27\n\n/* ===== LENTES (rotação 7 dias) ===== */\nconst LENTES=[\n {n:'Síntese Dominical',d:'recapitular semana · destilar 1 frase, 1 ato, 1 pergunta',r:'A semana é matéria-prima; a síntese é a forma.',c:'Não é o que aconteceu, é o que você fez disso. — Kierkegaard',cite:'Kierkegaard',mc:'1 frase · 1 ato · 1 pergunta'},\n {n:'Liderança',d:'comandar pelo exemplo · clareza acima de carisma',r:'Liderar é tornar a próxima ação óbvia para os outros.',c:'Comece por fazer o necessário, depois o possível, e de repente está fazendo o impossível. — Sêneca',cite:'Sêneca',mc:'nomeie a próxima ação · em voz alta · 60s'},\n {n:'PNL · Linguagem',d:'mapa ≠ território · framing precede argumento',r:'A palavra escolhida fecha ou abre realidades.',c:'O mapa não é o território. — Korzybski (Mapa não é território)',cite:'Korzybski · Mapa não é território',mc:'reformule uma frase com \"ainda\" ou \"considere\" usando padrão Erickson'},\n {n:'Estoica',d:'dicotomia do controle · resposta > reação',r:'O que está em mim é meu domínio; o resto é clima.',c:'Não são as coisas que perturbam, mas as opiniões sobre elas. — Epicteto',cite:'Epicteto',mc:'distinga: meu domínio · clima · 2 min'},\n {n:'Psicanálise',d:'sintoma fala · escuta da repetição',r:'O que se repete pede ser escutado, não corrigido.',c:'O inconsciente é estruturado como uma linguagem. — Lacan',cite:'Lacan',mc:'anote a frase que voltou hoje'},\n {n:'Memorização',d:'palácio + imagem viva · âncora afetiva',r:'Memória é arquitetura, não estoque.',c:'Coloca a coisa em um lugar e dá-lhe imagem. — Yates (arte da memória)',cite:'Yates',mc:'fixe 1 ideia em 1 lugar imaginário'},\n {n:'Motivacional',d:'do desejo ao gesto · atravessar o limiar',r:'O desejo só existe quando dá um passo.',c:'A ferida é o lugar onde a luz entra em ti. — Rumi',cite:'Rumi',mc:'dê o passo de 60s · agora'}\n];\n\n/* ===== OBRAS TIER-1 ===== */\nconst OBRAS=[\n {a:'Tomás de Aquino',t:'Suma Teológica (completa)',c:28640,tg:['psicanalise','philosophy']},\n {a:'Sigmund Freud',t:'Obras Completas',c:12548,tg:['psicanalise']},\n {a:'Tomás de Aquino',t:'Suma I + II + III (consolidada)',c:12900,tg:['philosophy']},\n {a:'Élisabeth Roudinesco',t:'Dicionário de Psicanálise',c:4683,tg:['psicanalise']},\n {a:'Sándor Ferenczi',t:'Obras',c:3795,tg:['psicanalise']},\n {a:'Daniel Kahneman',t:'Rápido e Devagar',c:3023,tg:['persuasao']},\n {a:'F. Dostoiévski',t:'Demônios + Idiota + Crime e Castigo',c:5741,tg:['literatura']},\n {a:'Robert Greene',t:'A Arte da Sedução',c:1782,tg:['persuasao']},\n {a:'Robert Cialdini',t:'Influence',c:1568,tg:['persuasao']},\n {a:'Aristóteles',t:'Física',c:1344,tg:['philosophy']},\n {a:'Daniel Goleman',t:'Inteligência Emocional',c:1128,tg:['persuasao']},\n {a:'Hannah Arendt',t:'A Condição Humana',c:1073,tg:['philosophy']},\n {a:'Richard Bandler',t:'A Estrutura da Magia',c:1051,tg:['pnl']},\n {a:'Joseph O\\'Connor',t:'Manual de PNL',c:1047,tg:['pnl']}\n];\n\n/* ===== COLD READING 20s ===== */\nconst COLD=[\n 'olhar · onde está a tensão',\n 'voz · ritmo, pausa, peso',\n 'mãos · o que apertam, o que abrem',\n 'palavra que repete · marcador',\n 'o que evita · contorno do tema',\n 'o que pede sem pedir · falta'\n];\n\n/* ===== BANCO NOTURNO 30 ===== */\nconst NOITE=[\n 'O que hoje me obrigou a escolher?',\n 'Onde resisti — e o que estava por trás?',\n 'Qual frase voltou mais de uma vez na minha cabeça?',\n 'O que recusei dizer, e a quem?',\n 'Quando me senti mais inteiro hoje?',\n 'Qual sintoma falou — e o que ele queria?',\n 'Que silêncio foi mais alto que palavra?',\n 'O que adiei pela quinta vez?',\n 'Que pessoa apareceu sem ser chamada — e por quê?',\n 'Onde fui apenas reativo?',\n 'Que mapa eu confundi com território?',\n 'O que eu já sabia mas fingi descobrir?',\n 'Qual foi o gesto mínimo que mudou o tom?',\n 'Onde menti pequeno · onde fui inteiro?',\n 'Que ideia me visitou e foi embora — sem registro?',\n 'O que doeu de um modo bom?',\n 'Onde estava o medo · onde estava o desejo?',\n 'O que aprendi sem perceber?',\n 'Qual contradição ainda recuso?',\n 'O que daria pra fazer melhor amanhã em 5 min?',\n 'Quem me escutou — e o que isso revelou?',\n 'O que consumi em excesso · e o que de menos?',\n 'Que palavra escolhi mal — e poderia trocar?',\n 'O que prometi e cumpri sem alarde?',\n 'Onde houve graça hoje?',\n 'O que está pronto e ainda não soltei?',\n 'Qual hábito está pedindo revisão?',\n 'O que minha respiração mostrou hoje?',\n 'Onde estive presente · de verdade?',\n 'Que pergunta ficou sem resposta — e tudo bem?'\n];\n\n/* ===== HELPERS ===== */\nconst $=s=>document.querySelector(s);\nconst $$=s=>document.querySelectorAll(s);\nfunction cycleDay(){\n  const ms=Date.now()-CYCLE_START.getTime();\n  const d=Math.floor(ms/86400000)+1;\n  return ((d-1)%272)+1;\n}\n/* 12 estações do ciclo PRIMORDIA · ~22-23 dias cada · hoje (dia 27) = Espelho (estação 9 reposicionada → INVERNO/DESTILAÇÃO) */\nfunction cycleSeason(d){\n  if(d<=22)  return 'Espelho · Inverno · Destilação';\n  if(d<=45)  return 'Espelho · Inverno · Destilação';\n  if(d<=68)  return 'Limiar · Primavera · Brotação';\n  if(d<=91)  return 'Semente · Primavera · Brotação';\n  if(d<=114) return 'Raiz · Verão · Expansão';\n  if(d<=137) return 'Tronco · Verão · Expansão';\n  if(d<=160) return 'Copa · Outono · Colheita';\n  if(d<=183) return 'Fruto · Outono · Colheita';\n  if(d<=206) return 'Colheita · Outono · Colheita';\n  if(d<=229) return 'Pousio · Inverno · Destilação';\n  if(d<=250) return 'Síntese · Inverno · Destilação';\n  return 'Retorno · Inverno · Destilação';\n}\nfunction lensOfDay(){\n  // v19.0 · cada estação (~22 dias) → 1 lente fixa; dia 27 cai em Espelho/Inverno → PNL/Linguagem (índice 2)\n  const d=cycleDay();\n  // mapeamento estação → lente: 0..22→Síntese, 23..45→PNL, 46..68→Liderança, 69..91→Estoica, 92..114→Psicanálise, 115..137→Memorização, 138..160→Motivacional, e segue rotação\n  const stationLens=[0,2,1,3,4,5,6,2,1,3,4,5,6];\n  const station=Math.min(stationLens.length-1,Math.floor((d-1)/23));\n  return LENTES[stationLens[station]];\n}\nfunction fmtNum(n){return n?.toLocaleString?.('pt-BR')??'—'}\nfunction timeNow(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})}\n\n/* ===== AUTH ===== */\nfunction getToken(){return localStorage.getItem(TOKEN_KEY)||''}\nfunction setToken(t){localStorage.setItem(TOKEN_KEY,t)}\nfunction clearToken(){localStorage.removeItem(TOKEN_KEY);localStorage.removeItem(CACHE_KEY)}\nfunction showGate(){$('#gate').classList.remove('hidden');setTimeout(()=>$('#tokenInput').focus(),100)}\nfunction hideGate(){$('#gate').classList.add('hidden')}\n\n$('#enterBtn').onclick=()=>{\n  const v=$('#tokenInput').value.trim();\n  if(!v){$('#tokenInput').focus();return}\n  setToken(v);hideGate();bootstrap();\n};\n$('#tokenInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('#enterBtn').click()});\n$('#logoutBtn').onclick=$('#logout2').onclick=()=>{clearToken();location.reload()};\n\n/* ===== TABS ===== */\n$$('#tabs button').forEach(b=>{\n  b.onclick=()=>{\n    $$('#tabs button').forEach(x=>x.classList.remove('active'));\n    $$('.panel').forEach(x=>x.classList.remove('active'));\n    b.classList.add('active');\n    $(`.panel[data-tab=\"${b.dataset.tab}\"]`).classList.add('active');\n    window.scrollTo({top:0,behavior:'instant'});\n  };\n});\n\n/* ===== RENDER STATIC ===== */\nfunction renderStatic(){\n  const d=cycleDay();\n  $('#cycleDay').textContent=d;\n  $('#kpiDay').textContent=d;\n  $('#hdrCycle').textContent=`dia ${d}/272`;\n  $('#cycleSeason').textContent=cycleSeason(d);\n\n  const L=lensOfDay();\n  $('#lensLead').innerHTML=`<strong style=\"color:var(--gold)\">${L.n}<\u002Fstrong> · ${L.d}`;\n  $('#microcmd').textContent=L.mc;\n  $('#reframeBox').firstChild.textContent=L.r+' ';\n  $('#reframeCite').textContent=L.cite;\n  $('#lensName2').textContent=L.n;\n  $('#lensTitle').textContent=L.d;\n  $('#lensDesc').textContent=L.r;\n  $('#canonQuote').firstChild.textContent=L.c+' ';\n  $('#canonCite').textContent=L.cite;\n\n  // cold check\n  $('#coldCheck').innerHTML=COLD.map((x,i)=>`<div class=\"ci\"><span class=\"num\">${String(i+1).padStart(2,'0')}<\u002Fspan><span>${x}<\u002Fspan><\u002Fdiv>`).join('');\n\n  // obras\n  const total=OBRAS.reduce((s,o)=>s+o.c,0);\n  $('#totalChunks').textContent=fmtNum(total);\n  $('#obrasList').innerHTML=OBRAS.map(o=>`\n    <div class=\"li\">\n      <div>\n        <div class=\"title\">${o.t}<\u002Fdiv>\n        <div class=\"sub\">${o.a}<\u002Fdiv>\n        <div class=\"tags\">${o.tg.map(t=>`<span class=\"tag ${t}\">${t}<\u002Fspan>`).join('')}<\u002Fdiv>\n      <\u002Fdiv>\n      <div class=\"num\">${fmtNum(o.c)}<\u002Fdiv>\n    <\u002Fdiv>\n  `).join('');\n\n  // noite\n  const qIdx=(new Date().getDate())%NOITE.length;\n  $('#nightQ').textContent=NOITE[qIdx];\n  $('#nightBank').innerHTML=NOITE.slice(0,8).map((q,i)=>`<div class=\"ci\"><span class=\"num\">${String(i+1).padStart(2,'0')}<\u002Fspan><span>${q}<\u002Fspan><\u002Fdiv>`).join('')+`<div class=\"muted mono\" style=\"font-size:10px;margin-top:6px;text-align:center\">+ ${NOITE.length-8} no banco · rotação cloud<\u002Fdiv>`;\n}\n\n/* ===== CACHE ===== */\nfunction cacheGet(){try{return JSON.parse(localStorage.getItem(CACHE_KEY)||'{}')}catch{return{}}}\nfunction cacheSet(o){localStorage.setItem(CACHE_KEY,JSON.stringify({...o,_ts:Date.now()}))}\n\n/* ===== LIVE FETCH ===== */\nasync function fetchJSON(url,timeout=6000){\n  const ctl=new AbortController();\n  const t=setTimeout(()=>ctl.abort(),timeout);\n  try{\n    const r=await fetch(url,{signal:ctl.signal,cache:'no-store'});\n    clearTimeout(t);\n    if(!r.ok) throw new Error('http '+r.status);\n    return await r.json();\n  }catch(e){clearTimeout(t);throw e}\n}\n\nasync function bootstrap(){\n  if(!getToken()){showGate();return}\n  renderStatic();\n  await syncLive();\n  // hidrata cache se houver\n  const c=cacheGet();\n  if(c._ts) applyLive(c);\n}\n\nasync function syncLive(){\n  const tk=getToken();\n  if(!tk){showGate();return}\n  $('#refreshLabel').innerHTML='<span class=\"spinner\"><\u002Fspan>';\n  $('#refreshBtn').classList.add('live');\n\n  const calls=[\n    fetchJSON(`${API}/proxy?action=status&token=${encodeURIComponent(tk)}`),\n    fetchJSON(`${API}/health`),\n    fetchJSON(`${API}/cron/status`),\n    fetchJSON(`${RAG}/stats`)\n  ];\n  const r=await Promise.allSettled(calls);\n  const data={\n    status:r[0].status==='fulfilled'?r[0].value:null,\n    health:r[1].status==='fulfilled'?r[1].value:null,\n    crons:r[2].status==='fulfilled'?r[2].value:null,\n    rag:r[3].status==='fulfilled'?r[3].value:null,\n    okStatus:r[0].status==='fulfilled',\n    okHealth:r[1].status==='fulfilled',\n    okCrons:r[2].status==='fulfilled',\n    okRag:r[3].status==='fulfilled'\n  };\n  cacheSet(data);\n  applyLive(data);\n  $('#refreshLabel').textContent='Sync · '+timeNow();\n  $('#refreshBtn').classList.remove('live');\n}\n\nfunction applyLive(d){\n  // bootstrap version\n  const boot=d.status?.bootstrapVersion||'@212 v18.9';\n  $('#pulseBoot').textContent=boot;\n\n  // worker\n  $('#pulseWorker').innerHTML = d.okHealth\n    ? '<span class=\"badge green\"><span class=\"dot\"><\u002Fspan>LIVE<\u002Fspan>'\n    : '<span class=\"badge red\"><span class=\"dot\"><\u002Fspan>STALE<\u002Fspan>';\n\n  // RAG\n  if(d.rag?.chunks){\n    $('#ragChunks').textContent=fmtNum(d.rag.chunks);\n    $('#kpiChunks').textContent=(d.rag.chunks/1000).toFixed(0)+'k';\n  }\n  if(d.rag?.obras) $('#kpiObras').textContent=d.rag.obras;\n  $('#pulseRag').innerHTML = d.okRag\n    ? `<span class=\"badge green\"><span class=\"dot\"><\u002Fspan>${fmtNum(d.rag?.chunks||104024)}<\u002Fspan>`\n    : '<span class=\"badge amber\"><span class=\"dot\"><\u002Fspan>cache<\u002Fspan>';\n\n  // canal\n  $('#pulseChannel').innerHTML='<span class=\"badge green\"><span class=\"dot\"><\u002Fspan>BLINDADO · #5<\u002Fspan>';\n\n  // crons\n  const cs=d.crons?.crons||[];\n  for(let i=0;i<5;i++){\n    const el=document.getElementById('cron'+(i+1));\n    if(!el) continue;\n    const c=cs[i];\n    if(c){\n      el.innerHTML=`<span class=\"badge ${c.ok?'green':'red'}\"><span class=\"dot\"><\u002Fspan>${c.lastRun||'live'}<\u002Fspan>`;\n    }else{\n      el.innerHTML='<span class=\"badge green\"><span class=\"dot\"><\u002Fspan>scheduled<\u002Fspan>';\n    }\n  }\n\n  if(d.status?.cycleDay){\n    $('#cycleDay').textContent=d.status.cycleDay;\n    $('#kpiDay').textContent=d.status.cycleDay;\n    $('#hdrCycle').textContent=`dia ${d.status.cycleDay}/272`;\n  }\n  $('#lastNight').textContent=d._ts?new Date(d._ts).toLocaleString('pt-BR'):'—';\n}\n\n/* ===== ACTIONS ===== */\n$('#refreshBtn').onclick=syncLive;\n$('#testChannelBtn').onclick=async()=>{\n  const tk=getToken();\n  $('#channelStat').innerHTML='<span class=\"badge amber\"><span class=\"dot\"><\u002Fspan>testando…<\u002Fspan>';\n  try{\n    await fetchJSON(`${API}/proxy?action=v16_notify_test&token=${encodeURIComponent(tk)}`);\n    $('#channelStat').innerHTML='<span class=\"badge green\"><span class=\"dot\"><\u002Fspan>NOTIFICADO<\u002Fspan>';\n  }catch{\n    $('#channelStat').innerHTML='<span class=\"badge red\"><span class=\"dot\"><\u002Fspan>FALHOU<\u002Fspan>';\n  }\n};\n$('#purgaBtn').onclick=async()=>{\n  const tk=getToken();\n  const b=$('#purgaBtn');b.textContent='purgando…';\n  try{\n    await fetchJSON(`${API}/proxy?action=v18_9_purga_triggers_obsoletos&token=${encodeURIComponent(tk)}`);\n    b.textContent='purga ok ✓';\n  }catch{b.textContent='purga falhou'}\n  setTimeout(()=>b.textContent='v18.9 purga triggers',2500);\n};\n\n/* ===== OFFLINE ===== */\nwindow.addEventListener('online',()=>document.body.classList.remove('offline'));\nwindow.addEventListener('offline',()=>document.body.classList.add('offline'));\nif(!navigator.onLine) document.body.classList.add('offline');\n\n/* ===== SERVICE WORKER (inline via Blob) ===== */\nif('serviceWorker' in navigator){\n  const swCode=`\n    const C='nexus-v189';\n    self.addEventListener('install',e=>{self.skipWaiting()});\n    self.addEventListener('activate',e=>{e.waitUntil(self.clients.claim())});\n    self.addEventListener('fetch',e=>{\n      const u=e.request.url;\n      if(u.includes('/proxy')||u.includes('/health')||u.includes('/cron/')||u.includes('/stats')){\n        e.respondWith(fetch(e.request).catch(()=>caches.match(e.request)));\n      }else if(e.request.mode==='navigate'){\n        e.respondWith(fetch(e.request).catch(()=>caches.match('/')));\n      }\n    });\n  `;\n  const swUrl=URL.createObjectURL(new Blob([swCode],{type:'text/javascript'}));\n  navigator.serviceWorker.register(swUrl).catch(()=>{});\n}\n\n/* ===== BOOT ===== */\nif(getToken()){hideGate();bootstrap()}else{showGate()}\nrenderStatic(); // pinta UI mesmo antes do auth\n<\u002Fscript>\n\n\n<\u002Fbody><\u002Fhtml>"
+  </script>
 </body>
 </html>
