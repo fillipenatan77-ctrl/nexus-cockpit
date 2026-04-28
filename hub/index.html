@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEXUS">
+<meta name="application-name" content="NEXUS">
+<meta name="theme-color" content="#0F0E17">
+<meta name="format-detection" content="telephone=no">
+<meta name="msapplication-TileColor" content="#0F0E17">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="description" content="NEXUS Hub Vivo · cockpit cloud-first · Apps Script @212 · Worker LIVE · 13 triggers compliant · 104.024 chunks RAG · canal direto blindado · v18.9-cloud-first-2026-04-28">
+<title>NEXUS · Hub Vivo</title>
+<link rel="manifest" href="/hub/manifest.json">
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png">
+<link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+<meta property="og:title" content="NEXUS · Hub Vivo">
+<meta property="og:description" content="Cockpit cloud-first · 104k chunks · 7 lentes · v18.9">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nexuscaldeira.com/hub/">
+<style>
+:root{
+  --ink:#0F0E17; --ink-1:#14131E; --ink-2:#1a1830;
+  --bone:#F5F1E8; --bone-dim:rgba(245,241,232,.65); --bone-faint:rgba(245,241,232,.4);
+  --bronze:#B8935A; --bronze-light:#D4A668; --bronze-soft:rgba(184,147,90,.3); --bronze-faint:rgba(184,147,90,.12);
+  --green:#7df3a3; --yellow:#ffd803; --red:#e53170; --violet:#b794f4;
+  --safe-top:env(safe-area-inset-top,0px);
+  --safe-bot:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px)
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
+html,body{background:var(--ink);color:var(--bone);font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;height:100%;overflow:hidden;overscroll-behavior:none}
+body{background:radial-gradient(ellipse 100% 60% at 50% 0%,#1a1830 0%,var(--ink) 50%,var(--ink) 100%)}
+#app{display:flex;flex-direction:column;height:100dvh;padding-top:calc(var(--safe-top) + 8px);padding-left:var(--safe-l);padding-right:var(--safe-r)}
+header.brand{display:flex;align-items:center;justify-content:space-between;padding:14px 20px 12px;border-bottom:1px solid var(--bronze-faint);background:rgba(15,14,23,.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);position:relative;z-index:10;will-change:transform}
+header.brand .logo{display:flex;align-items:center;gap:10px}
+header.brand .logo .mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,#0F0E17 0%,#1a1830 100%);border:1px solid var(--bronze-soft);display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:24px;color:var(--bronze);letter-spacing:-2px}
+header.brand .logo .name{font-family:Georgia,serif;font-size:18px;letter-spacing:.06em;color:var(--bone)}
+header.brand .logo .name b{color:var(--bronze);font-weight:600}
+header.brand .meta{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.12em;color:var(--bronze);opacity:.85;text-align:right;text-transform:uppercase;line-height:1.3}
+header.brand .meta .date{color:var(--bone-dim);font-size:10px}
+header.brand .meta .live{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);margin-right:4px;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+main{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 16px calc(var(--safe-bot) + 100px)}
+main::-webkit-scrollbar{display:none}
+.section{display:none;animation:fade .25s ease}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translate3d(0,4px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.hero{position:relative;padding:24px 22px;margin-bottom:14px;border:1px solid var(--bronze-soft);border-radius:18px;background:linear-gradient(135deg,rgba(184,147,90,.12) 0%,rgba(15,14,23,.6) 60%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:160%;background:radial-gradient(ellipse,rgba(184,147,90,.18) 0%,transparent 60%)}
+.hero .eyebrow{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.22em;color:var(--bronze);text-transform:uppercase;opacity:.85;margin-bottom:8px;position:relative;z-index:1}
+.hero h1{font-family:Georgia,serif;font-size:26px;font-weight:500;line-height:1.25;color:var(--bone);margin-bottom:8px;position:relative;z-index:1}
+.hero .lente-tag{display:inline-block;padding:4px 10px;border:1px solid var(--bronze-soft);border-radius:6px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px;color:var(--bronze);letter-spacing:.08em;margin-bottom:14px;position:relative;z-index:1}
+.hero .micro{margin-top:14px;padding:14px;border-radius:10px;background:rgba(184,147,90,.06);border:1px dashed var(--bronze-faint);font-family:Georgia,serif;font-size:14px;line-height:1.6;color:var(--bone);position:relative;z-index:1}
+.hero .micro .label{font-family:'SF Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.18em;color:var(--bronze);text-transform:uppercase;display:block;margin-bottom:4px}
+.hero .reframe{margin-top:12px;padding-top:12px;border-top:1px solid var(--bronze-faint);font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--bone-dim);line-height:1.55;position:relative;z-index:1}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.kpi-mini{padding:10px 8px;border:1px solid var(--bronze-faint);border-radius:10px;background:rgba(184,147,90,.04);text-align:center}
+.kpi-mini .v{font-family:Georgia,serif;font-size:18px;color:var(--bronze-light)}
+.kpi-mini .l{font-family:'SF Mono',ui-monospace,monospace;font-size:8.5px;color:var(--bone-dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+h2{font-family:Georgia,serif;font-weight:500;font-size:16px;color:var(--bronze-light);margin:18px 0 10px;letter-spacing:.04em}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:8px}
+.tile{position:relative;padding:14px;border:1px solid var(--bronze-soft);border-radius:12px;background:linear-gradient(135deg,rgba(184,147,90,.06) 0%,rgba(15,14,23,.5) 60%);text-decoration:none;color:var(--bone);transition:transform .15s;min-height:88px;display:flex;flex-direction:column;justify-content:space-between}
+.tile:active{transform:scale(.97)}
+.tile .ic{font-family:Georgia,serif;font-size:22px;color:var(--bronze);margin-bottom:6px}
+.tile .t{font-family:Georgia,serif;font-size:15px;color:var(--bone)}
+.tile .s{font-family:'SF Mono',ui-monospace,monospace;font-size:9.5px;color:var(--bone-dim);letter-spacing:.06em;text-transform:uppercase;margin-top:6px}
+.metrics{padding:14px;border:1px solid var(--bronze-faint);border-radius:12px;background:rgba(20,19,30,.6);margin-bottom:8px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px}
+.metrics .row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--bronze-faint);color:var(--bone-dim);gap:8px}
+.metrics .row:last-child{border-bottom:none}
+.metrics .row .k{color:var(--bronze);text-transform:uppercase;letter-spacing:.08em;font-size:10px;flex-shrink:0}
+.metrics .row .v{text-align:right;word-break:break-word}
+.metrics .row .v.ok{color:var(--green)}
+.metrics .row .v.warn{color:var(--yellow)}
+.metrics .row .v.err{color:var(--red)}
+.cron-row{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border:1px solid var(--bronze-faint);border-radius:8px;background:rgba(20,19,30,.4);margin-bottom:6px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px}
+.cron-row .name{color:var(--bone)}
+.cron-row .schedule{color:var(--bronze);font-size:9px;letter-spacing:.06em;text-transform:uppercase}
+.cron-row .status{font-size:14px}
+.obra-card{padding:14px;border:1px solid var(--bronze-faint);border-radius:10px;background:rgba(184,147,90,.03);margin-bottom:8px}
+.obra-card .titulo{font-family:Georgia,serif;font-size:14px;color:var(--bone);margin-bottom:4px}
+.obra-card .autor{font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bronze);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.tag{display:inline-block;padding:2px 8px;border:1px solid var(--bronze-faint);border-radius:4px;font-family:'SF Mono',ui-monospace,monospace;font-size:9px;color:var(--bronze);letter-spacing:.06em;text-transform:uppercase;margin-right:4px}
+.tag.green{border-color:rgba(125,243,163,.3);color:var(--green)}
+.tag.violet{border-color:rgba(183,148,244,.3);color:var(--violet)}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;padding:6px 0 calc(var(--safe-bot) + 6px);background:rgba(15,14,23,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--bronze-faint);display:flex;justify-content:space-around;z-index:20;overflow-x:auto;-webkit-overflow-scrolling:touch}
+nav.tabs button{flex:0 0 auto;background:none;border:none;color:var(--bone-dim);font-family:'SF Mono',ui-monospace,monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;min-height:48px;min-width:54px;will-change:transform}
+nav.tabs button .ic{font-family:Georgia,serif;font-size:16px;line-height:1}
+nav.tabs button.active{color:var(--bronze)}
+.auth-gate{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px 24px;text-align:center}
+.auth-gate h2{margin-bottom:14px;color:var(--bronze-light);font-size:24px}
+.auth-gate p{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:14px;line-height:1.55;margin-bottom:24px;max-width:300px}
+.auth-gate input{width:100%;max-width:320px;padding:14px 18px;border-radius:10px;border:1px solid var(--bronze-soft);background:rgba(20,19,30,.8);color:var(--bone);font-family:'SF Mono',ui-monospace,monospace;font-size:13px;outline:none;margin-bottom:12px}
+.auth-gate input:focus{border-color:var(--bronze)}
+.auth-gate button{padding:12px 28px;border:1px solid var(--bronze);border-radius:10px;background:rgba(184,147,90,.12);color:var(--bronze);font-family:'SF Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.auth-gate .hint{margin-top:18px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bone-faint);line-height:1.5}
+.offline-banner{padding:8px 14px;background:rgba(229,49,112,.15);border:1px solid rgba(229,49,112,.4);border-radius:8px;margin-bottom:10px;font-family:'SF Mono',ui-monospace,monospace;font-size:11px;color:var(--yellow);display:none}
+.offline-banner.show{display:block}
+.btn-action{width:100%;padding:14px;border:1px solid var(--bronze-soft);border-radius:10px;background:rgba(184,147,90,.08);color:var(--bronze);font-family:'SF Mono',ui-monospace,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:10px;cursor:pointer}
+.btn-action:active{transform:scale(.98)}
+.btn-danger{border-color:rgba(229,49,112,.4);color:var(--red);background:transparent}
+.push-banner{padding:14px;border:1px solid var(--bronze-soft);border-radius:12px;background:rgba(184,147,90,.06);margin-bottom:14px;display:none}
+.push-banner.show{display:block}
+.push-banner h3{font-family:Georgia,serif;font-size:14px;color:var(--bronze-light);margin-bottom:6px}
+.push-banner p{font-family:Georgia,serif;font-style:italic;font-size:12px;color:var(--bone-dim);margin-bottom:10px;line-height:1.5}
+.push-banner .actions{display:flex;gap:8px}
+.push-banner button{flex:1;padding:8px;border-radius:8px;font-family:'SF Mono',ui-monospace,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--bronze-soft)}
+.push-banner button.allow{background:var(--bronze);color:var(--ink);border-color:var(--bronze)}
+.push-banner button.skip{background:transparent;color:var(--bone-dim)}
+</style>
+</head>
+<body>
+<div id="app">
+
+<section id="gate" class="auth-gate">
+  <div style="font-family:Georgia,serif;font-size:48px;color:var(--bronze);margin-bottom:12px;letter-spacing:-3px;text-shadow:0 0 24px rgba(184,147,90,.4)">N</div>
+  <h2>NEXUS</h2>
+  <p>Hub Vivo · v18.9 cloud-first · 7 lentes do ciclo PRIMORDIA. Cole seu <code>NEXUS_ADMIN_TOKEN</code>.</p>
+  <input id="tokenInput" type="password" placeholder="NEXUS_ADMIN_TOKEN">
+  <button onclick="setToken()">Entrar</button>
+  <div class="hint">v18.9-cloud-first-2026-04-28<br>API: api.nexuscaldeira.com<br>Apps Script @212 · Worker LIVE · 13 triggers compliant</div>
+</section>
+
+<header class="brand" style="display:none" id="hdr">
+  <div class="logo"><div class="mark">N</div><div class="name">NEXUS · <b>Hub Vivo</b></div></div>
+  <div class="meta"><div><span class="live"></span><span id="hdr-day">DAY ··</span></div><div class="date" id="hdr-date">··/··</div></div>
+</header>
+
+<main id="main" style="display:none">
+<div class="offline-banner" id="offline">⚠️ modo offline · cache local</div>
+
+<div class="push-banner" id="pushBanner">
+  <h3>Receber pulses NEXUS no iPhone</h3>
+  <p>Notificações nativas iOS · sem WhatsApp · entrega direto na tela. Você pode mudar depois nos ajustes.</p>
+  <div class="actions">
+    <button class="allow" onclick="enablePush()">Permitir</button>
+    <button class="skip" onclick="skipPush()">Depois</button>
+  </div>
+</div>
+
+<!-- TAB 1: HOJE -->
+<section class="section active" data-tab="hoje">
+  <div class="hero">
+    <div class="eyebrow" id="hero-eyebrow">CICLO PRIMORDIA · COROA TRÍPLICE</div>
+    <h1 id="hero-title">Liderança</h1>
+    <div class="lente-tag" id="hero-lente">agência sem imposição</div>
+    <div class="micro"><span class="label">microcomando do dia</span><div id="hero-micro">Identifique 1 dicotomia controle vs. influência · 3 min.</div></div>
+    <div class="reframe" id="hero-reframe">⤳ Onde estou exigindo? · onde estou convidando?</div>
+  </div>
+  <div class="kpis">
+    <div class="kpi-mini"><div class="v" id="k-day">27</div><div class="l">dia/272</div></div>
+    <div class="kpi-mini"><div class="v" id="k-chunks">104k</div><div class="l">chunks</div></div>
+    <div class="kpi-mini"><div class="v" id="k-obras">146</div><div class="l">obras</div></div>
+    <div class="kpi-mini"><div class="v" id="k-trig">13/13</div><div class="l">triggers</div></div>
+  </div>
+  <h2>Acesso rápido</h2>
+  <div class="grid">
+    <a class="tile" href="https://nexuscaldeira.com/v16/pulse/" target="_blank"><div><span class="ic">⟁</span><div class="t">Pulse</div></div><div class="s">lente · cards</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/diario/" target="_blank"><div><span class="ic">⌖</span><div class="t">Diário</div></div><div class="s">22h30 BRT</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/prompt/" target="_blank"><div><span class="ic">∎</span><div class="t">Cortex</div></div><div class="s">v6.10</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/metrics/" target="_blank"><div><span class="ic">⊠</span><div class="t">Métricas</div></div><div class="s">live</div></a>
+  </div>
+  <h2>Estado atual</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">ciclo</span><span class="v">PRIMORDIA</span></div>
+    <div class="row"><span class="k">estação</span><span class="v" id="hoje-estacao">Coroa Tríplice</span></div>
+    <div class="row"><span class="k">lente</span><span class="v" id="hoje-lente">Liderança</span></div>
+    <div class="row"><span class="k">próxima</span><span class="v" id="hoje-proxima">PNL/Linguagem</span></div>
+    <div class="row"><span class="k">bootstrap</span><span class="v ok" id="hoje-bootstrap">v18.9-cloud-first</span></div>
+  </div>
+</section>
+
+<!-- TAB 2: LÍNGUA -->
+<section class="section" data-tab="lingua">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">LINGUAGEM DE AUTORIDADE</div>
+    <h1 style="font-size:20px">PNL + IE + Persuasão</h1>
+    <div class="reframe">3 modos canônicos · checklist 20s · 4 vetores regra #16</div>
+  </div>
+  <h2>Modos canônicos</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">informar</span><span class="v">estado → fato → consequência</span></div>
+    <div class="row"><span class="k">considerar</span><span class="v">hipótese · convite ao raciocínio</span></div>
+    <div class="row"><span class="k">misto</span><span class="v">informa primeiro · convida depois</span></div>
+  </div>
+  <h2>Checklist 20s · cold reading</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">tom</span><span class="v">grave · pausado · uniforme</span></div>
+    <div class="row"><span class="k">olhar</span><span class="v">3-5s · não fixo</span></div>
+    <div class="row"><span class="k">verbo</span><span class="v">concreto · presente · sem "mas"</span></div>
+    <div class="row"><span class="k">silêncio</span><span class="v">pós-pergunta 4s mínimo</span></div>
+    <div class="row"><span class="k">postura</span><span class="v">ombros · respiração · sem espelho</span></div>
+    <div class="row"><span class="k">âncora</span><span class="v">1 metáfora corporal por turno</span></div>
+  </div>
+  <h2>4 vetores · regra #16</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">imagem</span><span class="v">presença, postura, símbolo</span></div>
+    <div class="row"><span class="k">persuasão</span><span class="v">linguagem hipnótica + repertório</span></div>
+    <div class="row"><span class="k">impacto</span><span class="v">leitura do interlocutor</span></div>
+    <div class="row"><span class="k">eficácia</span><span class="v">resultado mensurável</span></div>
+  </div>
+</section>
+
+<!-- TAB 3: ESTUDO -->
+<section class="section" data-tab="estudo">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">LENTE DO DIA · ACERVO</div>
+    <h1 style="font-size:22px" id="estudo-titulo">Liderança</h1>
+    <div class="reframe" id="estudo-desc">agência sem imposição</div>
+  </div>
+  <h2>Citação canônica</h2>
+  <div class="metrics" style="font-family:Georgia,serif;font-size:15px;font-style:italic;line-height:1.6">
+    <div id="cit-quote">"O líder, na ausência de testemunhas, age igual."</div>
+    <div style="font-family:'SF Mono',ui-monospace,monospace;font-size:10px;color:var(--bronze);text-transform:uppercase;letter-spacing:.1em;margin-top:8px;font-style:normal" id="cit-src">— Sêneca · paráfrase</div>
+  </div>
+  <h2>Acervo · 146 obras / 120 integrais</h2>
+  <div class="grid">
+    <a class="tile" href="https://nexuscaldeira.com/v16/cards/" target="_blank"><div><span class="ic">▤</span><div class="t">Cards</div></div><div class="s">9×16 SVG</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/fichas/" target="_blank"><div><span class="ic">▦</span><div class="t">Fichas</div></div><div class="s">CAIR</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/grafo/" target="_blank"><div><span class="ic">⌬</span><div class="t">Grafo</div></div><div class="s">conexões</div></a>
+    <a class="tile" href="https://nexuscaldeira.com/v16/revisar/" target="_blank"><div><span class="ic">⟲</span><div class="t">Revisar</div></div><div class="s">FSRS-5</div></a>
+  </div>
+  <h2>Eixos temáticos</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">filosofia</span><span class="v">estoicismo · ontologia · ética</span></div>
+    <div class="row"><span class="k">teologia</span><span class="v">aquino · suma · 28.640 chunks</span></div>
+    <div class="row"><span class="k">psicanálise</span><span class="v">freud · klein · lacan · ferenczi</span></div>
+    <div class="row"><span class="k">literatura</span><span class="v">shakespeare · dostoiévski</span></div>
+    <div class="row"><span class="k">pnl/ie</span><span class="v">bandler · grinder · goleman</span></div>
+    <div class="row"><span class="k">persuasão</span><span class="v">cialdini · greene · gallo</span></div>
+    <div class="row"><span class="k">memorização</span><span class="v">o'brien · yates · palácios</span></div>
+  </div>
+</section>
+
+<!-- TAB 4: CARDÁPIO -->
+<section class="section" data-tab="cardapio">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">CARDÁPIO TIER-1 · 16 OBRAS</div>
+    <h1 style="font-size:20px">Trio canônico</h1>
+    <div class="reframe">Curadoria · ciclo 272 dias · top obras por chunks</div>
+  </div>
+  <h2>Filosofia · Teologia</h2>
+  <div class="obra-card"><div class="titulo">Suma Teológica (Vol 3)</div><div class="autor">Tomás de Aquino · 13.542 chunks</div><span class="tag">teologia</span><span class="tag violet">canônico</span></div>
+  <div class="obra-card"><div class="titulo">Suma I + II.1 + II.2 + III</div><div class="autor">Tomás de Aquino · 12.900 chunks</div><span class="tag">teologia</span></div>
+  <div class="obra-card"><div class="titulo">A Condição Humana</div><div class="autor">Hannah Arendt · 1.073 chunks</div><span class="tag">filosofia</span><span class="tag green">política</span></div>
+  <div class="obra-card"><div class="titulo">Física (Livros I-II)</div><div class="autor">Aristóteles · 1.344 chunks</div><span class="tag">filosofia</span></div>
+  <h2>Psicanálise</h2>
+  <div class="obra-card"><div class="titulo">Obras Completas</div><div class="autor">Sigmund Freud · 12.548 chunks</div><span class="tag">psicanálise</span><span class="tag violet">canônico</span></div>
+  <div class="obra-card"><div class="titulo">Dicionário de Psicanálise</div><div class="autor">Roudinesco & Plon · 4.683 chunks</div><span class="tag">referência</span></div>
+  <div class="obra-card"><div class="titulo">Obras Completas (4 vols)</div><div class="autor">Sándor Ferenczi · 3.795 chunks</div><span class="tag">psicanálise</span></div>
+  <h2>Literatura</h2>
+  <div class="obra-card"><div class="titulo">Os Demônios · O Idiota · Crime e Castigo</div><div class="autor">Dostoiévski · 5.741 chunks</div><span class="tag">literatura</span><span class="tag violet">trilogia</span></div>
+  <h2>PNL · Persuasão · Cognição</h2>
+  <div class="obra-card"><div class="titulo">Influence (Expanded 2021)</div><div class="autor">Robert Cialdini · 1.568 chunks</div><span class="tag">persuasão</span></div>
+  <div class="obra-card"><div class="titulo">A Arte da Sedução</div><div class="autor">Robert Greene · 1.782 chunks</div><span class="tag">persuasão</span></div>
+  <div class="obra-card"><div class="titulo">Estrutura da Magia (Vols I-II)</div><div class="autor">Bandler & Grinder · 1.051 chunks</div><span class="tag">pnl</span></div>
+  <div class="obra-card"><div class="titulo">NLP at Work (4ed 2025)</div><div class="autor">Joseph O'Connor · 1.047 chunks</div><span class="tag">pnl</span></div>
+  <div class="obra-card"><div class="titulo">Inteligência Emocional</div><div class="autor">Daniel Goleman · 1.128 chunks</div><span class="tag">ie</span></div>
+  <div class="obra-card"><div class="titulo">Rápido e Devagar</div><div class="autor">Daniel Kahneman · 3.023 chunks</div><span class="tag">cognição</span></div>
+  <a class="btn-action" href="https://nexuscaldeira.com/v16/sugestoes/" target="_blank">▸ Cardápio completo (30 obras)</a>
+</section>
+
+<!-- TAB 5: REDE -->
+<section class="section" data-tab="rede">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">REDE · CONTATOS</div>
+    <h1 style="font-size:20px">Pipeline canônica</h1>
+    <div class="reframe">Skills #84-#88 · 2.198 contatos · WhatsApp autoritativa</div>
+  </div>
+  <h2>5 Skills ativas</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">#84 audit</span><span class="v ok">canônico · O(N)</span></div>
+    <div class="row"><span class="k">#85 cross-source</span><span class="v ok">UAZAPI /chat/check</span></div>
+    <div class="row"><span class="k">#86 screenshot</span><span class="v ok">drop folder</span></div>
+    <div class="row"><span class="k">#87 open-sources</span><span class="v warn">designed</span></div>
+    <div class="row"><span class="k">#88 purge top 100</span><span class="v ok">executado</span></div>
+  </div>
+  <h2>Threshold · regra #28</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">≥ 0.85</span><span class="v ok">HIGH-CONFIRMED</span></div>
+    <div class="row"><span class="k">0.55-0.85</span><span class="v ok">HIGH-LIKELY</span></div>
+    <div class="row"><span class="k">0.40-0.55</span><span class="v warn">MED-PROBABLE</span></div>
+    <div class="row"><span class="k">&lt; 0.40</span><span class="v">LOW · sem ação</span></div>
+  </div>
+  <h2>Fontes abertas · regra #29</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">linkedin</span><span class="v ok">público</span></div>
+    <div class="row"><span class="k">lattes cnpq</span><span class="v ok">público</span></div>
+    <div class="row"><span class="k">institucional</span><span class="v ok">público</span></div>
+    <div class="row"><span class="k">twitter/x</span><span class="v ok">público</span></div>
+    <div class="row"><span class="k">facebook/insta</span><span class="v ok">público</span></div>
+    <div class="row"><span class="k">rate limit</span><span class="v">1 req / 3s</span></div>
+  </div>
+</section>
+
+<!-- TAB 6: NOTURNO -->
+<section class="section" data-tab="noturno">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">DIÁRIO · 22h30 BRT</div>
+    <h1 style="font-size:20px">Pergunta noturna</h1>
+    <div class="reframe" id="noturno-pergunta">"Que verdade incômoda você empacotou em educação hoje?"</div>
+  </div>
+  <h2>Cron Worker · 22h30 → canal direto</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">trigger</span><span class="v ok">cron 30 1 * * * (UTC)</span></div>
+    <div class="row"><span class="k">canal</span><span class="v ok">+5531985276927 (direto)</span></div>
+    <div class="row"><span class="k">grupo legado</span><span class="v ok">ausente_OK · blindado</span></div>
+    <div class="row"><span class="k">storage</span><span class="v ok">D1 nexus-diario</span></div>
+  </div>
+  <h2>Banco · rotação 30 perguntas</h2>
+  <div class="metrics" style="font-size:11px;line-height:1.7">
+    <div class="row" style="display:block;border:none;padding:4px 0">"Qual decisão de hoje você tomou rápido demais?"</div>
+    <div class="row" style="display:block;border:none;padding:4px 0">"Onde você usou autoridade quando podia ter usado escuta?"</div>
+    <div class="row" style="display:block;border:none;padding:4px 0">"Que palavra circulou na sua cabeça e você não disse?"</div>
+    <div class="row" style="display:block;border:none;padding:4px 0">"Onde sua imagem ganhou e sua eficácia perdeu?"</div>
+    <div class="row" style="display:block;border:none;padding:4px 0">"Que afeto não-nomeado guiou uma escolha sua?"</div>
+    <div class="row" style="display:block;border:none;padding:4px 0">"Onde você confundiu firmeza com impaciência?"</div>
+  </div>
+  <a class="btn-action" href="https://nexuscaldeira.com/v16/diario/" target="_blank">▸ Diário completo</a>
+</section>
+
+<!-- TAB 7: SINAIS -->
+<section class="section" data-tab="sinais">
+  <div class="hero" style="padding:18px 20px">
+    <div class="eyebrow">SINAIS · SISTEMA LIVE</div>
+    <h1 style="font-size:20px">Saúde NEXUS</h1>
+    <div class="reframe">cloud-first by design · v18.9 · 29 regras consolidadas v19.0</div>
+  </div>
+  <h2>Apps Script · LIVE</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">version</span><span class="v ok" id="m-version">v18.9-cloud-first-2026-04-28</span></div>
+    <div class="row"><span class="k">deploy</span><span class="v" id="m-deploy">@212 canonical</span></div>
+    <div class="row"><span class="k">triggers</span><span class="v ok" id="m-triggers">13/13 compliant</span></div>
+    <div class="row"><span class="k">arquivos source</span><span class="v">28 canônicos (era 38)</span></div>
+    <div class="row"><span class="k">duplicates</span><span class="v ok">0</span></div>
+    <div class="row"><span class="k">drift</span><span class="v ok" id="m-drift">ok</span></div>
+  </div>
+  <h2>Cloudflare Worker · LIVE</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">domain</span><span class="v ok">api.nexuscaldeira.com</span></div>
+    <div class="row"><span class="k">version</span><span class="v ok" id="m-w-version">v2.0-cron</span></div>
+    <div class="row"><span class="k">version id</span><span class="v" style="font-size:9px">bbcbc5c2-774f-461a-9ce4</span></div>
+    <div class="row"><span class="k">kv</span><span class="v ok" id="m-w-kv">NEXUS_RL active</span></div>
+    <div class="row"><span class="k">d1</span><span class="v ok" id="m-w-d1">nexus-diario active</span></div>
+    <div class="row"><span class="k">r2</span><span class="v ok">nexus-acervo bucket</span></div>
+  </div>
+  <h2>5 Cron Triggers · ATIVOS</h2>
+  <div id="cron-list">
+    <div class="cron-row"><div><div class="name">Healthcheck</div><div class="schedule">*/30 min</div></div><div class="status">🟢</div></div>
+    <div class="cron-row"><div><div class="name">Morning pulse</div><div class="schedule">08h00 BRT</div></div><div class="status">🟢</div></div>
+    <div class="cron-row"><div><div class="name">Diário pergunta</div><div class="schedule">22h30 BRT</div></div><div class="status">🟢</div></div>
+    <div class="cron-row"><div><div class="name">Custo OpenAI</div><div class="schedule">23h00 BRT</div></div><div class="status">🟢</div></div>
+    <div class="cron-row"><div><div class="name">Weekly digest</div><div class="schedule">05h seg BRT</div></div><div class="status">🟢</div></div>
+  </div>
+  <h2>WhatsApp · canal direto blindado</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">canal</span><span class="v" id="m-wa-canal">5531***6927</span></div>
+    <div class="row"><span class="k">grupo legado</span><span class="v ok" id="m-wa-legado">ausente_OK</span></div>
+    <div class="row"><span class="k">delivery rate</span><span class="v ok" id="m-wa-rate">100%</span></div>
+    <div class="row"><span class="k">log entries</span><span class="v" id="m-wa-log">50/50 (cap)</span></div>
+    <div class="row"><span class="k">canal canônico</span><span class="v ok">v16_nexus_notify único</span></div>
+  </div>
+  <h2>RAG · Inteligência</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">chunks</span><span class="v" id="m-chunks">104.024</span></div>
+    <div class="row"><span class="k">obras</span><span class="v" id="m-obras">146</span></div>
+    <div class="row"><span class="k">integrais</span><span class="v" id="m-integrais">120</span></div>
+    <div class="row"><span class="k">embed</span><span class="v" id="m-embed">openai · 1536d</span></div>
+    <div class="row"><span class="k">domínio</span><span class="v ok">rag.nexuscaldeira.com</span></div>
+  </div>
+  <h2>Custo · regra #12</h2>
+  <div class="metrics">
+    <div class="row"><span class="k">cumulativo</span><span class="v ok" id="m-cost">USD 0.29</span></div>
+    <div class="row"><span class="k">cap mensal</span><span class="v">USD 5.00</span></div>
+    <div class="row"><span class="k">cloudflare</span><span class="v ok">free tier</span></div>
+  </div>
+  <h2>Endpoints canônicos</h2>
+  <div class="metrics" style="font-size:10px">
+    <div class="row"><span class="k">hub</span><span class="v">nexuscaldeira.com</span></div>
+    <div class="row"><span class="k">api</span><span class="v">api.nexuscaldeira.com</span></div>
+    <div class="row"><span class="k">rag</span><span class="v">rag.nexuscaldeira.com</span></div>
+    <div class="row"><span class="k">push</span><span class="v warn">api/push (preparado)</span></div>
+  </div>
+  <h2>Regras canônicas · v19.0 (29)</h2>
+  <div class="metrics" style="font-size:10px">
+    <div class="row"><span class="k">núcleo</span><span class="v">#1-#16</span></div>
+    <div class="row"><span class="k">onda 6</span><span class="v">#17-#25</span></div>
+    <div class="row"><span class="k">contatos</span><span class="v">#26-#27</span></div>
+    <div class="row"><span class="k">cloud-first</span><span class="v ok">#28-#29 (LIVE)</span></div>
+    <div class="row"><span class="k">credenciais</span><span class="v ok">#14 NÃO rotacionar</span></div>
+  </div>
+  <button class="btn-action" onclick="loadAll()">↻ refresh</button>
+  <button class="btn-action btn-danger" onclick="logout()">limpar token (logout)</button>
+</section>
+
+</main>
+
+<nav class="tabs" id="nav" style="display:none">
+  <button class="active" data-tab="hoje"><span class="ic">⊙</span>Hoje</button>
+  <button data-tab="lingua"><span class="ic">⊕</span>Língua</button>
+  <button data-tab="estudo"><span class="ic">⊞</span>Estudo</button>
+  <button data-tab="cardapio"><span class="ic">◆</span>Cardápio</button>
+  <button data-tab="rede"><span class="ic">⌬</span>Rede</button>
+  <button data-tab="noturno"><span class="ic">☾</span>Noturno</button>
+  <button data-tab="sinais"><span class="ic">⊠</span>Sinais</button>
+</nav>
+
+</div>
+
+<script>
+const API = 'https://api.nexuscaldeira.com';
+const APPS_FALLBACK = 'https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec';
+const RAG = 'https://rag.nexuscaldeira.com';
+const KEY = 'nexus_admin_token_v1';
+const CACHE_KEY = 'nexus_state_cache_v18_9';
+const PUSH_KEY = 'nexus_push_dismissed';
+
+const LENTES = [
+  {n:'Síntese Dominical',d:'integração da semana',r:'Se eu resumisse em 1 frase para mim mesmo daqui 1 ano · qual seria?',c:{q:'A vida é compreendida olhando para trás · vivida olhando para frente.',s:'— Kierkegaard'}},
+  {n:'Liderança',d:'agência sem imposição',r:'Onde estou exigindo? · onde estou convidando?',c:{q:'O líder, na ausência de testemunhas, age igual.',s:'— Sêneca · paráfrase'}},
+  {n:'PNL/Linguagem',d:'precisão verbal e reframing',r:'Substitua "sempre/nunca" por "neste contexto"',c:{q:'O mapa não é o território.',s:'— Korzybski'}},
+  {n:'Estoica',d:'dicotomia controle/aceitação',r:'O que aqui é meu domínio? · o que é evento?',c:{q:'Não é o que acontece, mas como respondemos.',s:'— Epicteto · Manual'}},
+  {n:'Psicanálise',d:'sintoma como saber',r:'O sintoma diz o quê?',c:{q:'O sintoma é uma metáfora.',s:'— Lacan'}},
+  {n:'Memorização',d:'palácio + repetição espaçada',r:'Esta info já tem ancoragem visual?',c:{q:'A memória não é armazém · é palácio.',s:'— Yates'}},
+  {n:'Motivacional',d:'arquitetura do desejo',r:'O que me move agora · medo ou desejo?',c:{q:'O que você procura está procurando você.',s:'— Rumi'}}
+];
+const MICROS = [
+  'Diga em voz alta sua próxima ação · 1 min.',
+  'Identifique 1 dicotomia controle vs. influência · 3 min.',
+  'Reformule mentalmente sem o "mas" · 2 min.',
+  'Visualize a próxima reunião como se já tivesse terminado bem · 4 min.',
+  'Ensine 1 conceito novo em 90 segundos para si mesmo.',
+  'Caminhe 2 min sem celular · 5 detalhes.',
+  'Liste 3 coisas que sabe que não sabe.'
+];
+const ESTACOES = ['Génese','Forja','Tessitura','Coroa Tríplice','Síntese','Espelho','Tribunal','Vértice'];
+
+let stateData = {};
+
+function getToken(){ return localStorage.getItem(KEY) || '' }
+function setToken(){
+  const v = document.getElementById('tokenInput').value.trim();
+  if(!v) return;
+  localStorage.setItem(KEY, v);
+  showApp();
+}
+function logout(){
+  if(confirm('Limpar token?')){
+    localStorage.removeItem(KEY);
+    localStorage.removeItem(CACHE_KEY);
+    location.reload();
+  }
+}
+function showApp(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('hdr').style.display = 'flex';
+  document.getElementById('main').style.display = 'block';
+  document.getElementById('nav').style.display = 'flex';
+  loadAll();
+  // Push banner: mostra após 30s se não dispensado
+  setTimeout(() => {
+    if(!localStorage.getItem(PUSH_KEY) && 'Notification' in window && Notification.permission === 'default') {
+      document.getElementById('pushBanner').classList.add('show');
+    }
+  }, 30000);
+}
+
+document.querySelectorAll('nav.tabs button').forEach(b => {
+  b.addEventListener('click', () => {
+    const t = b.dataset.tab;
+    document.querySelectorAll('nav.tabs button').forEach(x => x.classList.toggle('active', x === b));
+    document.querySelectorAll('.section').forEach(s => s.classList.toggle('active', s.dataset.tab === t));
+    document.getElementById('main').scrollTop = 0;
+  });
+});
+
+async function fetchProxy(action, t){
+  try{
+    const r = await fetch(`${API}/proxy?action=${action}&token=${encodeURIComponent(t)}`);
+    if(r.ok) return r.json();
+    throw new Error('worker '+r.status);
+  } catch(e){
+    const r = await fetch(`${APPS_FALLBACK}?action=${action}&token=${encodeURIComponent(t)}`);
+    return r.json();
+  }
+}
+
+async function loadAll(){
+  const t = getToken();
+  if(!t) return;
+  document.getElementById('offline').classList.remove('show');
+  const [s, r, w, c, n] = await Promise.allSettled([
+    fetchProxy('status', t),
+    fetch(`${RAG}/stats`).then(r => r.json()),
+    fetch(`${API}/health`).then(r => r.json()),
+    fetch(`${API}/cron/status`).then(r => r.json()),
+    fetchProxy('v16_notify_test', t)
+  ]);
+  if(s.status === 'rejected'){
+    document.getElementById('offline').classList.add('show');
+    const cache = localStorage.getItem(CACHE_KEY);
+    if(cache){ stateData = JSON.parse(cache); render(); }
+    return;
+  }
+  stateData = {
+    status: s.status === 'fulfilled' ? s.value : null,
+    rag: r.status === 'fulfilled' ? r.value : null,
+    worker: w.status === 'fulfilled' ? w.value : null,
+    crons: c.status === 'fulfilled' ? c.value : null,
+    notifyTest: n.status === 'fulfilled' ? n.value : null,
+    ts: Date.now()
+  };
+  localStorage.setItem(CACHE_KEY, JSON.stringify(stateData));
+  render();
+}
+
+function render(){
+  const { status, rag, worker, crons, notifyTest } = stateData;
+  if(!status) return;
+  const day = status.cycleDay || 27;
+  const estIdx = Math.min(Math.floor((day - 1) / 34), 7);
+  const estacao = ESTACOES[estIdx] || 'Coroa Tríplice';
+  const ld = LENTES[(day - 1) % 7] || LENTES[1];
+  const dt = new Date();
+  document.getElementById('hdr-day').textContent = `DAY ${day}/272`;
+  document.getElementById('hdr-date').textContent = dt.toLocaleDateString('pt-BR');
+  document.getElementById('hero-eyebrow').textContent = `CICLO PRIMORDIA · ${estacao.toUpperCase()}`;
+  document.getElementById('hero-title').textContent = ld.n;
+  document.getElementById('hero-lente').textContent = ld.d;
+  document.getElementById('hero-micro').textContent = MICROS[(day - 1) % MICROS.length];
+  document.getElementById('hero-reframe').textContent = '⤳ ' + ld.r;
+  document.getElementById('k-day').textContent = day;
+  document.getElementById('hoje-estacao').textContent = estacao;
+  document.getElementById('hoje-lente').textContent = ld.n;
+  document.getElementById('hoje-proxima').textContent = LENTES[day % 7].n;
+  document.getElementById('hoje-bootstrap').textContent = status.bootstrapVersion || 'v18.9';
+  document.getElementById('estudo-titulo').textContent = ld.n;
+  document.getElementById('estudo-desc').textContent = ld.d;
+  document.getElementById('cit-quote').textContent = '"' + ld.c.q + '"';
+  document.getElementById('cit-src').textContent = ld.c.s;
+  document.getElementById('m-version').textContent = status.bootstrapVersion || '·';
+  if(rag){
+    document.getElementById('k-chunks').textContent = (rag.chunks/1000).toFixed(0)+'k';
+    document.getElementById('k-obras').textContent = rag.obras;
+    document.getElementById('m-chunks').textContent = rag.chunks.toLocaleString('pt-BR');
+    document.getElementById('m-obras').textContent = rag.obras;
+    document.getElementById('m-integrais').textContent = rag.obras_integrais;
+    document.getElementById('m-embed').textContent = `${rag.embed_provider||'openai'} · ${rag.embed_dims||1536}d`;
+  }
+  if(worker){
+    document.getElementById('m-w-version').textContent = worker.version || '·';
+  }
+  if(notifyTest){
+    document.getElementById('m-wa-canal').textContent = notifyTest.v15af_owner_phone || '·';
+    document.getElementById('m-wa-legado').textContent = notifyTest.nexus_biblioteca_phone_legacy || '·';
+  }
+}
+
+// Push notifications
+function skipPush(){
+  localStorage.setItem(PUSH_KEY, '1');
+  document.getElementById('pushBanner').classList.remove('show');
+}
+async function enablePush(){
+  if(!('Notification' in window) || !('serviceWorker' in navigator)){
+    alert('Push não suportado neste navegador. iOS 16.4+ requer instalação via Adicionar à Tela de Início.');
+    return;
+  }
+  const perm = await Notification.requestPermission();
+  if(perm === 'granted'){
+    const reg = await navigator.serviceWorker.ready;
+    // VAPID public key será injetada aqui no deploy final
+    // const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: VAPID_PUBLIC });
+    // await fetch(`${API}/push/subscribe`, { method: 'POST', body: JSON.stringify(sub), headers: {'X-Nexus-Token': getToken()} });
+    document.getElementById('pushBanner').classList.remove('show');
+    alert('Push habilitado · primeiras notificações em ~2h.');
+  }
+}
+
+// Service Worker
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/hub/sw.js').catch(()=>{});
+}
+if(getToken()) showApp();
+setInterval(() => { if(getToken()) loadAll(); }, 5*60*1000);
+window.addEventListener('online', () => { document.getElementById('offline').classList.remove('show'); loadAll(); });
+window.addEventListener('offline', () => document.getElementById('offline').classList.add('show'));
+</script>
+</body>
+</html>

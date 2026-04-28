@@ -1,0 +1,27 @@
+{
+  "name": "NEXUS · Hub Vivo",
+  "short_name": "NEXUS",
+  "description": "Cockpit cloud-first · ciclo PRIMORDIA · 104.024 chunks · 7 lentes · Worker LIVE · canal direto blindado · v18.9-cloud-first-2026-04-28",
+  "id": "nexus.hub.v18_9",
+  "start_url": "/hub/",
+  "scope": "/hub/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F0E17",
+  "theme_color": "#0F0E17",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "categories": ["productivity", "education", "lifestyle"],
+  "prefer_related_applications": false,
+  "icons": [
+    {"src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "/icons/apple-touch-icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any"}
+  ],
+  "shortcuts": [
+    {"name": "Hoje", "url": "/hub/?tab=hoje", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Diário", "url": "/hub/?tab=noturno", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Sinais", "url": "/hub/?tab=sinais", "icons": [{"src": "/icons/icon-192.png", "sizes": "192x192"}]}
+  ]
+}

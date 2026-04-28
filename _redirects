@@ -1,0 +1,7 @@
+# NEXUS · Cloudflare Pages · _redirects · v18.9 · 2026-04-28
+# Migração /v16/app/ → /hub/ (canonical)
+/v16/app/         /hub/  301
+/v16/app/index.html  /hub/  301
+/v16/app/manifest.webmanifest  /hub/manifest.json  301
+/v16/app/sw.js    /hub/sw.js  301
+/v16/app/*        /hub/:splat  301
