@@ -465,15 +465,20 @@ async function loadHealth() {
   try {
     const r = await fetch(HEALTH_URL + "?_=" + Date.now(), { cache: 'no-store' });
     const d = await r.json();
-    const dia = d.ciclo.dia, est = d.ciclo.estacao_idx;
+    // Compatível com schema v18 (cycle_day) e schema legado (ciclo.dia)
+    const dia = (d.ciclo && d.ciclo.dia != null) ? d.ciclo.dia : (d.cycle_day || 1);
+    const est = (d.ciclo && d.ciclo.estacao_idx != null) ? d.ciclo.estacao_idx : Math.min(17, Math.floor((dia - 1) / 16));
     renderHoje(dia, est);
     const c = d.rag;
-    document.getElementById('kpi-chunks').textContent = (c.estado_aprox.chunks || 0).toLocaleString('pt-BR');
-    document.getElementById('kpi-obras').textContent = c.estado_aprox.obras || '?';
-    document.getElementById('kpi-int').textContent = c.estado_aprox.integrais || '?';
+    const chunks = (c.estado_aprox && c.estado_aprox.chunks != null) ? c.estado_aprox.chunks : (c.chunks_total || 0);
+    const obras  = (c.estado_aprox && c.estado_aprox.obras  != null) ? c.estado_aprox.obras  : (c.obras || '?');
+    const integ  = (c.estado_aprox && c.estado_aprox.integrais != null) ? c.estado_aprox.integrais : (c.obras_integrais || '?');
+    document.getElementById('kpi-chunks').textContent = chunks.toLocaleString('pt-BR');
+    document.getElementById('kpi-obras').textContent = obras;
+    document.getElementById('kpi-int').textContent = integ;
     document.getElementById('sysinfo').innerHTML = `
-      <div class="row"><span class="lab">RAG</span><span class="v">🟢 ${c.estado_aprox.chunks.toLocaleString('pt-BR')} chunks</span></div>
-      <div class="row"><span class="lab">obras integrais</span><span class="v">${c.estado_aprox.integrais}</span></div>
+      <div class="row"><span class="lab">RAG</span><span class="v">🟢 ${chunks.toLocaleString('pt-BR')} chunks</span></div>
+      <div class="row"><span class="lab">obras integrais</span><span class="v">${integ}</span></div>
       <div class="row"><span class="lab">apps script</span><span class="v">${d.infra.apps_script_deploy}</span></div>
       <div class="row"><span class="lab">cardápio</span><span class="v">30/30 trio</span></div>
     `;

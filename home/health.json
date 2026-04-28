@@ -1,9 +1,9 @@
 {
   "ok": true,
   "version": "v18.8",
-  "updated_at_iso": "2026-04-27T23:05:00Z",
-  "updated_at_brt": "Monday · 27 de April de 2026 · 20:05 BRT",
-  "cycle_day": 26,
+  "updated_at_iso": "2026-04-28T03:31:28Z",
+  "updated_at_brt": "terça-feira · 28 de abril de 2026 · 03:31 BRT",
+  "cycle_day": 27,
   "cycle_total": 272,
   "estacao_atual": "Coroa Tríplice",
   "lente_do_dia": "Liderança",
@@ -13,7 +13,12 @@
     "chunks_total": 104024,
     "obras": 146,
     "obras_integrais": 120,
-    "cardapio_tier1": 16
+    "cardapio_tier1": 16,
+    "estado_aprox": {
+      "chunks": 104024,
+      "obras": 146,
+      "integrais": 120
+    }
   },
   "infra": {
     "apps_script_deploy": "@200",
@@ -42,7 +47,13 @@
     "d1_database": {
       "name": "nexus-diario",
       "id": "aa14b84c-25ee-40f7-9419-8f8d55d9a853",
-      "tables": ["diario", "pulses", "contatos_pipeline_log", "wa_metrics", "fontes_abertas_log"],
+      "tables": [
+        "diario",
+        "pulses",
+        "contatos_pipeline_log",
+        "wa_metrics",
+        "fontes_abertas_log"
+      ],
       "status": "active"
     },
     "worker": {
@@ -53,7 +64,10 @@
       "custom_domain_status": "active_via_route_cname",
       "route": "api.nexuscaldeira.com/*",
       "dns_record": "CNAME api → nexus-api-proxy.fillipenatan77.workers.dev (proxied)",
-      "bindings": ["NEXUS_DIARIO (D1)", "NEXUS_RL (KV)"],
+      "bindings": [
+        "NEXUS_DIARIO (D1)",
+        "NEXUS_RL (KV)"
+      ],
       "deployed_at_iso": "2026-04-27T23:13:00Z",
       "custom_domain_at_iso": "2026-04-27T23:50:00Z"
     },
@@ -61,5 +75,9 @@
       "name": "nexus-acervo",
       "status": "pending_enable_r2"
     }
+  },
+  "ciclo": {
+    "dia": 27,
+    "estacao_idx": 1
   }
 }
