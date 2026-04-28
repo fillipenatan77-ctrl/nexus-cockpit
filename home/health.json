@@ -1,83 +1,20 @@
 {
   "ok": true,
-  "version": "v18.8",
-  "updated_at_iso": "2026-04-28T03:31:28Z",
-  "updated_at_brt": "terça-feira · 28 de abril de 2026 · 03:31 BRT",
+  "version": "v17.7",
+  "updated_at_iso": "2026-04-28T07:57:49Z",
+  "updated_at_brt": "Tuesday · 28 de April de 2026 · 04:57 BRT",
   "cycle_day": 27,
   "cycle_total": 272,
-  "estacao_atual": "Coroa Tríplice",
-  "lente_do_dia": "Liderança",
+  "lente_do_dia": "PNL",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
-    "version": "v15.BX",
-    "chunks_total": 104024,
-    "obras": 146,
-    "obras_integrais": 120,
-    "cardapio_tier1": 16,
-    "estado_aprox": {
-      "chunks": 104024,
-      "obras": 146,
-      "integrais": 120
-    }
-  },
-  "infra": {
-    "apps_script_deploy": "@200",
-    "triggers_meta": 13,
-    "skills_total": 84,
-    "regras_invioláveis": 28,
-    "custo_openai_cumulativo_usd": 0.29
+    "chunks_total": 0,
+    "obras_integrais": 120
   },
   "endpoints": {
     "rag_url": "https://rag.nexuscaldeira.com",
-    "apps_script": "https://script.google.com/macros/s/AKfycbxSZZ5AlWnhsRMNf8TE15yZQrdKcqg_1J46xq5zu3iwA4WVdN9k4a5w5awB77MT8tK4/exec",
+    "apps_script": "https://script.google.com/macros/s/AKfycbzXORWmmf2UjRwQUSFt7xz1na_b2bzZlL6128I5QJFcaxfao-5ihJ6JPe4mUrEQ7KbJ/exec",
     "hub": "https://nexuscaldeira.com",
-    "v16_app_pwa": "https://nexuscaldeira.com/v16/app/",
-    "system_prompt_canonical": "https://nexuscaldeira.com/prompt-v610.md",
-    "api_proxy": "https://api.nexuscaldeira.com/",
-    "api_proxy_workers_dev": "https://nexus-api-proxy.fillipenatan77.workers.dev/",
-    "r2_acervo": "https://nexus-acervo.r2.cloudflarestorage.com/ (pending R2 enable)"
-  },
-  "cloudflare": {
-    "account_id": "0a428501735b6b6eab7c1cd869ac116f",
-    "kv_namespace": {
-      "name": "NEXUS_RL",
-      "id": "8010ea2cbb9d40a5818fe0c0766a90df",
-      "status": "active"
-    },
-    "d1_database": {
-      "name": "nexus-diario",
-      "id": "aa14b84c-25ee-40f7-9419-8f8d55d9a853",
-      "tables": [
-        "diario",
-        "pulses",
-        "contatos_pipeline_log",
-        "wa_metrics",
-        "fontes_abertas_log"
-      ],
-      "status": "active"
-    },
-    "worker": {
-      "name": "nexus-api-proxy",
-      "status": "active",
-      "url": "https://api.nexuscaldeira.com",
-      "url_workers_dev": "https://nexus-api-proxy.fillipenatan77.workers.dev",
-      "custom_domain_status": "active_via_route_cname",
-      "route": "api.nexuscaldeira.com/*",
-      "dns_record": "CNAME api → nexus-api-proxy.fillipenatan77.workers.dev (proxied)",
-      "bindings": [
-        "NEXUS_DIARIO (D1)",
-        "NEXUS_RL (KV)"
-      ],
-      "deployed_at_iso": "2026-04-27T23:13:00Z",
-      "custom_domain_at_iso": "2026-04-27T23:50:00Z"
-    },
-    "r2_bucket": {
-      "name": "nexus-acervo",
-      "status": "pending_enable_r2"
-    }
-  },
-  "ciclo": {
-    "dia": 27,
-    "estacao_idx": 1
+    "v16_hub": "https://nexuscaldeira.com/v16/"
   }
 }
