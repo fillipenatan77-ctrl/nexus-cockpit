@@ -1,15 +1,15 @@
 {
   "ok": true,
   "version": "v17.7",
-  "updated_at_iso": "2026-05-01T15:35:30Z",
-  "updated_at_brt": "Friday · 01 de May de 2026 · 12:35 BRT",
+  "updated_at_iso": "2026-05-01T20:39:04Z",
+  "updated_at_brt": "Friday · 01 de May de 2026 · 17:38 BRT",
   "cycle_day": 30,
   "cycle_total": 272,
   "lente_do_dia": "memorização",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
     "chunks_total": 0,
-    "obras_integrais": 0
+    "obras_integrais": 120
   },
   "endpoints": {
     "rag_url": "https://rag.nexuscaldeira.com",
