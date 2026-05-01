@@ -1,15 +1,15 @@
 {
   "ok": true,
   "version": "v17.7",
-  "updated_at_iso": "2026-04-30T21:35:58Z",
-  "updated_at_brt": "Thursday · 30 de April de 2026 · 18:35 BRT",
-  "cycle_day": 29,
+  "updated_at_iso": "2026-05-01T07:53:25Z",
+  "updated_at_brt": "Friday · 01 de May de 2026 · 04:53 BRT",
+  "cycle_day": 30,
   "cycle_total": 272,
-  "lente_do_dia": "psicanálise",
+  "lente_do_dia": "memorização",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
     "chunks_total": 0,
-    "obras_integrais": 120
+    "obras_integrais": 0
   },
   "endpoints": {
     "rag_url": "https://rag.nexuscaldeira.com",
