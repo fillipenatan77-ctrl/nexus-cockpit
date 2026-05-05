@@ -1,11 +1,11 @@
 {
   "ok": true,
   "version": "v17.7",
-  "updated_at_iso": "2026-05-04T21:45:02Z",
-  "updated_at_brt": "Monday · 04 de May de 2026 · 18:45 BRT",
-  "cycle_day": 33,
+  "updated_at_iso": "2026-05-05T07:32:14Z",
+  "updated_at_brt": "Tuesday · 05 de May de 2026 · 04:32 BRT",
+  "cycle_day": 34,
   "cycle_total": 272,
-  "lente_do_dia": "liderança",
+  "lente_do_dia": "PNL",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
     "chunks_total": 0,
