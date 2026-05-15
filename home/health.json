@@ -1,11 +1,11 @@
 {
   "ok": true,
   "version": "v17.7",
-  "updated_at_iso": "2026-05-14T18:21:47Z",
-  "updated_at_brt": "Thursday · 14 de May de 2026 · 15:21 BRT",
-  "cycle_day": 43,
+  "updated_at_iso": "2026-05-15T10:00:20Z",
+  "updated_at_brt": "Friday · 15 de May de 2026 · 07:00 BRT",
+  "cycle_day": 44,
   "cycle_total": 272,
-  "lente_do_dia": "psicanálise",
+  "lente_do_dia": "memorização",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
     "chunks_total": 0,
