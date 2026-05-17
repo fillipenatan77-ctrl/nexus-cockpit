@@ -1,11 +1,11 @@
 {
   "ok": true,
   "version": "v17.7",
-  "updated_at_iso": "2026-05-16T20:32:24Z",
-  "updated_at_brt": "Saturday · 16 de May de 2026 · 17:32 BRT",
-  "cycle_day": 45,
+  "updated_at_iso": "2026-05-17T08:34:16Z",
+  "updated_at_brt": "Sunday · 17 de May de 2026 · 05:34 BRT",
+  "cycle_day": 46,
   "cycle_total": 272,
-  "lente_do_dia": "motivacional",
+  "lente_do_dia": "síntese",
   "rag": {
     "url": "https://rag.nexuscaldeira.com",
     "chunks_total": 0,
